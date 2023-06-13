@@ -62,7 +62,7 @@ class CustomTextField extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: AppColors.fillTextField, // Adjust the color to your preference
+        color: AppColors.TextFieldFill, // Adjust the color to your preference
       ),
       child: TextField(
         decoration: InputDecoration(
