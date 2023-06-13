@@ -51,21 +51,23 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
             color: AppColors.foregroundL,
             size: MediaQuery.of(context).size.width * 0.04,
           ),
-          suffixIcon: IconButton(
+          suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 20),
-            onPressed: () {
-              setState(() {
-                visibility = !visibility;
-              });
-              print(visibility);
-            },
-            icon: Icon(
-              visibility ? Icons.visibility : Icons.visibility_off,
-              color: AppColors.foregroundL,
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  visibility = !visibility;
+                });
+                print(visibility);
+              },
+              icon: Icon(
+                visibility ? Icons.visibility : Icons.visibility_off,
+                color: AppColors.foregroundL,
+              ),
             ),
           ),
         ),
-        obscureText: !visibility,
+        obscureText: visibility,
         controller: widget.x,
         validator: (value) {
           if (value == null || value.isEmpty) {

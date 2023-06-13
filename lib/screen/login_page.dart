@@ -4,6 +4,9 @@ import '../helpers/app_colors.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/custom_text_field_password.dart';
 import '../widgets/forgot_password_button.dart';
+import '../widgets/sign_in_button.dart';
+import '../widgets/sign_with_google.dart';
+import '../widgets/string_to_sign_up.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -58,7 +61,22 @@ class LoginPage extends StatelessWidget {
                 print("hello");
               },
             ),
-            
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            Center(
+                child:
+                    SignInButton(onPressedFunctio: () => print("Im sign in"))),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.077,
+            ),
+            const StringToSignUp(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            SignWithGoogle(
+              onPressedFunctio: () => print("I'm  sign with google"),
+            ),
           ],
         ),
       ),
