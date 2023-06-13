@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jessy_mall/screen/Auth/register.dart';
 
-import 'screen/login_page.dart';
+import 'screen/Auth/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: const RegsiterPage(),
     );
   }
 }
