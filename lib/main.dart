@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jessy_mall/screen/Auth/register.dart';
+import 'package:jessy_mall/screen/investment_options/investment_options.dart';
 
 import 'screen/Auth/login_page.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const RegsiterPage(),
+      home: const InvestmentOptions(),
     );
   }
 }
