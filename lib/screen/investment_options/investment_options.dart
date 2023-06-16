@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:jessy_mall/helpers/app_colors.dart';
+import 'package:jessy_mall/screen/investment_options/widgets/investment_store.dart';
 
 class InvestmentOptions extends StatelessWidget {
   const InvestmentOptions({super.key});
-
+  TabBar get _tabBar => const TabBar(
+        tabs: [
+          Tab(icon: Icon(Icons.store_mall_directory)),
+          Tab(icon: Icon(Icons.table_rows_rounded)),
+        ],
+      );
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -11,11 +17,12 @@ class InvestmentOptions extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.foregroundL,
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.store_mall_directory)),
-              Tab(icon: Icon(Icons.table_rows_rounded)),
-            ],
+          bottom: PreferredSize(
+            preferredSize: _tabBar.preferredSize,
+            child: Material(
+              color: AppColors.backgroundTabBar,
+              child: _tabBar,
+            ),
           ),
           title: const Text('Investment option'),
         ),
@@ -26,7 +33,7 @@ class InvestmentOptions extends StatelessWidget {
             //End investment store UI
 
             // began investment stand
-            Icon(Icons.directions_transit),
+            InvestmentStandUI(),
             //end investment stand
           ],
         ),
@@ -36,35 +43,25 @@ class InvestmentOptions extends StatelessWidget {
 }
 
 class Listing {
-  final String photoUrl;
-  final String floor;
   final String space;
   final String type;
   final String price;
 
   Listing({
-    required this.photoUrl,
-    required this.floor,
     required this.space,
     required this.type,
     required this.price,
   });
 }
 
-class InvestmentStoreUI extends StatelessWidget {
+class InvestmentStandUI extends StatelessWidget {
   final List<Listing> listings = [
     Listing(
-      photoUrl:
-          'https://image.cnbcfm.com/api/v1/image/103448059-GettyImages-492843021.jpg?v=1675861201&w=740&h=416&ffmt=webp&vtcrop=y',
-      floor: '3rd floor',
       space: '120 sq. ft.',
       type: 'Snack',
       price: '\$500/year',
     ),
     Listing(
-      photoUrl:
-          'https://image.cnbcfm.com/api/v1/image/103448059-GettyImages-492843021.jpg?v=1675861201&w=740&h=416&ffmt=webp&vtcrop=y',
-      floor: '1st floor',
       space: '80 sq. ft.',
       type: 'Caffe',
       price: '\$400/year',
@@ -75,46 +72,29 @@ class InvestmentStoreUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: listings.length,
-        itemBuilder: (context, index) {
-          return Card(
-            elevation: 2.0,
-            margin: EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: Container(
-                width: 80.0,
-                height: 80.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  image: DecorationImage(
-                    image: NetworkImage(listings[index].photoUrl),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-              title: Text(listings[index].type),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 4.0),
-                  Text(listings[index].floor),
-                  SizedBox(height: 4.0),
-                  Text(listings[index].space),
-                  SizedBox(height: 8.0),
-                  Text(
-                    listings[index].price,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                ],
-              ),
+        body: Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Card(
+        elevation: 4.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                  "In this option you can immediately invest until 5 stands,\n every stand have one metter space, and you can have a type in each stand."),
             ),
-          );
-        },
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                  "Available types\n price per month \n types: kitchen stuff, Detergent, canned food."),
+            ),
+          ],
+        ),
       ),
-    );
+    ));
   }
 }
