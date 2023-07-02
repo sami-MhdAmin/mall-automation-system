@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/app_colors.dart';
+import '../../../../config/theme/color_manager.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextInputType type;
@@ -40,7 +40,7 @@ class CustomTextField extends StatelessWidget {
           hintText: hintText,
           prefixIcon: Icon(
             icon,
-            color: AppColors.foregroundL,
+            color: ColorManager.foregroundL,
             size: MediaQuery.of(context).size.width * 0.04,
           ),
         ),

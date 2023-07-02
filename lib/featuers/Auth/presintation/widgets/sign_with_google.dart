@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import '../helpers/app_colors.dart';
+import '../../../../config/theme/color_manager.dart';
 
 class SignWithGoogle extends StatelessWidget {
   const SignWithGoogle({required this.onPressedFunctio, super.key});
@@ -14,7 +14,7 @@ class SignWithGoogle extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.height * 0.048,
         width: MediaQuery.of(context).size.width * 0.1,
-        color: AppColors.foregroundL,
+        color: ColorManager.foregroundL,
         child: const Center(
           child: Icon(
             MaterialCommunityIcons.google,

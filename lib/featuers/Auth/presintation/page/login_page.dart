@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../helpers/app_colors.dart';
-import '../../widgets/custom_text_field.dart';
-import '../../widgets/custom_text_field_password.dart';
-import '../../widgets/forgot_password_button.dart';
+import '../../../../config/theme/color_manager.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/custom_text_field_password.dart';
+import '../widgets/forgot_password_button.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundL,
+      backgroundColor: ColorManager.backgroundL,
       body: Form(
         key: formKey,
         child: SingleChildScrollView(

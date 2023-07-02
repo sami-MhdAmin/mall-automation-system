@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jessy_mall/screen/Auth/register.dart';
-import 'package:jessy_mall/screen/investment_options/investment_options.dart';
+import 'package:jessy_mall/featuers/investment_options/investment_options.dart';
 
-import 'screen/Auth/login_page.dart';
 
 void main() {
   runApp(const MyApp());

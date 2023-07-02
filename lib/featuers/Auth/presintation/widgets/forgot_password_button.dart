@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/app_colors.dart';
+import '../../../../config/theme/color_manager.dart';
 
 class ForgotPasswordButton extends StatelessWidget {
   const ForgotPasswordButton({required this.onPressedFunctio, super.key});
@@ -19,7 +19,7 @@ class ForgotPasswordButton extends StatelessWidget {
           "FORGOT PASSWORD?",
           style: TextStyle(
             letterSpacing: 2,
-            color: AppColors.foregroundL,
+            color: ColorManager.foregroundL,
             fontSize: 11,
           ),
         ),

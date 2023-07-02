@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/app_colors.dart';
+import '../../../../config/theme/color_manager.dart';
 
 class StringToSignUp extends StatelessWidget {
   const StringToSignUp({super.key});
@@ -12,7 +12,7 @@ class StringToSignUp extends StatelessWidget {
       children: [
         Text(
           "Don’t have an account?",
-          style: TextStyle(color: AppColors.foregroundL, fontSize: 11),
+          style: TextStyle(color: ColorManager.foregroundL, fontSize: 11),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,14 +25,14 @@ class StringToSignUp extends StatelessWidget {
                 "SIGN UP",
                 style: TextStyle(
                   letterSpacing: 1.5,
-                  color: AppColors.blue,
+                  color: ColorManager.blue,
                   fontSize: 11,
                 ),
               ),
             ),
             Text(
               " using your email address or Google account below",
-              style: TextStyle(color: AppColors.foregroundL, fontSize: 11),
+              style: TextStyle(color: ColorManager.foregroundL, fontSize: 11),
             ),
           ],
         )

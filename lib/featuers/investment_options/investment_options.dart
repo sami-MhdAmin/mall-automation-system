@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jessy_mall/helpers/app_colors.dart';
-import 'package:jessy_mall/screen/investment_options/widgets/investment_store.dart';
+import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/featuers/investment_options/widgets/investment_store.dart';
 
 class InvestmentOptions extends StatelessWidget {
   const InvestmentOptions({super.key});
@@ -16,11 +16,11 @@ class InvestmentOptions extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.foregroundL,
+          backgroundColor: ColorManager.foregroundL,
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: Material(
-              color: AppColors.backgroundTabBar,
+              color: ColorManager.backgroundTabBar,
               child: _tabBar,
             ),
           ),

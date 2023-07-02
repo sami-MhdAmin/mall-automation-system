@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/app_colors.dart';
+import '../../../../config/theme/color_manager.dart';
 
 class CustomTextFieldPassword extends StatefulWidget {
   final TextInputType type;
@@ -48,7 +48,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
           hintText: widget.hintText,
           prefixIcon: Icon(
             widget.icon,
-            color: AppColors.foregroundL,
+            color: ColorManager.foregroundL,
             size: MediaQuery.of(context).size.width * 0.04,
           ),
           suffixIcon: Padding(
@@ -62,7 +62,7 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
               },
               icon: Icon(
                 visibility ? Icons.visibility : Icons.visibility_off,
-                color: AppColors.foregroundL,
+                color: ColorManager.foregroundL,
               ),
             ),
           ),
