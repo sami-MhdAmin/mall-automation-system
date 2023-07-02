@@ -1,3 +1,3 @@
-class AssetManager{
-    static const logo = "assets/images/Logo.png";
+class AssetImageManager{
+    static const String logo = "assets/images/Logo.png";
 }
