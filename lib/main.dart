@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jessy_mall/featuers/investment_options/investment_options.dart';
 
+import 'featuers/Auth/presintation/page/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const InvestmentOptions(),
+      home: const LoginPage(),
     );
   }
 }

@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
 
 import '../../../../config/theme/color_manager.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/custom_text_field_password.dart';
+import '../widgets/text_field_widget.dart';
 import '../widgets/forgot_password_button.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
-  final TextEditingController UserName = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController userNameController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  bool visibility = false;
+
+//TODO: must dispose controllers
+  @override
+  void dispose() {
+    userNameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +53,39 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.125,
               ),
-              CustomTextField(
+              TextFieldWidget(
                 type: TextInputType.name,
                 hintText: 'User Name',
                 icon: Icons.person,
-                x: UserName,
+                x: userNameController,
                 msg: 'user name',
+                suffixIconWidget: null,
+                visibility: false,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.024,
               ),
-              CustomTextFieldPassword(
+              TextFieldWidget(
                 type: TextInputType.visiblePassword,
                 hintText: 'Password',
                 icon: Icons.lock,
-                x: password,
+                x: passwordController,
                 msg: 'password',
+                suffixIconWidget: Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        visibility = !visibility;
+                      });
+                    },
+                    icon: Icon(
+                      visibility ? Icons.visibility : Icons.visibility_off,
+                      color: ColorManager.foregroundL,
+                    ),
+                  ),
+                ),
+                visibility: visibility,
               ),
               ForgotPasswordButton(
                 onPressedFunctio: () {
