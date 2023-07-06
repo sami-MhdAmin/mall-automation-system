@@ -3,7 +3,7 @@ import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/widgets/investment_store.dart';
 
 class InvestmentOptions extends StatelessWidget {
-  InvestmentOptions({super.key});
+  const InvestmentOptions({super.key});
   TabBar get _tabBar => const TabBar(
         tabs: [
           Tab(icon: Icon(Icons.store_mall_directory)),
@@ -89,11 +89,13 @@ class InvestmentStandUI extends StatelessWidget {
     // Add more listings as needed
   ];
 
+  InvestmentStandUI({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: EdgeInsets.all(16.0),
+      padding:const EdgeInsets.all(16.0),
       child: Column(
         children: [
           // SizedBox(height: 200, child: WebViewWidget(controller: _controller)),
@@ -102,7 +104,7 @@ class InvestmentStandUI extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16.0),
             ),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(

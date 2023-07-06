@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 
 import '../../../../config/theme/color_manager.dart';
-import '../widgets/text_field_widget.dart';
 import '../widgets/forgot_password_button.dart';
+import '../widgets/sign_in_button.dart';
+import '../widgets/string_to_sign_up.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController passwordController = TextEditingController();
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool visibility = false;
 
@@ -33,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: ColorManager.backgroundL,
       body: Form(
-        key: formKey,
+        key: _formKey,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -53,7 +55,8 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.125,
               ),
-              TextFieldWidget(
+              CustomTextField(
+                width: 400,
                 type: TextInputType.name,
                 hintText: 'User Name',
                 icon: Icons.person,
@@ -65,7 +68,8 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.024,
               ),
-              TextFieldWidget(
+              CustomTextField(
+                width: 400,
                 type: TextInputType.visiblePassword,
                 hintText: 'Password',
                 icon: Icons.lock,
@@ -92,6 +96,20 @@ class _LoginPageState extends State<LoginPage> {
                   print("hello");
                 },
               ),
+              const SizedBox(
+                height: 50,
+              ),
+              SignInButton(
+                onPressedFunctio: () {
+                  if (_formKey.currentState!.validate()) {
+                    //sign in
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const StringToSignUp(),
             ],
           ),
         ),

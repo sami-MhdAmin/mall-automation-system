@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'featuers/Auth/presintation/page/login_page.dart';
-import 'featuers/Auth/presintation/page/register.dart';
+import 'featuers/Auth/presintation/page/register_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const RegsiterPage(),
+      home: const LoginPage(),
     );
   }
 }

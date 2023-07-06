@@ -1,22 +1,20 @@
 class Failuer {
-  Failuer({required this.message,this.statusCode});
+  Failuer({required this.message, this.statusCode});
   String message;
-  int ?statusCode;
+  int? statusCode;
 }
 
 /// general failures
 class ServerFailure implements Failuer {
   @override
-  String message = 'حدث خطا غير متوقع';
-    @override
-      int ?statusCode;
-
+  String message = 'Unexpexted Error Occured';
+  @override
+  int? statusCode;
 }
 
 class NoInternetFailure implements Failuer {
   @override
-  String message = 'لا يوجد اتصال بالانترنت';
-    @override
-      int ?statusCode;
-
+  String message = 'No Internet Connection';
+  @override
+  int? statusCode;
 }

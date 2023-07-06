@@ -37,6 +37,8 @@ class InvestmentStoreUI extends StatelessWidget {
     // Add more listings as needed
   ];
 
+  InvestmentStoreUI({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +46,7 @@ class InvestmentStoreUI extends StatelessWidget {
         itemCount: listings.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.all(16.0),
+            padding:const EdgeInsets.all(16.0),
             child: Card(
               elevation: 4.0,
               shape: RoundedRectangleBorder(
@@ -54,7 +56,7 @@ class InvestmentStoreUI extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius:const BorderRadius.only(
                       topLeft: Radius.circular(16.0),
                       topRight: Radius.circular(16.0),
                     ),
@@ -65,31 +67,31 @@ class InvestmentStoreUI extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding:const EdgeInsets.all(16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           listings[index].type,
-                          style: TextStyle(
+                          style:const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
                           ),
                         ),
-                        SizedBox(height: 8.0),
+                      const  SizedBox(height: 8.0),
                         Text(
                           'Floor: ${listings[index].floor}',
-                          style: TextStyle(fontSize: 16.0),
+                          style:const TextStyle(fontSize: 16.0),
                         ),
-                        SizedBox(height: 8.0),
+                       const SizedBox(height: 8.0),
                         Text(
                           'Space: ${listings[index].space}',
-                          style: TextStyle(fontSize: 16.0),
+                          style:const TextStyle(fontSize: 16.0),
                         ),
-                        SizedBox(height: 16.0),
+                       const SizedBox(height: 16.0),
                         Text(
                           listings[index].price,
-                          style: TextStyle(
+                          style:const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
                           ),

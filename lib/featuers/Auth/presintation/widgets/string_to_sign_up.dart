@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../page/register_page.dart';
 
 class StringToSignUp extends StatelessWidget {
   const StringToSignUp({super.key});
@@ -19,7 +20,12 @@ class StringToSignUp extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                //TODO: navigate to signup page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RegsiterPage(),
+                  ),
+                );
               },
               child: Text(
                 "SIGN UP",
