@@ -6,8 +6,7 @@ class CustomTextField extends StatelessWidget {
   final double width;
   final String? hintText;
   final IconData icon;
-  CustomTextField(
-      {required this.width, required this.hintText, required this.icon});
+  CustomTextField({required this.width, this.hintText, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class CustomTextField extends StatelessWidget {
           color:
               ColorManager.TextFieldFill, // Adjust the color to your preference
         ),
-        child: TextField(
+        child: TextFormField(
           decoration: InputDecoration(
             border: InputBorder.none,
             contentPadding:
