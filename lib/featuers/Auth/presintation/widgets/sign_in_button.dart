@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/app_colors.dart';
+import '../../../../config/theme/color_manager.dart';
 
 class SignInButton extends StatelessWidget {
   const SignInButton({required this.onPressedFunctio, super.key});
@@ -13,7 +13,7 @@ class SignInButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressedFunctio,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.foregroundL,
+          backgroundColor: ColorManager.foregroundL,
           shape: const LinearBorder(),
         ),
         child: const Text(

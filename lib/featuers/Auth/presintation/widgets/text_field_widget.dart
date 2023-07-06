@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/app_colors.dart';
+import '../../../../config/theme/color_manager.dart';
 
-class CustomTextFieldPassword extends StatefulWidget {
+class TextFieldWidget extends StatefulWidget {
   final TextInputType type;
   final String hintText, msg;
   final IconData icon;
   final TextEditingController x;
+  final Widget? suffixIconWidget;
+  final bool visibility;
+  // final String? Function(String?)? validator;
 
-  const CustomTextFieldPassword({
+  const TextFieldWidget({
     required this.type,
     required this.hintText,
     required this.icon,
     required this.x,
     required this.msg,
+    required this.suffixIconWidget,
+    required this.visibility,
+    // required this.validator,
     super.key,
   });
 
   @override
-  State<CustomTextFieldPassword> createState() =>
-      _CustomTextFieldPasswordState();
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
 
-class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
-  bool visibility = false;
+class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -48,26 +52,12 @@ class _CustomTextFieldPasswordState extends State<CustomTextFieldPassword> {
           hintText: widget.hintText,
           prefixIcon: Icon(
             widget.icon,
-            color: AppColors.foregroundL,
+            color: ColorManager.foregroundL,
             size: MediaQuery.of(context).size.width * 0.04,
           ),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: IconButton(
-              onPressed: () {
-                setState(() {
-                  visibility = !visibility;
-                });
-                print(visibility);
-              },
-              icon: Icon(
-                visibility ? Icons.visibility : Icons.visibility_off,
-                color: AppColors.foregroundL,
-              ),
-            ),
-          ),
+          suffixIcon: widget.suffixIconWidget ?? widget.suffixIconWidget,
         ),
-        obscureText: visibility,
+        obscureText: widget.visibility,
         controller: widget.x,
         validator: (value) {
           if (value == null || value.isEmpty) {

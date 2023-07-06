@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jessy_mall/helpers/app_colors.dart';
-import 'package:jessy_mall/screen/investment_options/widgets/investment_store.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/featuers/investment_options/widgets/investment_store.dart';
 
 class InvestmentOptions extends StatelessWidget {
   InvestmentOptions({super.key});
@@ -17,11 +16,11 @@ class InvestmentOptions extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.foregroundL,
+          backgroundColor: ColorManager.foregroundL,
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: Material(
-              color: AppColors.backgroundTabBar,
+              color: ColorManager.backgroundTabBar,
               child: _tabBar,
             ),
           ),
@@ -57,25 +56,25 @@ class Listing {
 
 class InvestmentStandUI extends StatelessWidget {
   // Create a webview controller
-  final _controller = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setNavigationDelegate(
-      NavigationDelegate(
-        onProgress: (int progress) {
-          // print the loading progress to the console
-          // you can use this value to show a progress bar if you want
-          debugPrint("Loading: $progress%");
-        },
-        onPageStarted: (String url) {},
-        onPageFinished: (String url) {},
-        onWebResourceError: (WebResourceError error) {},
-        onNavigationRequest: (NavigationRequest request) {
-          return NavigationDecision.navigate;
-        },
-      ),
-    )
-    ..loadRequest(
-        Uri.parse("https://app.vectary.com/p/67QoljN0bz9vp78OSy1tti"));
+  // final _controller = WebViewController()
+  //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
+  //   ..setNavigationDelegate(
+  //     NavigationDelegate(
+  //       onProgress: (int progress) {
+  //         // print the loading progress to the console
+  //         // you can use this value to show a progress bar if you want
+  //         debugPrint("Loading: $progress%");
+  //       },
+  //       onPageStarted: (String url) {},
+  //       onPageFinished: (String url) {},
+  //       onWebResourceError: (WebResourceError error) {},
+  //       onNavigationRequest: (NavigationRequest request) {
+  //         return NavigationDecision.navigate;
+  //       },
+  //     ),
+  //   )
+  //   ..loadRequest(
+  //       Uri.parse("https://app.vectary.com/p/67QoljN0bz9vp78OSy1tti"));
   final List<Listing> listings = [
     Listing(
       space: '120 sq. ft.',
@@ -97,7 +96,7 @@ class InvestmentStandUI extends StatelessWidget {
       padding: EdgeInsets.all(16.0),
       child: Column(
         children: [
-          SizedBox(height: 200, child: WebViewWidget(controller: _controller)),
+          // SizedBox(height: 200, child: WebViewWidget(controller: _controller)),
           Card(
             elevation: 4.0,
             shape: RoundedRectangleBorder(

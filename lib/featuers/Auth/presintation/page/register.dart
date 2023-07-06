@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jessy_mall/helpers/app_colors.dart';
+import 'package:jessy_mall/config/theme/color_manager.dart';
 
 class RegsiterPage extends StatefulWidget {
   const RegsiterPage({super.key});
@@ -66,9 +66,9 @@ class _RegsiterPageState extends State<RegsiterPage> {
             Text(
               "Read More",
               style: TextStyle(
-                color: AppColors.blue,
+                color: ColorManager.blue,
                 decoration: TextDecoration.underline,
-                decorationColor: AppColors.blue,
+                decorationColor: ColorManager.blue,
               ),
             ),
           ],
@@ -93,7 +93,8 @@ class CustomTextField extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: AppColors.TextFieldFill, // Adjust the color to your preference
+          color:
+              ColorManager.TextFieldFill, // Adjust the color to your preference
         ),
         child: TextField(
           decoration: InputDecoration(
@@ -107,7 +108,7 @@ class CustomTextField extends StatelessWidget {
             ),
             prefixIcon: Icon(
               icon,
-              color: AppColors.foregroundL,
+              color: ColorManager.foregroundL,
               size: MediaQuery.of(context).size.width * 0.04,
             ),
           ),
@@ -136,9 +137,9 @@ class _CheckboxExampleState extends State<CheckboxExample> {
         MaterialState.focused,
       };
       if (states.any(interactiveStates.contains)) {
-        return AppColors.blue;
+        return ColorManager.blue;
       }
-      return AppColors.foregroundL;
+      return ColorManager.foregroundL;
     }
 
     return Checkbox(
