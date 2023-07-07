@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
-import '../page/register_page.dart';
 
 class StringToSignIn extends StatelessWidget {
   const StringToSignIn({super.key});
