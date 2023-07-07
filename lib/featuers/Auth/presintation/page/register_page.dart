@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_check_box.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 
-class RegsiterPage extends StatefulWidget {
-  const RegsiterPage({super.key});
+import '../widgets/sign_in_button.dart';
+import '../widgets/string_to_sign_in.dart';
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<RegsiterPage> createState() => _RegsiterPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegsiterPageState extends State<RegsiterPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -34,22 +38,34 @@ class _RegsiterPageState extends State<RegsiterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          backgroundColor: ColorManager.backgroundL,
+      backgroundColor: ColorManager.backgroundL,
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              /*wiget*/
-              const SizedBox(
-                height: 300,
+              SizedBox(
+                height: 350.h,
+              ),
+              Center(
+                child: Text(
+                  "JESSY",
+                  style: TextStyle(
+                    fontSize: 80.sp,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 150.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomTextField(
-                    width: 198,
+                    width: 420.w,
                     hintText: "First Name",
                     icon: Icons.person,
                     x: firstNameController,
@@ -57,11 +73,11 @@ class _RegsiterPageState extends State<RegsiterPage> {
                     msg: "your first name",
                     visibility: false,
                   ),
-                  const SizedBox(
-                    width: 4,
+                  SizedBox(
+                    width: 10.w,
                   ),
                   CustomTextField(
-                    width: 198,
+                    width: 420.w,
                     hintText: "Last Name",
                     icon: Icons.assignment_ind_rounded,
                     x: lastNameController,
@@ -72,7 +88,7 @@ class _RegsiterPageState extends State<RegsiterPage> {
                 ],
               ),
               CustomTextField(
-                width: 400,
+                width: 850.w,
                 hintText: "Email",
                 icon: Icons.email,
                 x: emailController,
@@ -81,7 +97,7 @@ class _RegsiterPageState extends State<RegsiterPage> {
                 visibility: false,
               ),
               CustomTextField(
-                width: 400,
+                width: 850.w,
                 hintText: "Password",
                 icon: Icons.lock,
                 x: passwordController,
@@ -104,7 +120,7 @@ class _RegsiterPageState extends State<RegsiterPage> {
                 visibility: visibility,
               ),
               CustomTextField(
-                width: 400,
+                width: 850.w,
                 hintText: "Number",
                 icon: Icons.numbers_outlined,
                 x: numberController,
@@ -112,23 +128,49 @@ class _RegsiterPageState extends State<RegsiterPage> {
                 msg: "your number",
                 visibility: false,
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 60.h,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Do you want to see investment option?"),
-                  CustomCheckbox()
+                  Text(
+                    "Do you want to see investment option?",
+                    style: TextStyle(fontSize: 25.sp),
+                  ),
+                  const CustomCheckbox()
                 ],
               ),
-              Text(
-                "Read More",
-                style: TextStyle(
-                  color: ColorManager.blue,
-                  decoration: TextDecoration.underline,
-                  decorationColor: ColorManager.blue,
+              TextButton(
+                onPressed: () {
+                  //TODO: take me to description of investment
+                },
+                child: Text(
+                  "Read More",
+                  style: TextStyle(
+                    color: ColorManager.blue,
+                    decoration: TextDecoration.underline,
+                    decorationColor: ColorManager.blue,
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 100.h,
+              ),
+              SignButton(
+                text: "SIGN UP",
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    //sign in
+                  }
+                },
+              ),
+              SizedBox(
+                height: 100.h,
+              ),
+              const StringToSignIn(),
+              SizedBox(
+                height: 50.h,
               ),
             ],
           ),

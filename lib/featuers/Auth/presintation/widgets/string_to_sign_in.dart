@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/theme/color_manager.dart';
 import '../page/register_page.dart';
 
-class StringToSignUp extends StatelessWidget {
-  const StringToSignUp({super.key});
+class StringToSignIn extends StatelessWidget {
+  const StringToSignIn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class StringToSignUp extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Don’t have an account?",
+          "Already have an account?",
           style: TextStyle(
             color: ColorManager.foregroundL,
             fontSize: 25.sp,
@@ -24,15 +24,10 @@ class StringToSignUp extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const RegisterPage(),
-              ),
-            );
+            Navigator.pop(context);
           },
           child: Text(
-            "SIGN UP",
+            "SIGN IN",
             style: TextStyle(
               letterSpacing: 1.5,
               color: ColorManager.blue,

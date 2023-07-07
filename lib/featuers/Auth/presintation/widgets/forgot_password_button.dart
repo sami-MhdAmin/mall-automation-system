@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
 
@@ -9,9 +10,9 @@ class ForgotPasswordButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.03,
-        left: MediaQuery.of(context).size.width * 0.585,
-        right: MediaQuery.of(context).size.width * 0.055,
+        top: 50.h,
+        left: 550.w,
+        // right: 0.w,
       ),
       child: TextButton(
         onPressed: onPressedFunctio,
@@ -20,7 +21,7 @@ class ForgotPasswordButton extends StatelessWidget {
           style: TextStyle(
             letterSpacing: 2,
             color: ColorManager.foregroundL,
-            fontSize: 11,
+            fontSize: 25.sp,
           ),
         ),
       ),

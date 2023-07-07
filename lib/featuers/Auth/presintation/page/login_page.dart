@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 
 import '../../../../config/theme/color_manager.dart';
@@ -40,23 +41,23 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.14,
+                height: 350.h,
               ),
-              const Center(
+              Center(
                 child: Text(
                   "JESSY",
                   style: TextStyle(
-                    fontSize: 35,
+                    fontSize: 80.sp,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
                   ),
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.125,
+                height: 250.h,
               ),
               CustomTextField(
-                width: 400,
+                width: 850.w,
                 type: TextInputType.name,
                 hintText: 'User Name',
                 icon: Icons.person,
@@ -66,10 +67,10 @@ class _LoginPageState extends State<LoginPage> {
                 visibility: false,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.024,
+                height: 50.h,
               ),
               CustomTextField(
-                width: 400,
+                width: 850.w,
                 type: TextInputType.visiblePassword,
                 hintText: 'Password',
                 icon: Icons.lock,
@@ -96,20 +97,25 @@ class _LoginPageState extends State<LoginPage> {
                   print("hello");
                 },
               ),
-              const SizedBox(
-                height: 50,
+              SizedBox(
+                height: 250.h,
               ),
-              SignInButton(
+              SignButton(
+                text: "SIGN IN",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     //sign in
                   }
                 },
               ),
-              const SizedBox(
-                height: 50,
+              SizedBox(
+                height: 100.h,
               ),
               const StringToSignUp(),
+
+              SizedBox(
+                height: 50.h,
+              ),
             ],
           ),
         ),
