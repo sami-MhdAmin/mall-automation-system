@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
               ),
               SignInButton(
-                onPressedFunctio: () {
+                onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     //sign in
                   }

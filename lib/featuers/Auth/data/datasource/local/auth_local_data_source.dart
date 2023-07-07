@@ -20,8 +20,7 @@ abstract class AuthLocalDataSource {
 }
 
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
-
-  //TODO: from core yaman now its commented but we may need it later
+  // TODO: from core yaman now its commented but we may need it later
   // AuthLocalDataSourceImpl(this._sharedPreferences);
 
   final _keyToken = 'token';
@@ -58,6 +57,5 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
     final SharedPreferences prefs = await _prefs;
     await prefs.remove(_keyToken);
     await prefs.remove(_keyRole);
-    
   }
 }

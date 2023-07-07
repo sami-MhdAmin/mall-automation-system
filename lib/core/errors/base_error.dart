@@ -1,18 +1,18 @@
-class Failuer {
-  Failuer({required this.message, this.statusCode});
+class Failure {
+  Failure({required this.message, this.statusCode});
   String message;
   int? statusCode;
 }
 
 /// general failures
-class ServerFailure implements Failuer {
+class ServerFailure implements Failure {
   @override
   String message = 'Unexpexted Error Occured';
   @override
   int? statusCode;
 }
 
-class NoInternetFailure implements Failuer {
+class NoInternetFailure implements Failure {
   @override
   String message = 'No Internet Connection';
   @override

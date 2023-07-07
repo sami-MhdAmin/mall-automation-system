@@ -37,6 +37,7 @@ dependencies:
   flutter_facebook_auth: ^6.0.0
   webview_flutter: ^4.2.2
   shared_preferences: ^2.2.0
+  dartz: ^0.10.1
 
 dev_dependencies:
 
