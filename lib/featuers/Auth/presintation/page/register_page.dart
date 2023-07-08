@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_check_box.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 
 import '../widgets/sign_in_button.dart';
 import '../widgets/string_to_sign_in.dart';
@@ -157,13 +159,26 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 100.h,
               ),
-              SignButton(
-                text: "SIGN UP",
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    //sign in
-                  }
+              BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthSignUpSuccess) {}
                 },
+                child: SignButton(
+                  text: "SIGN UP",
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      //maybe i should add bloc consumer
+                      context.read<AuthBloc>().add(
+                            RegisterEvent(
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                number: numberController.text),
+                          );
+                    }
+                  },
+                ),
               ),
               SizedBox(
                 height: 100.h,
