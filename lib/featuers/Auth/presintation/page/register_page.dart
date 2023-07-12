@@ -70,10 +70,16 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 420.w,
                     hintText: "First Name",
                     icon: Icons.person,
-                    x: firstNameController,
+                    textEditingController: firstNameController,
                     type: TextInputType.name,
-                    msg: "your first name",
+                  
                     visibility: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your First Name";
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     width: 10.w,
@@ -82,10 +88,16 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 420.w,
                     hintText: "Last Name",
                     icon: Icons.assignment_ind_rounded,
-                    x: lastNameController,
+                    textEditingController: lastNameController,
                     type: TextInputType.name,
-                    msg: "your last name",
+           
                     visibility: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your Last Name";
+                      }
+                      return null;
+                    },
                   ),
                 ],
               ),
@@ -93,18 +105,26 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: 850.w,
                 hintText: "Email",
                 icon: Icons.email,
-                x: emailController,
+                textEditingController: emailController,
                 type: TextInputType.emailAddress,
-                msg: "your Email",
+     
                 visibility: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your Gmail";
+                  } else if (!value.contains("@")) {
+                    return "The Email must contain '@' Character";
+                  }
+                  return null;
+                },
               ),
               CustomTextField(
                 width: 850.w,
                 hintText: "Password",
                 icon: Icons.lock,
-                x: passwordController,
+                textEditingController: passwordController,
                 type: TextInputType.visiblePassword,
-                msg: "your Password",
+     
                 suffixIconWidget: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: IconButton(
@@ -120,15 +140,28 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 visibility: visibility,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter Password";
+                  } else if (value.length <= 7) {
+                    return "The password must be 8 Characters";
+                  }
+                  return null;
+                },
               ),
               CustomTextField(
                 width: 850.w,
                 hintText: "Number",
                 icon: Icons.numbers_outlined,
-                x: numberController,
+                textEditingController: numberController,
                 type: TextInputType.number,
-                msg: "your number",
                 visibility: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter Your Number";
+                  } 
+                  return null;
+                },
               ),
               SizedBox(
                 height: 60.h,

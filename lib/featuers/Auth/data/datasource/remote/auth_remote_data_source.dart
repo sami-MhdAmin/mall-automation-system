@@ -11,9 +11,15 @@ abstract class AuthRemoteDataSource {
     required String number,
     required String password,
   });
+
+  Future<Either<Failure, UserModel>> login({
+    required String userName,
+    required String password,
+  });
+
+  Future<Either<Failure, bool>> logout({required String token});
 }
 
-//TODO: Either package
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   final Dio dioClient;
   AuthRemoteDataSourceImpl(this.dioClient);
@@ -66,5 +72,38 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       }
     }
     return Left(ServerFailure());
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> login(
+      {required String userName, required String password}) async {
+    final Response response;
+
+    response = await dioClient.post(
+      '/api/v1/users', //don't forget to replace the end point here
+      data: {'username': userName, 'password': password},
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
+    } else {
+      //TODO: how is the response from back
+      return Left(Failure(message: 'todo'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> logout({required String token}) async {
+    final Response response;
+
+    dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
+    response = await dioClient.post(
+      '/api/v1/logout',
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return const Right(true);
+    } else {
+      //TODO: how is the response from back
+      return Left(Failure(message: 'todo'));
+    }
   }
 }

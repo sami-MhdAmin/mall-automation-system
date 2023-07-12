@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/string_manager.dart';
 import '../widgets/forgot_password_button.dart';
 import '../widgets/sign_in_button.dart';
 import '../widgets/string_to_sign_up.dart';
@@ -59,12 +60,17 @@ class _LoginPageState extends State<LoginPage> {
               CustomTextField(
                 width: 850.w,
                 type: TextInputType.name,
-                hintText: 'User Name',
+                hintText: StringManager.userNameHintText,
                 icon: Icons.person,
-                x: userNameController,
-                msg: 'user name',
+                textEditingController: userNameController,
                 suffixIconWidget: null,
                 visibility: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter User Name";
+                  }
+                  return null;
+                },
               ),
               SizedBox(
                 height: 50.h,
@@ -74,8 +80,8 @@ class _LoginPageState extends State<LoginPage> {
                 type: TextInputType.visiblePassword,
                 hintText: 'Password',
                 icon: Icons.lock,
-                x: passwordController,
-                msg: 'password',
+                textEditingController: passwordController,
+                
                 suffixIconWidget: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: IconButton(
@@ -91,6 +97,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 visibility: visibility,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter Password";
+                  } else if (value.length <= 7) {
+                    return "The password must be 8 Characters";
+                  } 
+                  return null;
+                },
               ),
               ForgotPasswordButton(
                 onPressedFunctio: () {
@@ -112,7 +126,6 @@ class _LoginPageState extends State<LoginPage> {
                 height: 100.h,
               ),
               const StringToSignUp(),
-
               SizedBox(
                 height: 50.h,
               ),

@@ -10,9 +10,14 @@ class AuthSignUpSuccess extends AuthState {
   final UserModel user;
 }
 
-class AuthSignUpLoading extends AuthState {}
+class AuthLoginSuccess extends AuthState {
+  AuthLoginSuccess({required this.user});
+  final UserModel user;
+}
 
-class AuthSignUpFaield extends AuthState {
-  AuthSignUpFaield({required this.faliuer});
+class AuthLoading extends AuthState {}
+
+class AuthFailed extends AuthState {
+  AuthFailed({required this.faliuer});
   final Failure faliuer;
 }

@@ -4,22 +4,23 @@ import '../../config/theme/color_manager.dart';
 
 class CustomTextField extends StatelessWidget {
   final double width;
-  final String? hintText, msg;
+  final String? hintText;
   final IconData icon;
-  final TextEditingController x;
+  final TextEditingController textEditingController;
   final Widget? suffixIconWidget;
   final bool? visibility;
   final TextInputType type;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     required this.type,
     required this.width,
     this.hintText,
-    this.msg,
     required this.icon,
-    required this.x,
+    required this.textEditingController,
     this.suffixIconWidget,
     this.visibility,
+    required this.validator,
     super.key,
   });
 
@@ -35,7 +36,7 @@ class CustomTextField extends StatelessWidget {
               ColorManager.textFieldFill, // Adjust the color to your preference
         ),
         child: TextFormField(
-          controller: x,
+          controller: textEditingController,
           keyboardType: type,
           obscureText: visibility!,
           decoration: InputDecoration(
@@ -54,12 +55,7 @@ class CustomTextField extends StatelessWidget {
             ),
             suffixIcon: suffixIconWidget ?? suffixIconWidget,
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "please enter $msg";
-            }
-            return null;
-          },
+          validator: validator,
         ),
       ),
     );
