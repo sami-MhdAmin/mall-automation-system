@@ -15,6 +15,8 @@ class AuthLoginSuccess extends AuthState {
   final UserModel user;
 }
 
+class AuthLogoutSuccess extends AuthState {}
+
 class AuthLoading extends AuthState {}
 
 class AuthFailed extends AuthState {

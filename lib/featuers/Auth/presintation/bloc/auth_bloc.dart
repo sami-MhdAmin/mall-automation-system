@@ -49,6 +49,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoading());
 
       final successOrFailuer = await _authRepostitory.logout();
+      successOrFailuer.fold((error) {
+        emit(AuthFailed(faliuer: error));
+      }, (isLoggedOut) {
+        emit(AuthLogoutSuccess());
+      });
     });
   }
 }
