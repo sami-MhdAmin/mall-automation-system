@@ -35,13 +35,13 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
         'password': password,
       });
       response = await dioClient.post(
-        '/api/v1/users',
+        '/api/v1/users', //don't forget to replace the end point here
         data: formData,
       );
 
-      // if (response.statusCode == 200 || response.statusCode == 201) {
-      //   return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
-      // }
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
+      }
     } on DioError catch (e) {
       if (e.response == null) {
         return left(NoInternetFailure());

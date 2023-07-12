@@ -7,7 +7,6 @@ class AuthInitial extends AuthState {}
 
 class AuthSignUpSuccess extends AuthState {
   AuthSignUpSuccess({required this.user});
-
   final UserModel user;
 }
 
