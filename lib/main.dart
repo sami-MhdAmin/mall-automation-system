@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
+import 'featuers/stores/presentation/page/stores_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
             // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const LoginPage(),
+          home: const StoresPage(categoryName: "Clothes"),
         );
       },
     );
