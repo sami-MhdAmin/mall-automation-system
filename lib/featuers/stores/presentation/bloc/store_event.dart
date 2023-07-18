@@ -4,13 +4,19 @@ part of 'store_bloc.dart';
 abstract class StoreEvent {}
 
 class StoreGetStoresEvent extends StoreEvent {
-  final int categoryId;
+  final String categoryName;
 
-  StoreGetStoresEvent({required this.categoryId});
+  StoreGetStoresEvent({required this.categoryName});
 }
 
 class StoreSearchForStoreEvent extends StoreEvent {
   final String searchInput;
 
   StoreSearchForStoreEvent({required this.searchInput});
+}
+
+class StoreGetOneStoreInfo extends StoreEvent {
+  final int storeId;
+
+  StoreGetOneStoreInfo({required this.storeId});
 }

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../models/stores_model.dart';
-import '../widget/custom_list_tile_widget.dart';
+import '../widget/custom_stores_widget.dart';
 
 class StoresPage extends StatefulWidget {
   const StoresPage({

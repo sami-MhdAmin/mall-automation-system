@@ -14,6 +14,8 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       // TODO: implement event handler
     });
 
-    on<StoreSearchForStoreEvent>((event, emit) async{} );
+    on<StoreSearchForStoreEvent>((event, emit) async {});
+
+    on<StoreGetOneStoreInfo>((event, emit) async {});
   }
 }

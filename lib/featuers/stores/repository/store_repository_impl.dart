@@ -21,4 +21,10 @@ class StoreRepositoryImpl extends StoreRepository {
     // TODO: implement getStores
     throw UnimplementedError();
   }
+  
+  @override
+  Future<Either<Failure, StoresModel>> getSearchedStores({required int storeId}) {
+    // TODO: implement getSearchedStores
+    throw UnimplementedError();
+  }
 }

@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
-import 'package:jessy_mall/featuers/investment_options/widgets/investment_store.dart';
+import 'package:jessy_mall/featuers/investment_options/presintation/widgets/investment_store.dart';
 
 class InvestmentOptions extends StatelessWidget {
   const InvestmentOptions({super.key});
-  TabBar get _tabBar => const TabBar(
+  TabBar get _tabBar => TabBar(
+        unselectedLabelColor: ColorManager.backgroundL,
+        indicatorSize: TabBarIndicatorSize.label,
+        indicatorColor: ColorManager.foregroundL,
+        indicator: BoxDecoration(color: ColorManager.backgroundL),
         tabs: [
-          Tab(icon: Icon(Icons.store_mall_directory)),
-          Tab(icon: Icon(Icons.table_rows_rounded)),
+          Tab(
+              icon: SizedBox(
+            width: 200,
+            child: Icon(
+              Icons.store_mall_directory,
+              // color: ColorManager.backgroundL,
+            ),
+          )),
+          Tab(
+              icon: Icon(
+            Icons.table_rows_rounded,
+            // color: ColorManager.backgroundL,
+          )),
         ],
       );
   @override
@@ -20,11 +35,24 @@ class InvestmentOptions extends StatelessWidget {
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: Material(
-              color: ColorManager.backgroundTabBar,
-              child: _tabBar,
+              // color: ColorManager.backgroundTabBar,
+              child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          ColorManager.foregroundL,
+                          ColorManager.backgroundTabBar,
+                        ]),
+                  ),
+                  child: _tabBar),
             ),
           ),
-          title: const Text('Investment option'),
+          title: Text(
+            'Investment option',
+            style: TextStyle(color: ColorManager.backgroundL),
+          ),
         ),
         body: TabBarView(
           children: [
@@ -95,7 +123,7 @@ class InvestmentStandUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding:const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           // SizedBox(height: 200, child: WebViewWidget(controller: _controller)),
