@@ -27,13 +27,14 @@ class MyApp extends StatelessWidget {
             // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const ProfilePage(
-            userName: "salimo",
-            userEmail: "salimo@gmail.com",
-            orderCount: 10,
-            shippingAddressesCount: 2,
-            storeInvestedCount: 0,
-          ),
+          home:const LoginPage()
+          // const ProfilePage(
+          //   userName: "salimo",
+          //   userEmail: "salimo@gmail.com",
+          //   orderCount: 10,
+          //   shippingAddressesCount: 2,
+          //   storeInvestedCount: 0,
+          // ),
         );
       },
     );
