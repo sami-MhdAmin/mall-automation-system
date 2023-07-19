@@ -42,7 +42,8 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       // if (response.statusCode == 200 || response.statusCode == 201) {
       //   return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
       // }
-    } on DioError catch (e) {
+    } 
+    on DioError catch (e) {
       if (e.response == null) {
         return left(NoInternetFailure());
       }
