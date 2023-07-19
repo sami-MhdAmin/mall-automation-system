@@ -51,5 +51,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   Future<void> clearAllUserData() async {
     await _prefs.remove(_keyToken);
     await _prefs.remove(_keyRole);
+    // TODO: not sure if its correct to put clear
+    await _prefs.clear();
   }
 }

@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
   final bool? visibility;
   final TextInputType type;
   final String? Function(String?)? validator;
+  final String? Function(String?)? onFieldSubmittedFunc;
 
   const CustomTextField({
     required this.type,
@@ -21,6 +22,7 @@ class CustomTextField extends StatelessWidget {
     this.suffixIconWidget,
     this.visibility,
     required this.validator,
+    this.onFieldSubmittedFunc,
     super.key,
   });
 
@@ -56,6 +58,7 @@ class CustomTextField extends StatelessWidget {
             suffixIcon: suffixIconWidget ?? suffixIconWidget,
           ),
           validator: validator,
+          onFieldSubmitted: onFieldSubmittedFunc,
         ),
       ),
     );

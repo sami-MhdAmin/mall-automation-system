@@ -6,7 +6,7 @@ import 'package:jessy_mall/core/widgets/custom_check_box.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 
-import '../widgets/sign_in_button.dart';
+import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_in.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -72,7 +72,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     icon: Icons.person,
                     textEditingController: firstNameController,
                     type: TextInputType.name,
-                  
                     visibility: false,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -90,7 +89,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     icon: Icons.assignment_ind_rounded,
                     textEditingController: lastNameController,
                     type: TextInputType.name,
-           
                     visibility: false,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -107,7 +105,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 icon: Icons.email,
                 textEditingController: emailController,
                 type: TextInputType.emailAddress,
-     
                 visibility: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -124,7 +121,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 icon: Icons.lock,
                 textEditingController: passwordController,
                 type: TextInputType.visiblePassword,
-     
                 suffixIconWidget: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: IconButton(
@@ -159,7 +155,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter Your Number";
-                  } 
+                  }
                   return null;
                 },
               ),
@@ -196,7 +192,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 listener: (context, state) {
                   if (state is AuthSignUpSuccess) {}
                 },
-                child: SignButton(
+                child: CustomButton(
                   text: "SIGN UP",
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {

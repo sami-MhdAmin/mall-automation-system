@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:jessy_mall/featuers/investment_options/presintation/widgets/slider_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/widgets/custom_button.dart';
+import 'package:jessy_mall/featuers/investment_options/presentation/widgets/slider_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class InvestStoreUiBody extends StatelessWidget {
@@ -11,17 +13,20 @@ class InvestStoreUiBody extends StatelessWidget {
     return Column(
       // crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         //slider image with animation
         SliderImage(),
 
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 8.h,
+              ),
               Text(
                 'Clothes Type, Good Vipe',
                 style: TextStyle(
@@ -34,6 +39,9 @@ class InvestStoreUiBody extends StatelessWidget {
                 ),
               ),
               //price
+              SizedBox(
+                height: 16.h,
+              ),
               SizedBox(
                 width: 51,
                 child: Text(
@@ -50,6 +58,9 @@ class InvestStoreUiBody extends StatelessWidget {
                 ),
               ),
               //product details widget
+              SizedBox(
+                height: 32.h,
+              ),
               Text(
                 'Product Details',
                 style: TextStyle(
@@ -61,6 +72,11 @@ class InvestStoreUiBody extends StatelessWidget {
                   letterSpacing: 0.38,
                 ),
               ),
+
+              SizedBox(
+                height: 8.h,
+              ),
+
               Row(
                 children: [
                   Opacity(
@@ -88,11 +104,16 @@ class InvestStoreUiBody extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
         //Text for store type with bold font
+        Expanded(child: SizedBox()),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: CustomButton(onPressed: () {}, text: "Invest"),
+        ),
       ],
     );
   }

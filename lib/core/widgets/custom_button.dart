@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/theme/color_manager.dart';
+import '../../config/theme/color_manager.dart';
 
-class SignButton extends StatelessWidget {
-  const SignButton({required this.onPressed, required this.text, super.key});
+class CustomButton extends StatelessWidget {
+  const CustomButton({required this.onPressed, required this.text, super.key});
   final String text;
   final Function() onPressed;
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
-import 'package:jessy_mall/featuers/investment_options/presintation/widgets/investment_store.dart';
+import 'package:jessy_mall/featuers/investment_options/presentation/widgets/investment_store.dart';
 
 class InvestmentOptions extends StatelessWidget {
   const InvestmentOptions({super.key});
