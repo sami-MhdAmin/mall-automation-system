@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/featuers/Favorite/presentation/pages/favorite.dart';
 import 'package:jessy_mall/featuers/cart/presentation/pages/my_cart.dart';
 
 import 'featuers/Auth/presintation/page/login_page.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
             // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const MyCart(),
+          home: const Favorite(),
         );
       },
     );
