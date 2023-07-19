@@ -1,3 +1,3 @@
-class ConstManager{
-  
+class ConstManager {
+  static String baseUrl = 'baseurl/';
 }

@@ -10,4 +10,11 @@ abstract class AuthRepository {
     required String number,
     required String password,
   });
+
+  Future<Either<Failure, UserModel>> postLogin({
+    required String userName,
+    required String password,
+  });
+
+  Future<Either<Failure, bool>> logout();
 }

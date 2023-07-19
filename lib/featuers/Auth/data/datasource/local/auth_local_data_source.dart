@@ -20,42 +20,38 @@ abstract class AuthLocalDataSource {
 }
 
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
-  // TODO: from core yaman now its commented but we may need it later
-  // AuthLocalDataSourceImpl(this._sharedPreferences);
+  AuthLocalDataSourceImpl(this._prefs);
 
   final _keyToken = 'token';
   final _keyRole = 'role';
 
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final SharedPreferences _prefs;
 
   @override
   Future<String?> getUserRole() async {
-    final SharedPreferences prefs = await _prefs;
-    return prefs.getString(_keyRole);
+    return _prefs.getString(_keyRole);
   }
 
   @override
   Future<String?> getUserToken() async {
-    final SharedPreferences prefs = await _prefs;
-    return prefs.getString(_keyToken);
+    return _prefs.getString(_keyToken);
   }
 
   @override
   Future<void> setUserRole(String role) async {
-    final SharedPreferences prefs = await _prefs;
-    await prefs.setString(_keyToken, role);
+    await _prefs.setString(_keyToken, role);
   }
 
   @override
   Future<void> setUserToken(String token) async {
-    final SharedPreferences prefs = await _prefs;
-    await prefs.setString(_keyToken, token);
+    await _prefs.setString(_keyToken, token);
   }
 
   @override
   Future<void> clearAllUserData() async {
-    final SharedPreferences prefs = await _prefs;
-    await prefs.remove(_keyToken);
-    await prefs.remove(_keyRole);
+    await _prefs.remove(_keyToken);
+    await _prefs.remove(_keyRole);
+    // TODO: not sure if its correct to put clear
+    await _prefs.clear();
   }
 }
