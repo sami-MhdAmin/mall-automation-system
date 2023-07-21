@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               CustomTextField(
                 width: 850.w,
-                type: TextInputType.name,
+                keybordType: TextInputType.name,
                 hintText: StringManager.userNameHintText,
                 icon: Icons.person,
                 textEditingController: userNameController,
@@ -80,11 +80,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
               CustomTextField(
                 width: 850.w,
-                type: TextInputType.visiblePassword,
+                keybordType: TextInputType.visiblePassword,
                 hintText: 'Password',
                 icon: Icons.lock,
                 textEditingController: passwordController,
-                
                 suffixIconWidget: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: IconButton(
@@ -105,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     return "Please enter Password";
                   } else if (value.length <= 7) {
                     return "The password must be 8 Characters";
-                  } 
+                  }
                   return null;
                 },
               ),

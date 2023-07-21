@@ -9,12 +9,13 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final Widget? suffixIconWidget;
   final bool? visibility;
-  final TextInputType type;
+  final TextInputType keybordType;
   final String? Function(String?)? validator;
   final String? Function(String?)? onFieldSubmittedFunc;
+  final Color? textFieldColor;
 
   const CustomTextField({
-    required this.type,
+    required this.keybordType,
     required this.width,
     this.hintText,
     required this.icon,
@@ -24,6 +25,7 @@ class CustomTextField extends StatelessWidget {
     required this.validator,
     this.onFieldSubmittedFunc,
     super.key,
+    this.textFieldColor,
   });
 
   @override
@@ -34,13 +36,13 @@ class CustomTextField extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color:
+          color: textFieldColor ??
               ColorManager.textFieldFill, // Adjust the color to your preference
         ),
         child: TextFormField(
           controller: textEditingController,
-          keyboardType: type,
-          obscureText: visibility!,
+          keyboardType: keybordType,
+          obscureText: visibility ?? false,
           decoration: InputDecoration(
             border: InputBorder.none,
             contentPadding:

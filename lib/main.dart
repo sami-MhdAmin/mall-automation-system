@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
+import 'package:jessy_mall/featuers/home/presintation/page/home_page.dart';
 
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
@@ -27,13 +29,7 @@ class MyApp extends StatelessWidget {
             // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const ProfilePage(
-            userName: "salimo",
-            userEmail: "salimo@gmail.com",
-            orderCount: 10,
-            shippingAddressesCount: 2,
-            storeInvestedCount: 0,
-          ),
+          home: BottomNavigationBarWidget()
         );
       },
     );

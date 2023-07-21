@@ -1,0 +1,68 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/resource/const_manager.dart';
+import '../widget/convex_bar_items_widget.dart';
+
+class BottomNavigationBarWidget extends StatefulWidget {
+  BottomNavigationBarWidget({
+    super.key,
+  });
+
+  @override
+  State<BottomNavigationBarWidget> createState() =>
+      _BottomNavigationBarWidgetState();
+}
+
+class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
+  int index = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        bottomNavigationBar: ConvexAppBar(
+          initialActiveIndex: index,
+          elevation: 5,
+          backgroundColor: Colors.black,
+          height: 120.h,
+          // curveSize: 100.h,
+          onTap: (int i) {
+            setState(() {
+              index = i;
+            });
+          },
+          items: [
+            TabItem(
+              icon: Icons.home,
+              activeIcon: Icon(
+                Icons.home,
+                size: 80.h,
+              ),
+            ),
+            TabItem(
+              icon: Icons.store,
+              activeIcon: Icon(
+                Icons.store,
+                size: 80.h,
+              ),
+            ),
+            TabItem(
+              icon: Icons.star_rate,
+              activeIcon: Icon(
+                Icons.star_rate,
+                size: 80.h,
+              ),
+            ),
+            TabItem(
+              icon: Icons.person,
+              activeIcon: Icon(
+                Icons.person,
+                size: 80.h,
+              ),
+            ),
+          ],
+        ),
+        body: ConstManager.pageOptions[index]);
+  }
+}

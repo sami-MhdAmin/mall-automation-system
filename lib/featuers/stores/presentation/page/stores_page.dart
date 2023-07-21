@@ -91,7 +91,7 @@ class _StoresPageState extends State<StoresPage> {
                   icon: Icons.search_rounded,
                   hintText: "Search Your Store",
                   textEditingController: textEditingController,
-                  type: TextInputType.name,
+                  keybordType: TextInputType.name,
                   width: 980.w,
                   validator: (value) {
                     if (value == null || value.isEmpty) {

@@ -71,8 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: "First Name",
                     icon: Icons.person,
                     textEditingController: firstNameController,
-                    type: TextInputType.name,
-                  
+                    keybordType: TextInputType.name,
                     visibility: false,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -89,8 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     hintText: "Last Name",
                     icon: Icons.assignment_ind_rounded,
                     textEditingController: lastNameController,
-                    type: TextInputType.name,
-           
+                    keybordType: TextInputType.name,
                     visibility: false,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -106,8 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: "Email",
                 icon: Icons.email,
                 textEditingController: emailController,
-                type: TextInputType.emailAddress,
-     
+                keybordType: TextInputType.emailAddress,
                 visibility: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -123,8 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: "Password",
                 icon: Icons.lock,
                 textEditingController: passwordController,
-                type: TextInputType.visiblePassword,
-     
+                keybordType: TextInputType.visiblePassword,
                 suffixIconWidget: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: IconButton(
@@ -154,12 +150,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: "Number",
                 icon: Icons.numbers_outlined,
                 textEditingController: numberController,
-                type: TextInputType.number,
+                keybordType: TextInputType.number,
                 visibility: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter Your Number";
-                  } 
+                  }
                   return null;
                 },
               ),
