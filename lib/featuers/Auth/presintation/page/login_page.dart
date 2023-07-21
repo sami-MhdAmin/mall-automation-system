@@ -8,7 +8,7 @@ import 'package:jessy_mall/featuers/Auth/repository/auth_repository_impl.dart';
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/string_manager.dart';
 import '../widgets/forgot_password_button.dart';
-import '../widgets/sign_in_button.dart';
+import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_up.dart';
 
 class LoginPage extends StatefulWidget {
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 250.h,
               ),
-              SignButton(
+              CustomButton(
                 text: "SIGN IN",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

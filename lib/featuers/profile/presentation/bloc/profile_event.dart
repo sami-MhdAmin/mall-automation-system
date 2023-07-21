@@ -3,9 +3,11 @@ part of 'profile_bloc.dart';
 @immutable
 abstract class ProfileEvent {}
 
-class ProfileGetMyOrdersEvent extends ProfileEvent {}
+class ProfileGetProfileInfoEvent extends ProfileEvent {}
 
-class ProfileGetMyShippingAddressesEvent extends ProfileEvent {}
+class ProfileMyOrdersEvent extends ProfileEvent {}
+
+class ProfileShippingAddressesEvent extends ProfileEvent {}
 
 class ProfileInvestStoreOrStandEvent extends ProfileEvent {}
 

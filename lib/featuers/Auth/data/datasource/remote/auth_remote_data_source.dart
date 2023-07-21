@@ -46,7 +46,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
+        return Right(UserModel.fromJson(""));
       }
     } on DioError catch (e) {
       if (e.response == null) {
@@ -84,7 +84,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       data: {'username': userName, 'password': password},
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
+      return Right(UserModel.fromJson("response.data as Map<String, dynamic>"));
     } else {
       //TODO: how is the response from back
       return Left(Failure(message: 'todo'));
