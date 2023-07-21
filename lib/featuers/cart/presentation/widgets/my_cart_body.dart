@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/custom_counter.dart';
+import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/cart/presentation/widgets/cart_card.dart';
 
 class MyCartBody extends StatelessWidget {
@@ -13,23 +14,12 @@ class MyCartBody extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Icon(Icons.arrow_back_ios_rounded),
-              Text(
-                'My cart',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF303030),
-                  fontSize: 16,
-                  fontFamily: 'Merriweather',
-                  fontWeight: FontWeight.w700,
-                ),
+          HeaderPage(
+              left: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.arrow_back_ios_rounded),
               ),
-              SizedBox()
-            ],
-          ),
+              title: 'My cart'),
           SizedBox(
             height: 80.h,
           ),

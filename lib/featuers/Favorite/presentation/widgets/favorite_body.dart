@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/custom_counter.dart';
+import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/widgets/favorite_card.dart';
 import 'package:jessy_mall/featuers/cart/presentation/widgets/cart_card.dart';
 
@@ -14,23 +16,10 @@ class FavoriteBody extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(),
-              Text(
-                'Favorites',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF303030),
-                  fontSize: 16,
-                  fontFamily: 'Merriweather',
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Icon(Icons.shopping_cart_outlined),
-            ],
-          ),
+          HeaderPage(
+              title: "Favorites",
+              right: IconButton(
+                  onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined))),
           SizedBox(
             height: 80.h,
           ),

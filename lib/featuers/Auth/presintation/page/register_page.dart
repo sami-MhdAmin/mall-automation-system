@@ -1,10 +1,18 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/core/network/network_info.dart';
 import 'package:jessy_mall/core/widgets/custom_check_box.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
+import 'package:jessy_mall/featuers/Auth/data/datasource/local/auth_local_data_source.dart';
+import 'package:jessy_mall/featuers/Auth/data/datasource/remote/auth_remote_data_source.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
+import 'package:jessy_mall/featuers/Auth/repository/auth_repository.dart';
+import 'package:jessy_mall/featuers/Auth/repository/auth_repository_impl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_in.dart';
@@ -38,185 +46,197 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   @override
+  void initState() async {
+    super.initState();
+    final sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.backgroundL,
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 350.h,
-              ),
-              Center(
-                child: Text(
-                  "JESSY",
-                  style: TextStyle(
-                    fontSize: 80.sp,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5,
-                  ),
+    return BlocProvider(
+      create: (context) => AuthBloc(AuthRepositoryImpl(
+          AuthRemoteDataSourceImpl(Dio()),
+          AuthLocalDataSourceImpl(),
+          NetworkInfoImpl(Connectivity()))),
+      child: Scaffold(
+        backgroundColor: ColorManager.backgroundL,
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 350.h,
                 ),
-              ),
-              SizedBox(
-                height: 150.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomTextField(
-                    width: 420.w,
-                    hintText: "First Name",
-                    icon: Icons.person,
-                    textEditingController: firstNameController,
-                    type: TextInputType.name,
-                    visibility: false,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please enter your First Name";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  CustomTextField(
-                    width: 420.w,
-                    hintText: "Last Name",
-                    icon: Icons.assignment_ind_rounded,
-                    textEditingController: lastNameController,
-                    type: TextInputType.name,
-                    visibility: false,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please enter your Last Name";
-                      }
-                      return null;
-                    },
-                  ),
-                ],
-              ),
-              CustomTextField(
-                width: 850.w,
-                hintText: "Email",
-                icon: Icons.email,
-                textEditingController: emailController,
-                type: TextInputType.emailAddress,
-                visibility: false,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter your Gmail";
-                  } else if (!value.contains("@")) {
-                    return "The Email must contain '@' Character";
-                  }
-                  return null;
-                },
-              ),
-              CustomTextField(
-                width: 850.w,
-                hintText: "Password",
-                icon: Icons.lock,
-                textEditingController: passwordController,
-                type: TextInputType.visiblePassword,
-                suffixIconWidget: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        visibility = !visibility;
-                      });
-                    },
-                    icon: Icon(
-                      visibility ? Icons.visibility : Icons.visibility_off,
-                      color: ColorManager.foregroundL,
+                Center(
+                  child: Text(
+                    "JESSY",
+                    style: TextStyle(
+                      fontSize: 80.sp,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5,
                     ),
                   ),
                 ),
-                visibility: visibility,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter Password";
-                  } else if (value.length <= 7) {
-                    return "The password must be 8 Characters";
-                  }
-                  return null;
-                },
-              ),
-              CustomTextField(
-                width: 850.w,
-                hintText: "Number",
-                icon: Icons.numbers_outlined,
-                textEditingController: numberController,
-                type: TextInputType.number,
-                visibility: false,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter Your Number";
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(
-                height: 60.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Do you want to see investment option?",
-                    style: TextStyle(fontSize: 25.sp),
-                  ),
-                  const CustomCheckbox()
-                ],
-              ),
-              TextButton(
-                onPressed: () {
-                  //TODO: take me to description of investment
-                },
-                child: Text(
-                  "Read More",
-                  style: TextStyle(
-                    color: ColorManager.blue,
-                    decoration: TextDecoration.underline,
-                    decorationColor: ColorManager.blue,
-                  ),
+                SizedBox(
+                  height: 150.h,
                 ),
-              ),
-              SizedBox(
-                height: 100.h,
-              ),
-              BlocListener<AuthBloc, AuthState>(
-                listener: (context, state) {
-                  if (state is AuthSignUpSuccess) {}
-                },
-                child: CustomButton(
-                  text: "SIGN UP",
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      //maybe i should add bloc consumer
-                      context.read<AuthBloc>().add(
-                            RegisterEvent(
-                                firstName: firstNameController.text,
-                                lastName: lastNameController.text,
-                                email: emailController.text,
-                                password: passwordController.text,
-                                number: numberController.text),
-                          );
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomTextField(
+                      width: 420.w,
+                      hintText: "First Name",
+                      icon: Icons.person,
+                      textEditingController: firstNameController,
+                      type: TextInputType.name,
+                      visibility: false,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter your First Name";
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    CustomTextField(
+                      width: 420.w,
+                      hintText: "Last Name",
+                      icon: Icons.assignment_ind_rounded,
+                      textEditingController: lastNameController,
+                      type: TextInputType.name,
+                      visibility: false,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter your Last Name";
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+                CustomTextField(
+                  width: 850.w,
+                  hintText: "Email",
+                  icon: Icons.email,
+                  textEditingController: emailController,
+                  type: TextInputType.emailAddress,
+                  visibility: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your Gmail";
+                    } else if (!value.contains("@")) {
+                      return "The Email must contain '@' Character";
                     }
+                    return null;
                   },
                 ),
-              ),
-              SizedBox(
-                height: 100.h,
-              ),
-              const StringToSignIn(),
-              SizedBox(
-                height: 50.h,
-              ),
-            ],
+                CustomTextField(
+                  width: 850.w,
+                  hintText: "Password",
+                  icon: Icons.lock,
+                  textEditingController: passwordController,
+                  type: TextInputType.visiblePassword,
+                  suffixIconWidget: Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          visibility = !visibility;
+                        });
+                      },
+                      icon: Icon(
+                        visibility ? Icons.visibility : Icons.visibility_off,
+                        color: ColorManager.foregroundL,
+                      ),
+                    ),
+                  ),
+                  visibility: visibility,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter Password";
+                    } else if (value.length <= 7) {
+                      return "The password must be 8 Characters";
+                    }
+                    return null;
+                  },
+                ),
+                CustomTextField(
+                  width: 850.w,
+                  hintText: "Number",
+                  icon: Icons.numbers_outlined,
+                  textEditingController: numberController,
+                  type: TextInputType.number,
+                  visibility: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter Your Number";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 60.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Do you want to see investment option?",
+                      style: TextStyle(fontSize: 25.sp),
+                    ),
+                    const CustomCheckbox()
+                  ],
+                ),
+                TextButton(
+                  onPressed: () {
+                    //TODO: take me to description of investment
+                  },
+                  child: Text(
+                    "Read More",
+                    style: TextStyle(
+                      color: ColorManager.blue,
+                      decoration: TextDecoration.underline,
+                      decorationColor: ColorManager.blue,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 100.h,
+                ),
+                BlocListener<AuthBloc, AuthState>(
+                  listener: (context, state) {
+                    if (state is AuthSignUpSuccess) {}
+                  },
+                  child: CustomButton(
+                    text: "SIGN UP",
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        //maybe i should add bloc consumer
+                        context.read<AuthBloc>().add(
+                              RegisterEvent(
+                                  firstName: firstNameController.text,
+                                  lastName: lastNameController.text,
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  number: numberController.text),
+                            );
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 100.h,
+                ),
+                const StringToSignIn(),
+                SizedBox(
+                  height: 50.h,
+                ),
+              ],
+            ),
           ),
         ),
       ),
