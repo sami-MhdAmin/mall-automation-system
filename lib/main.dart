@@ -5,6 +5,7 @@ import 'package:jessy_mall/featuers/home/presintation/page/home_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/pages/favorite.dart';
 import 'package:jessy_mall/featuers/cart/presentation/pages/my_cart.dart';
 
+import 'core/injection_container/init_injection.dart' as de;
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
 import 'featuers/profile/presentation/page/profile_page.dart';
@@ -12,7 +13,8 @@ import 'featuers/stores/presentation/page/stores_page.dart';
 import 'featuers/investment_options/presentation/page/investment_options.dart';
 import 'featuers/investment_options/presentation/page/invest_store_ui.dart';
 
-void main() {
+void main() async {
+  await de.init();
   runApp(const MyApp());
 }
 
@@ -26,14 +28,13 @@ class MyApp extends StatelessWidget {
       designSize: const Size(1080, 2340),
       builder: (context, child) {
         return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: BottomNavigationBarWidget()
-        );
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: RegisterPage());
       },
     );
   }

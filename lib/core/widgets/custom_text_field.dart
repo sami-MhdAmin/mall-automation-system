@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/theme/color_manager.dart';
 
@@ -35,7 +36,7 @@ class CustomTextField extends StatelessWidget {
       child: Container(
         width: width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(30.r),
           color: textFieldColor ??
               ColorManager.textFieldFill, // Adjust the color to your preference
         ),
@@ -49,7 +50,7 @@ class CustomTextField extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             hintText: hintText,
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18.0),
+              borderRadius: BorderRadius.circular(30.r),
               borderSide: const BorderSide(color: Colors.black),
             ),
             prefixIcon: Icon(
