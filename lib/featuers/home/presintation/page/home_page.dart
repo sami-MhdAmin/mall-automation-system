@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
+import 'package:jessy_mall/core/resource/const_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/product_details_page.dart';
+import 'package:jessy_mall/featuers/home/presintation/page/product_page.dart';
+import 'package:jessy_mall/featuers/stores/presentation/page/stores_page.dart';
 
 import '../widget/category_home_card_widget.dart';
 
@@ -126,10 +129,17 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
-                    onTap: () {},
-                    child: const CategoryHomeCardWidget(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ProductPage(
+                                    categoryName: ConstManager.marketCategory,
+                                  )));
+                    },
+                    child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: 'Market',
+                      categryName: ConstManager.marketCategory,
                     ),
                   ),
                   GestureDetector(
@@ -137,13 +147,13 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const ProductDetailsPage(
-                                    isClothes: true,
+                              builder: (_) => StoresPage(
+                                    categoryName: ConstManager.clothesCategory,
                                   )));
                     },
-                    child: const CategoryHomeCardWidget(
+                    child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: 'Clothes',
+                      categryName: ConstManager.clothesCategory,
                     ),
                   ),
                 ],
@@ -159,18 +169,29 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const ProductDetailsPage(
-                                    isClothes: false,
+                              builder: (_) => StoresPage(
+                                    categoryName:
+                                        ConstManager.furnitureCategory,
                                   )));
                     },
-                    child: const CategoryHomeCardWidget(
+                    child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: 'Furniture',
+                      categryName: ConstManager.furnitureCategory,
                     ),
                   ),
-                  const CategoryHomeCardWidget(
-                    imgUrl: AssetImageManager.market,
-                    categryName: 'Makeup',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => StoresPage(
+                                    categoryName: ConstManager.makeupCategory,
+                                  )));
+                    },
+                    child: CategoryHomeCardWidget(
+                      imgUrl: AssetImageManager.market,
+                      categryName: ConstManager.makeupCategory,
+                    ),
                   ),
                 ],
               ),

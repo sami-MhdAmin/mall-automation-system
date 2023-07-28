@@ -209,7 +209,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       if (_formKey.currentState!.validate()) {
                         //maybe i should add bloc consumer
                         context.read<AuthBloc>().add(
-                              RegisterEvent(
+                              AuthRegisterRequested(
                                   firstName: firstNameController.text,
                                   lastName: lastNameController.text,
                                   email: emailController.text,

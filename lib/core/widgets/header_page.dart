@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderPage extends StatelessWidget {
   final String title;
@@ -16,18 +17,18 @@ class HeaderPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        left ?? const SizedBox(),
+        left ?? const SizedBox.shrink(),
         Text(
           title,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: Color(0xFF303030),
-            fontSize: 16,
+            fontSize: 40.sp,
             fontFamily: 'Merriweather',
             fontWeight: FontWeight.w700,
           ),
         ),
-        right ?? const SizedBox()
+        right ?? const SizedBox.shrink()
       ],
     );
   }

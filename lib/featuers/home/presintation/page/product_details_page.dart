@@ -4,12 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
 
+import '../../../../core/resource/const_manager.dart';
 import '../widget/details_for_clothes_product_widget.dart';
 import '../widget/details_for_furniture_product_widget.dart';
 
 class ProductDetailsPage extends StatefulWidget {
-  const ProductDetailsPage({super.key,required this.isClothes});
-  final bool isClothes;
+  const ProductDetailsPage({super.key, required this.categoryName});
+  final String categoryName;
 
   @override
   State<ProductDetailsPage> createState() => _ProductDetailsPageState();
@@ -85,7 +86,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 width: 1.sh,
                 child: Padding(
                   padding: EdgeInsetsDirectional.only(start: 140.w),
-                  child: widget.isClothes==true? DetailForClothesProductWidget() :DetailForFurnitureProduct(),
+                  child: widget.categoryName == ConstManager.clothesCategory
+                      ? DetailForClothesProductWidget()
+                      : DetailForFurnitureProduct(),
                 ),
               ),
               SizedBox(

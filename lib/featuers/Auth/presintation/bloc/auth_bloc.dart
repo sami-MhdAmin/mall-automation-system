@@ -10,7 +10,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepostitory;
   AuthBloc(this._authRepostitory) : super(AuthInitial()) {
-    on<RegisterEvent>((event, emit) async {
+    on<AuthRegisterRequested>((event, emit) async {
       emit(AuthLoading());
       try {
         //TODO

@@ -12,7 +12,7 @@ import '../network/network_info.dart';
 
 GetIt locator = GetIt.instance;
 
-Future<void> init() async {
+Future<void> authInjection() async {
   // Features - Number trivia
   //bloc
   locator.registerFactory(
@@ -22,6 +22,7 @@ Future<void> init() async {
   //Repository
   locator.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
+      
       locator.get<AuthRemoteDataSource>(),
       locator.get<AuthLocalDataSource>(),
       locator.get<NetworkInfo>(),

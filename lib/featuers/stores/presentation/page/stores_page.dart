@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/widgets/custom_text_field.dart';
+import '../../../home/presintation/page/product_page.dart';
 import '../../models/stores_model.dart';
 import '../widget/custom_stores_widget.dart';
 
@@ -110,12 +111,22 @@ class _StoresPageState extends State<StoresPage> {
                     // itemCount: storesList.length,
                     itemCount: 8,
                     itemBuilder: (context, index) {
-                      return const CustomListTileWidget(
-                        imageNetworkSource:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROxoqbyf4dZqCU6klkf8YRAkppvDxiUqqlLAaz0WZtO0ESlNyOHnd8nxqjg0WPxpnFtF0&usqp=CAU",
-                        storeName: "XO",
-                        openAndCloseTime: "from A to Z",
-                        subCategoryList: ['M', 'F', 'K'],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ProductPage(
+                                        categoryName: widget.categoryName,
+                                      )));
+                        },
+                        child: const CustomListTileWidget(
+                          imageNetworkSource:
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROxoqbyf4dZqCU6klkf8YRAkppvDxiUqqlLAaz0WZtO0ESlNyOHnd8nxqjg0WPxpnFtF0&usqp=CAU",
+                          storeName: "XO",
+                          openAndCloseTime: "from A to Z",
+                          subCategoryList: ['M', 'F', 'K'],
+                        ),
                       );
                     }),
               ),
