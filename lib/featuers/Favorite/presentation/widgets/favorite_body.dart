@@ -17,9 +17,13 @@ class FavoriteBody extends StatelessWidget {
       child: Column(
         children: [
           HeaderPage(
+              left: false,
               title: "Favorites",
               right: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined))),
+                onPressed: () {},
+                icon: Icon(Icons.shopping_cart_outlined),
+                iconSize: 50.w,
+              )),
           SizedBox(
             height: 80.h,
           ),

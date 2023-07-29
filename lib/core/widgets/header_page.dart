@@ -3,12 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderPage extends StatelessWidget {
   final String title;
-  final IconButton? left;
+  final bool left;
   final IconButton? right;
   const HeaderPage({
     Key? key,
     required this.title,
-    this.left,
+    required this.left,
     this.right,
   }) : super(key: key);
 
@@ -17,7 +17,17 @@ class HeaderPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        left ?? const SizedBox.shrink(),
+        left
+            ? SizedBox(
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.arrow_back_ios_rounded),
+                  iconSize: 50.w,
+                ),
+              )
+            : const SizedBox.shrink(),
         Text(
           title,
           textAlign: TextAlign.center,
@@ -28,7 +38,11 @@ class HeaderPage extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        right ?? const SizedBox.shrink()
+        right ??
+            SizedBox(
+              height: 50.h,
+              width: 50.w,
+            )
       ],
     );
   }

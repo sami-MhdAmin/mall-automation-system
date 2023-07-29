@@ -11,19 +11,14 @@ class MyCartBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          HeaderPage(
-              left: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.arrow_back_ios_rounded),
-              ),
-              title: 'My cart'),
+          const HeaderPage(left: false, title: 'My cart'),
           SizedBox(
             height: 80.h,
           ),
-          Expanded(
+          Flexible(
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [

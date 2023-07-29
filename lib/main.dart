@@ -5,7 +5,7 @@ import 'package:jessy_mall/featuers/home/presintation/page/home_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/pages/favorite.dart';
 import 'package:jessy_mall/featuers/cart/presentation/pages/my_cart.dart';
 
-import 'core/injection_container/auth_injection.dart' ;
+import 'core/injection_container/auth_injection.dart';
 import 'core/injection_container/main_injection.dart';
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
@@ -15,7 +15,7 @@ import 'featuers/investment_options/presentation/page/investment_options.dart';
 import 'featuers/investment_options/presentation/page/invest_store_ui.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   await initInjection();
   runApp(const MyApp());
