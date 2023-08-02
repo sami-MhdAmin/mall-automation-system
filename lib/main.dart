@@ -9,6 +9,7 @@ import 'core/injection_container/auth_injection.dart';
 import 'core/injection_container/main_injection.dart';
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
+import 'featuers/manage_store/pages/edit_store_info.dart';
 import 'featuers/profile/presentation/page/profile_page.dart';
 import 'featuers/stores/presentation/page/stores_page.dart';
 import 'featuers/investment_options/presentation/page/investment_options.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
               // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: BottomNavigationBarWidget());
+            home: EditStoreInfo());
       },
     );
   }
