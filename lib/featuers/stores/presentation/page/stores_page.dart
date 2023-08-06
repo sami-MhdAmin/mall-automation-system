@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/widgets/custom_text_field.dart';
+import '../../../home/presintation/page/product_page.dart';
 import '../../models/stores_model.dart';
 import '../widget/custom_stores_widget.dart';
 
@@ -69,7 +70,7 @@ class _StoresPageState extends State<StoresPage> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(right: 120.w),
+                      padding: EdgeInsetsDirectional.only(end: 120.w),
                       child: Text(
                         widget.categoryName,
                         textAlign: TextAlign.center,
@@ -91,7 +92,7 @@ class _StoresPageState extends State<StoresPage> {
                   icon: Icons.search_rounded,
                   hintText: "Search Your Store",
                   textEditingController: textEditingController,
-                  type: TextInputType.name,
+                  keybordType: TextInputType.name,
                   width: 980.w,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -107,15 +108,32 @@ class _StoresPageState extends State<StoresPage> {
               ),
               Expanded(
                 child: ListView.builder(
+
                     // itemCount: storesList.length,
+                    padding:
+                        EdgeInsetsDirectional.only(top: 30.h, bottom: 30.h),
                     itemCount: 8,
                     itemBuilder: (context, index) {
-                      return const CustomListTileWidget(
-                        imageNetworkSource:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROxoqbyf4dZqCU6klkf8YRAkppvDxiUqqlLAaz0WZtO0ESlNyOHnd8nxqjg0WPxpnFtF0&usqp=CAU",
-                        storeName: "XO",
-                        openAndCloseTime: "from A to Z",
-                        subCategoryList: ['M', 'F', 'K'],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ProductPage(
+                                        categoryName: widget.categoryName,
+                                      )));
+                        },
+                        child: SizedBox(
+                          height: 400.h,
+                          width: 500.w,
+                          child: const CustomListTileWidget(
+                            imageNetworkSource:
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROxoqbyf4dZqCU6klkf8YRAkppvDxiUqqlLAaz0WZtO0ESlNyOHnd8nxqjg0WPxpnFtF0&usqp=CAU",
+                            storeName: "XO",
+                            openAndCloseTime: "from A to Z",
+                            subCategoryList: ['M', 'F', 'K'],
+                          ),
+                        ),
                       );
                     }),
               ),

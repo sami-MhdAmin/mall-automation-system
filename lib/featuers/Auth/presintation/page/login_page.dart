@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
+import 'package:jessy_mall/featuers/Auth/data/datasource/remote/auth_remote_data_source.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
+import 'package:jessy_mall/featuers/Auth/repository/auth_repository_impl.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/string_manager.dart';
 import '../widgets/forgot_password_button.dart';
-import '../widgets/sign_in_button.dart';
+import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_up.dart';
 
 class LoginPage extends StatefulWidget {
@@ -59,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               CustomTextField(
                 width: 850.w,
-                type: TextInputType.name,
+                keybordType: TextInputType.name,
                 hintText: StringManager.userNameHintText,
                 icon: Icons.person,
                 textEditingController: userNameController,
@@ -77,11 +80,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
               CustomTextField(
                 width: 850.w,
-                type: TextInputType.visiblePassword,
+                keybordType: TextInputType.visiblePassword,
                 hintText: 'Password',
                 icon: Icons.lock,
                 textEditingController: passwordController,
-                
                 suffixIconWidget: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: IconButton(
@@ -102,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     return "Please enter Password";
                   } else if (value.length <= 7) {
                     return "The password must be 8 Characters";
-                  } 
+                  }
                   return null;
                 },
               ),
@@ -110,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 250.h,
               ),
-              SignButton(
+              CustomButton(
                 text: "SIGN IN",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
