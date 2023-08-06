@@ -14,36 +14,42 @@ class HeaderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        left
-            ? SizedBox(
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(Icons.arrow_back_ios_rounded),
-                  iconSize: 50.w,
-                ),
-              )
-            : const SizedBox.shrink(),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color(0xFF303030),
-            fontSize: 40.sp,
-            fontFamily: 'Merriweather',
-            fontWeight: FontWeight.w700,
-          ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: SizedBox(
+        width: 1080.w,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            left
+                ? SizedBox(
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(Icons.arrow_back_ios_rounded),
+                      iconSize: 60.w,
+                    ),
+                  )
+                : const SizedBox.shrink(),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFF303030),
+                fontSize: 50.sp,
+                fontFamily: 'Merriweather',
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            right ??
+                SizedBox(
+                  height: 50.h,
+                  width: 50.w,
+                )
+          ],
         ),
-        right ??
-            SizedBox(
-              height: 50.h,
-              width: 50.w,
-            )
-      ],
+      ),
     );
   }
 }

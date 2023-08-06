@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
-  static Color backgroundL = const Color(0xFFEEEEEE);
+  static Color backgroundL = const Color(0xFFFFFFFF);
   static Color foregroundL = const Color(0xFF333333);
   static Color backgroundTabBar = const Color.fromARGB(255, 56, 56, 56);
   static Color textFieldFill = const Color(0xFFF5F5F5);
