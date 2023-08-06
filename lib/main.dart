@@ -11,6 +11,7 @@ import 'package:jessy_mall/warehouse%20manager/warehouse_order/presintation/page
 
 import 'core/injection_container/auth_injection.dart';
 import 'core/injection_container/main_injection.dart';
+import 'delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
 import 'featuers/manage_store/pages/edit_store_info.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: OrderDetails(),
+          home: const DeliveryHomePage(),
         );
       },
     );

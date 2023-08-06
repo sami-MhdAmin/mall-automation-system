@@ -49,9 +49,9 @@ class CustomCardMovementWidget extends StatelessWidget {
               children: [
                 Text(
                   firstTextField,
-                  style: const TextStyle(
-                    color: Color(0xFF232323),
-                    fontSize: 16,
+                  style: TextStyle(
+                    color: const Color(0xFF232323),
+                    fontSize: 46.sp,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w600,
                   ),
@@ -59,9 +59,9 @@ class CustomCardMovementWidget extends StatelessWidget {
                 Text(
                   secondTextField,
                   textAlign: TextAlign.right,
-                  style: const TextStyle(
-                    color: Color(0xFF808080),
-                    fontSize: 14,
+                  style: TextStyle(
+                    color: const Color(0xFF808080),
+                    fontSize: 38.sp,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w400,
                   ),
@@ -77,35 +77,48 @@ class CustomCardMovementWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Text(
-                      'Quantity:',
+                    Text(
+                      'Quantity: ',
                       style: TextStyle(
-                        color: Color(0xFF808080),
-                        fontSize: 16,
+                        color: const Color(0xFF808080),
+                        fontSize: 46.sp,
                         fontFamily: 'Nunito Sans',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
                       quantityTextField,
-                      style: const TextStyle(
-                        color: Color(0xFF232323),
-                        fontSize: 16,
+                      style: TextStyle(
+                        color: const Color(0xFF232323),
+                        fontSize: 46.sp,
                         fontFamily: 'Nunito Sans',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
-                Text(
-                  fourthTextField ?? "",
-                  style: const TextStyle(
-                    color: Color(0xFF232323),
-                    fontSize: 16,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w600,
-                  ),
-                )
+                Row(
+                  children: [
+                    Text(
+                      'Total Amount: ',
+                      style: TextStyle(
+                        color: const Color(0xFF808080),
+                        fontSize: 46.sp,
+                        fontFamily: 'Nunito Sans',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      fourthTextField ?? "",
+                      style: TextStyle(
+                        color: const Color(0xFF232323),
+                        fontSize: 46.sp,
+                        fontFamily: 'Nunito Sans',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

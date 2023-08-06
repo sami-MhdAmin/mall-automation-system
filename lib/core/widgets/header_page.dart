@@ -19,7 +19,7 @@ class HeaderPage extends StatelessWidget {
       child: SizedBox(
         width: 1080.w,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             left
                 ? SizedBox(
@@ -27,11 +27,12 @@ class HeaderPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      icon: Icon(Icons.arrow_back_ios_rounded),
-                      iconSize: 60.w,
+                      icon:const Icon(Icons.arrow_back_ios_rounded),
+                      iconSize: 60.r,
                     ),
                   )
                 : const SizedBox.shrink(),
+            const Spacer(),
             Text(
               title,
               textAlign: TextAlign.center,
@@ -42,11 +43,11 @@ class HeaderPage extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
+            const Spacer(),
             right ??
-                SizedBox(
-                  height: 50.h,
-                  width: 50.w,
-                )
+                SizedBox.fromSize(
+                  size: Size.fromRadius(60.r),
+                ),
           ],
         ),
       ),
