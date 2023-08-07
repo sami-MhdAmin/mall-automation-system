@@ -15,7 +15,7 @@ class HeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsetsDirectional.fromSTEB(20.w, 25.w, 20.w, 0),
       child: SizedBox(
         width: 1080.w,
         child: Row(
@@ -27,11 +27,13 @@ class HeaderPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      icon:const Icon(Icons.arrow_back_ios_rounded),
+                      icon: const Icon(Icons.arrow_back_ios_rounded),
                       iconSize: 60.r,
                     ),
                   )
-                : const SizedBox.shrink(),
+                : SizedBox.fromSize(
+                    size: Size.fromRadius(60.r),
+                  ),
             const Spacer(),
             Text(
               title,
