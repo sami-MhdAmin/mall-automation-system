@@ -28,7 +28,7 @@ class InvestStoreUiBody extends StatelessWidget {
                 height: 8.h,
               ),
               Text(
-                'Clothes Type, Good Vipe',
+                'Type  Clothes ',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 22,
@@ -62,7 +62,7 @@ class InvestStoreUiBody extends StatelessWidget {
                 height: 32.h,
               ),
               Text(
-                'Product Details',
+                'Store Details',
                 style: TextStyle(
                   color: Color(0xFF333333),
                   fontSize: 20,
@@ -82,20 +82,20 @@ class InvestStoreUiBody extends StatelessWidget {
                   Opacity(
                     opacity: 0.50,
                     child: Text(
-                      'Room Type \nColor\nMaterial \nDimensions \nWeight',
+                      'Store Theme\nCategories \nDimensions \nRoom Count ',
                       style: TextStyle(
                         color: Color(0xFF333333),
                         fontSize: 15,
                         fontFamily: 'SF Compact Display',
                         fontWeight: FontWeight.w400,
                       ),
-                    ),
+                    ),  
                   ),
                   SizedBox(
                     width: 50,
                   ),
                   Text(
-                    'Office, Living Room\nYellow\nTextile, Velvet, Cotton\n25.6 x 31.5 x 37.4 inches\n20.3 Pounds',
+                    'Yellow\nchair, ...\n25.6 x 31.5 x 37.4 inches\n 2',
                     style: TextStyle(
                       color: Color(0xFF333333),
                       fontSize: 15,

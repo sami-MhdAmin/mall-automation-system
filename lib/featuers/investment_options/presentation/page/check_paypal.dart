@@ -49,9 +49,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       "items": [
                         {
                           "id": widget.id,
-                          "type": "type",
-                          "price": '5',
-                          "currency": "USD"
+                          // "type": "type",
+                          // "price": '5',
+                          // "currency": "USD"
                         },
                       ],
                     }
