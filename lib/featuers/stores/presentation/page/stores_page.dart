@@ -70,7 +70,7 @@ class _StoresPageState extends State<StoresPage> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(right: 120.w),
+                      padding: EdgeInsetsDirectional.only(end: 120.w),
                       child: Text(
                         widget.categoryName,
                         textAlign: TextAlign.center,
@@ -108,7 +108,10 @@ class _StoresPageState extends State<StoresPage> {
               ),
               Expanded(
                 child: ListView.builder(
+
                     // itemCount: storesList.length,
+                    padding:
+                        EdgeInsetsDirectional.only(top: 30.h, bottom: 30.h),
                     itemCount: 8,
                     itemBuilder: (context, index) {
                       return GestureDetector(
@@ -120,12 +123,16 @@ class _StoresPageState extends State<StoresPage> {
                                         categoryName: widget.categoryName,
                                       )));
                         },
-                        child: const CustomListTileWidget(
-                          imageNetworkSource:
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROxoqbyf4dZqCU6klkf8YRAkppvDxiUqqlLAaz0WZtO0ESlNyOHnd8nxqjg0WPxpnFtF0&usqp=CAU",
-                          storeName: "XO",
-                          openAndCloseTime: "from A to Z",
-                          subCategoryList: ['M', 'F', 'K'],
+                        child: SizedBox(
+                          height: 400.h,
+                          width: 500.w,
+                          child: const CustomListTileWidget(
+                            imageNetworkSource:
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROxoqbyf4dZqCU6klkf8YRAkppvDxiUqqlLAaz0WZtO0ESlNyOHnd8nxqjg0WPxpnFtF0&usqp=CAU",
+                            storeName: "XO",
+                            openAndCloseTime: "from A to Z",
+                            subCategoryList: ['M', 'F', 'K'],
+                          ),
                         ),
                       );
                     }),

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:jessy_mall/core/widgets/custom_counter.dart';
 
 class CartCard extends StatelessWidget {
-  const CartCard({
-    super.key,
-  });
+  String? price;
+  bool delete;
+  CartCard({
+    Key? key,
+    this.price,
+    required this.delete,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class CartCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(right: 30),
+              padding: EdgeInsetsDirectional.only(end: 30),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Container(
@@ -50,7 +55,7 @@ class CartCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$ 25.00',
+                  price ?? "",
                   style: TextStyle(
                     color: Color(0xFF232323),
                     fontSize: 16,
@@ -64,8 +69,10 @@ class CartCard extends StatelessWidget {
                 Counter()
               ],
             ),
-            Spacer(),
-            Icon(Icons.highlight_remove_outlined)
+            const Spacer(),
+            delete
+                ? const Icon(Icons.highlight_remove_outlined)
+                : const SizedBox()
           ],
         ),
       ),

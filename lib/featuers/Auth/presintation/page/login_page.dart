@@ -108,11 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              ForgotPasswordButton(
-                onPressedFunctio: () {
-                  print("hello");
-                },
-              ),
+             
               SizedBox(
                 height: 250.h,
               ),

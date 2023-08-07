@@ -13,13 +13,17 @@ class FavoriteBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
       child: Column(
         children: [
           HeaderPage(
+              left: false,
               title: "Favorites",
               right: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined))),
+                onPressed: () {},
+                icon: Icon(Icons.shopping_cart_outlined),
+                iconSize: 50.w,
+              )),
           SizedBox(
             height: 80.h,
           ),
@@ -30,12 +34,23 @@ class FavoriteBody extends StatelessWidget {
                 ListView.builder(
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return FavoriteCard();
+                    return Column(
+                      children: [
+                        SizedBox(width: 1000.w, child: const FavoriteCard()),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 50.w),
+                          child: const Divider(),
+                        )
+                      ],
+                    );
                   },
                 ),
-                CustomButton(
-                  onPressed: () {},
-                  text: "Add all to my cart",
+                Padding(
+                  padding: EdgeInsets.only(bottom: 80.h),
+                  child: CustomButton(
+                    onPressed: () {},
+                    text: "Add all to my cart",
+                  ),
                 )
               ],
             ),

@@ -20,24 +20,27 @@ class CustomListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 50.w, bottom: 20.h, top: 20.h),
+      padding: EdgeInsetsDirectional.only(start: 50.w, bottom: 20.h, top: 20.h),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20.r),
-            child: Image.network(
-              imageNetworkSource,
-              scale: 1,
+            child: SizedBox(
               height: 200.w,
               width: 200.w,
-              fit: BoxFit.fill,
+              child: Image.network(
+                imageNetworkSource,
+                // scale: 1,
+
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           SizedBox(
             width: 20.w,
           ),
           SizedBox(
-            height: 200.w,
+            height: 250.w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
