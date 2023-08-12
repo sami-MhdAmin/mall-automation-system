@@ -5,6 +5,8 @@ import 'package:jessy_mall/featuers/home/presintation/page/home_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/pages/favorite.dart';
 import 'package:jessy_mall/featuers/cart/presentation/pages/my_cart.dart';
 import 'package:jessy_mall/featuers/manage_store/pages/add_income.dart';
+import 'package:jessy_mall/featuers/profile/presentation/bloc/profile_bloc.dart';
+import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_page.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages/warehouse_home_page.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages/warehouse_product_movement.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/presintation/pages/order_details_page.dart';
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
               // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: InvestmentOptions());
+            home: BottomNavigationBarWidget());
       },
     );
   }

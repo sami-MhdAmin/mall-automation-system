@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_page.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../widget/profile_card_widget.dart';
@@ -141,8 +142,10 @@ class ProfilePage extends StatelessWidget {
               navigatorFunc: storeInvestedCount == 0
                   ? null
                   : () {
-                      //TODO:navigate to orders
-                      print("navigate to MAnagement");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ManageInvestmentPage()));
                     },
             ),
             SizedBox(
