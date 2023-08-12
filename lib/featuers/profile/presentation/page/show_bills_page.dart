@@ -43,9 +43,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
         color: ColorManager.backgroundL,
         child: Column(
           children: [
-            SizedBox(
-              height: 150.h,
-            ),
+          
             const HeaderPage(title: 'My Bills', left: true),
             SizedBox(
               height: 150.h,
@@ -116,7 +114,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                   decoration: BoxDecoration(
                       color: const Color(0xaa3CDDE8),
                       borderRadius: BorderRadius.circular(20.r)),
-                  child: Icon(
+                  child: const Icon(
                     Icons.check,
                     color: Colors.white,
                   ),
@@ -136,7 +134,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                     border: TableBorder.all(color: ColorManager.grey),
                     children: [
-                      TableRow(
+                      const TableRow(
                         children: [
                           TableCellWidget(
                             title: 'Product Name',

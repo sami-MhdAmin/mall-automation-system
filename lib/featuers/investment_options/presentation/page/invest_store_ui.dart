@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/page/investment_options.dart';
-import 'package:jessy_mall/featuers/investment_options/presentation/widgets/invest_store_ui_body.dart';
+import 'package:jessy_mall/featuers/investment_options/presentation/page/invest_store_page.dart';
 
 class InvestStoreUi extends StatelessWidget {
   const InvestStoreUi({super.key});

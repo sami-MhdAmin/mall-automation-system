@@ -41,16 +41,16 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               ),
             ),
             TabItem(
-              icon: Icons.store,
+              icon: Icons.local_grocery_store_sharp,
               activeIcon: Icon(
-                Icons.store,
+                Icons.local_grocery_store_sharp,
                 size: 80.h,
               ),
             ),
             TabItem(
-              icon: Icons.star_rate,
+              icon: Icons.favorite,
               activeIcon: Icon(
-                Icons.star_rate,
+                Icons.favorite,
                 size: 80.h,
               ),
             ),

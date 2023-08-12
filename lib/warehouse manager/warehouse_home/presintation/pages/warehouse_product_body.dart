@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages/warehouse_product_movement.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/asset_manager.dart';
@@ -44,7 +45,14 @@ class ProductCardInWarehouse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const WareHouseProductMovementPage(),
+          ),
+        );
+      },
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,

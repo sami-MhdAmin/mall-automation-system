@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/featuers/manage_store/pages/edit_store_info.dart';
+import 'package:jessy_mall/featuers/products_in_store/presentation/pages/products_in_store_page.dart';
 import 'package:jessy_mall/featuers/profile/presentation/widget/profile_card_widget.dart';
 
 import '../../../../config/theme/color_manager.dart';
@@ -31,8 +33,8 @@ class ManageMyStoreWidget extends StatelessWidget {
                     width: 500,
                     height: 400,
                     navigatorFunc: () {
-                      //TODO:navigate to orders
-                      print("navigate to orders");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => EditStoreInfo()));
                     },
                   ),
                   ProfileCardWidget(
@@ -58,7 +60,12 @@ class ManageMyStoreWidget extends StatelessWidget {
                     subtitleInListTile: "you have 4 product",
                     width: 550,
                     height: 400,
-                    navigatorFunc: () {},
+                    navigatorFunc: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ProductsInStorePage()));
+                    },
                   ),
                   ProfileCardWidget(
                     titleInListTile: "Wearhouse",

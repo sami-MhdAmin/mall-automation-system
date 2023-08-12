@@ -13,13 +13,7 @@ class OrderDetailsPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
-            height: 100.h,
-          ),
           const HeaderPage(title: "Order details", left: true),
-          SizedBox(
-            height: 50.h,
-          ),
           Expanded(
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,

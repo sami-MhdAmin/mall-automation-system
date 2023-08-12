@@ -4,6 +4,7 @@ import 'package:jessy_mall/featuers/profile/presentation/page/show_bills_page.da
 import 'package:jessy_mall/featuers/profile/presentation/widget/profile_card_widget.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../products_in_store/presentation/pages/products_in_store_page.dart';
 
 class ManageMyStandWidget extends StatelessWidget {
   const ManageMyStandWidget({super.key});
@@ -29,7 +30,10 @@ class ManageMyStandWidget extends StatelessWidget {
               ProfileCardWidget(
                 titleInListTile: "View Product",
                 subtitleInListTile: "you have 4 product",
-                navigatorFunc: () {},
+                navigatorFunc: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ProductsInStorePage()));
+                },
               ),
               ProfileCardWidget(
                 titleInListTile: "Show Bills",

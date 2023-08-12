@@ -4,6 +4,7 @@ import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 
 import '../../../../core/widgets/custom_card_movement_widget.dart';
+import 'order_details_page.dart';
 
 class OrderPendingBody extends StatelessWidget {
   const OrderPendingBody({super.key});
@@ -27,24 +28,35 @@ class OrderPendingBody extends StatelessWidget {
                         firstTextField: "Order from: Adidas",
                         secondTextField: "22/12/2023",
                         quantityTextField: "04",
-                        customWidget: Container(
-                          height: 150.h,
-                          width: 300.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20.r),
-                              bottomRight: Radius.circular(20.r),
-                            ),
-                            color: ColorManager.black,
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Details",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40.sp,
-                                fontFamily: 'Nunito Sans',
-                                fontWeight: FontWeight.w600,
+                        customWidget: Padding(
+                          padding: EdgeInsetsDirectional.only(
+                              start: 30.w, top: 20.h),
+                          child: SizedBox(
+                            height: 100.h,
+                            width: 300.w,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const OrderDetailsPage(
+                                            // deliveryOrderDetailId: 2,
+                                            ),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: ColorManager.foregroundL,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                ),
+                              ),
+                              child: const Text(
+                                "Details",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),

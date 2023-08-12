@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
+import 'package:jessy_mall/featuers/products_in_warehouse/presentation/pages/products_in_warehouse_page.dart';
 import 'package:jessy_mall/featuers/profile/presentation/page/show_income&outcome_page.dart';
 
+import '../../../products_in_store/presentation/pages/products_in_store_page.dart';
 import '../widget/profile_card_widget.dart';
 
 class ManageWearHousePage extends StatelessWidget {
@@ -19,9 +21,6 @@ class ManageWearHousePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: 150.h,
-              ),
               HeaderPage(title: 'Wearhouse', left: true),
               SizedBox(
                 height: 100.h,
@@ -29,7 +28,12 @@ class ManageWearHousePage extends StatelessWidget {
               ProfileCardWidget(
                 titleInListTile: "View Product",
                 subtitleInListTile: "You have 2 products",
-                navigatorFunc: () {},
+                navigatorFunc: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => ProductsInWarehousePage()));
+                },
               ),
               ProfileCardWidget(
                 titleInListTile: "Show inCome",

@@ -1,3 +1,9 @@
 {
-    "userNameHintText" : "User Name"
+    "userNameHintText" : "User Name",
+    "search":"search"  ,
+    "categories":"Categories",
+    "market" : "Market",
+    "sthWrong":"Something went wrong"
+
+
 }

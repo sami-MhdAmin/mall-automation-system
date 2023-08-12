@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/featuers/investment_options/presentation/page/invest_store_ui.dart';
+import 'package:jessy_mall/featuers/investment_options/presentation/page/invest_store_page.dart';
 
 class Listing {
   final String photoUrl;
@@ -48,7 +50,12 @@ class InvestmentStoreUI extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.all(30.w),
-            child: CardStore(listings: listings, index: index),
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => InvestStorePage()));
+                },
+                child: CardStore(listings: listings, index: index)),
           );
         },
       ),

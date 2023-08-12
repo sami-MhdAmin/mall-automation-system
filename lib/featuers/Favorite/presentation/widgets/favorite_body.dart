@@ -17,15 +17,8 @@ class FavoriteBody extends StatelessWidget {
       child: Column(
         children: [
           HeaderPage(
-              left: false,
-              title: "Favorites",
-              right: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.shopping_cart_outlined),
-                iconSize: 50.w,
-              )),
-          SizedBox(
-            height: 80.h,
+            left: false,
+            title: "Favorites",
           ),
           Expanded(
             child: Stack(
@@ -45,13 +38,6 @@ class FavoriteBody extends StatelessWidget {
                     );
                   },
                 ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 80.h),
-                  child: CustomButton(
-                    onPressed: () {},
-                    text: "Add all to my cart",
-                  ),
-                )
               ],
             ),
           ),

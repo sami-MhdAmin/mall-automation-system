@@ -6,6 +6,7 @@ import '../../../../featuers/investment_options/presentation/page/investment_opt
 import '../../../../featuers/investment_options/presentation/widgets/investment_store.dart';
 import '../../../warehouse_income_outcome/presintation/page/income_page.dart';
 import '../../../warehouse_income_outcome/presintation/page/outcome_page.dart';
+import '../../../warehouse_order/presintation/pages/warehouse_order_page.dart';
 import 'warehouse_product_body.dart';
 
 class WarehouseHomePage extends StatefulWidget {
@@ -141,7 +142,12 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
           actions: [
             IconButton(
                 icon: Icon(Icons.notifications_active_outlined),
-                onPressed: () {})
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => WarehouseOrderPage()),
+                  );
+                })
           ],
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,

@@ -5,24 +5,37 @@ import 'package:jessy_mall/featuers/investment_options/presentation/widgets/inve
 class InvestmentOptions extends StatelessWidget {
   const InvestmentOptions({super.key});
   TabBar get _tabBar => TabBar(
-        unselectedLabelColor: ColorManager.backgroundL,
+        labelColor: ColorManager.black,
+        unselectedLabelColor: ColorManager.grey,
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorColor: ColorManager.foregroundL,
-        indicator: BoxDecoration(color: ColorManager.backgroundL),
+        indicatorColor: ColorManager.black,
         tabs: [
           Tab(
-              icon: SizedBox(
-            width: 200,
-            child: Icon(
-              Icons.store_mall_directory,
-              // color: ColorManager.backgroundL,
-            ),
-          )),
+            icon: SizedBox(
+                width: 200,
+                child: Text(
+                  'products',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Nunito Sans',
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
+          ),
           Tab(
-              icon: Icon(
-            Icons.table_rows_rounded,
-            // color: ColorManager.backgroundL,
-          )),
+            icon: SizedBox(
+                width: 200,
+                child: Text(
+                  'income',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Nunito Sans',
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
+          ),
         ],
       );
   @override
@@ -31,7 +44,7 @@ class InvestmentOptions extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorManager.foregroundL,
+          // backgroundColor: ColorManager.foregroundL,
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: Material(

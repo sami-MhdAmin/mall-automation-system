@@ -13,47 +13,47 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthRegisterRequested>((event, emit) async {
       emit(AuthLoading());
       try {
-        //TODO
         final successOrFailuer = await _authRepostitory.postRegistration(
             firstName: event.firstName,
             lastName: event.lastName,
             email: event.email,
             number: event.number,
-            password: event.password);
+            password: event.password,
+            investmentOption: event.investmentOption);
         successOrFailuer.fold((error) {
-          emit(AuthFailed(faliuer: error));
+          emit(AuthSignUpFailed(faliuer: error));
         }, (registerModel) {
           emit(AuthSignUpSuccess(user: registerModel));
         });
       } catch (e) {
-        throw e;
+        rethrow;
       }
     });
 
     on<LoginEvent>((event, emit) async {
       emit(AuthLoading());
 
-      final successOrFailuer = await _authRepostitory.postLogin(
-        userName: event.userName,
-        password: event.password,
-      );
+      //   final successOrFailuer = await _authRepostitory.postLogin(
+      //     userName: event.userName,
+      //     password: event.password,
+      //   );
 
-      successOrFailuer.fold((error) {
-        emit(AuthFailed(faliuer: error));
-      }, (registerModel) {
-        emit(AuthSignUpSuccess(user: registerModel));
-      });
+      //   successOrFailuer.fold((error) {
+      //     emit(AuthLoginFailed(faliuer: error));
+      //   }, (registerModel) {
+      //     emit(AuthSignUpSuccess(user: registerModel));
+      //   });
     });
 
     on<AuthLogout>((event, emit) async {
       emit(AuthLoading());
 
-      final successOrFailuer = await _authRepostitory.logout();
-      successOrFailuer.fold((error) {
-        emit(AuthFailed(faliuer: error));
-      }, (isLoggedOut) {
-        emit(AuthLogoutSuccess());
-      });
+      // final successOrFailuer = await _authRepostitory.logout();
+      // successOrFailuer.fold((error) {
+      //   emit(AuthLoginFailed(faliuer: error));
+      // }, (isLoggedOut) {
+      //   emit(AuthLogoutSuccess());
+      // });
     });
   }
 }

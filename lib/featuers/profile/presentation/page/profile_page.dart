@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/widgets/langauge_switcher_widget.dart';
+import 'package:jessy_mall/featuers/investment_options/presentation/page/investment_options.dart';
 import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_page.dart';
 
 import '../../../../config/theme/color_manager.dart';
@@ -105,14 +107,14 @@ class ProfilePage extends StatelessWidget {
             ),
 
             //shipping addresses
-            ProfileCardWidget(
-              titleInListTile: "Shipping Addresses",
-              subtitleInListTile: "$shippingAddressesCount addresses",
-              navigatorFunc: () {
-                //TODO:navigate to orders
-                print("navigate to shipping addresses");
-              },
-            ),
+            // ProfileCardWidget(
+            //   titleInListTile: "Shipping Addresses",
+            //   subtitleInListTile: "$shippingAddressesCount addresses",
+            //   navigatorFunc: () {
+            //     //TODO:navigate to orders
+            //     print("navigate to shipping addresses");
+            //   },
+            // ),
 
             //invest store or stand
             ProfileCardWidget(
@@ -120,20 +122,20 @@ class ProfilePage extends StatelessWidget {
               subtitleInListTile:
                   "You have already $storeInvestedCount Stores or Stands invested",
               navigatorFunc: () {
-                //TODO:navigate to orders
-                print("navigate to investment option");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => InvestmentOptions()));
               },
             ),
 
             //settings
-            ProfileCardWidget(
-              titleInListTile: "Settings",
-              subtitleInListTile: "Language, FAQ, Contact...",
-              navigatorFunc: () {
-                //TODO:navigate to orders
-                print("navigate to Settings");
-              },
-            ),
+            // ProfileCardWidget(
+            //   titleInListTile: "Settings",
+            //   subtitleInListTile: "Language, FAQ, Contact...",
+            //   navigatorFunc: () {
+            //     //TODO:navigate to orders
+            //     print("navigate to Settings");
+            //   },
+            // ),
 
             //Manage My Investment
             ProfileCardWidget(
@@ -150,7 +152,8 @@ class ProfilePage extends StatelessWidget {
             ),
             SizedBox(
               height: 70.h,
-            )
+            ),
+            LanguageSwitcherWidget()
           ],
         ),
       ),

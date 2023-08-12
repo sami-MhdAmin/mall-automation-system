@@ -15,7 +15,7 @@ class HeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(20.w, 25.w, 20.w, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(20.w, 150.h, 20.w, 0),
       child: SizedBox(
         width: 1080.w,
         child: Row(

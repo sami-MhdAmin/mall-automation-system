@@ -1,3 +1,8 @@
 {
-    "userNameHintText" : "اسم المستخدم"    
+    "userNameHintText" : "اسم المستخدم",
+    "search":"البحث"  ,
+    "categories":"الأصناف",
+    "market" : "المتجر",
+    "sthWrong":"حدث خطأ ما"
+
 }

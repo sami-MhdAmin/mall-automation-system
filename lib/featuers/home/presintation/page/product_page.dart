@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_counter.dart';
+import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/product_details_page.dart';
 
 import '../../../../config/theme/color_manager.dart';
@@ -29,8 +30,10 @@ class _ProductPageState extends State<ProductPage> {
         color: Colors.white,
         child: Column(
           children: [
+        
+            HeaderPage(title: 'Products', left: true),
             SizedBox(
-              height: 250.h,
+              height: 100.h,
             ),
             CustomTextField(
               keybordType: TextInputType.name,

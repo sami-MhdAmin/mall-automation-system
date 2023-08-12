@@ -19,7 +19,11 @@ class AuthLogoutSuccess extends AuthState {}
 
 class AuthLoading extends AuthState {}
 
-class AuthFailed extends AuthState {
-  AuthFailed({required this.faliuer});
+class AuthLoginFailed extends AuthState {
+  AuthLoginFailed({required this.faliuer});
+  final Failure faliuer;
+}
+class AuthSignUpFailed extends AuthState {
+  AuthSignUpFailed({required this.faliuer});
   final Failure faliuer;
 }

@@ -5,7 +5,7 @@ import 'package:jessy_mall/featuers/home/presintation/page/home_page.dart';
 import 'package:jessy_mall/featuers/profile/presentation/page/profile_page.dart';
 
 class ConstManager {
-  static String baseUrl = 'baseurl/';
+  static String baseUrl = 'https://mall.yaakoot.com.au/api';
   static String clothesCategory = 'Clothes';
   static String marketCategory = 'Market';
 

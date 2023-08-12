@@ -67,31 +67,31 @@ class CustomListTileWidget extends StatelessWidget {
                 SizedBox(
                   height: 50.h,
                 ),
-                Row(
-                  children: [
-                    for (int i = 0; i < subCategoryList.length; i++)
-                      Padding(
-                        padding: EdgeInsets.only(right: 30.w),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.r),
-                            color: ColorManager.foregroundL,
-                          ),
-                          width: 60.w,
-                          height: 60.w,
-                          child: Center(
-                            child: Text(
-                              subCategoryList[i],
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 28.sp,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                )
+                // Row(
+                //   children: [
+                //     for (int i = 0; i < subCategoryList.length; i++)
+                //       Padding(
+                //         padding: EdgeInsets.only(right: 30.w),
+                //         child: Container(
+                //           decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(20.r),
+                //             color: ColorManager.foregroundL,
+                //           ),
+                //           width: 60.w,
+                //           height: 60.w,
+                //           child: Center(
+                //             child: Text(
+                //               subCategoryList[i],
+                //               style: TextStyle(
+                //                 color: Colors.white,
+                //                 fontSize: 28.sp,
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //   ],
+                // )
               ],
             ),
           )

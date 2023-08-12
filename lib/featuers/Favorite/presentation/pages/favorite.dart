@@ -7,10 +7,8 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: FavoriteBody(),
-      ),
+    return Scaffold(
+      body: FavoriteBody(),
     );
   }
 }

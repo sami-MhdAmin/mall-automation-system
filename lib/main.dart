@@ -12,8 +12,7 @@ import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/presintation/pages/order_details_page.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/presintation/pages/warehouse_order_page.dart';
 
-import 'core/injection_container/auth_injection.dart';
-import 'core/injection_container/main_injection.dart';
+
 import 'delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
@@ -22,12 +21,20 @@ import 'featuers/profile/presentation/page/profile_page.dart';
 import 'featuers/stores/presentation/page/stores_page.dart';
 import 'featuers/investment_options/presentation/page/investment_options.dart';
 import 'featuers/investment_options/presentation/page/invest_store_ui.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import 'injection_container/main_injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   await initInjection();
-  runApp(const MyApp());
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('ar', 'SA')],
+      // fallbackLocale: const Locale('en', 'US'),
+      path: 'asset/translations',
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -46,7 +53,10 @@ class MyApp extends StatelessWidget {
               // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: BottomNavigationBarWidget());
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            home: RegisterPage());
       },
     );
   }

@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
 import 'package:jessy_mall/core/resource/const_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/product_details_page.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/product_page.dart';
 import 'package:jessy_mall/featuers/stores/presentation/page/stores_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../widget/category_home_card_widget.dart';
 
@@ -65,7 +67,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(end: 50.w),
-                      child: const Icon(Icons.notifications_active),
+                      child: GestureDetector(
+                          onTap: () {
+                            context.setLocale(Locale('en', 'US'));
+                          },
+                          child: const Icon(Icons.notifications_active)),
                     ),
                   ],
                 ),
@@ -76,7 +82,7 @@ class _HomePageState extends State<HomePage> {
               CustomTextField(
                 keybordType: TextInputType.name,
                 width: 800.w,
-                hintText: 'Search',
+                hintText: StringManager.search.tr(),
                 icon: Icons.search,
                 textEditingController: searchController,
                 validator: (v) {
@@ -115,7 +121,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsetsDirectional.only(end: 700.w),
                 child: Text(
-                  'Categories',
+                  StringManager.categories.tr(),
                   style: TextStyle(
                       color: ColorManager.black,
                       fontSize: 55.sp,
@@ -139,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: ConstManager.marketCategory,
+                      categryName: StringManager.market.tr(),
                     ),
                   ),
                   GestureDetector(

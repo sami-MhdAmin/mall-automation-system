@@ -8,12 +8,12 @@ import 'package:jessy_mall/featuers/Auth/repository/auth_repository.dart';
 import 'package:jessy_mall/featuers/Auth/repository/auth_repository_impl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../network/network_info.dart';
+import '../core/network/network_info.dart';
+
 
 GetIt locator = GetIt.instance;
 
 Future<void> authInjection() async {
-  // Features - Number trivia
   //bloc
   locator.registerFactory(
     () => AuthBloc(locator.get<AuthRepository>()),
@@ -31,18 +31,11 @@ Future<void> authInjection() async {
 
   //Data sources
   locator.registerLazySingleton<AuthLocalDataSource>(
-      () => AuthLocalDataSourceImpl(locator()));
+      () => AuthLocalDataSourceImpl(locator.get()));
 
   locator.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(Dio()),
+    () => AuthRemoteDataSourceImpl(locator.get()),
   );
 
-  // core
-  locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));
 
-  //Extenal
-  final sharedPreferences = await SharedPreferences.getInstance();
-  locator.registerLazySingleton(() => sharedPreferences);
-  // locator.registerLazySingleton(() => http.Client());
-  locator.registerLazySingleton(() => Connectivity());
 }

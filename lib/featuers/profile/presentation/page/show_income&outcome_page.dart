@@ -69,9 +69,7 @@ class _ShowIncomeOutcomePageState extends State<ShowIncomeOutcomePage> {
         color: ColorManager.backgroundL,
         child: Column(
           children: [
-            SizedBox(
-              height: 150.h,
-            ),
+           
             HeaderPage(
                 title: widget.isIncome ? 'InCome' : 'OutCome', left: true),
             SizedBox(

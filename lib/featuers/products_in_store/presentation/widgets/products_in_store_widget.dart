@@ -76,7 +76,7 @@ class ProductsInStoreWidget extends StatelessWidget {
                   print("Alert Dialog");
                 },
                 icon: Icon(
-                  Icons.delete_outline_rounded,
+                  Icons.highlight_remove_outlined,
                   size: 60.r,
                   color: ColorManager.red,
                 ),

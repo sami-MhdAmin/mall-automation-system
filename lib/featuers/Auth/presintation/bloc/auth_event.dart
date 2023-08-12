@@ -9,14 +9,15 @@ class AuthRegisterRequested extends AuthEvent {
   final String email;
   final String number;
   final String password;
+  final int investmentOption;
 
-  AuthRegisterRequested({
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.number,
-    required this.password,
-  });
+  AuthRegisterRequested(
+      {required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.number,
+      required this.password,
+      required this.investmentOption});
 }
 
 class LoginEvent extends AuthEvent {
