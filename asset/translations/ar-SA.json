@@ -1,8 +1,11 @@
 {
-    "userNameHintText" : "اسم المستخدم",
-    "search":"البحث"  ,
-    "categories":"الأصناف",
-    "market" : "المتجر",
-    "sthWrong":"حدث خطأ ما"
-
+    "userNameHintText": "اسم المستخدم",
+    "search": "البحث",
+    "categories": "الأصناف",
+    "market": "المتجر",
+    "sthWrong": "حدث خطأ ما",
+    "orders": "الطلبات",
+    "delivered": "تم توصيلها",
+    "failed": "فشل",
+    "order_details": "تفاصيل الطلب"
 }

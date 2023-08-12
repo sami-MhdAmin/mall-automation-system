@@ -12,7 +12,6 @@ import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/presintation/pages/order_details_page.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/presintation/pages/warehouse_order_page.dart';
 
-
 import 'delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/Auth/presintation/page/register_page.dart';
@@ -47,16 +46,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(1080, 2340),
       builder: (context, child) {
         return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            home: RegisterPage());
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          home: BottomNavigationBarWidget(),
+        );
       },
     );
   }

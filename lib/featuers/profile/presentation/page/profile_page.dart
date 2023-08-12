@@ -6,6 +6,7 @@ import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_
 
 import '../../../../config/theme/color_manager.dart';
 import '../widget/profile_card_widget.dart';
+import 'my_order_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage(
@@ -102,7 +103,10 @@ class ProfilePage extends StatelessWidget {
               subtitleInListTile: "Already have $orderCount orders",
               navigatorFunc: () {
                 //TODO:navigate to orders
-                print("navigate to orders");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MyOrderPage()),
+                );
               },
             ),
 

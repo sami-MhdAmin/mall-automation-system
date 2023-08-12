@@ -9,7 +9,7 @@ import '../widgets/delivery_order_details_widget.dart';
 class DeliveryDetailsPage extends StatefulWidget {
   const DeliveryDetailsPage({required this.deliveryOrderDetailId, super.key});
 
-  final int deliveryOrderDetailId;
+  final int deliveryOrderDetailId;  
 
   @override
   State<DeliveryDetailsPage> createState() => _DeliveryDetailsPageState();

@@ -1,9 +1,11 @@
 {
-    "userNameHintText" : "User Name",
-    "search":"search"  ,
-    "categories":"Categories",
-    "market" : "Market",
-    "sthWrong":"Something went wrong"
-
-
+    "userNameHintText": "User Name",
+    "search": "search",
+    "categories": "Categories",
+    "market": "Market",
+    "sthWrong": "Something went wrong",
+    "orders": "Orders",
+    "delivered": "Delivered",
+    "failed": "Failed",
+    "order_details": "Order Details"
 }

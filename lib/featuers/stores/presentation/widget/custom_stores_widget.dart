@@ -8,36 +8,40 @@ class CustomListTileWidget extends StatelessWidget {
     required this.imageNetworkSource,
     required this.storeName,
     required this.openAndCloseTime,
-    required this.subCategoryList,
+    // required this.subCategoryList,
     super.key,
   });
 
   final String imageNetworkSource;
   final String storeName;
   final String openAndCloseTime;
-  final List<String> subCategoryList;
+  // final List<String> subCategoryList;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(start: 50.w, bottom: 20.h, top: 20.h),
+      padding: EdgeInsetsDirectional.only(
+        start: 50.w,
+        bottom: 10.h,
+        top: 10.h,
+        end: 50.w,
+      ),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20.r),
             child: SizedBox(
-              height: 200.w,
-              width: 200.w,
+              height: 280.w,
+              width: 280.w,
               child: Image.network(
                 imageNetworkSource,
                 // scale: 1,
-
                 fit: BoxFit.fill,
               ),
             ),
           ),
           SizedBox(
-            width: 20.w,
+            width: 40.w,
           ),
           SizedBox(
             height: 250.w,
@@ -50,7 +54,7 @@ class CustomListTileWidget extends StatelessWidget {
                   style: TextStyle(
                     color: ColorManager.foregroundL,
                     fontWeight: FontWeight.bold,
-                    fontSize: 32.sp,
+                    fontSize: 40.sp,
                   ),
                 ),
                 SizedBox(
@@ -61,12 +65,12 @@ class CustomListTileWidget extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: ColorManager.grey,
-                    fontSize: 26.sp,
+                    fontSize: 35.sp,
                   ),
                 ),
-                SizedBox(
-                  height: 50.h,
-                ),
+                // SizedBox(
+                //   height: 50.h,
+                // ),
                 // Row(
                 //   children: [
                 //     for (int i = 0; i < subCategoryList.length; i++)

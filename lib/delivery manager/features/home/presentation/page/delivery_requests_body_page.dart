@@ -22,12 +22,12 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
     return SizedBox(
       height: 1500.h,
       child: ListView.builder(
-        // itemCount: deliveryRequestsList.length,
-        itemCount: 8,
-        padding: EdgeInsets.symmetric(
-          vertical: 50.h,
-          horizontal: 30.w,
-        ),
+          // itemCount: deliveryRequestsList.length,
+          itemCount: 8,
+          padding: EdgeInsets.symmetric(
+            vertical: 50.h,
+            horizontal: 30.w,
+          ),
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(bottom: 30.h),
