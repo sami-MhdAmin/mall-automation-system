@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/utils/global_snackbar.dart';
 import 'package:jessy_mall/core/widgets/custom_check_box.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
@@ -11,6 +12,7 @@ import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bott
 
 import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_in.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -90,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: [
                             CustomTextField(
                               width: 420.w,
-                              hintText: "First Name",
+                              hintText: StringManager.firstName.tr(),
                               icon: Icons.person,
                               textEditingController: firstNameController,
                               keybordType: TextInputType.name,

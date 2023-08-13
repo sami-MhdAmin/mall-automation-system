@@ -7,5 +7,10 @@
     "orders": "Orders",
     "delivered": "Delivered",
     "failed": "Failed",
-    "order_details": "Order Details"
+    "order_details": "Order Details",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password"
 }

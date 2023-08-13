@@ -7,5 +7,11 @@
     "orders": "الطلبات",
     "delivered": "تم توصيلها",
     "failed": "فشل",
-    "order_details": "تفاصيل الطلب"
+    "order_details": "تفاصيل الطلب",
+    "first_name": "الأسم الأول",
+    "last_name": "أسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "password": "كلمة السر"
+
 }
