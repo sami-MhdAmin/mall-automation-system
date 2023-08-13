@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class ShowBillsPage extends StatefulWidget {
   const ShowBillsPage({super.key});
@@ -44,7 +47,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
         child: Column(
           children: [
           
-            const HeaderPage(title: 'My Bills', left: true),
+             HeaderPage(title:StringManager.myBills.tr() , left: true),
             SizedBox(
               height: 150.h,
             ),
@@ -73,7 +76,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                         borderRadius: BorderRadius.circular(30.r)),
                     child: Center(
                       child: Text(
-                        'from: ${dateFrom.text}',
+                        '${StringManager.from.tr()}: ${dateFrom.text}',
                         style: TextStyle(color: Colors.white, fontSize: 30.sp),
                       ),
                     ),
@@ -101,7 +104,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                         borderRadius: BorderRadius.circular(30.r)),
                     child: Center(
                       child: Text(
-                        'to: ${dateTo.text}',
+                        '${StringManager.to.tr()}: ${dateTo.text}',
                         style: TextStyle(
                             color: ColorManager.black, fontSize: 30.sp),
                       ),
@@ -134,16 +137,16 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                     border: TableBorder.all(color: ColorManager.grey),
                     children: [
-                      const TableRow(
+                       TableRow(
                         children: [
                           TableCellWidget(
-                            title: 'Product Name',
+                            title: StringManager.productName.tr(),
                           ),
                           TableCellWidget(
-                            title: 'quantity',
+                            title: StringManager.quantity.tr(),
                           ),
                           TableCellWidget(
-                            title: 'price',
+                            title: StringManager.price.tr(),
                           ),
                         ],
                       ),
@@ -176,7 +179,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total: ',
+                    '${StringManager.total.tr()}: ',
                     style: TextStyle(
                         color: ColorManager.grey,
                         fontSize: 50.sp,

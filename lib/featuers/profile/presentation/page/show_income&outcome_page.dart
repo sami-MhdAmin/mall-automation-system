@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ShowIncomeOutcomePage extends StatefulWidget {
   const ShowIncomeOutcomePage({super.key, required this.isIncome});
@@ -71,7 +73,7 @@ class _ShowIncomeOutcomePageState extends State<ShowIncomeOutcomePage> {
           children: [
            
             HeaderPage(
-                title: widget.isIncome ? 'InCome' : 'OutCome', left: true),
+                title: widget.isIncome ? StringManager.income.tr() : StringManager.outcome.tr(), left: true),
             SizedBox(
               height: 150.h,
             ),
@@ -100,7 +102,7 @@ class _ShowIncomeOutcomePageState extends State<ShowIncomeOutcomePage> {
                         borderRadius: BorderRadius.circular(30.r)),
                     child: Center(
                       child: Text(
-                        'from: ${dateFrom.text}',
+                        '${StringManager.from.tr()}: ${dateFrom.text}',
                         style: TextStyle(color: Colors.white, fontSize: 30.sp),
                       ),
                     ),
@@ -128,7 +130,7 @@ class _ShowIncomeOutcomePageState extends State<ShowIncomeOutcomePage> {
                         borderRadius: BorderRadius.circular(30.r)),
                     child: Center(
                       child: Text(
-                        'to: ${dateTo.text}',
+                        '${StringManager.to.tr()}: ${dateTo.text}',
                         style: TextStyle(
                             color: ColorManager.black, fontSize: 30.sp),
                       ),
@@ -161,19 +163,19 @@ class _ShowIncomeOutcomePageState extends State<ShowIncomeOutcomePage> {
                     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                     border: TableBorder.all(color: ColorManager.grey),
                     children: [
-                      const TableRow(
+                       TableRow(
                         children: [
                           TableCellWidget(
-                            title: 'Product Name',
+                            title: StringManager.productName.tr(),
                           ),
                           TableCellWidget(
-                            title: 'quantity',
+                            title: StringManager.quantity.tr(),
                           ),
                           TableCellWidget(
-                            title: 'Price',
+                            title: StringManager.price.tr(),
                           ),
                            TableCellWidget(
-                            title: 'Date',
+                            title: StringManager.date.tr(),
                           ),
                         ],
                       ),
@@ -209,7 +211,7 @@ class _ShowIncomeOutcomePageState extends State<ShowIncomeOutcomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total: ',
+                    '${StringManager.total.tr()}: ',
                     style: TextStyle(
                         color: ColorManager.grey,
                         fontSize: 50.sp,

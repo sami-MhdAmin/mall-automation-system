@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: ConstManager.clothesCategory,
+                      categryName: StringManager.clothes.tr(),
                     ),
                   ),
                 ],
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: ConstManager.furnitureCategory,
+                      categryName: StringManager.furniture.tr(),
                     ),
                   ),
                   GestureDetector(
@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: ConstManager.makeupCategory,
+                      categryName: StringManager.makeup.tr(),
                     ),
                   ),
                 ],

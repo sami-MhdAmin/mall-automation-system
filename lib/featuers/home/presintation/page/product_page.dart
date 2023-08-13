@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_counter.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/product_details_page.dart';
@@ -10,6 +11,7 @@ import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/const_manager.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../widget/product_card_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key, required this.categoryName});
@@ -30,15 +32,14 @@ class _ProductPageState extends State<ProductPage> {
         color: Colors.white,
         child: Column(
           children: [
-        
-            HeaderPage(title: 'Products', left: true),
+            HeaderPage(title: StringManager.products.tr(), left: true),
             SizedBox(
               height: 100.h,
             ),
             CustomTextField(
               keybordType: TextInputType.name,
               width: 850.w,
-              hintText: 'Search',
+              hintText: StringManager.search.tr(),
               icon: Icons.search,
               textEditingController: searchController,
               validator: (v) {

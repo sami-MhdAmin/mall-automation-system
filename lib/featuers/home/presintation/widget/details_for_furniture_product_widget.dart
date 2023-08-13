@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DetailForFurnitureProduct extends StatelessWidget {
   const DetailForFurnitureProduct({
@@ -17,7 +19,7 @@ class DetailForFurnitureProduct extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Material: ',
+              '${StringManager.materials.tr()} : ',
               style: TextStyle(
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w500,
@@ -35,14 +37,14 @@ class DetailForFurnitureProduct extends StatelessWidget {
         Row(
           children: [
             Text(
-              'color: ',
+              '${StringManager.color.tr()} : ',
               style: TextStyle(
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w500,
                   fontSize: 50.sp),
             ),
             Text(
-              'color: black',
+              'black',
               style: TextStyle(
                   color: ColorManager.black,
                   fontWeight: FontWeight.w600,
@@ -53,7 +55,7 @@ class DetailForFurnitureProduct extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Dimensions: ',
+              '${StringManager.dimensions.tr()} : ',
               style: TextStyle(
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w500,
@@ -71,7 +73,7 @@ class DetailForFurnitureProduct extends StatelessWidget {
         Row(
           children: [
             Text(
-              'weight: ',
+              '${StringManager.weight.tr()} : ',
               style: TextStyle(
                   color: ColorManager.grey,
                   fontWeight: FontWeight.w500,
