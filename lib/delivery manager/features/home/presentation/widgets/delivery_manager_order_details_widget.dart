@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DeliveryOrderDetailsWidget extends StatelessWidget {
-  const DeliveryOrderDetailsWidget(
+class DeliveryManagerOrderDetailsWidget extends StatelessWidget {
+  const DeliveryManagerOrderDetailsWidget(
       {required this.imageNetworkSource,
       required this.productName,
       required this.storeName,

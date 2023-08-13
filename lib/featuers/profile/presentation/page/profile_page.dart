@@ -5,10 +5,12 @@ import 'package:jessy_mall/featuers/investment_options/presentation/page/investm
 import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_page.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/string_manager.dart';
 import '../widget/profile_card_widget.dart';
 import 'my_order_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage(
       {required this.userName,
       required this.userEmail,
@@ -21,6 +23,11 @@ class ProfilePage extends StatelessWidget {
   final int orderCount, shippingAddressesCount, storeInvestedCount;
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.backgroundL,
@@ -30,38 +37,35 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 80.h,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 100.w),
-                    child: Text(
-                      "Profile",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 45.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 50.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox.fromSize(
+                    size: Size.fromRadius(70.r),
+                  ),
+                  Text(
+                    StringManager.profile.tr(),
+                    style: TextStyle(
+                      fontSize: 44.sp,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 50.w),
-                  child: IconButton(
+                  IconButton(
                     icon: Icon(
                       Icons.logout_rounded,
                       color: Colors.black,
-                      size: 50.w,
+                      size: 70.r,
                     ),
                     onPressed: () {
                       //TODO:
                       print("Logout");
                     },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(
               height: 70.h,
@@ -74,7 +78,7 @@ class ProfilePage extends StatelessWidget {
                   radius: 100.r,
                 ),
                 title: Text(
-                  userName,
+                  widget.userName,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: ColorManager.foregroundL,
@@ -84,7 +88,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 // titleAlignment: ,
                 subtitle: Text(
-                  userEmail,
+                  widget.userEmail,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: ColorManager.grey,
@@ -99,8 +103,9 @@ class ProfilePage extends StatelessWidget {
 
             //My orders
             ProfileCardWidget(
-              titleInListTile: "My Orders",
-              subtitleInListTile: "Already have $orderCount orders",
+              titleInListTile: StringManager.myOrders.tr(),
+              subtitleInListTile:
+                  "${StringManager.alreadyHave.tr()} ${widget.orderCount} ${StringManager.orders.tr()}",
               navigatorFunc: () {
                 //TODO:navigate to orders
                 Navigator.push(
@@ -122,9 +127,9 @@ class ProfilePage extends StatelessWidget {
 
             //invest store or stand
             ProfileCardWidget(
-              titleInListTile: "Invest Store or Stand",
+              titleInListTile: StringManager.investStoreOrStand.tr(),
               subtitleInListTile:
-                  "You have already $storeInvestedCount Stores or Stands invested",
+                  "${StringManager.youHave.tr()}${widget.storeInvestedCount} ${StringManager.storeOrStandInvested.tr()}",
               navigatorFunc: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => InvestmentOptions()));
@@ -143,9 +148,9 @@ class ProfilePage extends StatelessWidget {
 
             //Manage My Investment
             ProfileCardWidget(
-              titleInListTile: "Manage My Investment",
-              subtitleInListTile: "Manage your investments",
-              navigatorFunc: storeInvestedCount == 0
+              titleInListTile: StringManager.manageMyInvestment.tr(),
+              subtitleInListTile: StringManager.manageMyInvestment.tr(),
+              navigatorFunc: widget.storeInvestedCount == 0
                   ? null
                   : () {
                       Navigator.push(
@@ -157,7 +162,11 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 70.h,
             ),
-            LanguageSwitcherWidget()
+            GestureDetector(
+                onTap: () => setState(() {}),
+                child: LanguageSwitcherWidget(
+                  context: context,
+                ),),
           ],
         ),
       ),

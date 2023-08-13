@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/header_page.dart';
 import '../../../home/presintation/page/product_page.dart';
 import '../../models/stores_model.dart';
 import '../widget/custom_stores_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class StoresPage extends StatefulWidget {
   const StoresPage({
@@ -49,7 +51,7 @@ class _StoresPageState extends State<StoresPage> {
             Center(
               child: CustomTextField(
                 icon: Icons.search_rounded,
-                hintText: "Search Your Store",
+                hintText: StringManager.search.tr(),
                 textEditingController: textEditingController,
                 keybordType: TextInputType.name,
                 width: 980.w,

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/color_manager.dart';
+import '../../../../../core/resource/string_manager.dart';
 import '../../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../models/delivery_models.dart';
-import 'delivery_details_page.dart';
+import 'delivery_requests_details_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DeliveryRequestBodyPage extends StatefulWidget {
   const DeliveryRequestBodyPage({super.key});
@@ -22,12 +24,12 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
     return SizedBox(
       height: 1500.h,
       child: ListView.builder(
-          // itemCount: deliveryRequestsList.length,
-          itemCount: 8,
-          padding: EdgeInsets.symmetric(
-            vertical: 50.h,
-            horizontal: 30.w,
-          ),
+        // itemCount: deliveryRequestsList.length,
+        itemCount: 8,
+        padding: EdgeInsets.symmetric(
+          vertical: 50.h,
+          horizontal: 30.w,
+        ),
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(bottom: 30.h),
@@ -37,7 +39,7 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
               firstTextField: "Salimo",
               secondTextField: "20/03/2020",
               quantityTextField: "03",
-              fourthTextField: "150",
+              fourthTextField: "${StringManager.totalAmount.tr()}: 150",
               customWidget: Padding(
                 padding: EdgeInsetsDirectional.only(start: 30.w, top: 20.h),
                 child: SizedBox(
@@ -60,9 +62,9 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                     ),
-                    child: const Text(
-                      "Details",
-                      style: TextStyle(
+                    child: Text(
+                      StringManager.details.tr(),
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),

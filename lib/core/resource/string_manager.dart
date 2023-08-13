@@ -12,6 +12,7 @@ class StringManager {
   static String makeup = 'makeup';
   static String furniture = 'furniture';
   static String products = 'products';
+  static String history = 'history';
 
   static String off = 'off';
   static String colors = 'colors';
@@ -50,12 +51,19 @@ class StringManager {
 
   static String myBills = 'myBills';
 
-
-
-
-  
-
-
-
-
+  static String productsInStore = 'productsInStore';
+  static String productsInWarehouse = 'productsInWarehouse';
+  static String profile = 'profile';
+  static String myOrders = 'myOrders';
+  static String alreadyHave = 'alreadyHave';
+  static String investStoreOrStand = 'investStoreOrStand';
+  static String storeOrStandInvested = 'storeOrStandInvested';
+  static String manageMyInvestment = 'manageMyInvestment';
+  static String totalAmount = 'totalAmount';
+  static String details = 'details';
+  static String requests = 'requests';
+  static String pending = 'pending';
+  static String location = 'location';
+  static String confirm = 'confirm';
+  static String reject = 'reject';
 }

@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => StoresPage(
-                                    categoryName: ConstManager.clothesCategory,
+                                    categoryName: StringManager.clothes.tr(),
                                   )));
                     },
                     child: CategoryHomeCardWidget(
@@ -176,8 +176,7 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => StoresPage(
-                                    categoryName:
-                                        ConstManager.furnitureCategory,
+                                    categoryName: StringManager.furniture.tr(),
                                   )));
                     },
                     child: CategoryHomeCardWidget(
@@ -191,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => StoresPage(
-                                    categoryName: ConstManager.makeupCategory,
+                                    categoryName: StringManager.makeup.tr(),
                                   )));
                     },
                     child: CategoryHomeCardWidget(

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/resource/string_manager.dart';
 import '../../../../../core/widgets/header_page.dart';
 import '../../models/delivery_models.dart';
 import '../widgets/confirm_reject_Button.dart';
-import '../widgets/delivery_order_details_widget.dart';
+import '../widgets/delivery_manager_order_details_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DeliveryDetailsPage extends StatefulWidget {
   const DeliveryDetailsPage({required this.deliveryOrderDetailId, super.key});
 
-  final int deliveryOrderDetailId;  
+  final int deliveryOrderDetailId;
 
   @override
   State<DeliveryDetailsPage> createState() => _DeliveryDetailsPageState();
@@ -22,16 +24,16 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
     return Scaffold(
       body: Column(
         children: [
-          const HeaderPage(
+          HeaderPage(
             left: true,
-            title: "Order Details",
+            title: StringManager.orderDetails.tr(),
             // right: IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
           ),
           SizedBox(
             height: 50.h,
           ),
           SizedBox(
-            height: 1500.h,
+            height: 1520.h,
             width: 1000.w,
             child: Card(
               color: Colors.white,
@@ -46,18 +48,18 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                       horizontal: 20.w,
                       vertical: 30.h,
                     ),
-                    child: const Row(
+                    child: Row(
                       children: [
                         Text(
-                          'To: ',
-                          style: TextStyle(
+                          '${StringManager.to.tr()}: ',
+                          style: const TextStyle(
                             color: Color(0xFF808080),
                             fontSize: 16,
                             fontFamily: 'Nunito Sans',
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Text(
+                        const Text(
                           //TODO: take it from backend,
                           "Salimo",
                           style: TextStyle(
@@ -67,8 +69,8 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Spacer(),
-                        Text(
+                        const Spacer(),
+                        const Text(
                           '20/03/2020',
                           style: TextStyle(
                             color: Color(0xFF999999),
@@ -97,7 +99,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                         horizontal: 10.w,
                       ),
                       itemBuilder: (context, index) {
-                        return const DeliveryOrderDetailsWidget(
+                        return const DeliveryManagerOrderDetailsWidget(
                           imageNetworkSource:
                               "https://media.istockphoto.com/id/912819604/vector/storefront-flat-design-e-commerce-icon.jpg?s=612x612&w=0&k=20&c=_x_QQJKHw_B9Z2HcbA2d1FH1U1JVaErOAp2ywgmmoTI=",
                           productName: "Product X",
@@ -120,7 +122,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Location:",
+                  "${StringManager.location.tr()}: ",
                   style: TextStyle(
                     color: const Color(0xFF808080),
                     fontSize: 46.sp,
@@ -152,7 +154,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Price:",
+                  "${StringManager.price.tr()}: ",
                   style: TextStyle(
                     color: const Color(0xFF808080),
                     fontSize: 46.sp,
