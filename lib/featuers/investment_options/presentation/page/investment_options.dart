@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/investment_store.dart';
 
@@ -12,28 +13,17 @@ class InvestmentOptions extends StatelessWidget {
         tabs: [
           Tab(
             icon: SizedBox(
-                width: 200,
-                child: Text(
-                  'products',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                )),
+              width: 350.w,
+              child: Icon(
+                Icons.store_mall_directory,
+              ),
+            ),
           ),
           Tab(
             icon: SizedBox(
-                width: 200,
-                child: Text(
-                  'income',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
+                width: 350.w,
+                child: Icon(
+                  Icons.table_rows_rounded,
                 )),
           ),
         ],
@@ -44,27 +34,24 @@ class InvestmentOptions extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          // backgroundColor: ColorManager.foregroundL,
+          backgroundColor: ColorManager.backgroundL,
+          title: Text(
+            'Investment Option',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: ColorManager.black,
+              fontSize: 50.sp,
+              fontFamily: 'Merriweather',
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          centerTitle: true,
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: Material(
-              // color: ColorManager.backgroundTabBar,
-              child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          ColorManager.foregroundL,
-                          ColorManager.backgroundTabBar,
-                        ]),
-                  ),
-                  child: _tabBar),
+              color: ColorManager.backgroundL,
+              child: _tabBar,
             ),
-          ),
-          title: Text(
-            'Investment option',
-            style: TextStyle(color: ColorManager.backgroundL),
           ),
         ),
         body: TabBarView(

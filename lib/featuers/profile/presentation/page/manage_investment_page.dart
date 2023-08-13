@@ -15,24 +15,26 @@ import 'package:jessy_mall/featuers/investment_options/presentation/widgets/inve
 class ManageInvestmentPage extends StatelessWidget {
   const ManageInvestmentPage({super.key});
   TabBar get _tabBar => TabBar(
-        unselectedLabelColor: ColorManager.backgroundL,
+        labelColor: ColorManager.black,
+        unselectedLabelColor: ColorManager.grey,
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorColor: ColorManager.foregroundL,
-        indicator: BoxDecoration(color: ColorManager.backgroundL),
-        tabs: const [
+        indicatorColor: ColorManager.black,
+        tabs: [
           Tab(
-              icon: SizedBox(
-            width: 200,
-            child: Icon(
-              Icons.store_mall_directory,
-              // color: ColorManager.backgroundL,
+            icon: SizedBox(
+              width: 350.w,
+              child: Icon(
+                Icons.store_mall_directory,
+              ),
             ),
-          )),
+          ),
           Tab(
-              icon: Icon(
-            Icons.table_rows_rounded,
-            // color: ColorManager.backgroundL,
-          )),
+            icon: SizedBox(
+                width: 350.w,
+                child: Icon(
+                  Icons.table_rows_rounded,
+                )),
+          ),
         ],
       );
   @override
@@ -41,27 +43,24 @@ class ManageInvestmentPage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorManager.foregroundL,
+          backgroundColor: ColorManager.backgroundL,
+          title: Text(
+            'My Investment',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: ColorManager.black,
+              fontSize: 50.sp,
+              fontFamily: 'Merriweather',
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          centerTitle: true,
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: Material(
-              // color: ColorManager.backgroundTabBar,
-              child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          ColorManager.foregroundL,
-                          ColorManager.backgroundTabBar,
-                        ]),
-                  ),
-                  child: _tabBar),
+              color: ColorManager.backgroundL,
+              child: _tabBar,
             ),
-          ),
-          title: Text(
-            'My Investment',
-            style: TextStyle(color: ColorManager.backgroundL),
           ),
         ),
         body: const TabBarView(
