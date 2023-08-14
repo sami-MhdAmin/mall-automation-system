@@ -15,6 +15,7 @@ import '../../../bottom_navigation_bar/presintation/page/bottom_navigation_bar.d
 import '../widgets/forgot_password_button.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_up.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -94,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                           visibility: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Please enter User Name";
+                              return StringManager.pleaseEnterUserName.tr();
                             }
                             return null;
                           },
@@ -105,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                         CustomTextField(
                           width: 850.w,
                           keybordType: TextInputType.visiblePassword,
-                          hintText: 'Password',
+                          hintText: StringManager.password.tr(),
                           icon: Icons.lock,
                           textEditingController: passwordController,
                           suffixIconWidget: Padding(
@@ -127,9 +128,10 @@ class _LoginPageState extends State<LoginPage> {
                           visibility: visibility,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Please enter Password";
+                              return StringManager.pleaseEnterYourPassword.tr();
                             } else if (value.length <= 7) {
-                              return "The password must be 8 Characters";
+                              return StringManager.passwordMustBeEightCharacters
+                                  .tr();
                             }
                             return null;
                           },
@@ -138,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 250.h,
                         ),
                         CustomButton(
-                          text: "SIGN IN",
+                          text: StringManager.signIn.tr(),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               context.read<AuthBloc>().add(AuthLoginEvent(

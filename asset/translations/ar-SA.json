@@ -83,5 +83,12 @@
     "productMovement": "حركة المنتج",
     "approved": "مقبولة",
     "rejected": "مرفوضة",
-    "orderFrom": "طلب من"
+    "orderFrom": "طلب من",
+    "pleaseEnterUserName":"أدخل أسم المستخدم",
+    "signIn":"تسجيل الدخول",
+    "doNotHaveAnAccount":"لايوجد لديك حساب؟",
+    "alreadyHaveAnAccount":"يوجد لديك حساب؟"
+
+
+
 }

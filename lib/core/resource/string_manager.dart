@@ -96,4 +96,12 @@ class StringManager {
   static String rejected = 'rejected';
   static String orderFrom = 'orderFrom';
   //end warehouse
+
+  //start login
+  static String pleaseEnterUserName = 'pleaseEnterUserName';
+  static String signIn = 'signIn';
+  static String doNotHaveAnAccount = 'doNotHaveAnAccount';
+  static String alreadyHaveAnAccount = 'alreadyHaveAnAccount';
+
+  //end login
 }
