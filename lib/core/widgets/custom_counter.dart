@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Counter extends StatelessWidget {
-  const Counter({
-    super.key,
-  });
+class Counter extends StatefulWidget {
+  Counter({super.key, required this.x});
+  int x;
 
+  @override
+  State<Counter> createState() => _CounterState();
+}
+
+class _CounterState extends State<Counter> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,16 +22,23 @@ class Counter extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           ),
-          child: const Center(
-            child: Icon(
-              Icons.remove,
-              size: 16,
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                widget.x--;
+              });
+            },
+            child: const Center(
+              child: Icon(
+                Icons.remove,
+                size: 16,
+              ),
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text("01"),
+          child: Text(widget.x.toString()),
         ),
         Container(
           width: 24,
@@ -37,10 +48,17 @@ class Counter extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           ),
-          child: const Center(
-            child: Icon(
-              Icons.add,
-              size: 16,
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                widget.x++;
+              });
+            },
+            child: const Center(
+              child: Icon(
+                Icons.add,
+                size: 16,
+              ),
             ),
           ),
         ),

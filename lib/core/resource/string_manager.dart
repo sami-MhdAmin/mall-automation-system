@@ -73,6 +73,19 @@ class StringManager {
   static String phone = 'phone';
   static String password = 'password';
   static String readMore = 'readMore';
+  static String pleaseEnterYourFirstName = 'pleaseEnterYourFirstName';
+  static String pleaseEnterYourLastName = 'pleaseEnterYourLastName';
+  static String pleaseEnterYourGmail = 'pleaseEnterYourGmail';
+  static String containAt = 'containAt';
+  static String pleaseEnterYourPassword = 'pleaseEnterYourPassword';
+  static String passwordMustBeEightCharacters = 'passwordMustBeEightCharacters';
+  static String pleaseEnterYourPhoneNumber = 'pleaseEnterYourPhoneNumber';
+  static String doYouWantToSeeInvestmentOption =
+      'DoYouWantToSeeInvestmentOption';
+  static String signUp = 'signUp';
+
   static String myCart = 'myCart';
   //end register
+  static String loading = 'loading';
+  static String changeLanguage = 'changeLanguage';
 }

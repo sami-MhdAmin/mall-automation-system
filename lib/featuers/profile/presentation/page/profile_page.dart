@@ -6,6 +6,7 @@ import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/string_manager.dart';
+import '../../../../core/widgets/custom_check_box.dart';
 import '../widget/profile_card_widget.dart';
 import 'my_order_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -162,11 +163,46 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 70.h,
             ),
-            GestureDetector(
-                onTap: () => setState(() {}),
-                child: LanguageSwitcherWidget(
-                  context: context,
-                ),),
+            Padding(
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 60.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${StringManager.changeLanguage.tr()} :',
+                    style: TextStyle(
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => setState(() {}),
+                    child: LanguageSwitcherWidget(
+                      context: context,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 50.h,
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 60.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Do you want to see investment option :",
+                    style: TextStyle(
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const CustomCheckbox()
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -50,28 +50,28 @@ class AuthRepositoryImpl extends AuthRepository {
     }
   }
 
-  // @override
-  // Future<Either<Failure, UserModel>> postLogin(
-  //     {required String userName, required String password}) async {
-  //   if (await _networkInfo.isConnected) {
-  //     try {
-  //       final addSuccess = await _authRemoteDataSource.login(
-  //         userName: userName,
-  //         password: password,
-  //       );
+  @override
+  Future<Either<Failure, UserModel>> postLogin(
+      {required String email, required String password}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _authRemoteDataSource.login(
+          email: email,
+          password: password,
+        );
 
-  //       return addSuccess.fold((failure) {
-  //         return Left(failure);
-  //       }, (registerResponse) {
-  //         return right(registerResponse);
-  //       });
-  //     } on ServerException {
-  //       return Left(ServerFailure());
-  //     }
-  //   } else {
-  //     return left(NoInternetFailure());
-  //   }
-  // }
+        return addSuccess.fold((failure) {
+          return Left(failure);
+        }, (registerResponse) {
+          return right(registerResponse);
+        });
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
 
   // @override
   // Future<Either<Failure, bool>> logout() async {

@@ -30,19 +30,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
-    on<LoginEvent>((event, emit) async {
+    on<AuthLoginEvent>((event, emit) async {
       emit(AuthLoading());
 
-      //   final successOrFailuer = await _authRepostitory.postLogin(
-      //     userName: event.userName,
-      //     password: event.password,
-      //   );
+      final successOrFailuer = await _authRepostitory.postLogin(
+        email: event.email,
+        password: event.password,
+      );
 
-      //   successOrFailuer.fold((error) {
-      //     emit(AuthLoginFailed(faliuer: error));
-      //   }, (registerModel) {
-      //     emit(AuthSignUpSuccess(user: registerModel));
-      //   });
+      successOrFailuer.fold((error) {
+        emit(AuthLoginFailed(faliuer: error));
+      }, (loginModel) {
+        emit(AuthLoginSuccess(user: loginModel));
+      });
     });
 
     on<AuthLogout>((event, emit) async {

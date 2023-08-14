@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:jessy_mall/config/theme/color_manager.dart';
 
 class LanguageSwitcherWidget extends StatefulWidget {
   const LanguageSwitcherWidget({required this.context, super.key});
@@ -23,10 +24,10 @@ class _LanguageSwitcherWidgetState extends State<LanguageSwitcherWidget> {
   @override
   Widget build(BuildContext context) {
     return FlutterSwitch(
-      width: 250.w,
-      height: 130.h,
-      valueFontSize: 15.sp,
-      toggleSize: 100.h,
+      width: 160.w,
+      height: 80.h,
+      valueFontSize: 25.sp,
+      toggleSize: 60.h,
       value: switchValue,
       borderRadius: 100.r,
       padding: 0,
@@ -43,8 +44,8 @@ class _LanguageSwitcherWidgetState extends State<LanguageSwitcherWidget> {
       ),
       activeColor: Colors.white,
       inactiveColor: Colors.white,
-      toggleColor: Colors.orange,
-      switchBorder: Border.all(color: Colors.orange),
+      toggleColor: ColorManager.black,
+      switchBorder: Border.all(color: ColorManager.grey),
       onToggle: (val) {
         setState(() {
           switchValue = val;

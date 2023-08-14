@@ -82,7 +82,7 @@ class productCardWidget extends StatelessWidget {
                     fontSize: 40.sp,
                     fontWeight: FontWeight.w700),
               ),
-              const Counter(),
+               Counter(x: 1,),
             ],
           ),
           const SizedBox()

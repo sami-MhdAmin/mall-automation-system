@@ -7,6 +7,7 @@ import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/utils/global_snackbar.dart';
 import 'package:jessy_mall/core/widgets/custom_check_box.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
+import 'package:jessy_mall/core/widgets/loading_widget.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
 
@@ -99,7 +100,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               visibility: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Please enter your First Name";
+                                  return StringManager.pleaseEnterYourFirstName
+                                      .tr();
                                 }
                                 return null;
                               },
@@ -116,7 +118,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               visibility: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Please enter your Last Name";
+                                  return StringManager.pleaseEnterYourLastName
+                                      .tr();
                                 }
                                 return null;
                               },
@@ -132,9 +135,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           visibility: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Please enter your Gmail";
+                              return StringManager.pleaseEnterYourGmail.tr();
                             } else if (!value.contains("@")) {
-                              return "The Email must contain '@' Character";
+                              return StringManager.containAt.tr();
                             }
                             return null;
                           },
@@ -164,9 +167,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           visibility: visibility,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Please enter Password";
+                              return StringManager.pleaseEnterYourPassword.tr();
                             } else if (value.length <= 7) {
-                              return "The password must be 8 Characters";
+                              return StringManager.passwordMustBeEightCharacters
+                                  .tr();
                             }
                             return null;
                           },
@@ -180,7 +184,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           visibility: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Please enter Your Number";
+                              return StringManager.pleaseEnterYourPhoneNumber
+                                  .tr();
                             }
                             return null;
                           },
@@ -192,7 +197,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Do you want to see investment option?",
+                              StringManager.doYouWantToSeeInvestmentOption.tr(),
                               style: TextStyle(fontSize: 25.sp),
                             ),
                             const CustomCheckbox()
@@ -246,11 +251,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       ],
                     ),
                     if (state is AuthLoading)
-                      Container(
-                          height: 1.sh,
-                          width: 1.sw,
-                          color: Colors.white38,
-                          child: Center(child: CircularProgressIndicator())),
+                      const LoadingWidget(
+                        fullScreen: true,
+                      )
                   ],
                 );
               },
