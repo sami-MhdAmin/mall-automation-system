@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:jessy_mall/core/resource/string_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../../../config/theme/color_manager.dart';
 
 class DetailForClothesProductWidget extends StatelessWidget {
@@ -14,7 +15,7 @@ class DetailForClothesProductWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Color: ',
+        Text('${StringManager.colors.tr()}: ',
             style: TextStyle(
                 color: ColorManager.black,
                 fontSize: 50.sp,
@@ -50,7 +51,7 @@ class DetailForClothesProductWidget extends StatelessWidget {
         SizedBox(
           height: 20.h,
         ),
-        Text('Sizes: ',
+        Text('${StringManager.sizes.tr()}: ',
             style: TextStyle(
                 color: ColorManager.black,
                 fontSize: 50.sp,

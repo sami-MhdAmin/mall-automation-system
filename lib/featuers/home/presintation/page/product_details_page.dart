@@ -3,10 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 
 import '../../../../core/resource/const_manager.dart';
 import '../widget/details_for_clothes_product_widget.dart';
 import '../widget/details_for_furniture_product_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({super.key, required this.categoryName});
@@ -55,7 +57,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             ]),
                         child: Center(
                           child: Text(
-                            '33% off',
+                            '33% ${StringManager.off.tr()}',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 40.sp),
                           ),
@@ -131,7 +133,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('product Description',
+                    Text(StringManager.productDescription.tr(),
                         style: TextStyle(
                             color: ColorManager.black,
                             fontWeight: FontWeight.w700,
@@ -155,7 +157,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               color: ColorManager.black),
                           child: Center(
                             child: Text(
-                              'Add To Card',
+                              StringManager.addToCard.tr(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 50.sp,

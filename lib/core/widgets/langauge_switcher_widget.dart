@@ -4,14 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 class LanguageSwitcherWidget extends StatefulWidget {
-  const LanguageSwitcherWidget({super.key});
-
+  const LanguageSwitcherWidget({required this.context, super.key});
+  final BuildContext context;
   @override
   State<LanguageSwitcherWidget> createState() => _LanguageSwitcherWidgetState();
 }
 
 class _LanguageSwitcherWidgetState extends State<LanguageSwitcherWidget> {
-  bool switchValue = true;
+  late bool switchValue;
+  @override
+  void initState() {
+    widget.context.locale == const Locale('ar', 'SA')
+        ? switchValue = false
+        : switchValue = true;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +50,8 @@ class _LanguageSwitcherWidgetState extends State<LanguageSwitcherWidget> {
           switchValue = val;
         });
         val == true
-            ? context.setLocale(Locale('en', 'US'))
-            : context.setLocale(Locale('ar', 'SA'));
+            ? widget.context.setLocale(Locale('en', 'US'))
+            : widget.context.setLocale(Locale('ar', 'SA'));
       },
     );
   }

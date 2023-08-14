@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             CustomTextField(
                               width: 420.w,
-                              hintText: "Last Name",
+                              hintText: StringManager.lastName.tr(),
                               icon: Icons.assignment_ind_rounded,
                               textEditingController: lastNameController,
                               keybordType: TextInputType.name,
@@ -125,7 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         CustomTextField(
                           width: 850.w,
-                          hintText: "Email",
+                          hintText: StringManager.email.tr(),
                           icon: Icons.email,
                           textEditingController: emailController,
                           keybordType: TextInputType.emailAddress,
@@ -141,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         CustomTextField(
                           width: 850.w,
-                          hintText: "Password",
+                          hintText: StringManager.password.tr(),
                           icon: Icons.lock,
                           textEditingController: passwordController,
                           keybordType: TextInputType.visiblePassword,
@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         CustomTextField(
                           width: 850.w,
-                          hintText: "Number",
+                          hintText: StringManager.phone.tr(),
                           icon: Icons.numbers_outlined,
                           textEditingController: numberController,
                           keybordType: TextInputType.number,
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             //TODO: take me to description of investment
                           },
                           child: Text(
-                            "Read More",
+                            StringManager.readMore.tr(),
                             style: TextStyle(
                               color: ColorManager.blue,
                               decoration: TextDecoration.underline,

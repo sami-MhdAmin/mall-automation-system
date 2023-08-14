@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/custom_counter.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/cart/presentation/widgets/cart_card.dart';
 import 'package:jessy_mall/featuers/cart/presentation/widgets/shipping_address_card.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MyCartBody extends StatelessWidget {
   const MyCartBody({super.key});
@@ -14,11 +16,11 @@ class MyCartBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const HeaderPage(left: false, title: 'My cart'),
+          HeaderPage(left: false, title: StringManager.myCart.tr()),
           SizedBox(
             height: 80.h,
           ),
@@ -58,7 +60,7 @@ class MyCartBody extends StatelessWidget {
                   },
                 ),
                 Container(
-                  height: 250.h,
+                  height: 265.h,
                   color: ColorManager.backgroundL,
                   child: Column(
                     children: [

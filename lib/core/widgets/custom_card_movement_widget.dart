@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../resource/string_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+
 class CustomCardMovementWidget extends StatelessWidget {
   double height;
   final String firstTextField;
@@ -78,7 +82,7 @@ class CustomCardMovementWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Quantity: ',
+                      "${StringManager.quantity.tr()}:",
                       style: TextStyle(
                         color: const Color(0xFF808080),
                         fontSize: 46.sp,
@@ -97,27 +101,14 @@ class CustomCardMovementWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Text(
-                      'Total Amount: ',
-                      style: TextStyle(
-                        color: const Color(0xFF808080),
-                        fontSize: 46.sp,
-                        fontFamily: 'Nunito Sans',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      fourthTextField ?? "",
-                      style: TextStyle(
-                        color: const Color(0xFF232323),
-                        fontSize: 46.sp,
-                        fontFamily: 'Nunito Sans',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+                Text(
+                  fourthTextField ?? "",
+                  style: TextStyle(
+                    color: const Color(0xFF232323),
+                    fontSize: 46.sp,
+                    fontFamily: 'Nunito Sans',
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             ),

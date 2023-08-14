@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/color_manager.dart';
+import '../../../../../core/resource/string_manager.dart';
 import '../../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../models/delivery_models.dart';
-import 'delivery_details_page.dart';
+import 'delivery_requests_details_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import 'delivery_history_details_page.dart';
 
 class DeliveryHistoryBodyPage extends StatefulWidget {
   const DeliveryHistoryBodyPage({super.key});
@@ -16,7 +20,7 @@ class DeliveryHistoryBodyPage extends StatefulWidget {
 
 class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
   List<DeliveryHistoryModel> deliveryRequestsList = [];
-
+  bool isDelivered = true;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -37,7 +41,7 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
               firstTextField: "Salimo",
               secondTextField: "20/03/2020",
               quantityTextField: "03",
-              fourthTextField: "150",
+              fourthTextField: "${StringManager.totalAmount.tr()}: 150",
               customWidget: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -51,8 +55,8 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const DeliveryDetailsPage(
-                                deliveryOrderDetailId: 2,
+                              builder: (context) => const HistoryDetailsPage(
+                              
                               ),
                             ),
                           );
@@ -63,9 +67,9 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                         ),
-                        child: const Text(
-                          "Details",
-                          style: TextStyle(
+                        child: Text(
+                          StringManager.details.tr(),
+                          style: const TextStyle(
                             color: Colors.white,
                           ),
                         ),
@@ -76,11 +80,12 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
                     padding: EdgeInsetsDirectional.only(end: 30.w, top: 20.h),
                     child: Text(
                       //TODO: take it from backend
-                      "Delivered",
+                      isDelivered
+                          ? StringManager.delivered.tr()
+                          : StringManager.failed.tr(),
                       style: TextStyle(
-                        color: "Delivered" == "Delivered"
-                            ? ColorManager.green
-                            : ColorManager.red,
+                        color:
+                            isDelivered ? ColorManager.green : ColorManager.red,
                         fontSize: 38.sp,
                         fontFamily: 'Nunito Sans',
                       ),

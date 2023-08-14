@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/profile/presentation/page/manage_wearhouse_page.dart';
 
 import '../widget/manage_store_widget.dart';
 import '../widget/manage_stande_widget.dart';
 import '../widget/profile_card_widget.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/investment_store.dart';
@@ -45,7 +46,7 @@ class ManageInvestmentPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: ColorManager.backgroundL,
           title: Text(
-            'My Investment',
+            StringManager.myInvestment.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorManager.black,

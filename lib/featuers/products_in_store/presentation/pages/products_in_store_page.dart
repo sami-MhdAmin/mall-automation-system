@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/header_page.dart';
 import '../../models/products_in_store_model.dart';
 import '../widgets/products_in_store_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProductsInStorePage extends StatefulWidget {
   const ProductsInStorePage({super.key});
@@ -19,9 +21,9 @@ class _ProductsInStorePageState extends State<ProductsInStorePage> {
     return Scaffold(
       body: Column(
         children: [
-          const HeaderPage(
+          HeaderPage(
             left: true,
-            title: "Products In Store",
+            title: StringManager.productsInStore.tr(),
           ),
           Expanded(
             child: ListView.builder(

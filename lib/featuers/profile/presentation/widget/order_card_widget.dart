@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/string_manager.dart';
-import '../../../../delivery manager/features/home/presentation/page/delivery_details_page.dart';
+import '../../../../delivery manager/features/home/presentation/page/delivery_requests_details_page.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 
@@ -81,7 +81,7 @@ class OrderCardWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Quantity: ',
+                      "${StringManager.quantity.tr()}: ",
                       style: TextStyle(
                         color: const Color(0xFF808080),
                         fontSize: 46.sp,
@@ -103,7 +103,7 @@ class OrderCardWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Total Amount: ',
+                      '${StringManager.totalAmount.tr()}: ',
                       style: TextStyle(
                         color: const Color(0xFF808080),
                         fontSize: 46.sp,
@@ -153,9 +153,9 @@ class OrderCardWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                     ),
-                    child: const Text(
-                      "Details",
-                      style: TextStyle(
+                    child: Text(
+                      StringManager.details.tr(),
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),

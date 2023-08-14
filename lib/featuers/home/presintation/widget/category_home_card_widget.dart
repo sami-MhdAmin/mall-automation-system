@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,8 +30,7 @@ class CategoryHomeCardWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(end: 50.w),
+          Center(
             child: Text(
               categryName,
               style: TextStyle(

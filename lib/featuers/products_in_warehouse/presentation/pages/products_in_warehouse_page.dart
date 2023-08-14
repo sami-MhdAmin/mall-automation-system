@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/header_page.dart';
 import '../../models/products_in_warehouse_model.dart';
 import '../widgets/products_in_warehouse_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProductsInWarehousePage extends StatefulWidget {
   const ProductsInWarehousePage({super.key});
@@ -21,9 +23,9 @@ class _ProductsInWarehousePageState extends State<ProductsInWarehousePage> {
       body: SafeArea(
         child: Column(
           children: [
-            const HeaderPage(
+            HeaderPage(
               left: true,
-              title: "Products In Warehouse",
+              title: StringManager.productsInWarehouse.tr(),
             ),
             Expanded(
               child: ListView.builder(

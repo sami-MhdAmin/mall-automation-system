@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/color_manager.dart';
+import '../../../../../core/resource/string_manager.dart';
 import 'delivery_history_body_page.dart';
 import 'delivery_requests_body_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DeliveryHomePage extends StatefulWidget {
   const DeliveryHomePage({super.key});
@@ -20,15 +22,29 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
         unselectedLabelColor: ColorManager.grey,
         indicatorSize: TabBarIndicatorSize.label,
         indicatorColor: ColorManager.black,
-        tabs: const [
+        tabs: [
+          Tab(
+            icon: SizedBox(
+              width: 200,
+              child: Text(
+                //TODO: must put in string manager
+                StringManager.requests.tr(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Nunito Sans',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ),
           Tab(
             icon: SizedBox(
                 width: 200,
                 child: Text(
-                  //TODO: must put in string manager
-                  'Requests',
+                  StringManager.pending.tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w400,
@@ -37,31 +53,17 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
           ),
           Tab(
             icon: SizedBox(
-                width: 200,
-                child: Text(
-                  //TODO: must put in string manager
-                  'Pending',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                )),
-          ),
-          Tab(
-            icon: SizedBox(
-                width: 200,
-                child: Text(
-                  //TODO: must put in string manager
-                  'History',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                )),
+              width: 200,
+              child: Text(
+                StringManager.history.tr(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Nunito Sans',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
           ),
         ],
       );
@@ -74,7 +76,7 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
         appBar: AppBar(
           backgroundColor: ColorManager.backgroundL,
           title: Text(
-            'Orders',
+            StringManager.orders.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorManager.black,

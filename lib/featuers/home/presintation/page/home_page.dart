@@ -154,12 +154,12 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => StoresPage(
-                                    categoryName: ConstManager.clothesCategory,
+                                    categoryName: StringManager.clothes.tr(),
                                   )));
                     },
                     child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: ConstManager.clothesCategory,
+                      categryName: StringManager.clothes.tr(),
                     ),
                   ),
                 ],
@@ -176,13 +176,12 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => StoresPage(
-                                    categoryName:
-                                        ConstManager.furnitureCategory,
+                                    categoryName: StringManager.furniture.tr(),
                                   )));
                     },
                     child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: ConstManager.furnitureCategory,
+                      categryName: StringManager.furniture.tr(),
                     ),
                   ),
                   GestureDetector(
@@ -191,12 +190,12 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => StoresPage(
-                                    categoryName: ConstManager.makeupCategory,
+                                    categoryName: StringManager.makeup.tr(),
                                   )));
                     },
                     child: CategoryHomeCardWidget(
                       imgUrl: AssetImageManager.market,
-                      categryName: ConstManager.makeupCategory,
+                      categryName: StringManager.makeup.tr(),
                     ),
                   ),
                 ],

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/color_manager.dart';
+import '../../../../../core/resource/string_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ConfirmRejectButtonWidget extends StatelessWidget {
   const ConfirmRejectButtonWidget({
@@ -29,7 +31,7 @@ class ConfirmRejectButtonWidget extends StatelessWidget {
           ),
         ),
         child: Text(
-          isConfirm ? "Confirm" : "Reject",
+          isConfirm ? StringManager.confirm.tr() : StringManager.reject.tr(),
           style: TextStyle(
             color: Colors.white,
             fontSize: 46.sp,
