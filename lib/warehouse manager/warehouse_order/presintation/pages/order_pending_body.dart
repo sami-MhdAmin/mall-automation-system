@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 
+import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_card_movement_widget.dart';
 import 'order_details_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class OrderPendingBody extends StatelessWidget {
   const OrderPendingBody({super.key});
@@ -25,7 +27,8 @@ class OrderPendingBody extends StatelessWidget {
                     children: [
                       CustomCardMovementWidget(
                         height: 500.h,
-                        firstTextField: "Order from: Adidas",
+                        firstTextField:
+                            "${StringManager.orderFrom.tr()}: Adidas",
                         secondTextField: "22/12/2023",
                         quantityTextField: "04",
                         customWidget: Padding(
@@ -52,9 +55,9 @@ class OrderPendingBody extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20.r),
                                 ),
                               ),
-                              child: const Text(
-                                "Details",
-                                style: TextStyle(
+                              child: Text(
+                                StringManager.details.tr(),
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),

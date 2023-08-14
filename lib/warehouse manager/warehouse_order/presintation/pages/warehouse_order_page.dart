@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/string_manager.dart';
+import 'order_approved_body.dart';
 import 'order_pending_body.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import 'order_rejected_body.dart';
 
 class WarehouseOrderPage extends StatefulWidget {
   const WarehouseOrderPage({super.key});
@@ -18,14 +23,14 @@ class _WarehouseOrderPageState extends State<WarehouseOrderPage> {
         unselectedLabelColor: ColorManager.grey,
         indicatorSize: TabBarIndicatorSize.label,
         indicatorColor: ColorManager.black,
-        tabs: const [
+        tabs: [
           Tab(
             icon: SizedBox(
                 width: 200,
                 child: Text(
-                  'pending',
+                  StringManager.pending.tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w400,
@@ -36,9 +41,9 @@ class _WarehouseOrderPageState extends State<WarehouseOrderPage> {
             icon: SizedBox(
                 width: 200,
                 child: Text(
-                  'approved',
+                  StringManager.approved.tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w400,
@@ -49,9 +54,9 @@ class _WarehouseOrderPageState extends State<WarehouseOrderPage> {
             icon: SizedBox(
                 width: 200,
                 child: Text(
-                  'rejected',
+                  StringManager.rejected.tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w400,
@@ -69,7 +74,7 @@ class _WarehouseOrderPageState extends State<WarehouseOrderPage> {
         appBar: AppBar(
           backgroundColor: ColorManager.backgroundL,
           title: Text(
-            'Orders',
+            StringManager.orders.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorManager.black,
@@ -99,9 +104,11 @@ class _WarehouseOrderPageState extends State<WarehouseOrderPage> {
             //End
 
             //began
+            OrderRejectedBody(),
             //End
 
             //began
+            OrderApprovedBody()
             //End
           ],
         ),
