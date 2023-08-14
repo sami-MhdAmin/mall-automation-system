@@ -86,5 +86,9 @@
     "pleaseEnterUserName":"Please enter user name",
     "signIn":"SIGN IN",
     "doNotHaveAnAccount":"Don’t have an account?",
-    "alreadyHaveAnAccount":"Already have an account?"
+    "alreadyHaveAnAccount":"Already have an account?",
+    "shippingAddress":"shippingAddress",
+    "orderList":"order list",
+    "home":"Home",
+    "favorite":"Favorite"
 }

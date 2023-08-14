@@ -25,7 +25,7 @@ class MyCartBody extends StatelessWidget {
             height: 80.h,
           ),
           Text(
-            'shipping address',
+            StringManager.shippingAddress.tr(),
             style: TextStyle(
               color: ColorManager.black,
               fontSize: 45.sp,
@@ -38,7 +38,7 @@ class MyCartBody extends StatelessWidget {
             height: 100.h,
           ),
           Text(
-            'order list',
+            StringManager.orderList.tr(),
             style: TextStyle(
               color: ColorManager.black,
               fontSize: 45.sp,
@@ -68,7 +68,7 @@ class MyCartBody extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Total:',
+                            StringManager.total.tr(),
                             style: TextStyle(
                               color: Color(0xFF808080),
                               fontSize: 55.sp,
@@ -90,7 +90,7 @@ class MyCartBody extends StatelessWidget {
                       ),
                       CustomButton(
                         onPressed: () {},
-                        text: "Confirm",
+                        text: StringManager.confirm.tr(),
                       ),
                     ],
                   ),

@@ -102,6 +102,12 @@ class StringManager {
   static String signIn = 'signIn';
   static String doNotHaveAnAccount = 'doNotHaveAnAccount';
   static String alreadyHaveAnAccount = 'alreadyHaveAnAccount';
-
   //end login
+  //start cart
+  static String shippingAddress = 'shippingAddress';
+  static String orderList = 'orderList';
+  static String home = 'home';
+  static String favorite = 'favorite';
+
+  //end cart
 }

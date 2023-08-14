@@ -87,7 +87,12 @@
     "pleaseEnterUserName":"أدخل أسم المستخدم",
     "signIn":"تسجيل الدخول",
     "doNotHaveAnAccount":"لايوجد لديك حساب؟",
-    "alreadyHaveAnAccount":"يوجد لديك حساب؟"
+    "alreadyHaveAnAccount":"يوجد لديك حساب؟",
+    "shippingAddress":"عنوان الشحن",
+    "orderList":"قائمة طلباتي",
+    "home":"السكن",
+    "favorite":"المفضلة"
+
 
 
 
