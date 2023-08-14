@@ -77,5 +77,10 @@
     "reject": "Reject",
     "myCart": "My cart",
     "loading": "Loading",
-    "changeLanguage": "Change Language"
+    "changeLanguage": "Change Language",
+    "homePage": "Home Page",
+    "productMovement": "Product Movement",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "orderFrom":"Order From"
 }

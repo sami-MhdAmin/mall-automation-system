@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../../../core/widgets/header_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class OrderDetailsPage extends StatelessWidget {
   const OrderDetailsPage({super.key});
@@ -13,7 +15,10 @@ class OrderDetailsPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const HeaderPage(title: "Order details", left: true),
+          HeaderPage(
+            title: StringManager.orderDetails.tr(),
+            left: true,
+          ),
           Expanded(
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
@@ -26,7 +31,7 @@ class OrderDetailsPage extends StatelessWidget {
                         CustomCardMovementWidget(
                           height: 300.h,
                           firstTextField: "Product X",
-                          secondTextField: "income",
+                          secondTextField: StringManager.income.tr(),
                           quantityTextField: "04",
                         ),
                         SizedBox(
@@ -40,7 +45,7 @@ class OrderDetailsPage extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 80.h),
                   child: CustomButton(
                     onPressed: () {},
-                    text: "Confirm",
+                    text: StringManager.confirm.tr(),
                   ),
                 )
               ],

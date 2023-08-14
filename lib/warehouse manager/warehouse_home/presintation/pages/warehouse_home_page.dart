@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/string_manager.dart';
 import '../../../../featuers/investment_options/presentation/page/investment_options.dart';
 import '../../../../featuers/investment_options/presentation/widgets/investment_store.dart';
 import '../../../warehouse_income_outcome/presintation/page/income_page.dart';
 import '../../../warehouse_income_outcome/presintation/page/outcome_page.dart';
 import '../../../warehouse_order/presintation/pages/warehouse_order_page.dart';
 import 'warehouse_product_body.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class WarehouseHomePage extends StatefulWidget {
   const WarehouseHomePage({super.key});
@@ -34,11 +36,25 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
         tabs: [
           Tab(
             icon: SizedBox(
+              width: 200,
+              child: Text(
+                StringManager.products.tr(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Nunito Sans',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ),
+          Tab(
+            icon: SizedBox(
                 width: 200,
                 child: Text(
-                  'products',
+                  StringManager.income.tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w400,
@@ -49,22 +65,9 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
             icon: SizedBox(
                 width: 200,
                 child: Text(
-                  'income',
+                  StringManager.outcome.tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                )),
-          ),
-          Tab(
-            icon: SizedBox(
-                width: 200,
-                child: Text(
-                  'outcome',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Nunito Sans',
                     fontWeight: FontWeight.w400,
@@ -79,6 +82,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        //TODO: translate drawer
         drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
           // through the options in the drawer if there isn't enough vertical
@@ -129,7 +133,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
         appBar: AppBar(
           backgroundColor: ColorManager.backgroundL,
           title: Text(
-            'Warehouse home',
+            StringManager.homePage.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorManager.black,

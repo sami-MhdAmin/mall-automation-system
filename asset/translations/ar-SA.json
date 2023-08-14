@@ -78,5 +78,10 @@
     "reject": "رفض",
     "myCart": "سلة المشتريات",
     "loading": "يرجى الانتظار",
-    "changeLanguage": "تغيير اللغة"
+    "changeLanguage": "تغيير اللغة",
+    "homePage": "الصفحة الرئيسية",
+    "productMovement": "حركة المنتج",
+    "approved": "مقبولة",
+    "rejected": "مرفوضة",
+    "orderFrom": "طلب من"
 }

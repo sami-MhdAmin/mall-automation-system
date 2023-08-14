@@ -83,6 +83,7 @@ class ProductCardInWarehouse extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    //TODO: didnt translate this
                     'Minimal Stand',
                     style: TextStyle(
                         color: ColorManager.black,

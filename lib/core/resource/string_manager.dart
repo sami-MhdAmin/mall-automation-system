@@ -88,4 +88,12 @@ class StringManager {
   //end register
   static String loading = 'loading';
   static String changeLanguage = 'changeLanguage';
+
+  //start warehouse
+  static String homePage = 'homePage';
+  static String productMovement = 'productMovement';
+  static String approved = 'approved';
+  static String rejected = 'rejected';
+  static String orderFrom = 'orderFrom';
+  //end warehouse
 }
