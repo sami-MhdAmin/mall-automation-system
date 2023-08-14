@@ -7,6 +7,7 @@ import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/utils/global_snackbar.dart';
 import 'package:jessy_mall/core/widgets/custom_check_box.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
+import 'package:jessy_mall/core/widgets/loading_widget.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
 
@@ -245,12 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ],
                     ),
-                    if (state is AuthLoading)
-                      Container(
-                          height: 1.sh,
-                          width: 1.sw,
-                          color: Colors.white38,
-                          child: Center(child: CircularProgressIndicator())),
+                    if (state is AuthLoading) const LoadingWidget(fullScreen: true,)
                   ],
                 );
               },

@@ -66,5 +66,9 @@
     "location":"Location",
     "confirm":"Confirm",
     "reject":"Reject",
-    "myCart":"My cart"
+    "myCart":"My cart",
+    "loading":"Loading",
+    "changeLanguage":"Change Language"
+    
+
 }

@@ -12,10 +12,10 @@ abstract class AuthRepository {
     required int investmentOption,
   });
 
-  // Future<Either<Failure, UserModel>> postLogin({
-  //   required String userName,
-  //   required String password,
-  // });
+  Future<Either<Failure, UserModel>> postLogin({
+    required String email,
+    required String password,
+  });
 
   // Future<Either<Failure, bool>> logout();
 }

@@ -75,4 +75,7 @@ class StringManager {
   static String readMore = 'readMore';
   static String myCart = 'myCart';
   //end register
+  static String loading = 'loading';
+  static String changeLanguage = 'changeLanguage';
+
 }

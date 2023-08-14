@@ -20,12 +20,12 @@ class AuthRegisterRequested extends AuthEvent {
       required this.investmentOption});
 }
 
-class LoginEvent extends AuthEvent {
-  final String userName;
+class AuthLoginEvent extends AuthEvent {
+  final String email;
   final String password;
 
-  LoginEvent({
-    required this.userName,
+  AuthLoginEvent({
+    required this.email,
     required this.password,
   });
 }

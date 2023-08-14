@@ -66,5 +66,7 @@
     "location":"الموقع",
     "confirm":"تأكيد",
     "reject":"رفض",
-    "myCart":"سلة المشتريات"
+    "myCart":"سلة المشتريات",
+    "loading":"يرجى الانتظار",
+    "changeLanguage":"تغيير اللغة"
 }
