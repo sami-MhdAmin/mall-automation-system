@@ -6,6 +6,7 @@ import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/langauge_switcher_widget.dart';
 import '../../../../featuers/investment_options/presentation/page/investment_options.dart';
 import '../../../../featuers/investment_options/presentation/widgets/investment_store.dart';
+import '../../../warehouse_extra_space_request/presentation/pages/warehouse_extra_space_requests.dart';
 import '../../../warehouse_income_outcome/presintation/page/income_page.dart';
 import '../../../warehouse_income_outcome/presintation/page/outcome_page.dart';
 import '../../../warehouse_order/presintation/pages/warehouse_order_page.dart';
@@ -105,17 +106,20 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                 ),
               ),
               ListTile(
-                title: const Text('Space Request'),
+                title: Text(StringManager.extraSpaceRequest.tr()),
                 selected: _selectedIndex == 0,
                 onTap: () {
                   // Update the state of the app
                   _onItemTapped(0);
                   // Then close the drawer
-                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const WarehouseExtraSpaceRequests()));
                 },
               ),
               ListTile(
-                title: const Text('Increse warehouse space'),
+                title: Text(StringManager.increaseWarehouseSpace.tr()),
                 selected: _selectedIndex == 1,
                 onTap: () {
                   // Update the state of the app
@@ -125,7 +129,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                 },
               ),
               ListTile(
-                title: const Text('Logout'),
+                title: Text(StringManager.logout.tr()),
                 selected: _selectedIndex == 2,
                 onTap: () {
                   // Update the state of the app

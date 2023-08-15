@@ -115,6 +115,10 @@ class StringManager {
   static String storeSpace = 'storeSpace';
   static String availableStorageSpace = 'availableStorageSpace';
   static String update = 'update';
-
   //end cart
+  static String logout = 'logout';
+  static String extraSpaceRequest = 'extraSpaceRequest';
+  static String increaseWarehouseSpace = 'increaseWarehouseSpace';
+
+  static String meter = 'm';
 }

@@ -98,7 +98,13 @@
     "type":"النوع: ",
     "storeSpace":"مساحة المتجر: ",
     "availableStorageSpace":"مساحة التخزين المتوفرة: ",
-    "update":"تحديث"
+    "update":"تحديث",
+    "logout":"تسجيل الخروج",
+    "extraSpaceRequest":"طلب مساحة إضافية",
+    "increaseWarehouseSpace":"زيادة مساحة المستودع",
+    "m":"م"
+    
+
 
 
 
