@@ -5,6 +5,8 @@ import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/slider_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'check_paypal.dart';
+
 class InvestStorePage extends StatelessWidget {
   const InvestStorePage({super.key});
 
@@ -113,7 +115,16 @@ class InvestStorePage extends StatelessWidget {
           Expanded(child: SizedBox()),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: CustomButton(onPressed: () {}, text: "Invest"),
+            child: CustomButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => CheckoutPage(
+                                id: "1",
+                              )));
+                },
+                text: "Invest"),
           ),
         ],
       ),

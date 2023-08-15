@@ -25,11 +25,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PaypalCheckout(
                 sandboxMode: true,
-                clientId: "", //TODO : get it from sandbox
-                secretKey: "", //TODO : get it from sandbox
+                clientId:
+                    "AVYK-G9ep-BgNZ86v7jiCG5H-l48YRkCEcF4WXWVhyHdJl6wST5IsRX7P5I0X0GV_hVXvQWXBxK4qaYT", //TODO : get it from sandbox
+                secretKey:
+                    "EGdaBEgLXZOFn2TC44SP7ioRg30K5wb2fLz3817ubeIBbmqXeY8eWU6OuONJyysf28DCiVPnIit2xCU-", //TODO : get it from sandbox
                 returnURL: "success.snippetcoder.com",
                 cancelURL: "cancel.snippetcoder.com",
-                transactions: [
+                transactions: const [
                   {
                     "amount": {
                       "total": '100',
@@ -41,14 +43,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       }
                     },
                     "description": "The payment transaction description.",
-                    // "payment_options": {
-                    //   "allowed_payment_method":
-                    //       "INSTANT_FUNDING_SOURCE"
-                    // },
+                    "payment_options": {
+                      "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
+                    },
                     "item_list": {
                       "items": [
                         {
-                          "id": widget.id,
+                          "id": "0",
                           // "type": "type",
                           // "price": '5',
                           // "currency": "USD"

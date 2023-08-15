@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/string_manager.dart';
+import '../../../../core/widgets/langauge_switcher_widget.dart';
 import '../../../../featuers/investment_options/presentation/page/investment_options.dart';
 import '../../../../featuers/investment_options/presentation/widgets/investment_store.dart';
 import '../../../warehouse_income_outcome/presintation/page/income_page.dart';
@@ -91,14 +92,20 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: ColorManager.black,
                 ),
-                child: Text('Drawer Header'),
+                child: SizedBox(
+                  height: 10.w,
+                  width: 10.w,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                  ),
+                ),
               ),
               ListTile(
-                title: const Text('Home'),
+                title: const Text('Space Request'),
                 selected: _selectedIndex == 0,
                 onTap: () {
                   // Update the state of the app
@@ -108,7 +115,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                 },
               ),
               ListTile(
-                title: const Text('Business'),
+                title: const Text('Increse warehouse space'),
                 selected: _selectedIndex == 1,
                 onTap: () {
                   // Update the state of the app
@@ -118,7 +125,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                 },
               ),
               ListTile(
-                title: const Text('School'),
+                title: const Text('Logout'),
                 selected: _selectedIndex == 2,
                 onTap: () {
                   // Update the state of the app
@@ -126,6 +133,15 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                   // Then close the drawer
                   Navigator.pop(context);
                 },
+              ),
+              SizedBox(
+                height: 1000.h,
+              ),
+              GestureDetector(
+                onTap: () => setState(() {}),
+                child: LanguageSwitcherWidget(
+                  context: context,
+                ),
               ),
             ],
           ),
