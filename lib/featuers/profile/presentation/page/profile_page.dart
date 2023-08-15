@@ -193,7 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Do you want to see investment option :",
+                    StringManager.doYouWantToSeeInvestmentOption.tr(),
                     style: TextStyle(
                       fontSize: 40.sp,
                       fontWeight: FontWeight.w700,

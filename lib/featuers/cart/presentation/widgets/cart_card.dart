@@ -15,7 +15,7 @@ class CartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
       child: SizedBox(
         height: 300.h,
         width: 20.w,

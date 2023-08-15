@@ -91,7 +91,20 @@
     "shippingAddress":"عنوان الشحن",
     "orderList":"قائمة طلباتي",
     "home":"السكن",
-    "favorite":"المفضلة"
+    "favorite":"المفضلة",
+    "storeName":"اسم المتجر",
+    "pleaseEnterStoreName":"الرجاء إدخال اسم المتجر",
+    "otherDetails":"معلومات إضافية",
+    "type":"النوع: ",
+    "storeSpace":"مساحة المتجر: ",
+    "availableStorageSpace":"مساحة التخزين المتوفرة: ",
+    "update":"تحديث"
+
+
+
+
+
+
 
 
 

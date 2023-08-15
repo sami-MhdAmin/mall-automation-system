@@ -81,7 +81,7 @@ class StringManager {
   static String passwordMustBeEightCharacters = 'passwordMustBeEightCharacters';
   static String pleaseEnterYourPhoneNumber = 'pleaseEnterYourPhoneNumber';
   static String doYouWantToSeeInvestmentOption =
-      'DoYouWantToSeeInvestmentOption';
+      'doYouWantToSeeInvestmentOption';
   static String signUp = 'signUp';
 
   static String myCart = 'myCart';
@@ -108,6 +108,13 @@ class StringManager {
   static String orderList = 'orderList';
   static String home = 'home';
   static String favorite = 'favorite';
+  static String storeName = 'storeName';
+  static String pleaseEnterStoreName = 'pleaseEnterStoreName';
+  static String otherDetails = 'otherDetails';
+  static String type = 'type';
+  static String storeSpace = 'storeSpace';
+  static String availableStorageSpace = 'availableStorageSpace';
+  static String update = 'update';
 
   //end cart
 }

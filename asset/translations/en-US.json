@@ -90,5 +90,12 @@
     "shippingAddress":"shippingAddress",
     "orderList":"order list",
     "home":"Home",
-    "favorite":"Favorite"
+    "favorite":"Favorite",
+    "storeName":"Store name",
+    "pleaseEnterStoreName":"Please enter store name",
+    "otherDetails":"Other Details",
+    "type":"Type: ",
+    "storeSpace":"Store space: ",
+    "availableStorageSpace":"Available storage space: ",
+    "update":"Update"
 }

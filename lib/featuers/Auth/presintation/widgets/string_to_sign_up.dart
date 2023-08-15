@@ -18,7 +18,7 @@ class StringToSignUp extends StatelessWidget {
           StringManager.doNotHaveAnAccount.tr(),
           style: TextStyle(
             color: ColorManager.foregroundL,
-            fontSize: 25.sp,
+            fontSize: 30.sp,
           ),
         ),
         SizedBox(
