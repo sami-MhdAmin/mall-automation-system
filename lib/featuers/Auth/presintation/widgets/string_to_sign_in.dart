@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/page/login_page.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class StringToSignIn extends StatelessWidget {
   const StringToSignIn({super.key});
@@ -12,10 +15,10 @@ class StringToSignIn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Already have an account?",
+          StringManager.alreadyHaveAnAccount.tr(),
           style: TextStyle(
             color: ColorManager.foregroundL,
-            fontSize: 25.sp,
+            fontSize: 30.sp,
           ),
         ),
         SizedBox(
@@ -23,10 +26,13 @@ class StringToSignIn extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+            );
           },
           child: Text(
-            "SIGN IN",
+            StringManager.signIn.tr(),
             style: TextStyle(
               letterSpacing: 1.5,
               color: ColorManager.blue,

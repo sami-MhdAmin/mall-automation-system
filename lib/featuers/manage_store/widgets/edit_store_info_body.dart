@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/manage_store/widgets/time_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EditStoreInfoBody extends StatefulWidget {
   const EditStoreInfoBody({super.key});
@@ -28,7 +30,7 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
     return Column(
       children: [
         Container(
-          height: 600.h,
+          height: 750.h,
           color: ColorManager.foregroundL,
           child: Column(
             children: [
@@ -51,17 +53,17 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
           ),
         ),
         SizedBox(
-          height: 200.h,
+          height: 250.h,
         ),
         CustomTextField(
           width: 900.w,
-          hintText: "Store name",
+          hintText: StringManager.storeName.tr(),
           icon: Icons.store,
           textEditingController: storeNameController,
           keybordType: TextInputType.name,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please enter your Store Name";
+              return StringManager.pleaseEnterStoreName.tr();
             }
             return null;
           },
@@ -99,21 +101,21 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
         SizedBox(
           width: 900.w,
           height: 500.h,
-          child: const Card(
-            color: Colors.white,
-            surfaceTintColor: Color(0xFFFFFFFF),
+          child: Card(
+            color: ColorManager.backgroundL,
+            surfaceTintColor: ColorManager.backgroundL,
             elevation: 12,
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Other Details"),
-                  Divider(),
-                  Text('Type: Colthes'),
-                  Text('store space: 40 m'),
-                  Text('Available storage space: 25 m'),
+                  Text(StringManager.otherDetails.tr()),
+                  const Divider(),
+                  Text(StringManager.type.tr() + "Clothes"),
+                  Text(StringManager.storeSpace.tr() + '40 m'),
+                  Text(StringManager.availableStorageSpace.tr() + '25 m'),
                 ],
               ),
             ),
@@ -128,7 +130,8 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
           padding: const EdgeInsets.only(bottom: 32),
           child: SizedBox(
               width: 900.w,
-              child: CustomButton(onPressed: () {}, text: "Update")),
+              child: CustomButton(
+                  onPressed: () {}, text: StringManager.update.tr())),
         ),
       ],
     );

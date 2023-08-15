@@ -15,6 +15,7 @@ import '../../../bottom_navigation_bar/presintation/page/bottom_navigation_bar.d
 import '../widgets/forgot_password_button.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_up.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -77,86 +78,87 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.5,
                           ),
+                        ),),
+                        SizedBox(
+                          height: 250.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 250.h,
-                      ),
-                      CustomTextField(
-                        width: 850.w,
-                        keybordType: TextInputType.emailAddress,
-                        hintText: StringManager.userNameHintText,
-                        icon: Icons.person,
-                        textEditingController: userNameController,
-                        suffixIconWidget: null,
-                        visibility: false,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter User Name";
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 50.h,
-                      ),
-                      CustomTextField(
-                        width: 850.w,
-                        keybordType: TextInputType.visiblePassword,
-                        hintText: 'Password',
-                        icon: Icons.lock,
-                        textEditingController: passwordController,
-                        suffixIconWidget: Padding(
-                          padding: const EdgeInsets.only(right: 20),
-                          child: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                visibility = !visibility;
-                              });
-                            },
-                            icon: Icon(
-                              visibility
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: ColorManager.foregroundL,
+                        CustomTextField(
+                          width: 850.w,
+                          keybordType: TextInputType.emailAddress,
+                          hintText: StringManager.userNameHintText,
+                          icon: Icons.person,
+                          textEditingController: userNameController,
+                          suffixIconWidget: null,
+                          visibility: false,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return StringManager.pleaseEnterUserName.tr();
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 50.h,
+                        ),
+                        CustomTextField(
+                          width: 850.w,
+                          keybordType: TextInputType.visiblePassword,
+                          hintText: StringManager.password.tr(),
+                          icon: Icons.lock,
+                          textEditingController: passwordController,
+                          suffixIconWidget: Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  visibility = !visibility;
+                                });
+                              },
+                              icon: Icon(
+                                visibility
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: ColorManager.foregroundL,
+                              ),
                             ),
                           ),
+                          visibility: visibility,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return StringManager.pleaseEnterYourPassword.tr();
+                            } else if (value.length <= 7) {
+                              return StringManager.passwordMustBeEightCharacters
+                                  .tr();
+                            }
+                            return null;
+                          },
                         ),
-                        visibility: visibility,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter Password";
-                          } else if (value.length <= 7) {
-                            return "The password must be 8 Characters";
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 250.h,
-                      ),
-                      CustomButton(
-                        text: "SIGN IN",
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<AuthBloc>().add(AuthLoginEvent(
-                                email: userNameController.text,
-                                password: passwordController.text));
-                          }
-                        },
-                      ),
-                      SizedBox(
-                        height: 100.h,
-                      ),
-                      const StringToSignUp(),
-                      SizedBox(
-                        height: 50.h,
-                      ),
-                    ],
-                  ),
-                  if (state is AuthLoading)
-                    const LoadingWidget(
-                      fullScreen: true,
+                        SizedBox(
+                          height: 250.h,
+                        ),
+                        CustomButton(
+                          text: StringManager.signIn.tr(),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthBloc>().add(AuthLoginEvent(
+                                  email: userNameController.text,
+                                  password: passwordController.text));
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 100.h,
+                        ),
+                        const StringToSignUp(),
+                        SizedBox(
+                          height: 50.h,
+                        ),
+                      ],
+                    ),
+                    if (state is AuthLoading)
+                      const LoadingWidget(
+                        fullScreen: true,
+                   
                     ),
                 ],
               );

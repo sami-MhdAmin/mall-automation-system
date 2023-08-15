@@ -6,10 +6,8 @@ class MyCartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: MyCartBody(),
-      ),
+    return const Scaffold(
+      body: MyCartBody(),
     );
   }
 }

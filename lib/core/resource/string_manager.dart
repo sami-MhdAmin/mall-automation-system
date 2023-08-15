@@ -73,9 +73,52 @@ class StringManager {
   static String phone = 'phone';
   static String password = 'password';
   static String readMore = 'readMore';
+  static String pleaseEnterYourFirstName = 'pleaseEnterYourFirstName';
+  static String pleaseEnterYourLastName = 'pleaseEnterYourLastName';
+  static String pleaseEnterYourGmail = 'pleaseEnterYourGmail';
+  static String containAt = 'containAt';
+  static String pleaseEnterYourPassword = 'pleaseEnterYourPassword';
+  static String passwordMustBeEightCharacters = 'passwordMustBeEightCharacters';
+  static String pleaseEnterYourPhoneNumber = 'pleaseEnterYourPhoneNumber';
+  static String doYouWantToSeeInvestmentOption =
+      'doYouWantToSeeInvestmentOption';
+  static String signUp = 'signUp';
+
   static String myCart = 'myCart';
   //end register
   static String loading = 'loading';
   static String changeLanguage = 'changeLanguage';
 
+  //start warehouse
+  static String homePage = 'homePage';
+  static String productMovement = 'productMovement';
+  static String approved = 'approved';
+  static String rejected = 'rejected';
+  static String orderFrom = 'orderFrom';
+  //end warehouse
+
+  //start login
+  static String pleaseEnterUserName = 'pleaseEnterUserName';
+  static String signIn = 'signIn';
+  static String doNotHaveAnAccount = 'doNotHaveAnAccount';
+  static String alreadyHaveAnAccount = 'alreadyHaveAnAccount';
+  //end login
+  //start cart
+  static String shippingAddress = 'shippingAddress';
+  static String orderList = 'orderList';
+  static String home = 'home';
+  static String favorite = 'favorite';
+  static String storeName = 'storeName';
+  static String pleaseEnterStoreName = 'pleaseEnterStoreName';
+  static String otherDetails = 'otherDetails';
+  static String type = 'type';
+  static String storeSpace = 'storeSpace';
+  static String availableStorageSpace = 'availableStorageSpace';
+  static String update = 'update';
+  //end cart
+  static String logout = 'logout';
+  static String extraSpaceRequest = 'extraSpaceRequest';
+  static String increaseWarehouseSpace = 'increaseWarehouseSpace';
+
+  static String meter = 'm';
 }

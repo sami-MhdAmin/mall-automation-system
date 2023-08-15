@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geocoding/geocoding.dart';
 
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
@@ -9,6 +10,7 @@ import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/cart/presentation/widgets/cart_card.dart';
 import 'package:jessy_mall/featuers/cart/presentation/widgets/shipping_address_card.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:geolocator/geolocator.dart';
 
 class MyCartBody extends StatelessWidget {
   const MyCartBody({super.key});
@@ -22,45 +24,55 @@ class MyCartBody extends StatelessWidget {
         children: [
           HeaderPage(left: false, title: StringManager.myCart.tr()),
           SizedBox(
-            height: 80.h,
+            height: 40.h,
           ),
-          Text(
-            'shipping address',
-            style: TextStyle(
-              color: ColorManager.black,
-              fontSize: 45.sp,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w600,
+          Padding(
+            padding: EdgeInsetsDirectional.only(
+                start: 20.w, end: 20.w, bottom: 30.h),
+            child: Text(
+              StringManager.shippingAddress.tr(),
+              style: TextStyle(
+                color: ColorManager.black,
+                fontSize: 45.sp,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-          ShippingAddressCard(homeText: "Home", addressText: "place, street"),
+          ShippingAddressCard(
+              homeText: StringManager.home.tr(), addressText: "place, street"),
           SizedBox(
-            height: 100.h,
+            height: 40.h,
           ),
-          Text(
-            'order list',
-            style: TextStyle(
-              color: ColorManager.black,
-              fontSize: 45.sp,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w600,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Text(
+              StringManager.orderList.tr(),
+              style: TextStyle(
+                color: ColorManager.black,
+                fontSize: 45.sp,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           Flexible(
-            child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
+            child: Column(
+              // alignment: AlignmentDirectional.bottomCenter,
               children: [
-                ListView.builder(
-                  itemCount: 100,
-                  itemBuilder: (context, index) {
-                    return CartCard(
-                      price: "\$ 25.0",
-                      delete: true,
-                    );
-                  },
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 100,
+                    itemBuilder: (context, index) {
+                      return CartCard(
+                        price: "\$ 25.0",
+                        delete: true,
+                      );
+                    },
+                  ),
                 ),
                 Container(
-                  height: 265.h,
+                  height: 330.h,
                   color: ColorManager.backgroundL,
                   child: Column(
                     children: [
@@ -68,7 +80,7 @@ class MyCartBody extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Total:',
+                            StringManager.total.tr(),
                             style: TextStyle(
                               color: Color(0xFF808080),
                               fontSize: 55.sp,
@@ -90,7 +102,7 @@ class MyCartBody extends StatelessWidget {
                       ),
                       CustomButton(
                         onPressed: () {},
-                        text: "Confirm",
+                        text: StringManager.confirm.tr(),
                       ),
                     ],
                   ),

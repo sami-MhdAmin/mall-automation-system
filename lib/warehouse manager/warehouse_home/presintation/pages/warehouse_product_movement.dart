@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:jessy_mall/core/widgets/header_page.dart';
 
+import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_card_movement_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class WareHouseProductMovementPage extends StatelessWidget {
   const WareHouseProductMovementPage({super.key});
@@ -13,7 +15,10 @@ class WareHouseProductMovementPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const HeaderPage(title: "Product Movement", left: true),
+          HeaderPage(
+            title: StringManager.productMovement.tr(),
+            left: true,
+          ),
           Expanded(
             child: ListView.builder(
                 itemCount: 8,

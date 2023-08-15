@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/warehouse%20manager/warehouse_extra_space_request/presentation/widgets/warehouse_confirm_reject_button_widget.dart';
 
-import '../resource/string_manager.dart';
+import '../../../../core/resource/string_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class CustomCardMovementWidget extends StatelessWidget {
-  double height;
-  final String firstTextField;
-  final String secondTextField;
-  final String quantityTextField;
-  String? fourthTextField;
-  Widget? customWidget;
-
-  CustomCardMovementWidget({
-    Key? key,
-    required this.height,
-    required this.firstTextField,
-    required this.secondTextField,
-    required this.quantityTextField,
-    this.fourthTextField,
-    this.customWidget,
-  }) : super(key: key);
+class WarehouseExtraSpaceCardWidget extends StatelessWidget {
+  const WarehouseExtraSpaceCardWidget({
+    required this.userNameText,
+    required this.dateText,
+    required this.priceText,
+    super.key,
+  });
+  final String userNameText, dateText, priceText;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 950.w,
-      height: height,
+      height: 450.h,
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -42,16 +34,14 @@ class CustomCardMovementWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 15.h,
-          ),
+          SizedBox(height: 15.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  firstTextField,
+                  userNameText,
                   style: TextStyle(
                     color: const Color(0xFF232323),
                     fontSize: 46.sp,
@@ -60,7 +50,7 @@ class CustomCardMovementWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  secondTextField,
+                  dateText,
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: const Color(0xFF808080),
@@ -81,7 +71,7 @@ class CustomCardMovementWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "${StringManager.quantity.tr()}: ",
+                      "${StringManager.extraSpace.tr()}: ",
                       style: TextStyle(
                         color: const Color(0xFF808080),
                         fontSize: 46.sp,
@@ -90,7 +80,7 @@ class CustomCardMovementWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      quantityTextField,
+                      "$priceText ${StringManager.meter.tr()}",
                       style: TextStyle(
                         color: const Color(0xFF232323),
                         fontSize: 46.sp,
@@ -100,25 +90,39 @@ class CustomCardMovementWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  fourthTextField ?? "",
-                  style: TextStyle(
-                    color: const Color(0xFF232323),
-                    fontSize: 46.sp,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
               ],
             ),
           ),
           SizedBox(
-            height: 30.h,
+            height: 50.h,
           ),
-          customWidget ??
-              SizedBox(
-                height: 0.0001.h,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            child: SizedBox(
+              width: 980.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  WarehouseConfirmOrRejectButtonWidget(
+                    height: 150.h,
+                    width: 450.w,
+                    isConfirm: true,
+                    onpressed: () {
+                      print("confirm");
+                    },
+                  ),
+                  WarehouseConfirmOrRejectButtonWidget(
+                    height: 150.h,
+                    width: 450.w,
+                    isConfirm: false,
+                    onpressed: () {
+                      print("reject");
+                    },
+                  )
+                ],
               ),
+            ),
+          )
         ],
       ),
     );
