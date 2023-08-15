@@ -20,7 +20,7 @@ abstract class AuthRemoteDataSource {
     required String password,
   });
 
-  // Future<Either<Failure, bool>> logout({required String token});
+  Future<Either<Failure, bool>> logout({required String token});
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -72,16 +72,15 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   Future<Either<Failure, UserModel>> login(
       {required String email, required String password}) async {
     final Response response;
- try {
-    response = await dioClient.post(
-      '/login', 
-      data: {'email': email, 'password': password},
-    );
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
-    }
-    }
-     on DioError catch (e) {
+    try {
+      response = await dioClient.post(
+        '/login',
+        data: {'email': email, 'password': password},
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return Right(UserModel.fromJson(response.data as Map<String, dynamic>));
+      }
+    } on DioError catch (e) {
       if (e.response == null) {
         return left(NoInternetFailure());
       }
@@ -94,22 +93,31 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       }
     }
     return Left(ServerFailure());
-  
   }
 
-  // @override
-  // Future<Either<Failure, bool>> logout({required String token}) async {
-  //   final Response response;
-
-  //   dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
-  //   response = await dioClient.post(
-  //     '/api/v1/logout',
-  //   );
-  //   if (response.statusCode == 200 || response.statusCode == 201) {
-  //     return const Right(true);
-  //   } else {
-  //     //TODO: how is the response from back
-  //     return Left(Failure(message: 'todo'));
-  //   }
-  // }
+  @override
+  Future<Either<Failure, bool>> logout({required String token}) async {
+    final Response response;
+    try {
+      dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
+      response = await dioClient.post(
+        '/logout',
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return const Right(true);
+      }
+    } on DioError catch (e) {
+      if (e.response == null) {
+        return left(NoInternetFailure());
+      }
+      if (e.response!.data['message'] != null) {
+        return left(Failure(message: e.response!.data['message'].toString()));
+      } else {
+        return Left(
+          Failure(message: StringManager.sthWrong.tr()),
+        );
+      }
+    }
+    return Left(ServerFailure());
+  }
 }

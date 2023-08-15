@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/utils/global_snackbar.dart';
 import 'package:jessy_mall/core/widgets/langauge_switcher_widget.dart';
+import 'package:jessy_mall/core/widgets/loading_widget.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/page/login_page.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/page/investment_options.dart';
 import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_page.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/asset_manager.dart';
 import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_check_box.dart';
+import '../../../Auth/presintation/bloc/auth_bloc.dart';
 import '../widget/profile_card_widget.dart';
 import 'my_order_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -54,15 +61,33 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.logout_rounded,
-                      color: Colors.black,
-                      size: 70.r,
-                    ),
-                    onPressed: () {
-                      //TODO:
-                      print("Logout");
+                  BlocConsumer<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthLogoutFailed) {
+                        gShowErrorSnackBar(
+                            context: context, message: state.faliuer.message);
+                      }
+                      if (state is AuthLogoutSuccess) {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (_) => LoginPage()));
+                      }
+                    },
+                    builder: (context, state) {
+                      return state is AuthLoading
+                          ? Lottie.asset(AssetJsonManager.loading,
+                              height: 100.r)
+                          : IconButton(
+                              icon: Icon(
+                                Icons.logout_rounded,
+                                color: Colors.black,
+                                size: 70.r,
+                              ),
+                              onPressed: () {
+                                context
+                                    .read<AuthBloc>()
+                                    .add(AuthLogoutRequested());
+                              },
+                            );
                     },
                   ),
                 ],

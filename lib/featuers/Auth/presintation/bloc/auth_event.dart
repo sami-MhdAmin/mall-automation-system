@@ -30,4 +30,6 @@ class AuthLoginEvent extends AuthEvent {
   });
 }
 
-class AuthLogout extends AuthEvent {}
+class AuthLogoutRequested extends AuthEvent {}
+
+class AuthGetUserLocalInfo extends AuthEvent {}

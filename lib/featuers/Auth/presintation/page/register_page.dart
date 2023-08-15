@@ -45,212 +45,209 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I.get<AuthBloc>(),
-      child: Scaffold(
-        backgroundColor: ColorManager.backgroundL,
-        body: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthSignUpFailed) {
-                  gShowErrorSnackBar(
-                      context: context, message: state.faliuer.message);
-                }
-                if (state is AuthSignUpSuccess) {
-                  //TODO Roles
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => BottomNavigationBarWidget()));
-                }
-              },
-              builder: (context, state) {
-                return Stack(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 350.h,
-                        ),
-                        Center(
-                          child: Text(
-                            "JESSY",
-                            style: TextStyle(
-                              fontSize: 80.sp,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
+    return Scaffold(
+      backgroundColor: ColorManager.backgroundL,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state is AuthSignUpFailed) {
+                gShowErrorSnackBar(
+                    context: context, message: state.faliuer.message);
+              }
+              if (state is AuthSignUpSuccess) {
+                //TODO Roles
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => BottomNavigationBarWidget()));
+              }
+            },
+            builder: (context, state) {
+              return Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 350.h,
+                      ),
+                      Center(
+                        child: Text(
+                          "JESSY",
+                          style: TextStyle(
+                            fontSize: 80.sp,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
                           ),
                         ),
-                        SizedBox(
-                          height: 150.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CustomTextField(
-                              width: 420.w,
-                              hintText: StringManager.firstName.tr(),
-                              icon: Icons.person,
-                              textEditingController: firstNameController,
-                              keybordType: TextInputType.name,
-                              visibility: false,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Please enter your First Name";
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            CustomTextField(
-                              width: 420.w,
-                              hintText: StringManager.lastName.tr(),
-                              icon: Icons.assignment_ind_rounded,
-                              textEditingController: lastNameController,
-                              keybordType: TextInputType.name,
-                              visibility: false,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return "Please enter your Last Name";
-                                }
-                                return null;
-                              },
-                            ),
-                          ],
-                        ),
-                        CustomTextField(
-                          width: 850.w,
-                          hintText: StringManager.email.tr(),
-                          icon: Icons.email,
-                          textEditingController: emailController,
-                          keybordType: TextInputType.emailAddress,
-                          visibility: false,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter your Gmail";
-                            } else if (!value.contains("@")) {
-                              return "The Email must contain '@' Character";
-                            }
-                            return null;
-                          },
-                        ),
-                        CustomTextField(
-                          width: 850.w,
-                          hintText: StringManager.password.tr(),
-                          icon: Icons.lock,
-                          textEditingController: passwordController,
-                          keybordType: TextInputType.visiblePassword,
-                          suffixIconWidget: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  visibility = !visibility;
-                                });
-                              },
-                              icon: Icon(
-                                visibility
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: ColorManager.foregroundL,
-                              ),
-                            ),
-                          ),
-                          visibility: visibility,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter Password";
-                            } else if (value.length <= 7) {
-                              return "The password must be 8 Characters";
-                            }
-                            return null;
-                          },
-                        ),
-                        CustomTextField(
-                          width: 850.w,
-                          hintText: StringManager.phone.tr(),
-                          icon: Icons.numbers_outlined,
-                          textEditingController: numberController,
-                          keybordType: TextInputType.number,
-                          visibility: false,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter Your Number";
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 60.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Do you want to see investment option?",
-                              style: TextStyle(fontSize: 25.sp),
-                            ),
-                            const CustomCheckbox()
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            //TODO: take me to description of investment
-                          },
-                          child: Text(
-                            StringManager.readMore.tr(),
-                            style: TextStyle(
-                              color: ColorManager.blue,
-                              decoration: TextDecoration.underline,
-                              decorationColor: ColorManager.blue,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 100.h,
-                        ),
-                        BlocListener<AuthBloc, AuthState>(
-                          listener: (context, state) {
-                            if (state is AuthSignUpSuccess) {}
-                          },
-                          child: CustomButton(
-                            text: "SIGN UP",
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                //maybe i should add bloc consumer
-                                context.read<AuthBloc>().add(
-                                      AuthRegisterRequested(
-                                          firstName: firstNameController.text,
-                                          lastName: lastNameController.text,
-                                          email: emailController.text,
-                                          password: passwordController.text,
-                                          number: numberController.text,
-                                          investmentOption: 1),
-                                    );
+                      ),
+                      SizedBox(
+                        height: 150.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomTextField(
+                            width: 420.w,
+                            hintText: StringManager.firstName.tr(),
+                            icon: Icons.person,
+                            textEditingController: firstNameController,
+                            keybordType: TextInputType.name,
+                            visibility: false,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter your First Name";
                               }
+                              return null;
                             },
                           ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          CustomTextField(
+                            width: 420.w,
+                            hintText: StringManager.lastName.tr(),
+                            icon: Icons.assignment_ind_rounded,
+                            textEditingController: lastNameController,
+                            keybordType: TextInputType.name,
+                            visibility: false,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter your Last Name";
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                      CustomTextField(
+                        width: 850.w,
+                        hintText: StringManager.email.tr(),
+                        icon: Icons.email,
+                        textEditingController: emailController,
+                        keybordType: TextInputType.emailAddress,
+                        visibility: false,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter your Gmail";
+                          } else if (!value.contains("@")) {
+                            return "The Email must contain '@' Character";
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        width: 850.w,
+                        hintText: StringManager.password.tr(),
+                        icon: Icons.lock,
+                        textEditingController: passwordController,
+                        keybordType: TextInputType.visiblePassword,
+                        suffixIconWidget: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                visibility = !visibility;
+                              });
+                            },
+                            icon: Icon(
+                              visibility
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: ColorManager.foregroundL,
+                            ),
+                          ),
                         ),
-                        SizedBox(
-                          height: 100.h,
+                        visibility: visibility,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter Password";
+                          } else if (value.length <= 7) {
+                            return "The password must be 8 Characters";
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        width: 850.w,
+                        hintText: StringManager.phone.tr(),
+                        icon: Icons.numbers_outlined,
+                        textEditingController: numberController,
+                        keybordType: TextInputType.number,
+                        visibility: false,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter Your Number";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 60.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Do you want to see investment option?",
+                            style: TextStyle(fontSize: 25.sp),
+                          ),
+                          const CustomCheckbox()
+                        ],
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          //TODO: take me to description of investment
+                        },
+                        child: Text(
+                          StringManager.readMore.tr(),
+                          style: TextStyle(
+                            color: ColorManager.blue,
+                            decoration: TextDecoration.underline,
+                            decorationColor: ColorManager.blue,
+                          ),
                         ),
-                        const StringToSignIn(),
-                        SizedBox(
-                          height: 50.h,
+                      ),
+                      SizedBox(
+                        height: 100.h,
+                      ),
+                      BlocListener<AuthBloc, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthSignUpSuccess) {}
+                        },
+                        child: CustomButton(
+                          text: "SIGN UP",
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              //maybe i should add bloc consumer
+                              context.read<AuthBloc>().add(
+                                    AuthRegisterRequested(
+                                        firstName: firstNameController.text,
+                                        lastName: lastNameController.text,
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                        number: numberController.text,
+                                        investmentOption: 1),
+                                  );
+                            }
+                          },
                         ),
-                      ],
-                    ),
-                    if (state is AuthLoading) const LoadingWidget(fullScreen: true,)
-                  ],
-                );
-              },
-            ),
+                      ),
+                      SizedBox(
+                        height: 100.h,
+                      ),
+                      const StringToSignIn(),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                    ],
+                  ),
+                  if (state is AuthLoading) const LoadingWidget(fullScreen: true,)
+                ],
+              );
+            },
           ),
         ),
       ),

@@ -42,128 +42,125 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I.get<AuthBloc>(),
-      child: Scaffold(
-        backgroundColor: ColorManager.backgroundL,
-        body: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthLoginFailed) {
-                  gShowErrorSnackBar(
-                      context: context, message: state.faliuer.message);
-                }
-                if (state is AuthLoginSuccess) {
-                  //TODO Roles
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => BottomNavigationBarWidget()));
-                }
-              },
-              builder: (context, state) {
-                return Stack(
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: 350.h,
-                        ),
-                        Center(
-                          child: Text(
-                            "JESSY",
-                            style: TextStyle(
-                              fontSize: 80.sp,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250.h,
-                        ),
-                        CustomTextField(
-                          width: 850.w,
-                          keybordType: TextInputType.emailAddress,
-                          hintText: StringManager.userNameHintText,
-                          icon: Icons.person,
-                          textEditingController: userNameController,
-                          suffixIconWidget: null,
-                          visibility: false,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter User Name";
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                        CustomTextField(
-                          width: 850.w,
-                          keybordType: TextInputType.visiblePassword,
-                          hintText: 'Password',
-                          icon: Icons.lock,
-                          textEditingController: passwordController,
-                          suffixIconWidget: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  visibility = !visibility;
-                                });
-                              },
-                              icon: Icon(
-                                visibility
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: ColorManager.foregroundL,
-                              ),
-                            ),
-                          ),
-                          visibility: visibility,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Please enter Password";
-                            } else if (value.length <= 7) {
-                              return "The password must be 8 Characters";
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 250.h,
-                        ),
-                        CustomButton(
-                          text: "SIGN IN",
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              context.read<AuthBloc>().add(AuthLoginEvent(
-                                  email: userNameController.text,
-                                  password: passwordController.text));
-                            }
-                          },
-                        ),
-                        SizedBox(
-                          height: 100.h,
-                        ),
-                        const StringToSignUp(),
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                      ],
-                    ),
-                    if (state is AuthLoading)
-                      const LoadingWidget(
-                        fullScreen: true,
+    return Scaffold(
+      backgroundColor: ColorManager.backgroundL,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state is AuthLoginFailed) {
+                gShowErrorSnackBar(
+                    context: context, message: state.faliuer.message);
+              }
+              if (state is AuthLoginSuccess) {
+                //TODO Roles
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => BottomNavigationBarWidget()));
+              }
+            },
+            builder: (context, state) {
+              return Stack(
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 350.h,
                       ),
-                  ],
-                );
-              },
-            ),
+                      Center(
+                        child: Text(
+                          "JESSY",
+                          style: TextStyle(
+                            fontSize: 80.sp,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 250.h,
+                      ),
+                      CustomTextField(
+                        width: 850.w,
+                        keybordType: TextInputType.emailAddress,
+                        hintText: StringManager.userNameHintText,
+                        icon: Icons.person,
+                        textEditingController: userNameController,
+                        suffixIconWidget: null,
+                        visibility: false,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter User Name";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                      CustomTextField(
+                        width: 850.w,
+                        keybordType: TextInputType.visiblePassword,
+                        hintText: 'Password',
+                        icon: Icons.lock,
+                        textEditingController: passwordController,
+                        suffixIconWidget: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                visibility = !visibility;
+                              });
+                            },
+                            icon: Icon(
+                              visibility
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: ColorManager.foregroundL,
+                            ),
+                          ),
+                        ),
+                        visibility: visibility,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter Password";
+                          } else if (value.length <= 7) {
+                            return "The password must be 8 Characters";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 250.h,
+                      ),
+                      CustomButton(
+                        text: "SIGN IN",
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<AuthBloc>().add(AuthLoginEvent(
+                                email: userNameController.text,
+                                password: passwordController.text));
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 100.h,
+                      ),
+                      const StringToSignUp(),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                    ],
+                  ),
+                  if (state is AuthLoading)
+                    const LoadingWidget(
+                      fullScreen: true,
+                    ),
+                ],
+              );
+            },
           ),
         ),
       ),

@@ -45,15 +45,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     });
 
-    on<AuthLogout>((event, emit) async {
+    on<AuthLogoutRequested>((event, emit) async {
       emit(AuthLoading());
 
-      // final successOrFailuer = await _authRepostitory.logout();
-      // successOrFailuer.fold((error) {
-      //   emit(AuthLoginFailed(faliuer: error));
-      // }, (isLoggedOut) {
-      //   emit(AuthLogoutSuccess());
-      // });
+      final successOrFailuer = await _authRepostitory.logout();
+      successOrFailuer.fold((error) {
+        emit(AuthLogoutFailed(faliuer: error));
+      }, (isLoggedOut) {
+        emit(AuthLogoutSuccess());
+      });
+    });
+
+    on<AuthGetUserLocalInfo>((event, emit) async {
+      token = await _authRepostitory.getToken();
     });
   }
+  String? token;
 }

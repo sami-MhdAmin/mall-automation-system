@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/home_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/pages/favorite.dart';
@@ -7,6 +10,7 @@ import 'package:jessy_mall/featuers/cart/presentation/pages/my_cart.dart';
 import 'package:jessy_mall/featuers/manage_store/pages/add_income.dart';
 import 'package:jessy_mall/featuers/profile/presentation/bloc/profile_bloc.dart';
 import 'package:jessy_mall/featuers/profile/presentation/page/manage_investment_page.dart';
+import 'package:jessy_mall/featuers/splash/splash_page.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages/warehouse_home_page.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages/warehouse_product_movement.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/presintation/pages/order_details_page.dart';
@@ -45,17 +49,25 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(1080, 2340),
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => GetIt.I.get<AuthBloc>(),
+            ),
+          
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            home: SplashPage(),
           ),
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          home: LoginPage(),
         );
       },
     );
