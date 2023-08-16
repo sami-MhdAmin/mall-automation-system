@@ -99,6 +99,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   Future<Either<Failure, bool>> logout({required String token}) async {
     final Response response;
     try {
+      print(' dadsd $token');
       dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
       response = await dioClient.post(
         '/logout',

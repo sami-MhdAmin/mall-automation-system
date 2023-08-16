@@ -39,7 +39,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
   @override
   Future<void> setUserRole(String role) async {
-    await _prefs.setString(_keyToken, role);
+    await _prefs.setString(_keyRole, role);
   }
 
   @override

@@ -12,6 +12,15 @@ class ConstManager {
   static String makeupCategory = 'MakeUp';
   static String furnitureCategory = 'Furniture';
 
+  
+  static String deliveryManagerRole = 'delivery_manager';
+  static String warehouseManagerRole = 'warehouse_manager';
+    static String customerRole = 'customer';
+  static String investorRole = 'investor';
+  
+
+  
+
   static final List<Widget> pageOptions = [
     const HomePage(),
     const MyCartPage(),

@@ -40,8 +40,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       successOrFailuer.fold((error) {
         emit(AuthLoginFailed(faliuer: error));
-      }, (loginModel) {
+      }, (loginModel) async {
         emit(AuthLoginSuccess(user: loginModel));
+        token = await _authRepostitory.getToken();
+        role = await _authRepostitory.getUserRole();
       });
     });
 
@@ -58,7 +60,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<AuthGetUserLocalInfo>((event, emit) async {
       token = await _authRepostitory.getToken();
+      role = await _authRepostitory.getUserRole();
     });
   }
   String? token;
+  String? role;
 }

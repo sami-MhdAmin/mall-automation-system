@@ -19,4 +19,5 @@ abstract class AuthRepository {
 
   Future<Either<Failure, bool>> logout();
   Future<String?> getToken();
+  Future<String?> getUserRole();
 }
