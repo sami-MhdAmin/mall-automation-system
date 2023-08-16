@@ -29,17 +29,18 @@ class AuthRepositoryImpl extends AuthRepository {
     if (await _networkInfo.isConnected) {
       try {
         final addSuccess = await _authRemoteDataSource.register(
-          firstName: firstName,
-          lastName: lastName,
-          number: number,
-          email: email,
-          password: password,
-          investmentOption: investmentOption
-        );
+            firstName: firstName,
+            lastName: lastName,
+            number: number,
+            email: email,
+            password: password,
+            investmentOption: investmentOption);
 
         return addSuccess.fold((failure) {
           return Left(failure);
-        }, (registerResponse) {
+        }, (registerResponse) async {
+          await _authLocalDataSource.setUserToken(registerResponse.data.token);
+
           return right(registerResponse);
         });
       } on ServerException {
@@ -62,8 +63,9 @@ class AuthRepositoryImpl extends AuthRepository {
 
         return addSuccess.fold((failure) {
           return Left(failure);
-        }, (registerResponse) {
-          return right(registerResponse);
+        }, (loginResponse) async {
+          await _authLocalDataSource.setUserToken(loginResponse.data.token);
+          return right(loginResponse);
         });
       } on ServerException {
         return Left(ServerFailure());
@@ -73,25 +75,29 @@ class AuthRepositoryImpl extends AuthRepository {
     }
   }
 
-  // @override
-  // Future<Either<Failure, bool>> logout() async {
-  //   if (await _networkInfo.isConnected) {
-  //     try {
-  //       final token = await _authLocalDataSource.getUserToken();
-  //       final addSuccess =
-  //           await _authRemoteDataSource.logout(token: token ?? '');
-  //       return addSuccess.fold((failure) {
-  //         return Left(failure);
-  //       }, (islogoutSuccess) {
-  //         //TODO: maybe u should put async and await
-  //         _authLocalDataSource.clearAllUserData();
-  //         return right(islogoutSuccess);
-  //       });
-  //     } on ServerException {
-  //       return Left(ServerFailure());
-  //     }
-  //   } else {
-  //     return left(NoInternetFailure());
-  //   }
-  // }
+   @override
+  Future<String?> getToken() {
+    return _authLocalDataSource.getUserToken();
+  }
+
+  @override
+  Future<Either<Failure, bool>> logout() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final token = await _authLocalDataSource.getUserToken();
+        final addSuccess =
+            await _authRemoteDataSource.logout(token: token ?? '');
+        return addSuccess.fold((failure) {
+          return Left(failure);
+        }, (islogoutSuccess) {
+          _authLocalDataSource.clearAllUserData();
+          return right(islogoutSuccess);
+        });
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
 }

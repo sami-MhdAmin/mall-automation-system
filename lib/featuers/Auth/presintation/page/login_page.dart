@@ -43,45 +43,42 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I.get<AuthBloc>(),
-      child: Scaffold(
-        backgroundColor: ColorManager.backgroundL,
-        body: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthLoginFailed) {
-                  gShowErrorSnackBar(
-                      context: context, message: state.faliuer.message);
-                }
-                if (state is AuthLoginSuccess) {
-                  //TODO Roles
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => BottomNavigationBarWidget()));
-                }
-              },
-              builder: (context, state) {
-                return Stack(
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: 350.h,
-                        ),
-                        Center(
-                          child: Text(
-                            "JESSY",
-                            style: TextStyle(
-                              fontSize: 80.sp,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
+    return Scaffold(
+      backgroundColor: ColorManager.backgroundL,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state is AuthLoginFailed) {
+                gShowErrorSnackBar(
+                    context: context, message: state.faliuer.message);
+              }
+              if (state is AuthLoginSuccess) {
+                //TODO Roles
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => BottomNavigationBarWidget()));
+              }
+            },
+            builder: (context, state) {
+              return Stack(
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 350.h,
+                      ),
+                      Center(
+                        child: Text(
+                          "JESSY",
+                          style: TextStyle(
+                            fontSize: 80.sp,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
                           ),
-                        ),
+                        ),),
                         SizedBox(
                           height: 250.h,
                         ),
@@ -161,11 +158,11 @@ class _LoginPageState extends State<LoginPage> {
                     if (state is AuthLoading)
                       const LoadingWidget(
                         fullScreen: true,
-                      ),
-                  ],
-                );
-              },
-            ),
+                   
+                    ),
+                ],
+              );
+            },
           ),
         ),
       ),
