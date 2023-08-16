@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
+import 'package:jessy_mall/featuers/investment_options/presentation/page/stripe_payment/payment_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/slider_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -117,12 +118,13 @@ class InvestStorePage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: CustomButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => CheckoutPage(
-                                id: "1",
-                              )));
+                  PaymentManager.makePayment(20, "USD");
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (_) => CheckoutPage(
+                  //               id: "1",
+                  //             )));
                 },
                 text: "Invest"),
           ),
