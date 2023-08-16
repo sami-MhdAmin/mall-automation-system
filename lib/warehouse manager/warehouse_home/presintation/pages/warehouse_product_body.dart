@@ -4,7 +4,6 @@ import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/asset_manager.dart';
-import '../../../../featuers/home/presintation/widget/product_card_widget.dart';
 
 class WarehouseProductBody extends StatelessWidget {
   const WarehouseProductBody({super.key});

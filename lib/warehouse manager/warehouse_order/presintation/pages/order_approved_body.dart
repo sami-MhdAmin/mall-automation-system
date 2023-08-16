@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
-import 'package:jessy_mall/core/widgets/custom_button.dart';
 
 import '../../../../core/widgets/custom_card_movement_widget.dart';
 

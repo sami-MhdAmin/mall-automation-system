@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/color_manager.dart';
 import '../../../../../core/resource/string_manager.dart';
+import '../../../../../core/widgets/langauge_switcher_widget.dart';
 import 'delivery_history_body_page.dart';
 import 'delivery_requests_body_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -86,11 +87,24 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
             ),
           ),
           centerTitle: true,
-          // leading: IconButton(
-          //     onPressed: () {
-          //       Navigator.pop(context);
-          //     },
-          //     icon: const Icon(Icons.arrow_back)),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              iconSize: 70.r,
+              onPressed: () {
+                //TODO: LOGOUT FUNCTIon
+              },
+            ),
+          ],
+          leading: Padding(
+            padding: EdgeInsetsDirectional.only(start: 20.w),
+            child: GestureDetector(
+              onTap: () => setState(() {}),
+              child: LanguageSwitcherWidget(
+                context: context,
+              ),
+            ),
+          ),
           bottom: PreferredSize(
             preferredSize: _tabBar.preferredSize,
             child: Material(
