@@ -40,6 +40,8 @@ class AuthRepositoryImpl extends AuthRepository {
           return Left(failure);
         }, (registerResponse) async {
           await _authLocalDataSource.setUserToken(registerResponse.data.token);
+          await _authLocalDataSource
+              .setUserRole(registerResponse.data.user.roles.first);
 
           return right(registerResponse);
         });
@@ -65,6 +67,9 @@ class AuthRepositoryImpl extends AuthRepository {
           return Left(failure);
         }, (loginResponse) async {
           await _authLocalDataSource.setUserToken(loginResponse.data.token);
+          await _authLocalDataSource
+              .setUserRole(loginResponse.data.user.roles.first);
+
           return right(loginResponse);
         });
       } on ServerException {
@@ -75,16 +80,18 @@ class AuthRepositoryImpl extends AuthRepository {
     }
   }
 
-   @override
+  @override
   Future<String?> getToken() {
     return _authLocalDataSource.getUserToken();
   }
 
   @override
   Future<Either<Failure, bool>> logout() async {
-    if (await _networkInfo.isConnected) {
-      try {
         final token = await _authLocalDataSource.getUserToken();
+
+    if (await _networkInfo.isConnected) {
+
+      try {
         final addSuccess =
             await _authRemoteDataSource.logout(token: token ?? '');
         return addSuccess.fold((failure) {
@@ -99,5 +106,10 @@ class AuthRepositoryImpl extends AuthRepository {
     } else {
       return left(NoInternetFailure());
     }
+  }
+
+  @override
+  Future<String?> getUserRole() {
+    return _authLocalDataSource.getUserRole();
   }
 }

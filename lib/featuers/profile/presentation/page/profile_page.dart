@@ -37,6 +37,9 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    print(context.read<AuthBloc>().token);
+    print(context.read<AuthBloc>().role);
+
     return Scaffold(
       backgroundColor: ColorManager.backgroundL,
       body: SingleChildScrollView(
