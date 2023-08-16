@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
-import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/page/stripe_payment/stripe_keys.dart';
 
 import 'package:easy_localization/easy_localization.dart';
