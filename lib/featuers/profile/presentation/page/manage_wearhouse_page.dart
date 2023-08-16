@@ -6,15 +6,83 @@ import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/products_in_warehouse/presentation/pages/products_in_warehouse_page.dart';
 import 'package:jessy_mall/featuers/profile/presentation/page/show_income&outcome_page.dart';
 
+import '../../../../core/widgets/custom_button.dart';
 import '../../../products_in_store/presentation/pages/products_in_store_page.dart';
 import '../widget/profile_card_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import '../widget/space_request_number_widget.dart';
 
 class ManageWearHousePage extends StatelessWidget {
   const ManageWearHousePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    int selectedNumber = 5;
+    void modalBottomSheetMenu() {
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 700.h,
+            width: 1000.w,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20.r),
+                topRight: Radius.circular(20.r),
+              ),
+            ),
+            child: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Column(
+                  // direction: Axis.horizontal,
+                  // crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.symmetric(
+                          vertical: 50.h, horizontal: 50.w),
+                      child: Wrap(
+                        spacing: 30.w,
+                        direction: Axis.horizontal,
+                        children: List.generate(
+                          3,
+                          (index) {
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedNumber = (index + 1) * 5;
+                                });
+                              },
+                              child: InvestorSpaceRequestNumberWidget(
+                                index: (index + 1) * 5,
+                                color: selectedNumber == (index + 1) * 5
+                                    ? ColorManager.black
+                                    : ColorManager.grey,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 120.h),
+                    CustomButton(
+                      text: StringManager.confirm.tr(),
+                      onPressed: () {
+                        print(selectedNumber);
+
+                        //TODO: yaman
+                      },
+                    ),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      );
+    }
+
     return Scaffold(
       body: Container(
         height: 1.sh,
@@ -65,7 +133,9 @@ class ManageWearHousePage extends StatelessWidget {
               ProfileCardWidget(
                 titleInListTile: StringManager.extraSpace.tr(),
                 subtitleInListTile: StringManager.extraSpacedesc.tr(),
-                navigatorFunc: () {},
+                navigatorFunc: () {
+                  modalBottomSheetMenu();
+                },
               ),
               ProfileCardWidget(
                 titleInListTile: StringManager.uploadExcel.tr(),

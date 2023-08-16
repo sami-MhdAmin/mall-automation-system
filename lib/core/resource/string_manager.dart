@@ -78,7 +78,7 @@ class StringManager {
   static String pleaseEnterYourGmail = 'pleaseEnterYourGmail';
   static String containAt = 'containAt';
   static String pleaseEnterYourPassword = 'pleaseEnterYourPassword';
-  static String passwordMustBeEightCharacters = 'passwordMustBeEightCharacters';
+  static String passwordMustBeSixCharacters = 'passwordMustBeSixCharacters';
   static String pleaseEnterYourPhoneNumber = 'pleaseEnterYourPhoneNumber';
   static String doYouWantToSeeInvestmentOption =
       'doYouWantToSeeInvestmentOption';

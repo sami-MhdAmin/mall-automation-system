@@ -19,7 +19,7 @@
     "pleaseEnterYourGmail": "please enter your gmail",
     "containAt": "The Email must contain '@' Character",
     "pleaseEnterYourPassword": "please enter your password",
-    "passwordMustBeEightCharacters": "The password must be 8 Characters",
+    "passwordMustBeSixCharacters": "The password must be 6 Characters at least",
     "pleaseEnterYourPhoneNumber": "please enter your phone number",
     "doYouWantToSeeInvestmentOption": "Do you want to see investment option?",
     "signUp": "SIGN UP",
