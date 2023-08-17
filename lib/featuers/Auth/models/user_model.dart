@@ -36,20 +36,21 @@ class User {
   final String phone;
   final String? image;
   final List<String> roles;
-  final String? longitude;
-  final String? latitude;
-  final int? investment_option;
+  // final String? longitude;
+  // final String? latitude;
+  final String? investment_option;
 
-  User(
-      {required this.id,
-      required this.name,
-      required this.email,
-      required this.phone,
-      this.image,
-      required this.roles,
-      this.investment_option,
-      this.latitude,
-      this.longitude});
+  User({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.phone,
+    this.image,
+    required this.roles,
+    this.investment_option,
+    // this.latitude,
+    // this.longitude,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

@@ -33,9 +33,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       phone: json['phone'] as String,
       image: json['image'] as String?,
       roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
-      investment_option: json['investment_option'] as int?,
-      latitude: json['latitude'] as String?,
-      longitude: json['longitude'] as String?,
+      investment_option: json['investment_option'] as String?,
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -45,7 +43,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'phone': instance.phone,
       'image': instance.image,
       'roles': instance.roles,
-      'longitude': instance.longitude,
-      'latitude': instance.latitude,
       'investment_option': instance.investment_option,
     };

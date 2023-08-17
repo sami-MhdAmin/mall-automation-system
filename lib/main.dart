@@ -50,9 +50,9 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            // home: SplashPage(),
+            home: SplashPage(),
             // home: const DeliveryHomePage(),
-            home: BottomNavigationBarWidget(),
+            // home: BottomNavigationBarWidget(),
           ),
         );
       },
