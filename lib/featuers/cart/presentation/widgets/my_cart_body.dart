@@ -40,7 +40,7 @@ class MyCartBody extends StatelessWidget {
             ),
           ),
           ShippingAddressCard(
-              homeText: StringManager.home.tr(), addressText: "place, street"),
+              homeText: StringManager.home.tr(), addressText: null),
           SizedBox(
             height: 40.h,
           ),
