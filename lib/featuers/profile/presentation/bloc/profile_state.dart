@@ -12,15 +12,15 @@ class ProfileInitial extends ProfileState {}
 
 class ProfileLoading extends ProfileState {}
 
-class ProfileFailed extends ProfileState {
+class ProfileGetInfoFailed extends ProfileState {
   final Failure faliuer;
-  ProfileFailed({required this.faliuer});
+  ProfileGetInfoFailed({required this.faliuer});
 }
 
-class ProfileLoaded extends ProfileState {
+class ProfileGetInfoSuccess extends ProfileState {
   final ProfileModel profileModel;
 
-  ProfileLoaded({required this.profileModel});
+  ProfileGetInfoSuccess({required this.profileModel});
 }
 
 class ProfileOrderLoaded extends ProfileState {

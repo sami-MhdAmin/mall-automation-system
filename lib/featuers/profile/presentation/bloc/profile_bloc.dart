@@ -11,8 +11,8 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileRepository _profileRepository;
   ProfileBloc(this._profileRepository) : super(ProfileInitial()) {
-    on<ProfileEvent>((event, emit) {
-      // TODO: implement event handler
+    on<ProfileRequestedInfo>((event, emit) {
+      _profileRepository.getProfileInfo();
     });
   }
 }
