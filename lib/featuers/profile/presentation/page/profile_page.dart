@@ -45,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
         body: SingleChildScrollView(
           child: BlocConsumer<ProfileBloc, ProfileState>(
             listener: (context, state) {
-              if (state is ProfileFailed) {
+              if (state is ProfileGetInfoFailed) {
                 //TODO: dialog with alert YAMANAAAAAAAA
               }
               if (state is ProfileGetInfoSuccess) {

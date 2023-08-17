@@ -15,7 +15,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emit(ProfileLoading());
       final successOrFailuer = await _profileRepository.getProfileInfo(event.token);
       successOrFailuer.fold((error) {
-        emit(ProfileFailed(faliuer: error));
+        emit(ProfileGetInfoFailed(faliuer: error));
       }, (profileModel) {
         emit(ProfileGetInfoSuccess(profileModel: profileModel));
       });

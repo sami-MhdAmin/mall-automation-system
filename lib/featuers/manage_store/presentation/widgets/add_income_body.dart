@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
-
-import '../../../config/theme/color_manager.dart';
-import '../../../core/widgets/custom_button.dart';
-import '../../cart/presentation/widgets/cart_card.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../cart/presentation/widgets/cart_card.dart';
 
 class AddIncomeBody extends StatelessWidget {
   const AddIncomeBody({super.key});

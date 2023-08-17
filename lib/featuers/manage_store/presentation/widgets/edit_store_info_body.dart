@@ -5,7 +5,7 @@ import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
-import 'package:jessy_mall/featuers/manage_store/widgets/time_picker.dart';
+import 'package:jessy_mall/featuers/manage_store/presentation/widgets/time_picker.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class EditStoreInfoBody extends StatefulWidget {
