@@ -38,7 +38,7 @@ class User {
   final List<String> roles;
   // final String? longitude;
   // final String? latitude;
-  final String? investment_option;
+  final int? investment_option;
 
   User({
     required this.id,

@@ -19,13 +19,14 @@ class AuthRepositoryImpl extends AuthRepository {
   );
 
   @override
-  Future<Either<Failure, UserModel>> postRegistration(
-      {required String firstName,
-      required String lastName,
-      required String email,
-      required String number,
-      required String password,
-      required int investmentOption}) async {
+  Future<Either<Failure, UserModel>> postRegistration({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String number,
+    required String password,
+    required int investmentOption,
+  }) async {
     if (await _networkInfo.isConnected) {
       try {
         final addSuccess = await _authRemoteDataSource.register(
@@ -87,10 +88,9 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Either<Failure, bool>> logout() async {
-        final token = await _authLocalDataSource.getUserToken();
+    final token = await _authLocalDataSource.getUserToken();
 
     if (await _networkInfo.isConnected) {
-
       try {
         final addSuccess =
             await _authRemoteDataSource.logout(token: token ?? '');
