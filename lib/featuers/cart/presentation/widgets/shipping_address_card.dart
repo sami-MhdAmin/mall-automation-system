@@ -205,6 +205,7 @@ class _ShippingAddressCardState extends State<ShippingAddressCard> {
                                     onChanged: (value) {
                                       setState(() {
                                         stringAddress = value;
+                                        geocodindAddress = null;
                                       });
                                     },
                                     decoration: InputDecoration(
