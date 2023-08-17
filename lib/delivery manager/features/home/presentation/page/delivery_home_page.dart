@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../../config/theme/color_manager.dart';
+import '../../../../../core/resource/asset_manager.dart';
 import '../../../../../core/resource/string_manager.dart';
+import '../../../../../core/utils/global_snackbar.dart';
 import '../../../../../core/widgets/langauge_switcher_widget.dart';
+import '../../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
+import '../../../../../featuers/Auth/presintation/page/login_page.dart';
 import 'delivery_history_body_page.dart';
 import 'delivery_requests_body_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -88,11 +94,27 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
           ),
           centerTitle: true,
           actions: [
-            IconButton(
-              icon: const Icon(Icons.logout),
-              iconSize: 70.r,
-              onPressed: () {
-                //TODO: LOGOUT FUNCTIon
+            BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthLogoutFailed) {
+                  gShowErrorSnackBar(
+                      context: context, message: state.faliuer.message);
+                }
+                if (state is AuthLogoutSuccess) {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const LoginPage()));
+                }
+              },
+              builder: (context, state) {
+                return state is AuthLoading
+                    ? Lottie.asset(AssetJsonManager.loading, height: 100.r)
+                    : IconButton(
+                        icon: const Icon(Icons.logout),
+                        iconSize: 70.r,
+                        onPressed: () {
+                          context.read<AuthBloc>().add(AuthLogoutRequested());
+                        },
+                      );
               },
             ),
           ],
