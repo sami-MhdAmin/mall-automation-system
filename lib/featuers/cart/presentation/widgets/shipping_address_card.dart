@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:jessy_mall/core/widgets/custom_text_field.dart';
+import 'package:jessy_mall/featuers/cart/presentation/widgets/my_cart_body.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/string_manager.dart';
 
 /// Determine the current position of the device.
 ///
@@ -71,7 +74,7 @@ Future<Position> getCurrentLocation() async {
   }
 }
 
-Future<void> getAddressFromCoordinates(
+Future<String> getAddressFromCoordinates(
     double latitude, double longitude) async {
   try {
     List<Placemark> placemarks =
@@ -88,28 +91,38 @@ Future<void> getAddressFromCoordinates(
       String administrativeArea = placemark.administrativeArea ?? '';
       String country = placemark.country ?? '';
 
-      String address =
-          "$name, $street, $subLocality, $locality, $administrativeArea , $country";
+      String address = "$locality,  $street $subLocality";
 
       print("Address: $address");
+      return address;
     } else {
       print("No address found for the coordinates.");
+      return "Can't get location";
     }
   } catch (e) {
     print("i am in catch");
     print("Error getting address: $e");
+    return "";
   }
 }
 
-class ShippingAddressCard extends StatelessWidget {
+class ShippingAddressCard extends StatefulWidget {
   String homeText;
-  String addressText;
+  String? addressText;
   ShippingAddressCard({
     Key? key,
     required this.homeText,
-    required this.addressText,
+    this.addressText,
   }) : super(key: key);
 
+  @override
+  State<ShippingAddressCard> createState() => _ShippingAddressCardState();
+}
+
+class _ShippingAddressCardState extends State<ShippingAddressCard> {
+  final TextEditingController alertDialogController = TextEditingController();
+  String? stringAddress;
+  String? geocodindAddress;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -139,7 +152,7 @@ class ShippingAddressCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    homeText,
+                    widget.homeText,
                     style: TextStyle(
                       color: ColorManager.black,
                       fontSize: 50.sp,
@@ -151,7 +164,7 @@ class ShippingAddressCard extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          var pos = await _determinePosition();
+                          await _determinePosition();
                           Position sami = await getCurrentLocation();
 
                           // List<Placemark> placemarks = await placemarkFromCoordinates(
@@ -159,15 +172,79 @@ class ShippingAddressCard extends StatelessWidget {
                           //     localeIdentifier: "en");
                           // print(placemarks);
                           // print("$placemarks");
-                          await getAddressFromCoordinates(
+
+                          geocodindAddress = await getAddressFromCoordinates(
                               sami.latitude, sami.longitude);
+                          setState(() {});
                         },
                         icon: const Icon(Icons.add_location_alt_rounded),
                         color: ColorManager.black,
                         iconSize: 80.r,
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {});
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              // contentTextStyle: TextStyle(color: Colors.amber),
+                              surfaceTintColor: ColorManager.backgroundL,
+                              // backgroundColor: ColorManager.backgroundL,
+                              title: const Text('Shipping Address'),
+                              content: Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Container(
+                                  width: 500.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.r),
+                                    color: ColorManager
+                                        .textFieldFill, // Adjust the color to your preference
+                                  ),
+                                  child: TextFormField(
+                                    initialValue: stringAddress,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        stringAddress = value;
+                                        geocodindAddress = null;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 16.0, vertical: 12.0),
+                                      hintText: "add your address",
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.r),
+                                        borderSide: const BorderSide(
+                                            color: Colors.black),
+                                      ),
+                                      prefixIcon: Icon(
+                                        Icons.location_on_rounded,
+                                        color: ColorManager.foregroundL,
+                                        size:
+                                            MediaQuery.of(context).size.width *
+                                                0.04,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(context, 'Cancel'),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                         icon: const Icon(Icons.edit_square),
                         color: ColorManager.black,
                         iconSize: 80.r,
@@ -177,7 +254,8 @@ class ShippingAddressCard extends StatelessWidget {
                 ],
               ),
               Text(
-                addressText,
+                //geocoding // textfield // empty
+                geocodindAddress ?? stringAddress ?? "sami",
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   color: ColorManager.grey,

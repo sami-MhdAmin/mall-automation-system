@@ -18,12 +18,10 @@
     "pleaseEnterYourLastName": "أدخل أسم العائلة",
     "pleaseEnterYourGmail": "أدخل البريد الإلكتروني",
     "containAt": "البريد يجب أن يحتوي على إشارة@ ",
-    "passwordMustBeEightCharacters":"كلمة السر يجب أن تحتوي على 8 محارف  على الأقل",
+    "passwordMustBeSixCharacters": "كلمة السر يجب أن تحتوي على ٦ محارف  على الأقل",
     "pleaseEnterYourPhoneNumber": "أدخل رقم الهاتف",
-    "doYouWantToSeeInvestmentOption":"هل تريد رؤية خيارات الإستثمار؟",
+    "doYouWantToSeeInvestmentOption": "هل تريد رؤية خيارات الإستثمار؟",
     "signUp": "تسجيل",
-
-
     "furniture": "مفروشات",
     "makeup": "مكياج",
     "clothes": "ملابس",
@@ -84,35 +82,23 @@
     "approved": "مقبولة",
     "rejected": "مرفوضة",
     "orderFrom": "طلب من",
-    "pleaseEnterUserName":"أدخل أسم المستخدم",
-    "signIn":"تسجيل الدخول",
-    "doNotHaveAnAccount":"لايوجد لديك حساب؟",
-    "alreadyHaveAnAccount":"يوجد لديك حساب؟",
-    "shippingAddress":"عنوان الشحن",
-    "orderList":"قائمة طلباتي",
-    "home":"السكن",
-    "favorite":"المفضلة",
-    "storeName":"اسم المتجر",
-    "pleaseEnterStoreName":"الرجاء إدخال اسم المتجر",
-    "otherDetails":"معلومات إضافية",
-    "type":"النوع: ",
-    "storeSpace":"مساحة المتجر: ",
-    "availableStorageSpace":"مساحة التخزين المتوفرة: ",
-    "update":"تحديث",
-    "logout":"تسجيل الخروج",
-    "extraSpaceRequest":"طلب مساحة إضافية",
-    "increaseWarehouseSpace":"زيادة مساحة المستودع",
-    "m":"م"
-    
-
-
-
-
-
-
-
-
-
-
-
+    "pleaseEnterUserName": "أدخل أسم المستخدم",
+    "signIn": "تسجيل الدخول",
+    "doNotHaveAnAccount": "لايوجد لديك حساب؟",
+    "alreadyHaveAnAccount": "يوجد لديك حساب؟",
+    "shippingAddress": "عنوان الشحن",
+    "orderList": "قائمة طلباتي",
+    "home": "السكن",
+    "favorite": "المفضلة",
+    "storeName": "اسم المتجر",
+    "pleaseEnterStoreName": "الرجاء إدخال اسم المتجر",
+    "otherDetails": "معلومات إضافية",
+    "type": "النوع: ",
+    "storeSpace": "مساحة المتجر: ",
+    "availableStorageSpace": "مساحة التخزين المتوفرة: ",
+    "update": "تحديث",
+    "logout": "تسجيل الخروج",
+    "extraSpaceRequest": "طلب مساحة إضافية",
+    "increaseWarehouseSpace": "زيادة مساحة المستودع",
+    "m": "م"
 }

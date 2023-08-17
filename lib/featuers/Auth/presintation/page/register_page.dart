@@ -169,9 +169,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (value == null || value.isEmpty) {
                               return StringManager.pleaseEnterYourPassword
                                   .tr();
-                            } else if (value.length <= 7) {
+                            } else if (value.length <= 6) {
                               return StringManager
-                                  .passwordMustBeEightCharacters
+                                  .passwordMustBeSixCharacters
                                   .tr();
                             }
                             return null;

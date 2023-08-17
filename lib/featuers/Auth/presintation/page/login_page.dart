@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                           if (value == null || value.isEmpty) {
                             return StringManager.pleaseEnterYourPassword.tr();
                           } else if (value.length <= 5) {
-                            return StringManager.passwordMustBeEightCharacters
+                            return StringManager.passwordMustBeSixCharacters
                                 .tr();
                           }
                           return null;
