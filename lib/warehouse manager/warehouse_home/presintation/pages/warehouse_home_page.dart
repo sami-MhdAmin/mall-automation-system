@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import '../../../../core/resource/asset_manager.dart';
 import '../../../../core/resource/string_manager.dart';
+import '../../../../core/utils/global_snackbar.dart';
 import '../../../../core/widgets/langauge_switcher_widget.dart';
+import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
+import '../../../../featuers/Auth/presintation/page/login_page.dart';
 import '../../../../featuers/investment_options/presentation/page/investment_options.dart';
 import '../../../../featuers/investment_options/presentation/widgets/investment_store.dart';
 import '../../../warehouse_extra_space_request/presentation/pages/warehouse_extra_space_requests.dart';
@@ -100,7 +106,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                 child: SizedBox(
                   height: 10.w,
                   width: 10.w,
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     backgroundColor: Colors.white,
                   ),
                 ),
@@ -128,14 +134,27 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                   Navigator.pop(context);
                 },
               ),
-              ListTile(
-                title: Text(StringManager.logout.tr()),
-                selected: _selectedIndex == 2,
-                onTap: () {
-                  // Update the state of the app
-                  _onItemTapped(2);
-                  // Then close the drawer
-                  Navigator.pop(context);
+              BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthLogoutFailed) {
+                    gShowErrorSnackBar(
+                        context: context, message: state.faliuer.message);
+                  }
+                  if (state is AuthLogoutSuccess) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) => const LoginPage()));
+                  }
+                },
+                builder: (context, state) {
+                  return state is AuthLoading
+                      ? Lottie.asset(AssetJsonManager.loading, height: 100.r)
+                      : ListTile(
+                          title: Text(StringManager.logout.tr()),
+                          selected: _selectedIndex == 2,
+                          onTap: () {
+                            context.read<AuthBloc>().add(AuthLogoutRequested());
+                          },
+                        );
                 },
               ),
               SizedBox(
@@ -165,11 +184,12 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
           centerTitle: true,
           actions: [
             IconButton(
-                icon: Icon(Icons.notifications_active_outlined),
+                icon: const Icon(Icons.notifications_active_outlined),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => WarehouseOrderPage()),
+                    MaterialPageRoute(
+                        builder: (_) => const WarehouseOrderPage()),
                   );
                 })
           ],
