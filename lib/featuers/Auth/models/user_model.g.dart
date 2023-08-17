@@ -33,7 +33,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       phone: json['phone'] as String,
       image: json['image'] as String?,
       roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
-      investment_option: json['investment_option'] as String?,
+      investment_option: json['investment_option'] as int?,
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{

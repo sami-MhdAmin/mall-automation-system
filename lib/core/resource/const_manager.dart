@@ -25,11 +25,6 @@ class ConstManager {
     const HomePage(),
     const MyCartPage(),
     const FavoritePage(),
-    const ProfilePage(
-        userName: 'userName',
-        userEmail: 'userEmail',
-        orderCount: 2,
-        shippingAddressesCount: 2,
-        storeInvestedCount: 1)
+    const ProfilePage()
   ];
 }
