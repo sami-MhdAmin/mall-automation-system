@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
-
-import 'package:jessy_mall/core/widgets/custom_button.dart';
-import 'package:jessy_mall/core/widgets/custom_counter.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/widgets/favorite_card.dart';
-import 'package:jessy_mall/featuers/cart/presentation/widgets/cart_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/favorite_model.dart';
-import '../BLoC/bloc/favorite_bloc.dart';
+import '../BLoC/favorite/favorite_bloc.dart';
 
+// ignore: must_be_immutable
 class FavoriteBody extends StatelessWidget {
   FavoriteBody({super.key});
 

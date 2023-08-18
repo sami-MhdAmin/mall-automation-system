@@ -30,8 +30,12 @@ class FavoriteCard extends StatelessWidget {
                 child: favoriteDataResponse?.image == null ||
                         favoriteDataResponse == null
                     ? const SizedBox.shrink()
-                    // : Image.network(favoriteDataResponse!.image!),
-                    : Image.network("https://i.ytimg.com/vi/ekzHIouo8Q4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBR51nWW14U5t2BfAHxbuBPDhKSTQ")
+                    : Image.network(
+                        favoriteDataResponse!.image!,
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.low,
+                      ),
+                // : Image.network("https://i.ytimg.com/vi/ekzHIouo8Q4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBR51nWW14U5t2BfAHxbuBPDhKSTQ")
               ),
             ),
           ),
@@ -40,7 +44,7 @@ class FavoriteCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                favoriteDataResponse?.name ?? 'waiting for joseph',
+                favoriteDataResponse?.name ?? 'product X',
                 style: TextStyle(
                   color: ColorManager.grey,
                   fontSize: 40.sp,
