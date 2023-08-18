@@ -260,7 +260,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   if (state is ProfileLoading)
                     const LoadingWidget(
                       fullScreen: true,
-                    )
+                    ),
                 ],
               );
             },

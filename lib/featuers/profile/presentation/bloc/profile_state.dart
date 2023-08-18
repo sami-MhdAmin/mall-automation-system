@@ -1,6 +1,3 @@
-//TODO: somehting todo with logout
-// class ProfileLogout
-
 //TODO might be 2 states for every button and event
 
 part of 'profile_bloc.dart';
