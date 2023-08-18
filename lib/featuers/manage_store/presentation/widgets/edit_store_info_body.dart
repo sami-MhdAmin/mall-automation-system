@@ -75,11 +75,13 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                         offset: Offset(0, 280.h),
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
-                          child: SizedBox.fromSize(
-                            size: Size.fromRadius(160.r),
-                            child: CircleAvatar(
-                              radius: 160.r,
-                              backgroundColor: Colors.yellow,
+                          child: CircleAvatar(
+                            //TODO : add image
+
+                            radius: 160.r,
+                            backgroundColor: Colors.yellow,
+                            child: SizedBox.fromSize(
+                              size: Size.fromRadius(160.r),
                               child: CachedNetworkImage(
                                 imageUrl: "${storeInfoModel?.image}" ?? "",
                                 placeholder: (context, url) =>
