@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 
 /// Flutter code sample for [showTimePicker].
@@ -8,10 +9,14 @@ class TimePickerOptions extends StatefulWidget {
     super.key,
     required this.themeMode,
     required this.useMaterial3,
+    required this.textOpenOrClose,
+    required this.color,
   });
 
   final ThemeMode themeMode;
   final bool useMaterial3;
+  final String textOpenOrClose;
+  final Color color;
 
   @override
   State<TimePickerOptions> createState() => _TimePickerOptionsState();
@@ -28,8 +33,10 @@ class _TimePickerOptionsState extends State<TimePickerOptions> {
   @override
   Widget build(BuildContext context) {
     return CustomButton(
-      text: 'Open time',
+      color: widget.color,
+      text: widget.textOpenOrClose,
       onPressed: () async {
+        print(TimeOfDay.now());
         final TimeOfDay? time = await showTimePicker(
           context: context,
           initialTime: selectedTime ?? TimeOfDay.now(),
@@ -59,6 +66,7 @@ class _TimePickerOptionsState extends State<TimePickerOptions> {
         );
         setState(() {
           selectedTime = time;
+          print(selectedTime);
         });
       },
     );
