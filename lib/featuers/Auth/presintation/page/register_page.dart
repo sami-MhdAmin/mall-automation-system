@@ -228,7 +228,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             text: StringManager.signUp.tr(),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                //maybe i should add bloc consumer
                                 context.read<AuthBloc>().add(
                                       AuthRegisterRequested(
                                           firstName: firstNameController.text,

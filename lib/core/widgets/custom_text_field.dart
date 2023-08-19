@@ -14,20 +14,21 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String? Function(String?)? onFieldSubmittedFunc;
   final Color? textFieldColor;
+  final String? initialValue;
 
-  const CustomTextField({
-    required this.keybordType,
-    required this.width,
-    this.hintText,
-    required this.icon,
-    required this.textEditingController,
-    this.suffixIconWidget,
-    this.visibility,
-    required this.validator,
-    this.onFieldSubmittedFunc,
-    super.key,
-    this.textFieldColor,
-  });
+  const CustomTextField(
+      {required this.keybordType,
+      required this.width,
+      this.hintText,
+      required this.icon,
+      required this.textEditingController,
+      this.suffixIconWidget,
+      this.visibility,
+      required this.validator,
+      this.onFieldSubmittedFunc,
+      super.key,
+      this.textFieldColor,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,7 @@ class CustomTextField extends StatelessWidget {
               ColorManager.textFieldFill, // Adjust the color to your preference
         ),
         child: TextFormField(
+          initialValue: initialValue,
           controller: textEditingController,
           keyboardType: keybordType,
           obscureText: visibility ?? false,

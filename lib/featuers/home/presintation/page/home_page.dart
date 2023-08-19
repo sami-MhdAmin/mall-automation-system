@@ -24,6 +24,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
+  List<String> sliderImagesList = [
+    // TODO:change messi pic
+    AssetImageManager.market,
+    AssetImageManager.homeSlider2,
+    AssetImageManager.homeSlider3
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +110,8 @@ class _HomePageState extends State<HomePage> {
                     child: SizedBox(
                       width: 800.w,
                       child: Image.asset(
-                        AssetImageManager.market,
-                        fit: BoxFit.cover,
+                        sliderImagesList[index],
+                        fit: BoxFit.fill,
                       ),
                     ),
                   );

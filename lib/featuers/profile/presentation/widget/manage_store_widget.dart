@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
-import 'package:jessy_mall/featuers/manage_store/pages/edit_store_info.dart';
+import 'package:jessy_mall/featuers/manage_store/presentation/pages/edit_store_info.dart';
 import 'package:jessy_mall/featuers/products_in_store/presentation/pages/products_in_store_page.dart';
 import 'package:jessy_mall/featuers/profile/presentation/widget/profile_card_widget.dart';
 

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 
+import '../../models/favorite_model.dart';
+
 class FavoriteCard extends StatelessWidget {
   const FavoriteCard({
+    required this.favoriteDataResponse,
     super.key,
   });
-
+  final FavoriteDataResponse? favoriteDataResponse;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,19 +22,29 @@ class FavoriteCard extends StatelessWidget {
           Padding(
             padding: EdgeInsetsDirectional.only(end: 80.w),
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0.r),
-                child: Container(
-                  height: 250.h,
-                  width: 250.w,
-                  color: Colors.black,
-                )),
+              borderRadius: BorderRadius.circular(20.0.r),
+              child: Container(
+                height: 250.h,
+                width: 250.w,
+                color: Colors.black,
+                child: favoriteDataResponse?.image == null ||
+                        favoriteDataResponse == null
+                    ? const SizedBox.shrink()
+                    : Image.network(
+                        favoriteDataResponse!.image!,
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.low,
+                      ),
+                // : Image.network("https://i.ytimg.com/vi/ekzHIouo8Q4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBR51nWW14U5t2BfAHxbuBPDhKSTQ")
+              ),
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Minimal Stand',
+                favoriteDataResponse?.name ?? 'product X',
                 style: TextStyle(
                   color: ColorManager.grey,
                   fontSize: 40.sp,
@@ -40,7 +53,7 @@ class FavoriteCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '\$ 25.00',
+                '${favoriteDataResponse?.price ?? 'no price'} ',
                 style: TextStyle(
                   color: ColorManager.black,
                   fontSize: 45.sp,

@@ -90,7 +90,7 @@ class CustomCardMovementWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      quantityTextField,
+                      quantityTextField.toString(),
                       style: TextStyle(
                         color: const Color(0xFF232323),
                         fontSize: 46.sp,

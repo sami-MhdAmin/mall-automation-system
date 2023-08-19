@@ -19,7 +19,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   Future<Either<Failure, ProfileModel>> getProfileInfo(String token) async {
     final Response response;
     try {
-            dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
+      dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
 
       response = await dioClient.get('/profile');
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -41,6 +41,4 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     }
     return Left(ServerFailure());
   }
-
-
 }
