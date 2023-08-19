@@ -10,6 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jessy_mall/featuers/splash/splash_page.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages/warehouse_home_page.dart';
 
+import 'core/bloc/bloc_observer.dart';
 import 'delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import 'featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
 import 'featuers/investment_options/presentation/bloc/invest_option_bloc/invest_option_bloc.dart';
@@ -17,6 +18,8 @@ import 'featuers/investment_options/presentation/page/invest_store_page.dart';
 import 'injection_container/main_injection.dart';
 
 void main() async {
+    Bloc.observer = MyBlocObserver();
+
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await initInjection();

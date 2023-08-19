@@ -100,12 +100,12 @@
     "update": "Update",
     "logout": "Logout",
     "extraSpaceRequest": "Extra space request",
-    "increaseWarehouseSpace":"Increase warehouse space",
-    "m":"m",
+    "increaseWarehouseSpace": "Increase warehouse space",
+    "m": "m",
     "investmentOption": "Investment Option",
     "floor":"Floor: ",
     "roomCount":"Room Count",
-    "invest":"Invest"
-
-
+    "invest":"Invest",
+    "noData": "Ther Is No Data",
+    "tryAgain": "Try Agian"
 }

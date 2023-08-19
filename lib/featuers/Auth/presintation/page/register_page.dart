@@ -199,7 +199,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               StringManager.doYouWantToSeeInvestmentOption.tr(),
                               style: TextStyle(fontSize: 32.sp),
                             ),
-                            const CustomCheckbox()
+                            CustomCheckbox(
+                              isChecked: false,
+                            )
                           ],
                         ),
                         TextButton(
