@@ -33,6 +33,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   final TextEditingController searchController = TextEditingController();
   CategoryModel? categoryModel;
+  bool hasCategort = true;
   int selectdCategory = 0;
 
   @override
@@ -47,169 +48,206 @@ class _ProductPageState extends State<ProductPage> {
           child: Column(
             children: [
               HeaderPage(title: StringManager.products.tr(), left: true),
-              SizedBox(
-                height: 100.h,
-              ),
-              BlocBuilder<ProductBloc, ProductState>(
-                builder: (context, state) {
-                  return CustomTextField(
-                    keybordType: TextInputType.name,
-                    width: 850.w,
-                    hintText: StringManager.search.tr(),
-                    icon: Icons.search,
-                    textEditingController: searchController,
-                    validator: (v) {
-                      return null;
-                    },
-                    textFieldColor: ColorManager.grey.withOpacity(0.5),
-                    onFieldSubmittedFunc: (value) {
-                      context.read<ProductBloc>().add(ProductRequested(
-                          search: value,
-                          token: context.read<AuthBloc>().token ?? '',
-                          storeId: widget.storeId,
-                          categoryName: categoryModel?.categoryDataModel
-                                  ?.category[selectdCategory] ??
-                              '0'));
-                    },
-                  );
-                },
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              SizedBox(
-                height: 150.h,
-                width: 1.sw,
-                child: BlocConsumer<ProductBloc, ProductState>(
-                  listener: (context, state) {
-                    if (state is CategroyGetSuccess &&
-                        state.categoryModel.categoryDataModel!.category
-                            .isNotEmpty) {
-                      categoryModel = state.categoryModel;
-                      context.read<ProductBloc>().add(ProductRequested(
-                          search: searchController.text,
-                          token: context.read<AuthBloc>().token ?? '',
-                          storeId: widget.storeId,
-                          categoryName: state.categoryModel.categoryDataModel
-                                  ?.category.first ??
-                              '0'));
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is ProductInitial) {
-                      context.read<ProductBloc>().add(CategoryRequested(
-                          token: context.read<AuthBloc>().token ?? '',
-                          storeId: widget.storeId));
-                    }
-                    if (state is CategoryLoading) {
-                      return Lottie.asset(AssetJsonManager.loading,
-                          height: 100.h);
-                    }
-                    return categoryModel!.categoryDataModel!.category.isEmpty
-                        ? EmptyWidget(
-                            height: 1.sh,
-                          )
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: categoryModel
-                                ?.categoryDataModel?.category.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                  padding: EdgeInsetsDirectional.only(
-                                      start: 50.w, end: 50.w),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      searchController.clear();
-                                      setState(() {
-                                        selectdCategory = index;
-                                      });
-                                      context.read<ProductBloc>().add(
-                                          ProductRequested(
-                                              search: searchController.text,
-                                              token: context
-                                                      .read<AuthBloc>()
-                                                      .token ??
-                                                  '',
-                                              storeId: widget.storeId,
-                                              categoryName: categoryModel
-                                                          ?.categoryDataModel
-                                                          ?.category[
-                                                      selectdCategory] ??
-                                                  '0'));
-                                    },
-                                    child: Text(
-                                      categoryModel?.categoryDataModel
-                                              ?.category[index] ??
-                                          '',
-                                      style: TextStyle(
-                                          color: selectdCategory == index
-                                              ? ColorManager.black
-                                              : ColorManager.grey,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: selectdCategory == index
-                                              ? 45.sp
-                                              : 35.sp),
-                                    ),
-                                  ));
-                            });
-                  },
-                ),
-              ),
               Expanded(
-                child: BlocConsumer<ProductBloc, ProductState>(
-                  listener: (context, state) {},
-                  builder: (context, state) {
-                    if (state is ProductLoading) {
-                      return const LoadingWidget();
-                    }
-                    if (state is ProductGetSuccess) {
-                      return state.productModel.productDataModel!.isEmpty
-                          ? EmptyWidget(
-                              height: 1.sh,
-                            )
-                          : GridView.builder(
-                              shrinkWrap: true,
-                              padding: EdgeInsetsDirectional.symmetric(
-                                  horizontal: 50.w, vertical: 30.h),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisSpacing: 40.h,
-                                      mainAxisSpacing: 50.h,
-                                      childAspectRatio: 1.3.h / 2.w,
-                                      crossAxisCount: 2),
-                              itemCount:
-                                  state.productModel.productDataModel?.length,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                    onTap: () {
-                                      if (widget.categoryName ==
-                                              ConstManager.clothesCategory ||
-                                          widget.categoryName ==
-                                              ConstManager.furnitureCategory) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    ProductDetailsPage(
-                                                      categoryName:
-                                                          widget.categoryName,
-                                                      productModel:
-                                                          state.productModel,
-                                                      index: index,
-                                                    )));
-                                      }
-                                    },
-                                    child: productCardWidget(
-                                      index: index,
-                                      productModel: state.productModel,
-                                    ));
-                              });
-                    }
-                    return const SizedBox();
-                  },
-                ),
-              )
+                child: hasCategort == false
+                    ? EmptyWidget(height: 1.sh)
+                    : Column(
+                        children: [
+                          SizedBox(
+                            height: 100.h,
+                          ),
+                          BlocBuilder<ProductBloc, ProductState>(
+                            builder: (context, state) {
+                              return CustomTextField(
+                                keybordType: TextInputType.name,
+                                width: 850.w,
+                                hintText: StringManager.search.tr(),
+                                icon: Icons.search,
+                                textEditingController: searchController,
+                                validator: (v) {
+                                  return null;
+                                },
+                                textFieldColor:
+                                    ColorManager.grey.withOpacity(0.5),
+                                onFieldSubmittedFunc: (value) {
+                                  context.read<ProductBloc>().add(
+                                      ProductRequested(
+                                          search: value,
+                                          token:
+                                              context.read<AuthBloc>().token ??
+                                                  '',
+                                          storeId: widget.storeId,
+                                          categoryName: categoryModel
+                                                  ?.categoryDataModel
+                                                  ?.category[selectdCategory] ??
+                                              '0'));
+                                },
+                              );
+                            },
+                          ),
+                          SizedBox(
+                            height: 40.h,
+                          ),
+                          SizedBox(
+                            height: 150.h,
+                            width: 1.sw,
+                            child: BlocConsumer<ProductBloc, ProductState>(
+                              listener: (context, state) {
+                                if (state is CategroyGetSuccess &&
+                                    state.categoryModel.categoryDataModel!
+                                        .category.isNotEmpty) {
+                                  categoryModel = state.categoryModel;
+                                  context.read<ProductBloc>().add(
+                                      ProductRequested(
+                                          search: searchController.text,
+                                          token:
+                                              context.read<AuthBloc>().token ??
+                                                  '',
+                                          storeId: widget.storeId,
+                                          categoryName: state
+                                                  .categoryModel
+                                                  .categoryDataModel
+                                                  ?.category
+                                                  .first ??
+                                              '0'));
+                                }
+                                if (state is CategroyGetSuccess &&
+                                    state.categoryModel.categoryDataModel!
+                                        .category.isEmpty) {
+                                  setState(() {
+                                    hasCategort = false;
+                                  });
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is ProductInitial) {
+                                  context.read<ProductBloc>().add(
+                                      CategoryRequested(
+                                          token:
+                                              context.read<AuthBloc>().token ??
+                                                  '',
+                                          storeId: widget.storeId));
+                                }
+                                if (state is CategoryLoading) {
+                                  return Lottie.asset(AssetJsonManager.loading,
+                                      height: 100.h);
+                                }
+
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: categoryModel
+                                        ?.categoryDataModel?.category.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                          padding: EdgeInsetsDirectional.only(
+                                              start: 50.w, end: 50.w),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              searchController.clear();
+                                              setState(() {
+                                                selectdCategory = index;
+                                              });
+                                              context.read<ProductBloc>().add(
+                                                  ProductRequested(
+                                                      search:
+                                                          searchController.text,
+                                                      token: context
+                                                              .read<AuthBloc>()
+                                                              .token ??
+                                                          '',
+                                                      storeId: widget.storeId,
+                                                      categoryName: categoryModel
+                                                                  ?.categoryDataModel
+                                                                  ?.category[
+                                                              selectdCategory] ??
+                                                          '0'));
+                                            },
+                                            child: Text(
+                                              categoryModel?.categoryDataModel
+                                                      ?.category[index] ??
+                                                  '',
+                                              style: TextStyle(
+                                                  color:
+                                                      selectdCategory == index
+                                                          ? ColorManager.black
+                                                          : ColorManager.grey,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize:
+                                                      selectdCategory == index
+                                                          ? 45.sp
+                                                          : 35.sp),
+                                            ),
+                                          ));
+                                    });
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: BlocConsumer<ProductBloc, ProductState>(
+                              listener: (context, state) {},
+                              builder: (context, state) {
+                                if (state is ProductLoading) {
+                                  return const LoadingWidget();
+                                }
+                                if (state is ProductGetSuccess) {
+                                  return state.productModel.productDataModel!
+                                          .isEmpty
+                                      ? EmptyWidget(
+                                          height: 1.sh,
+                                        )
+                                      : GridView.builder(
+                                          shrinkWrap: true,
+                                          padding:
+                                              EdgeInsetsDirectional.symmetric(
+                                                  horizontal: 50.w,
+                                                  vertical: 30.h),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisSpacing: 40.h,
+                                                  mainAxisSpacing: 50.h,
+                                                  childAspectRatio: 1.3.h / 2.w,
+                                                  crossAxisCount: 2),
+                                          itemCount: state.productModel
+                                              .productDataModel?.length,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                                onTap: () {
+                                                  if (widget.categoryName ==
+                                                          ConstManager
+                                                              .clothesCategory ||
+                                                      widget.categoryName ==
+                                                          ConstManager
+                                                              .furnitureCategory) {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (_) =>
+                                                                ProductDetailsPage(
+                                                                  categoryName:
+                                                                      widget
+                                                                          .categoryName,
+                                                                  productModel:
+                                                                      state
+                                                                          .productModel,
+                                                                  index: index,
+                                                                )));
+                                                  }
+                                                },
+                                                child: productCardWidget(
+                                                  index: index,
+                                                  productModel:
+                                                      state.productModel,
+                                                ));
+                                          });
+                                }
+                                return const SizedBox();
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+              ),
             ],
           ),
         ),

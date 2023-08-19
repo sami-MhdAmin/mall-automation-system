@@ -121,8 +121,8 @@ class StoreModel {
 @JsonSerializable()
 class StoreDataModel {
   final int? id;
-  final String ?openTime;
-  final String ?closeTime;
+  final int ?openTime;
+  final int ?closeTime;
   final String ?name;
   final int ?storeSpace;
   final int ?floor;
