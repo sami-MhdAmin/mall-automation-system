@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../config/theme/color_manager.dart';
 import '../resource/asset_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EmptyWidget extends StatelessWidget {
   const EmptyWidget({super.key, required this.height});
@@ -21,7 +23,7 @@ class EmptyWidget extends StatelessWidget {
             height: 500.h,
           ),
           Text(
-            'no Data',
+            StringManager.noData.tr(),
             style: TextStyle(
                 color: ColorManager.black,
                 fontSize: 40.sp,

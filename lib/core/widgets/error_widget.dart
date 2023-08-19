@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../config/theme/color_manager.dart';
 import '../resource/asset_manager.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class FailuerWidget extends StatelessWidget {
   const FailuerWidget({
     super.key,
@@ -39,7 +40,7 @@ class FailuerWidget extends StatelessWidget {
           ),
           CustomButton(
               onPressed: onPressed,
-              text: 'Try Again')
+              text: StringManager.tryAgain.tr())
         ],
       ),
     );
