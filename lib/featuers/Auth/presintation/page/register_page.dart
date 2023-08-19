@@ -99,8 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               visibility: false,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return StringManager
-                                      .pleaseEnterYourFirstName
+                                  return StringManager.pleaseEnterYourFirstName
                                       .tr();
                                 }
                                 return null;
@@ -167,11 +166,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           visibility: visibility,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return StringManager.pleaseEnterYourPassword
-                                  .tr();
+                              return StringManager.pleaseEnterYourPassword.tr();
                             } else if (value.length <= 6) {
-                              return StringManager
-                                  .passwordMustBeSixCharacters
+                              return StringManager.passwordMustBeSixCharacters
                                   .tr();
                             }
                             return null;
@@ -199,8 +196,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              StringManager.doYouWantToSeeInvestmentOption
-                                  .tr(),
+                              StringManager.doYouWantToSeeInvestmentOption.tr(),
                               style: TextStyle(fontSize: 32.sp),
                             ),
                             const CustomCheckbox()
@@ -230,7 +226,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             text: StringManager.signUp.tr(),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                //maybe i should add bloc consumer
                                 context.read<AuthBloc>().add(
                                       AuthRegisterRequested(
                                           firstName: firstNameController.text,

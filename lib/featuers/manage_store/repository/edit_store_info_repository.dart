@@ -6,7 +6,12 @@ import '../../../core/errors/execption.dart';
 import '../../../core/network/network_info.dart';
 import '../models/store_model.dart';
 
-abstract class EditStoreInfoRepository{
-    Future<Either<Failure, StoreModel>> getStoreInfo(String token);
-
+abstract class EditStoreInfoRepository {
+  Future<Either<Failure, StoreModel>> getStoreInfo(String token);
+  Future<Either<Failure, StoreModel>> updateStoreInfo({
+    required String name_ar,
+    required String name_en,
+    required String openTime,
+    required String closeTime,
+  });
 }

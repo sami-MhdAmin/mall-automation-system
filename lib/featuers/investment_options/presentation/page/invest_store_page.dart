@@ -1,16 +1,20 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
+import 'package:jessy_mall/core/widgets/header_page.dart';
+import 'package:jessy_mall/featuers/investment_options/models/investment_store_model.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/page/stripe_payment/payment_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/slider_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'check_paypal.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class InvestStorePage extends StatelessWidget {
-  const InvestStorePage({super.key});
-
+  const InvestStorePage({super.key, required this.investStoreDataModel});
+  final InvestStoreDataModel investStoreDataModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +23,7 @@ class InvestStorePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          HeaderPage(title: StringManager.details.tr(), left: true),
           //slider image with animation
           SliderImage(),
 
@@ -32,11 +37,10 @@ class InvestStorePage extends StatelessWidget {
                   height: 8.h,
                 ),
                 Text(
-                  'Type  Clothes ',
+                  '${StringManager.type.tr()}  ${investStoreDataModel.type} ',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 22,
-                    fontFamily: 'SF Pro Display',
                     fontWeight: FontWeight.w500,
                     // height: 28,
                     letterSpacing: 0.35,
@@ -47,13 +51,13 @@ class InvestStorePage extends StatelessWidget {
                   height: 16.h,
                 ),
                 SizedBox(
-                  width: 51,
+                  width: 90,
                   child: Text(
-                    '\$230',
+                    '\$' "${investStoreDataModel.price}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF007AFF),
-                      fontSize: 20,
+                      fontSize: 55.sp,
                       fontFamily: 'SF Pro Display',
                       fontWeight: FontWeight.w600,
                       // height: 24,
@@ -69,7 +73,7 @@ class InvestStorePage extends StatelessWidget {
                   'Store Details',
                   style: TextStyle(
                     color: Color(0xFF333333),
-                    fontSize: 20,
+                    fontSize: 55.sp,
                     fontFamily: 'SF Pro Display',
                     fontWeight: FontWeight.w500,
                     // height: 24,
@@ -86,11 +90,10 @@ class InvestStorePage extends StatelessWidget {
                     Opacity(
                       opacity: 0.50,
                       child: Text(
-                        'Store Theme\nCategories \nDimensions \nRoom Count ',
+                        '${StringManager.floor.tr()}\n${StringManager.storeSpace.tr()} \n${StringManager.dimensions.tr()} \n${StringManager.roomCount.tr()} ',
                         style: TextStyle(
                           color: Color(0xFF333333),
-                          fontSize: 15,
-                          fontFamily: 'SF Compact Display',
+                          fontSize: 40.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -99,10 +102,10 @@ class InvestStorePage extends StatelessWidget {
                       width: 50,
                     ),
                     Text(
-                      'Yellow\nchair, ...\n25.6 x 31.5 x 37.4 inches\n 2',
+                      '${investStoreDataModel.floor}\n${investStoreDataModel.store_space}\n${investStoreDataModel.height} x ${investStoreDataModel.width} x ${investStoreDataModel.length} inches\n ${investStoreDataModel.roomCount}',
                       style: TextStyle(
                         color: Color(0xFF333333),
-                        fontSize: 15,
+                        fontSize: 40.sp,
                         fontFamily: 'SF Compact Display',
                         fontWeight: FontWeight.w400,
                       ),

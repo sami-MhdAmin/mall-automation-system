@@ -1,7 +1,11 @@
+import 'dart:io' as used;
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/const_manager.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
@@ -24,6 +28,23 @@ class EditStoreInfoBody extends StatefulWidget {
 }
 
 class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
+  used.File? imageController;
+
+  final picker = ImagePicker();
+  File? storeImage;
+
+  Future takePhotoFromGallery() async {
+    final selectedImage = await picker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    setState(() {
+      if (selectedImage != null) {
+        imageController = used.File(selectedImage.path);
+      }
+    });
+  }
+
   final TextEditingController storeNameController =
       TextEditingController(text: "Store Name");
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -75,19 +96,31 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                         offset: Offset(0, 280.h),
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
-                          child: CircleAvatar(
-                            //TODO : add image
+                          child: InkWell(
+                            onTap: () async {
+                              await takePhotoFromGallery();
+                              Image.file(
+                                used.File(imageController!.path),
+                                width: double.infinity,
+                                fit: BoxFit.fill,
+                              );
 
-                            radius: 160.r,
-                            backgroundColor: Colors.yellow,
-                            child: SizedBox.fromSize(
-                              size: Size.fromRadius(160.r),
-                              child: CachedNetworkImage(
-                                imageUrl: "${storeInfoModel?.image}" ?? "",
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                              storeImage = used.File(imageController!.path);
+                            },
+                            child: CircleAvatar(
+                              //TODO : add image CIRCULAR + loading
+
+                              radius: 160.r,
+                              backgroundColor: Colors.yellow,
+                              child: SizedBox.fromSize(
+                                size: Size.fromRadius(160.r),
+                                child: CachedNetworkImage(
+                                  imageUrl: "${storeInfoModel?.image}" ?? "",
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
                               ),
                             ),
                           ),
@@ -187,7 +220,12 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                 child: SizedBox(
                     width: 900.w,
                     child: CustomButton(
-                        onPressed: () {}, text: StringManager.update.tr())),
+                        onPressed: () {
+                          context.read<EditStoreBloc>().add(
+                              UpdateEditStoreEvent(storeImage!, "name_ar",
+                                  "name_en", "openTime", "closeTime"));
+                        },
+                        text: StringManager.update.tr())),
               ),
             ],
           );

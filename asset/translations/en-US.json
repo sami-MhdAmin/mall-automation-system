@@ -101,5 +101,10 @@
     "logout": "Logout",
     "extraSpaceRequest": "Extra space request",
     "increaseWarehouseSpace":"Increase warehouse space",
-    "m":"m"
+    "m":"m",
+    "investmentOption": "Investment Option",
+    "floor":"Floor: ",
+    "roomCount":"Room Count"
+
+
 }

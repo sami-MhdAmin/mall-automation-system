@@ -121,4 +121,7 @@ class StringManager {
   static String increaseWarehouseSpace = 'increaseWarehouseSpace';
 
   static String meter = 'm';
+  static String investmentOption = 'investmentOption';
+  static String floor = 'floor';
+  static String roomCount = 'roomCount';
 }

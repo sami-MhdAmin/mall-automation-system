@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/investment_store.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../../../core/resource/string_manager.dart';
 
 class InvestmentOptions extends StatelessWidget {
   const InvestmentOptions({super.key});
@@ -36,12 +39,11 @@ class InvestmentOptions extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: ColorManager.backgroundL,
           title: Text(
-            'Investment Option',
+            StringManager.investmentOption.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorManager.black,
               fontSize: 50.sp,
-              fontFamily: 'Merriweather',
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -70,52 +72,32 @@ class InvestmentOptions extends StatelessWidget {
   }
 }
 
-class Listing {
-  final String space;
-  final String type;
-  final String price;
+// class Listing {
+//   final String space;
+//   final String type;
+//   final String price;
 
-  Listing({
-    required this.space,
-    required this.type,
-    required this.price,
-  });
-}
+//   Listing({
+//     required this.space,
+//     required this.type,
+//     required this.price,
+//   });
+// }
 
 class InvestmentStandUI extends StatelessWidget {
-  // Create a webview controller
-  // final _controller = WebViewController()
-  //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  //   ..setNavigationDelegate(
-  //     NavigationDelegate(
-  //       onProgress: (int progress) {
-  //         // print the loading progress to the console
-  //         // you can use this value to show a progress bar if you want
-  //         debugPrint("Loading: $progress%");
-  //       },
-  //       onPageStarted: (String url) {},
-  //       onPageFinished: (String url) {},
-  //       onWebResourceError: (WebResourceError error) {},
-  //       onNavigationRequest: (NavigationRequest request) {
-  //         return NavigationDecision.navigate;
-  //       },
-  //     ),
-  //   )
-  //   ..loadRequest(
-  //       Uri.parse("https://app.vectary.com/p/67QoljN0bz9vp78OSy1tti"));
-  final List<Listing> listings = [
-    Listing(
-      space: '120 sq. ft.',
-      type: 'Snack',
-      price: '\$500/year',
-    ),
-    Listing(
-      space: '80 sq. ft.',
-      type: 'Caffe',
-      price: '\$400/year',
-    ),
-    // Add more listings as needed
-  ];
+  // final List<Listing> listings = [
+  //   Listing(
+  //     space: '120 sq. ft.',
+  //     type: 'Snack',
+  //     price: '\$500/year',
+  //   ),
+  //   Listing(
+  //     space: '80 sq. ft.',
+  //     type: 'Caffe',
+  //     price: '\$400/year',
+  //   ),
+  //   // Add more listings as needed
+  // ];
 
   InvestmentStandUI({super.key});
 
