@@ -1,14 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
 import 'package:jessy_mall/core/resource/const_manager.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/product_details_page.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/product_page.dart';
-import 'package:jessy_mall/featuers/stores/presentation/page/stores_page.dart';
+import 'package:jessy_mall/featuers/home/presintation/page/stores_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../widget/category_home_card_widget.dart';
@@ -25,6 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(context.read<AuthBloc>().userName);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -48,19 +51,12 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Yaman',
+                              context.read<AuthBloc>().userName ?? '',
                               style: TextStyle(
                                   color: ColorManager.black,
                                   fontSize: 40.sp,
                                   fontWeight: FontWeight.w900),
                             ),
-                            Text(
-                              'user',
-                              style: TextStyle(
-                                  color: ColorManager.grey,
-                                  fontSize: 30.sp,
-                                  fontWeight: FontWeight.w900),
-                            )
                           ],
                         ),
                       ],
@@ -140,6 +136,7 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => ProductPage(
+                                storeId: 0,
                                     categoryName: ConstManager.marketCategory,
                                   )));
                     },

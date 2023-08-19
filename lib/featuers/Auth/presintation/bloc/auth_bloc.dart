@@ -44,6 +44,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthLoginSuccess(user: loginModel));
         token = await _authRepostitory.getToken();
         role = await _authRepostitory.getUserRole();
+        userName = await _authRepostitory.getUserName();
+        investmentOption = _authRepostitory.getInvestmentOption();
       });
     });
 
@@ -61,8 +63,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthGetUserLocalInfo>((event, emit) async {
       token = await _authRepostitory.getToken();
       role = await _authRepostitory.getUserRole();
+      userName = await _authRepostitory.getUserName();
+      investmentOption = _authRepostitory.getInvestmentOption();
+    });
+    on<AuthChangeInvestmentOption>((event, emit) async {
+      _authRepostitory.setInvestmentOptine(event.investmentOption);
+      investmentOption = event.investmentOption;
     });
   }
   String? token;
   String? role;
+  String? userName;
+  int? investmentOption = 0;
 }

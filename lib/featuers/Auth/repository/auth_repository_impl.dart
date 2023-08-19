@@ -42,8 +42,12 @@ class AuthRepositoryImpl extends AuthRepository {
         }, (registerResponse) async {
           await _authLocalDataSource.setUserToken(registerResponse.data.token);
           await _authLocalDataSource
-              .setUserRole(registerResponse.data.user.roles.first);
+              .setUserName(registerResponse.data.user.name);
 
+          await _authLocalDataSource
+              .setUserRole(registerResponse.data.user.roles.first);
+          _authLocalDataSource.setInvestmentOptine(
+              registerResponse.data.user.investment_option ?? 0);
           return right(registerResponse);
         });
       } on ServerException {
@@ -68,8 +72,12 @@ class AuthRepositoryImpl extends AuthRepository {
           return Left(failure);
         }, (loginResponse) async {
           await _authLocalDataSource.setUserToken(loginResponse.data.token);
+         
+          await _authLocalDataSource.setUserName(loginResponse.data.user.name);
           await _authLocalDataSource
               .setUserRole(loginResponse.data.user.roles.first);
+          _authLocalDataSource.setInvestmentOptine(
+              loginResponse.data.user.investment_option ?? 0);
 
           return right(loginResponse);
         });
@@ -111,5 +119,21 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<String?> getUserRole() {
     return _authLocalDataSource.getUserRole();
+  }
+
+  @override
+  int? getInvestmentOption() {
+    return _authLocalDataSource.getInvestmentOptine();
+  }
+
+  @override
+  Future<void> setInvestmentOptine(int investmentOption) async {
+    _authLocalDataSource.setInvestmentOptine(investmentOption);
+  }
+
+  @override
+  Future<String?> getUserName() {
+     print(' dasdasdsa ${_authLocalDataSource.getUserName()}');
+    return _authLocalDataSource.getUserName();
   }
 }

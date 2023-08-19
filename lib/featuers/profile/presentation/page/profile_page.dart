@@ -37,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     print(context.read<AuthBloc>().token);
     print(context.read<AuthBloc>().role);
+    print(context.read<AuthBloc>().investmentOption);
 
     return BlocProvider(
       create: (context) => GetIt.I.get<ProfileBloc>(),
@@ -45,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
         body: SingleChildScrollView(
           child: BlocConsumer<ProfileBloc, ProfileState>(
             listener: (context, state) {
-              if (state is ProfileFailed) {
+              if (state is ProfileGetInfoFailed) {
                 //TODO: dialog with alert YAMANAAAAAAAA
               }
               if (state is ProfileGetInfoSuccess) {
@@ -171,17 +172,20 @@ class _ProfilePageState extends State<ProfilePage> {
                         },
                       ),
                       //invest store or stand
-                      ProfileCardWidget(
-                        titleInListTile: StringManager.investStoreOrStand.tr(),
-                        subtitleInListTile:
-                            "${StringManager.youHave.tr()}$standsAndStores ${StringManager.storeOrStandInvested.tr()}",
-                        navigatorFunc: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => InvestmentOptions()));
-                        },
-                      ),
+                      context.read<AuthBloc>().investmentOption == 1
+                          ? ProfileCardWidget(
+                              titleInListTile:
+                                  StringManager.investStoreOrStand.tr(),
+                              subtitleInListTile:
+                                  "${StringManager.youHave.tr()}$standsAndStores ${StringManager.storeOrStandInvested.tr()}",
+                              navigatorFunc: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => InvestmentOptions()));
+                              },
+                            )
+                          : const SizedBox.shrink(),
 
                       //settings
                       // ProfileCardWidget(
@@ -251,7 +255,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            const CustomCheckbox()
+                            CustomCheckbox(
+                              isChecked:
+                                  context.read<AuthBloc>().investmentOption ==
+                                          1
+                                      ? true
+                                      : false,
+                            ),
                           ],
                         ),
                       ),

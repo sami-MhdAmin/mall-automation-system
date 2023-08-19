@@ -9,11 +9,14 @@ import 'package:jessy_mall/featuers/investment_options/presentation/page/stripe_
 import 'package:easy_localization/easy_localization.dart';
 import 'package:jessy_mall/featuers/splash/splash_page.dart';
 
+import 'core/bloc/bloc_observer.dart';
 import 'delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import 'featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
 import 'injection_container/main_injection.dart';
 
 void main() async {
+    Bloc.observer = MyBlocObserver();
+
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await initInjection();

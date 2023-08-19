@@ -33,3 +33,8 @@ class AuthLoginEvent extends AuthEvent {
 class AuthLogoutRequested extends AuthEvent {}
 
 class AuthGetUserLocalInfo extends AuthEvent {}
+
+class AuthChangeInvestmentOption extends AuthEvent {
+  int investmentOption;
+  AuthChangeInvestmentOption({required this.investmentOption});
+}
