@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/investment_store.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/resource/string_manager.dart';
+import '../bloc/invest_option_bloc/invest_option_bloc.dart';
 
 class InvestmentOptions extends StatelessWidget {
   const InvestmentOptions({super.key});
@@ -35,37 +38,40 @@ class InvestmentOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorManager.backgroundL,
-          title: Text(
-            StringManager.investmentOption.tr(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: ColorManager.black,
-              fontSize: 50.sp,
-              fontWeight: FontWeight.w700,
+      child: BlocProvider(
+        create: (context) => GetIt.I.get<InvestOptionBloc>(),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: ColorManager.backgroundL,
+            title: Text(
+              StringManager.investmentOption.tr(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: ColorManager.black,
+                fontSize: 50.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            centerTitle: true,
+            bottom: PreferredSize(
+              preferredSize: _tabBar.preferredSize,
+              child: Material(
+                color: ColorManager.backgroundL,
+                child: _tabBar,
+              ),
             ),
           ),
-          centerTitle: true,
-          bottom: PreferredSize(
-            preferredSize: _tabBar.preferredSize,
-            child: Material(
-              color: ColorManager.backgroundL,
-              child: _tabBar,
-            ),
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            //began investment store UI
-            InvestmentStoreUI(),
-            //End investment store UI
+          body: TabBarView(
+            children: [
+              //began investment store UI
+              InvestmentStoreUI(),
+              //End investment store UI
 
-            // began investment stand
-            InvestmentStandUI(),
-            //end investment stand
-          ],
+              // began investment stand
+              InvestmentStandUI(),
+              //end investment stand
+            ],
+          ),
         ),
       ),
     );

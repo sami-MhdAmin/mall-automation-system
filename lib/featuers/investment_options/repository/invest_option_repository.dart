@@ -8,4 +8,6 @@ import '../../manage_store/models/store_model.dart';
 abstract class InvestOptionRepository {
   Future<Either<Failure, InvestStoreModel>> getStoreOptionToInvest(
       String token);
+
+  Future<Either<Failure, void>> postInvestStorebyId(int id, String token);
 }

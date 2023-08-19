@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/page/stripe_payment/stripe_keys.dart';
 
+import '../invest_store_page.dart';
+
 abstract class PaymentManager {
   static Future<void> makePayment(int amount, String currency) async {
     try {
@@ -10,6 +12,9 @@ abstract class PaymentManager {
       await _initializePaymentSheet(clientSecret);
       await Stripe.instance.presentPaymentSheet();
     } catch (error) {
+      print("i am sami in catch");
+      storeId = 0;
+      // investStoreDataModel = 0;
       throw Exception(error.toString());
     }
   }

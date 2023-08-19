@@ -19,3 +19,5 @@ class InvestStoreOptionFailed extends InvestOptionState {
 
   InvestStoreOptionFailed({required this.failure});
 }
+
+class InvestStoreByIdSuccess extends InvestOptionState {}

@@ -8,6 +8,8 @@ import 'package:jessy_mall/featuers/investment_options/presentation/bloc/invest_
 import 'package:jessy_mall/featuers/investment_options/presentation/page/invest_store_ui.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/page/invest_store_page.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../../../../core/utils/global_snackbar.dart';
+import '../../../../core/widgets/loading_widget.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
 
 class Listing {
@@ -53,47 +55,53 @@ class InvestmentStoreUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I.get<InvestOptionBloc>(),
-      child: Scaffold(
-        body: BlocConsumer<InvestOptionBloc, InvestOptionState>(
-          listener: (context, state) {
-            // TODO: implement listener
-            if (state is InvestStoreOptionFailed) {
-              //TODO: dialog with alert YAMANAAAAAAAA
-            }
-            if (state is InvestStoreOptionSuccessd) {
-              // print(state.profileModel.profileDataModel?.email);
-              investStoreModel = state.investStoreModel.allStores;
-            }
-          },
-          builder: (context, state) {
-            if (state is InvestOptionInitial) {
-              context.read<InvestOptionBloc>().add(GetInvestStoreOption(
-                  token: context.read<AuthBloc>().token ?? ''));
-            }
-            return ListView.builder(
-              itemCount: investStoreModel?.length ?? 0,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.all(30.w),
-                  child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => InvestStorePage(
-                                      investStoreDataModel:
-                                          investStoreModel![index],
-                                    )));
-                      },
-                      child:
-                          CardStore(listings: investStoreModel!, index: index)),
-                );
-              },
-            );
-          },
-        ),
+    return Scaffold(
+      body: BlocConsumer<InvestOptionBloc, InvestOptionState>(
+        listener: (context, state) {
+          // TODO: implement listener
+          if (state is InvestStoreOptionFailed) {
+            gShowErrorSnackBar(
+                context: context, message: "something went wrong");
+          }
+          if (state is InvestStoreOptionSuccessd) {
+            // print(state.profileModel.profileDataModel?.email);
+            investStoreModel = state.investStoreModel.allStores;
+          }
+        },
+        builder: (context, state) {
+          if (state is InvestOptionInitial) {
+            context.read<InvestOptionBloc>().add(GetInvestStoreOption(
+                token: context.read<AuthBloc>().token ?? ''));
+          }
+          return Stack(
+            children: [
+              ListView.builder(
+                itemCount: investStoreModel?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(30.w),
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => InvestStorePage(
+                                        investStoreDataModel:
+                                            investStoreModel![index],
+                                      )));
+                        },
+                        child: CardStore(
+                            listings: investStoreModel!, index: index)),
+                  );
+                },
+              ),
+              if (state is InvestOptionLoading)
+                const LoadingWidget(
+                  fullScreen: true,
+                ),
+            ],
+          );
+        },
       ),
     );
   }

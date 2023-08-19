@@ -104,7 +104,8 @@
     "m":"m",
     "investmentOption": "Investment Option",
     "floor":"Floor: ",
-    "roomCount":"Room Count"
+    "roomCount":"Room Count",
+    "invest":"Invest"
 
 
 }
