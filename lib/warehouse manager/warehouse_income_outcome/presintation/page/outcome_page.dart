@@ -1,40 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../../core/widgets/custom_card_movement_widget.dart';
+import '../../../../core/widgets/loading_widget.dart';
+import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
+import '../../models/outcome_model.dart';
+import '../bloc/warehouse_income_outcome_bloc.dart';
 
 class OutcomeBody extends StatelessWidget {
-  const OutcomeBody({super.key});
+  OutcomeBody({super.key});
+  List<OutcomeDataModel>? outcomeModelData;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: 100.h,
-          ),
-          Expanded(
-            child: ListView.builder(
-                itemCount: 8,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      CustomCardMovementWidget(
-                        height: 350.h,
-                        firstTextField: "product X",
-                        secondTextField: "22/12/2023",
-                        quantityTextField: "04",
-                        fourthTextField: "Store Name",
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      )
-                    ],
-                  );
-                }),
-          ),
-        ],
+    return BlocProvider(
+      create: (context) => GetIt.I.get<WarehouseIncomeOutcomeBloc>(),
+      child: Scaffold(
+        body: BlocConsumer<WarehouseIncomeOutcomeBloc,
+            WarehouseIncomeOutcomeState>(
+          listener: (context, state) {
+            if (state is WarehouseOutcomeGetDataSuccess) {
+              outcomeModelData = state.outcomeModel.data;
+            }
+          },
+          builder: (context, state) {
+            if (state is WarehouseInitial) {
+              context.read<WarehouseIncomeOutcomeBloc>().add(
+                  OutcomeGetOutcomeDataEvent(
+                      token: context.read<AuthBloc>().token ?? ''));
+            }
+            return Stack(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: outcomeModelData?.length ?? 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: [
+                                CustomCardMovementWidget(
+                                  height: 350.h,
+                                  firstTextField: outcomeModelData?[index]
+                                          .warehouseProduct?[0]
+                                          .name ??
+                                      "product x",
+                                  secondTextField:
+                                      outcomeModelData?[index].outDate ??
+                                          "20/08/2023",
+                                  quantityTextField: outcomeModelData?[index]
+                                          .quantityAfter
+                                          .toString() ??
+                                      "5000",
+                                  fourthTextField:
+                                      outcomeModelData?[index].warehouseStore ??
+                                          "storreeeeee",
+                                ),
+                                SizedBox(
+                                  height: 30.h,
+                                )
+                              ],
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+                if (state is WarehouseOutcomeLoading)
+                  const LoadingWidget(fullScreen: true),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

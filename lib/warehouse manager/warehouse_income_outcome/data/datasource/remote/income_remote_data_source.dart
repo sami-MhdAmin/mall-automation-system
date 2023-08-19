@@ -3,29 +3,26 @@ import 'package:dio/dio.dart';
 
 import '../../../../../core/errors/base_error.dart';
 import '../../../../../core/resource/string_manager.dart';
-import '../../../models/profile_model.dart';
+import '../../../models/income_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-abstract class ProfileRemoteDataSource {
-  Future<Either<Failure, ProfileModel>> getProfileInfo(String token);
+abstract class IncomeRemoteDataSource {
+  Future<Either<Failure, IncomeModel>> getIncomeProducts(String token);
 }
 
-class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
+class IncomeRemoteDataSourceImpl extends IncomeRemoteDataSource {
   final Dio dioClient;
 
-  ProfileRemoteDataSourceImpl(this.dioClient);
-
+  IncomeRemoteDataSourceImpl(this.dioClient);
   @override
-  Future<Either<Failure, ProfileModel>> getProfileInfo(String token) async {
+  Future<Either<Failure, IncomeModel>> getIncomeProducts(String token) async {
     final Response response;
     try {
       dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
-
-      response = await dioClient.get('/profile');
+      response = await dioClient.get("/ins");
       if (response.statusCode == 200 || response.statusCode == 201) {
-        //TODO: note: as Map<String, dynamic>
         return Right(
-            ProfileModel.fromJson(response.data as Map<String, dynamic>));
+            IncomeModel.fromJson(response.data as Map<String, dynamic>));
       }
     } on DioError catch (e) {
       if (e.response == null) {

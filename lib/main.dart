@@ -8,6 +8,7 @@ import 'package:jessy_mall/featuers/investment_options/presentation/page/stripe_
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:jessy_mall/featuers/splash/splash_page.dart';
+import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages/warehouse_home_page.dart';
 
 import 'delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import 'featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
             home: SplashPage(),
             // home: const DeliveryHomePage(),
             // home: BottomNavigationBarWidget(),
+            // home: WarehouseHomePage(),
           ),
         );
       },
