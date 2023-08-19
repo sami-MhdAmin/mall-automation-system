@@ -8,5 +8,8 @@ class AssetImageManager {
 
 class AssetJsonManager {
   static const String loading = "asset/json/loading.json";
+  static const String empty = "asset/json/empty.json";
+  static const String error = "asset/json/error.json";
+
   // static const String market = "asset/images/messi.jpg";
 }

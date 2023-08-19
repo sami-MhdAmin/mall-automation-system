@@ -1,15 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/featuers/home/models/home_model.dart';
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/asset_manager.dart';
 import '../../../../core/widgets/custom_counter.dart';
 
 class productCardWidget extends StatelessWidget {
-  const productCardWidget({
-    super.key,
-  });
+  productCardWidget({super.key, this.productModel,required this.index});
+  ProductModel? productModel;
+  int index;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +32,11 @@ class productCardWidget extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(50.r),
-                child: Image.asset(
-                  AssetImageManager.market,
-                  height: 600.h,
+                child: Image.network(
+                  productModel!.productDataModel?[index].image??'',
+                  // scale: 1,
+                  fit: BoxFit.fill, height: 600.h,
                   width: 1.sw,
-                  fit: BoxFit.fill,
                 ),
               ),
               Padding(
@@ -65,7 +65,7 @@ class productCardWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsetsDirectional.only(start: 25.w),
             child: Text(
-              'Minimal Stand',
+              productModel!.productDataModel?[index].name??'',
               style: TextStyle(
                   color: ColorManager.black,
                   fontSize: 40.sp,
@@ -76,13 +76,15 @@ class productCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                '24.00',
+                '${productModel!.productDataModel?[index].price}',
                 style: TextStyle(
                     color: ColorManager.black,
                     fontSize: 40.sp,
                     fontWeight: FontWeight.w700),
               ),
-               Counter(x: 1,),
+              Counter(
+                x: 1,
+              ),
             ],
           ),
           const SizedBox()

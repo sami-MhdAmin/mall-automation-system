@@ -17,3 +17,5 @@ class EditStoreFailed extends EditStoreState {
   final Failure faliuer;
   EditStoreFailed({required this.faliuer});
 }
+
+class UpdateStoreSuccess extends EditStoreState {}

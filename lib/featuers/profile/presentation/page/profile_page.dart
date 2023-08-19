@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jessy_mall/core/utils/global_snackbar.dart';
+import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/langauge_switcher_widget.dart';
 import 'package:jessy_mall/core/widgets/loading_widget.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/page/login_page.dart';
@@ -14,6 +15,7 @@ import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/asset_manager.dart';
 import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_check_box.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
 
 import '../../models/profile_model.dart';
@@ -37,6 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     print(context.read<AuthBloc>().token);
     print(context.read<AuthBloc>().role);
+    print(context.read<AuthBloc>().investmentOption);
 
     return BlocProvider(
       create: (context) => GetIt.I.get<ProfileBloc>(),
@@ -45,11 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
         body: SingleChildScrollView(
           child: BlocConsumer<ProfileBloc, ProfileState>(
             listener: (context, state) {
-              if (state is ProfileGetInfoFailed) {
-                //TODO: dialog with alert YAMANAAAAAAAA
-              }
               if (state is ProfileGetInfoSuccess) {
-                print(state.profileModel.profileDataModel?.email);
                 profileModel = state.profileModel.profileDataModel;
                 int storeCount = profileModel?.store ?? 0;
                 int standCount = profileModel?.stand ?? 0;
@@ -58,6 +57,15 @@ class _ProfilePageState extends State<ProfilePage> {
               }
             },
             builder: (context, state) {
+              if (state is ProfileGetInfoFailed) {
+                return FailuerWidget(
+                  errorMessage: state.faliuer.message,
+                  onPressed: () {
+                    context.read<ProfileBloc>().add(ProfileGetProfileInfoEvent(
+                        token: context.read<AuthBloc>().token ?? ''));
+                  },
+                );
+              }
               if (state is ProfileInitial) {
                 context.read<ProfileBloc>().add(ProfileGetProfileInfoEvent(
                     token: context.read<AuthBloc>().token ?? ''));
@@ -171,17 +179,20 @@ class _ProfilePageState extends State<ProfilePage> {
                         },
                       ),
                       //invest store or stand
-                      ProfileCardWidget(
-                        titleInListTile: StringManager.investStoreOrStand.tr(),
-                        subtitleInListTile:
-                            "${StringManager.youHave.tr()}$standsAndStores ${StringManager.storeOrStandInvested.tr()}",
-                        navigatorFunc: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => InvestmentOptions()));
-                        },
-                      ),
+                      context.read<AuthBloc>().investmentOption == 1
+                          ? ProfileCardWidget(
+                              titleInListTile:
+                                  StringManager.investStoreOrStand.tr(),
+                              subtitleInListTile:
+                                  "${StringManager.youHave.tr()}$standsAndStores ${StringManager.storeOrStandInvested.tr()}",
+                              navigatorFunc: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => InvestmentOptions()));
+                              },
+                            )
+                          : const SizedBox.shrink(),
 
                       //settings
                       // ProfileCardWidget(
@@ -251,7 +262,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            const CustomCheckbox()
+                            CustomCheckbox(
+                              isChecked:
+                                  context.read<AuthBloc>().investmentOption == 1
+                                      ? true
+                                      : false,
+                            ),
                           ],
                         ),
                       ),

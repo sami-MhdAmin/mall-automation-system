@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 
+import '../../featuers/Auth/presintation/bloc/auth_bloc.dart';
+
 class CustomCheckbox extends StatefulWidget {
-  const CustomCheckbox({super.key});
+  CustomCheckbox({super.key, required this.isChecked, });
+  bool isChecked;
 
   @override
   State<CustomCheckbox> createState() => _CustomCheckboxState();
 }
 
 class _CustomCheckboxState extends State<CustomCheckbox> {
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
@@ -25,14 +27,20 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
       return ColorManager.foregroundL;
     }
 
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        return Checkbox(
+          checkColor: Colors.white,
+          fillColor: MaterialStateProperty.resolveWith(getColor),
+          value: widget.isChecked,
+          onChanged: (bool? value) {
+            context.read<AuthBloc>().add(AuthChangeInvestmentOption(
+                investmentOption: value == true ? 1 : 0));
+            setState(() {
+              widget.isChecked = value!;
+            });
+          },
+        );
       },
     );
   }

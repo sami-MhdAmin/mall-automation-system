@@ -100,5 +100,10 @@
     "logout": "تسجيل الخروج",
     "extraSpaceRequest": "طلب مساحة إضافية",
     "increaseWarehouseSpace": "زيادة مساحة المستودع",
-    "m": "م"
+    "m": "م",
+    "investmentOption": "خيارات الإستثمار",
+    "floor":"الطابق: ",
+    "roomCount": "عدد الغرف",
+    "noData":"لا يوجد بيانات",
+    "tryAgain":"إعادة المحاولة"
 }
