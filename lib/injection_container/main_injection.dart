@@ -8,6 +8,7 @@ import 'edit_store_injection.dart';
 import 'favorite_injection.dart';
 import 'income_outcome_injection.dart';
 import 'profile_injection.dart';
+import 'warehouse_extra_space_requests_injection.dart';
 import 'warehouse_products_injection.dart';
 
 Future<void> initInjection() async {
@@ -21,4 +22,5 @@ Future<void> initInjection() async {
   await favoriteInjection();
   await investStoreOptionInjection();
   await warehouseProductsInjection();
+  await warehouseExtraSpaceRequestsInjection();
 }

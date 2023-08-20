@@ -44,17 +44,17 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> gShowSuccessSnackBar(
           Icon(
             Icons.done,
             color: Colors.white,
-            size: 20.h,
+            size: 40.h,
           ),
           SizedBox(width: 8.w),
           SizedBox(
             width: 1.sw - 100.w,
             child: Text(
               message,
-              textDirection: TextDirection.rtl,
+              // textDirection: TextDirection.rtl,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14.sp,
+                  fontSize: 30.sp,
                   fontWeight: FontWeight.w400),
             ),
           ),

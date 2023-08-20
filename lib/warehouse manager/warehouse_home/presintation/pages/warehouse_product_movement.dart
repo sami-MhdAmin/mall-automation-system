@@ -70,24 +70,27 @@ class WareHouseProductMovementPage extends StatelessWidget {
                         height: 1.sh,
                       )
                     : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           HeaderPage(
                             title: StringManager.productMovement.tr(),
                             left: true,
                           ),
 
-                          Padding(
-                            padding: EdgeInsetsDirectional.symmetric(
-                                horizontal: 30.w),
-                            child: Text(
-                              StringManager.income.tr(),
-                              textAlign: TextAlign.right,
-                              style: const TextStyle(
-                                color: Color(0xFF232323),
-                                fontSize: 16,
-                                fontFamily: 'Nunito Sans',
-                                fontWeight: FontWeight.w700,
+                          SizedBox(
+                            width: 1.sw,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.symmetric(
+                                horizontal: 70.w,
+                              ),
+                              child: Text(
+                                "${StringManager.income.tr()}:",
+                                // textAlign: TextAlign.right,
+                                style: const TextStyle(
+                                  color: Color(0xFF232323),
+                                  fontSize: 16,
+                                  fontFamily: 'Nunito Sans',
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                           ),
@@ -144,17 +147,19 @@ class WareHouseProductMovementPage extends StatelessWidget {
                           SizedBox(
                             height: 30.h,
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.symmetric(
-                                horizontal: 30.w),
-                            child: Text(
-                              StringManager.outcome.tr(),
-                              textAlign: TextAlign.right,
-                              style: const TextStyle(
-                                color: Color(0xFF232323),
-                                fontSize: 16,
-                                fontFamily: 'Nunito Sans',
-                                fontWeight: FontWeight.w700,
+                          SizedBox(
+                            width: 1.sw,
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.symmetric(
+                                  horizontal: 70.w),
+                              child: Text(
+                                "${StringManager.outcome.tr()}:",
+                                style: const TextStyle(
+                                  color: Color(0xFF232323),
+                                  fontSize: 16,
+                                  fontFamily: 'Nunito Sans',
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                           ),
