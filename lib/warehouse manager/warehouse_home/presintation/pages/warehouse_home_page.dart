@@ -10,8 +10,6 @@ import '../../../../core/utils/global_snackbar.dart';
 import '../../../../core/widgets/langauge_switcher_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../../../featuers/Auth/presintation/page/login_page.dart';
-import '../../../../featuers/investment_options/presentation/page/investment_options.dart';
-import '../../../../featuers/investment_options/presentation/widgets/investment_store.dart';
 import '../../../warehouse_extra_space_request/presentation/pages/warehouse_extra_space_requests.dart';
 import '../../../warehouse_income_outcome/presintation/page/income_page.dart';
 import '../../../warehouse_income_outcome/presintation/page/outcome_page.dart';

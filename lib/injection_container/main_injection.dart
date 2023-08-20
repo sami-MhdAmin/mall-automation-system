@@ -1,5 +1,6 @@
 import 'package:jessy_mall/injection_container/global_injection.dart';
 import 'package:jessy_mall/injection_container/invest_store_option_injection.dart';
+import 'package:jessy_mall/injection_container/warehouse_orders_injection.dart';
 
 import 'auth_injection.dart';
 import 'dio_init_client.dart';
@@ -23,4 +24,5 @@ Future<void> initInjection() async {
   await investStoreOptionInjection();
   await warehouseProductsInjection();
   await warehouseExtraSpaceRequestsInjection();
+  await warehouseOrdersInjection();
 }
