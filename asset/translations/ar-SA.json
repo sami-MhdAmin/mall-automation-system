@@ -106,5 +106,8 @@
     "roomCount": "عدد الغرف",
     "invest": "استثمار",
     "noData":"لا يوجد بيانات",
-    "tryAgain":"إعادة المحاولة"
+    "tryAgain":"إعادة المحاولة",
+    "storeDetailsUpdated": "تم تحديث المعلومات",
+    "openTime": "ساعة الدوام",
+    "closeTime": "ساعة الإغلاق"
 }

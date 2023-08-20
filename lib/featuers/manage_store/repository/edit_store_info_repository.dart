@@ -9,6 +9,8 @@ import '../models/store_model.dart';
 abstract class EditStoreInfoRepository {
   Future<Either<Failure, StoreModel>> getStoreInfo(String token);
   Future<Either<Failure, StoreModel>> updateStoreInfo({
+    required int id,
+    required String token,
     required String name_ar,
     required String name_en,
     required String openTime,

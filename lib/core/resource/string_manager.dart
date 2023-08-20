@@ -127,4 +127,7 @@ class StringManager {
   static String invest = 'invest';
   static String noData = 'noData';
   static String tryAgain = 'tryAgain';
+  static String storeDetailsUpdated = 'storeDetailsUpdated';
+  static String openTime = 'openTime';
+  static String closeTime = 'closeTime';
 }

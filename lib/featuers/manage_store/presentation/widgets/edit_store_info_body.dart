@@ -18,7 +18,11 @@ import 'package:jessy_mall/featuers/manage_store/presentation/widgets/time_picke
 import 'package:easy_localization/easy_localization.dart';
 import 'package:jessy_mall/featuers/profile/presentation/bloc/profile_bloc.dart';
 
+import '../../../../core/utils/global_snackbar.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
+
+String? openStoreTime;
+String? closeStoreTime;
 
 class EditStoreInfoBody extends StatefulWidget {
   const EditStoreInfoBody({super.key});
@@ -46,7 +50,7 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
   }
 
   final TextEditingController storeNameController =
-      TextEditingController(text: "Store Name");
+      TextEditingController(text: StringManager.storeName.tr());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   StoreInfoModel? storeInfoModel;
   @override
@@ -88,7 +92,11 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                 child: Column(
                   children: [
                     //TODO translete
-                    HeaderPage(title: "Edit store", left: true),
+                    HeaderPage(
+                      title: StringManager.editStroeInfo.tr(),
+                      left: true,
+                      color: ColorManager.backgroundL,
+                    ),
                     SizedBox(
                       width: 350.r,
                       height: 350.r,
@@ -161,9 +169,9 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                       child: TimePickerOptions(
                         themeMode: ThemeMode.dark,
                         useMaterial3: true,
-                        textOpenOrClose: "Open time",
+                        textOpenOrClose: StringManager.openTime.tr(),
                         // openOrCloseTime: ,
-                        color: ColorManager.green,
+                        color: ColorManager.green, openOrCloseStoreTime: 1,
                       ),
                     ),
                     SizedBox(
@@ -171,8 +179,9 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                       child: TimePickerOptions(
                         themeMode: ThemeMode.dark,
                         useMaterial3: true,
-                        textOpenOrClose: "Close time",
+                        textOpenOrClose: StringManager.closeTime.tr(),
                         color: ColorManager.red,
+                        openOrCloseStoreTime: 0,
                       ),
                     )
                   ],
@@ -203,8 +212,10 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                         Text(StringManager.storeSpace.tr() +
                             "${storeInfoModel?.store_space} m"),
                         // Text(StringManager.availableStorageSpace.tr() + '25 m'),
-                        Text("Open time: " + '${storeInfoModel?.openTime}'),
-                        Text("Close time: " + '${storeInfoModel?.closeTime}'),
+                        Text("${StringManager.openTime.tr()}: " +
+                            '${storeInfoModel?.openTime}'),
+                        Text("${StringManager.closeTime.tr()}: " +
+                            '${storeInfoModel?.closeTime}'),
                       ],
                     ),
                   ),
@@ -222,8 +233,21 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                     child: CustomButton(
                         onPressed: () {
                           context.read<EditStoreBloc>().add(
-                              UpdateEditStoreEvent(storeImage!, "name_ar",
-                                  "name_en", "openTime", "closeTime"));
+                              UpdateEditStoreEvent(
+                                  id: storeInfoModel!.id!,
+                                  token: context.read<AuthBloc>().token!,
+                                  name_ar: "name_ar",
+                                  name_en: "name_en",
+                                  openTime: openStoreTime ??
+                                      storeInfoModel!.openTime.toString(),
+                                  closeTime: closeStoreTime ??
+                                      storeInfoModel!.closeTime.toString()));
+
+                          //TODO get time and names, add snackbar and pop
+                          gShowSuccessSnackBar(
+                              context: context,
+                              message: StringManager.storeDetailsUpdated.tr());
+                          Navigator.pop(context);
                         },
                         text: StringManager.update.tr())),
               ),
