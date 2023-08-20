@@ -107,5 +107,8 @@
     "roomCount":"Room Count",
     "invest":"Invest",
     "noData": "Ther Is No Data",
-    "tryAgain": "Try Agian"
+    "tryAgain": "Try Agian",
+    "storeDetailsUpdated": "Store details updated",
+    "openTime": "Open time",
+    "closeTime": "Close time"
 }

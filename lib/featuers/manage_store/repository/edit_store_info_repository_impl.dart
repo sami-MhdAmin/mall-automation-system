@@ -35,11 +35,27 @@ class EditStoreInfoRepositoryImpl extends EditStoreInfoRepository {
 
   @override
   Future<Either<Failure, StoreModel>> updateStoreInfo(
-      {required String name_ar,
+      {required int id,
+      required String token,
+      required String name_ar,
       required String name_en,
       required String openTime,
-      required String closeTime}) {
-    // TODO: implement updateStoreInfo
-    throw UnimplementedError();
+      required String closeTime}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _editStoreInfoRemoteDataSource.updateStoreInfo(
+            id, token, name_ar, name_en, openTime, closeTime);
+
+        return addSuccess.fold((failure) {
+          return Left(failure);
+        }, (updateRespone) async {
+          return right(updateRespone);
+        });
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
   }
 }

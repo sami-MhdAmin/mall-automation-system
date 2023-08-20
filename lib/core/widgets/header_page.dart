@@ -5,11 +5,13 @@ class HeaderPage extends StatelessWidget {
   final String title;
   final bool left;
   final IconButton? right;
+  final Color? color;
   const HeaderPage({
     Key? key,
     required this.title,
     required this.left,
     this.right,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -39,9 +41,8 @@ class HeaderPage extends StatelessWidget {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xFF303030),
+                color: color ?? const Color(0xFF303030),
                 fontSize: 50.sp,
-                fontFamily: 'Merriweather',
                 fontWeight: FontWeight.w700,
               ),
             ),

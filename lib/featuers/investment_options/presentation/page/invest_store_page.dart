@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
+import 'package:jessy_mall/core/utils/global_snackbar.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
@@ -151,6 +152,8 @@ class InvestStorePage extends StatelessWidget {
                                     storeId: storeId!,
                                     token: context.read<AuthBloc>().token!));
                             print("inside if after request");
+                            gShowSuccessSnackBar(
+                                context: context, message: "message");
                           }
                           // Navigator.push(
                           //     context,

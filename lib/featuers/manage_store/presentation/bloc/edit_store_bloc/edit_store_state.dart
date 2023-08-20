@@ -18,4 +18,8 @@ class EditStoreFailed extends EditStoreState {
   EditStoreFailed({required this.faliuer});
 }
 
-class UpdateStoreSuccess extends EditStoreState {}
+class UpdateStoreSuccess extends EditStoreState {
+  final StoreModel storeModelUpdated;
+
+  UpdateStoreSuccess({required this.storeModelUpdated});
+}
