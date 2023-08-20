@@ -9,6 +9,7 @@ import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/outcome_model.dart';
 import '../bloc/warehouse_income_outcome_bloc.dart';
 
+// ignore: must_be_immutable
 class OutcomeBody extends StatelessWidget {
   OutcomeBody({super.key});
   List<OutcomeDataModel>? outcomeModelData;
