@@ -103,8 +103,9 @@
     "increaseWarehouseSpace": "Increase warehouse space",
     "m": "m",
     "investmentOption": "Investment Option",
-    "floor": "Floor: ",
-    "roomCount": "Room Count",
+    "floor":"Floor: ",
+    "roomCount":"Room Count",
+    "invest":"Invest",
     "noData": "Ther Is No Data",
     "tryAgain": "Try Agian"
 }

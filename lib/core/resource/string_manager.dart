@@ -124,8 +124,7 @@ class StringManager {
   static String investmentOption = 'investmentOption';
   static String floor = 'floor';
   static String roomCount = 'roomCount';
+  static String invest = 'invest';
   static String noData = 'noData';
   static String tryAgain = 'tryAgain';
-
-
 }

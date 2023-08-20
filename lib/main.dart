@@ -14,6 +14,8 @@ import 'core/bloc/bloc_observer.dart';
 import 'delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import 'featuers/Auth/presintation/page/login_page.dart';
 import 'featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
+import 'featuers/investment_options/presentation/bloc/invest_option_bloc/invest_option_bloc.dart';
+import 'featuers/investment_options/presentation/page/invest_store_page.dart';
 import 'injection_container/main_injection.dart';
 
 void main() async {
@@ -43,6 +45,9 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(
               create: (context) => GetIt.I.get<AuthBloc>(),
+            ),
+            BlocProvider(
+              create: (context) => GetIt.I.get<InvestOptionBloc>(),
             ),
           ],
           child: MaterialApp(

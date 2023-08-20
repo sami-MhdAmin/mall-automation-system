@@ -19,6 +19,6 @@ Future<void> initInjection() async {
   await editStoreInjection();
   await incomeOutcomeInjection();
   await favoriteInjection();
-
+  await investStoreOptionInjection();
   await warehouseProductsInjection();
 }

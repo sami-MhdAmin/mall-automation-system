@@ -24,5 +24,17 @@ class InvestOptionBloc extends Bloc<InvestOptionEvent, InvestOptionState> {
         emit(InvestStoreOptionSuccessd(investStoreModel: investStoreModel));
       });
     });
+    on<InvestStoreEvent>((event, emit) async {
+      // TODO: implement event handler
+      emit(InvestOptionLoading());
+      final successOrFailuer = await _investOptionRepository
+          .postInvestStorebyId(event.storeId, event.token);
+
+      successOrFailuer.fold((error) {
+        emit(InvestStoreOptionFailed(failure: error));
+      }, (data) {
+        emit(InvestStoreByIdSuccess());
+      });
+    });
   }
 }
