@@ -1,3 +1,4 @@
+import 'package:jessy_mall/injection_container/delivery_injection.dart';
 import 'package:jessy_mall/injection_container/global_injection.dart';
 import 'package:jessy_mall/injection_container/invest_store_option_injection.dart';
 import 'package:jessy_mall/injection_container/warehouse_orders_injection.dart';
@@ -23,6 +24,7 @@ Future<void> initInjection() async {
   await favoriteInjection();
   await investStoreOptionInjection();
   await warehouseProductsInjection();
+  await dileveryInjection();
   await warehouseExtraSpaceRequestsInjection();
   await warehouseOrdersInjection();
 }

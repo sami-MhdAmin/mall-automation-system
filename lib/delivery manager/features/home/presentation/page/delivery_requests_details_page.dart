@@ -1,205 +1,259 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:jessy_mall/core/utils/global_snackbar.dart';
 
 import '../../../../../core/resource/string_manager.dart';
 import '../../../../../core/widgets/header_page.dart';
-import '../../models/delivery_models.dart';
+import '../../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
+import '../../models/delivery_order_model.dart';
+import '../bloc/delivery_manager_bloc/dilevery_manager_home_bloc.dart';
 import '../widgets/confirm_reject_Button.dart';
 import '../widgets/delivery_manager_order_details_widget.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class DeliveryDetailsPage extends StatefulWidget {
-  const DeliveryDetailsPage({required this.deliveryOrderDetailId, super.key});
+  const DeliveryDetailsPage({
+    Key? key,
+    required this.deliveryDataOrderModel,
+  }) : super(key: key);
 
-  final int deliveryOrderDetailId;
+  // final int deliveryOrderDetailId;
+  final DeliveryDataOrderModel? deliveryDataOrderModel;
 
   @override
   State<DeliveryDetailsPage> createState() => _DeliveryDetailsPageState();
 }
 
 class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
-  List<DeliveryOrderDetailsModel> OrderDetailsList = [];
+  // List<DeliveryOrderDetailsModel> OrderDetailsList = [];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          HeaderPage(
-            left: true,
-            title: StringManager.orderDetails.tr(),
-            // right: IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
-          ),
-          SizedBox(
-            height: 50.h,
-          ),
-          SizedBox(
-            height: 1520.h,
-            width: 1000.w,
-            child: Card(
-              color: Colors.white,
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20.w,
-                      vertical: 30.h,
+    return BlocProvider(
+      create: (context) => GetIt.I.get<DileveryManagerHomeBloc>(),
+      child: Scaffold(
+        body: BlocBuilder<DileveryManagerHomeBloc, DileveryManagerHomeState>(
+          builder: (context, state) {
+            return Column(
+              children: [
+                HeaderPage(
+                  left: true,
+                  title: StringManager.orderDetails.tr(),
+                  // right: IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
+                ),
+                SizedBox(
+                  height: 50.h,
+                ),
+                SizedBox(
+                  height: 1520.h,
+                  width: 1000.w,
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Text(
-                          '${StringManager.to.tr()}: ',
-                          style: const TextStyle(
-                            color: Color(0xFF808080),
-                            fontSize: 16,
-                            fontFamily: 'Nunito Sans',
-                            fontWeight: FontWeight.w600,
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20.w,
+                            vertical: 30.h,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                '${StringManager.to.tr()}: ',
+                                style: const TextStyle(
+                                  color: Color(0xFF808080),
+                                  fontSize: 16,
+                                  fontFamily: 'Nunito Sans',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                widget.deliveryDataOrderModel?.from_who ?? " ",
+                                style: const TextStyle(
+                                  color: Color(0xFF232323),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const Spacer(),
+                              Text(
+                                widget.deliveryDataOrderModel?.date ?? " ",
+                                style: const TextStyle(
+                                  color: Color(0xFF999999),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const Text(
-                          //TODO: take it from backend,
-                          "Salimo",
-                          style: TextStyle(
-                            color: Color(0xFF232323),
-                            fontSize: 16,
-                            fontFamily: 'Nunito Sans',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const Spacer(),
-                        const Text(
-                          '20/03/2020',
-                          style: TextStyle(
+                        SizedBox(
+                          width: 960.w,
+                          child: const Divider(
                             color: Color(0xFF999999),
-                            fontSize: 16,
-                            fontFamily: 'Nunito Sans',
-                            fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(
+                          height: 1300.h,
+                          width: 900.w,
+                          child: ListView.builder(
+                            // itemCount: OrderDetailsList.length,
+                            itemCount: widget.deliveryDataOrderModel
+                                    ?.store_products?.length ??
+                                0,
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10.h,
+                              horizontal: 10.w,
+                            ),
+                            itemBuilder: (context, index) {
+                              return DeliveryManagerOrderDetailsWidget(
+                                imageNetworkSource: widget
+                                        .deliveryDataOrderModel
+                                        ?.store_products?[index]
+                                        .image ??
+                                    "https://i.ytimg.com/vi/5gO0xpY_Y3E/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhCIFQoZTAP&rs=AOn4CLBdtxYbLyxjQVkn_V7q9JEJDnP0Bg",
+                                productName: widget.deliveryDataOrderModel
+                                        ?.store_products?[index].name ??
+                                    "Product X",
+                                storeName: widget.deliveryDataOrderModel
+                                        ?.store_products?[index].store_name ??
+                                    "Store name", //TODO store name from back
+                                quantity: widget.deliveryDataOrderModel
+                                        ?.store_products?[index].quantity
+                                        .toString() ??
+                                    "0",
+                              );
+                            },
+                          ),
+                        )
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 960.w,
-                    child: const Divider(
-                      color: Color(0xFF999999),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 1300.h,
-                    width: 900.w,
-                    child: ListView.builder(
-                      // itemCount: OrderDetailsList.length,
-                      itemCount: 8,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10.h,
-                        horizontal: 10.w,
+                ),
+                SizedBox(
+                  height: 50.h,
+                ),
+                SizedBox(
+                  width: 900.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${StringManager.location.tr()}: ",
+                        style: TextStyle(
+                          color: const Color(0xFF808080),
+                          fontSize: 46.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                      itemBuilder: (context, index) {
-                        return const DeliveryManagerOrderDetailsWidget(
-                          imageNetworkSource:
-                              "https://media.istockphoto.com/id/912819604/vector/storefront-flat-design-e-commerce-icon.jpg?s=612x612&w=0&k=20&c=_x_QQJKHw_B9Z2HcbA2d1FH1U1JVaErOAp2ywgmmoTI=",
-                          productName: "Product X",
-                          storeName: "Store name",
-                          quantity: "5",
-                        );
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 50.h,
-          ),
-          SizedBox(
-            width: 900.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "${StringManager.location.tr()}: ",
-                  style: TextStyle(
-                    color: const Color(0xFF808080),
-                    fontSize: 46.sp,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w600,
+                      Text(
+                        "Damas,rkn Alden,street,7ara".length > 15
+                            ? "Damas,rkn Alden,stre..."
+                            : "Damas,rkn Alden,street",
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: const Color(0xFF232323),
+                          fontSize: 38.sp,
+                          fontFamily: 'Nunito Sans',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  "Damas,rkn Alden,street,7ara".length > 15
-                      ? "Damas,rkn Alden,stre..."
-                      : "Damas,rkn Alden,street",
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: const Color(0xFF232323),
-                    fontSize: 38.sp,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w400,
+                SizedBox(
+                  height: 20.h,
+                ),
+                SizedBox(
+                  width: 900.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${StringManager.price.tr()}: ",
+                        style: TextStyle(
+                          color: const Color(0xFF808080),
+                          fontSize: 46.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        "\$${widget.deliveryDataOrderModel?.total_price ?? " "}",
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: const Color(0xFF232323),
+                          fontSize: 38.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          SizedBox(
-            width: 900.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "${StringManager.price.tr()}: ",
-                  style: TextStyle(
-                    color: const Color(0xFF808080),
-                    fontSize: 46.sp,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w600,
+                SizedBox(
+                  height: 80.h,
+                ),
+                SizedBox(
+                  width: 980.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ConfirmRejectButtonWidget(
+                        height: 150.h,
+                        width: 480.w,
+                        isConfirm: true,
+                        onpressed: () {
+                          String token = context.read<AuthBloc>().token!;
+                          context.read<DileveryManagerHomeBloc>().add(
+                              DilevryPostApprovedStatuesOrderEvent(
+                                  token: token,
+                                  id: widget.deliveryDataOrderModel!.id!,
+                                  statues: "approved"));
+
+                          Navigator.pop(context);
+                          //TODO re request request_body when you pop and add snackbar
+                        },
+                      ),
+                      ConfirmRejectButtonWidget(
+                        height: 150.h,
+                        width: 480.w,
+                        isConfirm: false,
+                        onpressed: () {
+                          String token = context.read<AuthBloc>().token!;
+                          context.read<DileveryManagerHomeBloc>().add(
+                                DilevryPostApprovedStatuesOrderEvent(
+                                    token: token,
+                                    id: widget.deliveryDataOrderModel!.id!,
+                                    statues: "rejected"),
+                              );
+
+                          Navigator.pop(context);
+                          gShowSuccessSnackBar(
+                              context: context,
+                              message: "rejected done successfully");
+                        },
+                      )
+                    ],
                   ),
-                ),
-                Text(
-                  "\$95.00",
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: const Color(0xFF232323),
-                    fontSize: 38.sp,
-                    fontFamily: 'Nunito Sans',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 80.h,
-          ),
-          SizedBox(
-            width: 980.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ConfirmRejectButtonWidget(
-                  height: 150.h,
-                  width: 480.w,
-                  isConfirm: true,
-                  onpressed: () {},
-                ),
-                ConfirmRejectButtonWidget(
-                  height: 150.h,
-                  width: 480.w,
-                  isConfirm: false,
-                  onpressed: () {},
                 )
               ],
-            ),
-          )
-        ],
+            );
+          },
+        ),
       ),
     );
   }
 }
+
+
+/*
+String token = context.read<AuthBloc>().token!;
+                        context.read<DileveryManagerHomeBloc>().add(
+                            DilevryPostApprovedStatuesOrderEvent(
+                                token: token,
+                                id: widget.deliveryDataOrderModel!.id!,
+                                statues: "approved"));*/

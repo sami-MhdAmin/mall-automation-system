@@ -39,6 +39,7 @@ class DeliveryManagerOrderDetailsWidget extends StatelessWidget {
             SizedBox(
               height: 230.h,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     productName,
