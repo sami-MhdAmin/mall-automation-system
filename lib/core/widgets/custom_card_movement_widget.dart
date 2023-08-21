@@ -51,7 +51,9 @@ class CustomCardMovementWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  firstTextField,
+                  firstTextField.length >= 20
+                      ? "${firstTextField.substring(0, 19)}..."
+                      : firstTextField,
                   style: TextStyle(
                     color: const Color(0xFF232323),
                     fontSize: 46.sp,

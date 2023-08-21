@@ -17,7 +17,7 @@ class InvestStoreModel {
 
 @JsonSerializable()
 class InvestStoreDataModel {
-  double? id;
+  int? id;
   double? store_space;
   double? floor;
   String? type;

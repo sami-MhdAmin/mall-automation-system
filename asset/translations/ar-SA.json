@@ -108,5 +108,11 @@
     "tryAgain": "إعادة المحاولة",
     "deleteSuccess": "تم الحذف بنجاح",
     "addSuccess": "تم الإضافة بنجاح",
-    "addSuccessWaitingForAccept":"تم الإضافة بنجاج بانتظار موافقة الادمن"
+    "addSuccessWaitingForAccept":"تم الإضافة بنجاج بانتظار موافقة الادمن",
+    "invest": "استثمار",
+    "noData":"لا يوجد بيانات",
+    "tryAgain":"إعادة المحاولة",
+    "storeDetailsUpdated": "تم تحديث المعلومات",
+    "openTime": "ساعة الدوام",
+    "closeTime": "ساعة الإغلاق"
 }

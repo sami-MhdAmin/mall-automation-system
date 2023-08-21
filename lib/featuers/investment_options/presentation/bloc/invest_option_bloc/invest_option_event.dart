@@ -8,3 +8,13 @@ class GetInvestStoreOption extends InvestOptionEvent {
 
   GetInvestStoreOption({required this.token});
 }
+
+class InvestStoreEvent extends InvestOptionEvent {
+  final int storeId;
+  final String token;
+
+  InvestStoreEvent({
+    required this.storeId,
+    required this.token,
+  });
+}

@@ -109,6 +109,14 @@
     "tryAgain": "Try Agian",
     "deleteSuccess": "Delete Success",
     "addSuccess": "Add Success",
-    "addSuccessWaitingForAccept":"add success waiting for admin accept"
+    "addSuccessWaitingForAccept":"add success waiting for admin accept",
 
+    "floor":"Floor: ",
+    "roomCount":"Room Count",
+    "invest":"Invest",
+    "noData": "There Is No Data",
+    "tryAgain": "Try Agian",
+    "storeDetailsUpdated": "Store details updated",
+    "openTime": "Open time",
+    "closeTime": "Close time"
 }

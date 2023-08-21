@@ -25,8 +25,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
   List<String> sliderImagesList = [
-    // TODO:change messi pic
-    AssetImageManager.market,
+    AssetImageManager.homeSlider1,
     AssetImageManager.homeSlider2,
     AssetImageManager.homeSlider3
   ];

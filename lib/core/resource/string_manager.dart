@@ -124,6 +124,7 @@ class StringManager {
   static String investmentOption = 'investmentOption';
   static String floor = 'floor';
   static String roomCount = 'roomCount';
+  static String invest = 'invest';
   static String noData = 'noData';
   static String tryAgain = 'tryAgain';
   static String addSuccess = 'addSuccess';
@@ -133,4 +134,7 @@ class StringManager {
 
 
 
+  static String storeDetailsUpdated = 'storeDetailsUpdated';
+  static String openTime = 'openTime';
+  static String closeTime = 'closeTime';
 }

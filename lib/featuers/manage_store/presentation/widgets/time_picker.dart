@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
+import 'package:jessy_mall/featuers/manage_store/presentation/widgets/edit_store_info_body.dart';
 
 /// Flutter code sample for [showTimePicker].
 
 class TimePickerOptions extends StatefulWidget {
   const TimePickerOptions({
-    super.key,
+    Key? key,
     required this.themeMode,
     required this.useMaterial3,
     required this.textOpenOrClose,
     required this.color,
-  });
+    required this.openOrCloseStoreTime,
+  }) : super(key: key);
 
   final ThemeMode themeMode;
   final bool useMaterial3;
   final String textOpenOrClose;
   final Color color;
+  final int openOrCloseStoreTime;
 
   @override
   State<TimePickerOptions> createState() => _TimePickerOptionsState();
@@ -66,6 +70,13 @@ class _TimePickerOptionsState extends State<TimePickerOptions> {
         );
         setState(() {
           selectedTime = time;
+          if (widget.openOrCloseStoreTime == 1) {
+            openStoreTime = "${selectedTime!.hour}:${selectedTime!.minute}:00";
+            print(openStoreTime);
+          } else if (widget.openOrCloseStoreTime == 0) {
+            closeStoreTime = "${selectedTime!.hour}:${selectedTime!.minute}:00";
+            print(closeStoreTime);
+          }
           print(selectedTime);
         });
       },

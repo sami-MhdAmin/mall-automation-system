@@ -35,4 +35,25 @@ class InvestOptionRepositoryImpl extends InvestOptionRepository {
       return left(NoInternetFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, void>> postInvestStorebyId(
+      int id, String token) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _investStoreOptionRemoteDataSource
+            .postInvestStoreId(storeId: id, token: token);
+
+        return addSuccess.fold((failure) {
+          return Left(failure);
+        }, (data) async {
+          return right(data);
+        });
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
 }

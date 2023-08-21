@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../config/theme/color_manager.dart';
@@ -10,7 +11,9 @@ import '../../../../../core/utils/global_snackbar.dart';
 import '../../../../../core/widgets/langauge_switcher_widget.dart';
 import '../../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../../../../featuers/Auth/presintation/page/login_page.dart';
+import '../bloc/delivery_manager_bloc/dilevery_manager_home_bloc.dart';
 import 'delivery_history_body_page.dart';
+import 'delivery_pending_body_page.dart';
 import 'delivery_requests_body_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -142,14 +145,13 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
             //End
 
             //began
-            Center(
-              child: Text("Must implement"),
-            ),
+            DeliveryPendingBodyPage(),
             //End
 
             //began
             DeliveryHistoryBodyPage()
             //End
+//dilevery
           ],
         ),
       ),

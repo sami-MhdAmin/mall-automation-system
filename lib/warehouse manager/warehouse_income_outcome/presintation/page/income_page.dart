@@ -4,15 +4,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../core/widgets/custom_card_movement_widget.dart';
+import '../../../../core/widgets/empty_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/income_model.dart';
 import '../bloc/warehouse_income_outcome_bloc.dart';
 
 // ignore: must_be_immutable
-class IncomeBody extends StatelessWidget {
+class IncomeBody extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   IncomeBody({super.key});
+
+  @override
+  State<IncomeBody> createState() => _IncomeBodyState();
+}
+
+class _IncomeBodyState extends State<IncomeBody> {
   List<IncomeDataModel>? incomeModelData;
+
+  @override
+  void dispose() {
+    GetIt.I.get<WarehouseIncomeOutcomeBloc>().close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +63,9 @@ class IncomeBody extends StatelessWidget {
                               children: [
                                 CustomCardMovementWidget(
                                   height: 350.h,
-                                  firstTextField:
-                                       incomeModelData?[index]
-                                              .warehouseProduct?[0]
-                                              .name ??
+                                  firstTextField: incomeModelData?[index]
+                                          .warehouseProduct?[0]
+                                          .name ??
                                       "product x",
                                   secondTextField:
                                       incomeModelData?[index].inDate ??
@@ -75,7 +88,10 @@ class IncomeBody extends StatelessWidget {
                   ],
                 ),
                 if (state is WarehouseIncomeLoading)
-                  const LoadingWidget(fullScreen: true),
+                  const LoadingWidget(fullScreen: true)
+                else if (state is WarehouseIncomeGetDataSuccess &&
+                    incomeModelData!.isEmpty)
+                  EmptyWidget(height: 1.sh - 0.3.sh)
               ],
             );
           },

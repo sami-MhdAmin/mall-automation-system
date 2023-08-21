@@ -21,7 +21,7 @@ Map<String, dynamic> _$InvestStoreModelToJson(InvestStoreModel instance) =>
 InvestStoreDataModel _$InvestStoreDataModelFromJson(
         Map<String, dynamic> json) =>
     InvestStoreDataModel(
-      id: (json['id'] as num?)?.toDouble(),
+      id: json['id'] as int?,
       store_space: (json['store_space'] as num?)?.toDouble(),
       floor: (json['floor'] as num?)?.toDouble(),
       type: json['type'] as String?,

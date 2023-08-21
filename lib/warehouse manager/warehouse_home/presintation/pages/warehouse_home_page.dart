@@ -10,8 +10,6 @@ import '../../../../core/utils/global_snackbar.dart';
 import '../../../../core/widgets/langauge_switcher_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../../../featuers/Auth/presintation/page/login_page.dart';
-import '../../../../featuers/investment_options/presentation/page/investment_options.dart';
-import '../../../../featuers/investment_options/presentation/widgets/investment_store.dart';
 import '../../../warehouse_extra_space_request/presentation/pages/warehouse_extra_space_requests.dart';
 import '../../../warehouse_income_outcome/presintation/page/income_page.dart';
 import '../../../warehouse_income_outcome/presintation/page/outcome_page.dart';
@@ -106,8 +104,11 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                 child: SizedBox(
                   height: 10.w,
                   width: 10.w,
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     backgroundColor: Colors.white,
+                    child:  ClipOval(
+                      child: Image.asset(AssetImageManager.logo),
+                    ),
                   ),
                 ),
               ),
@@ -122,16 +123,6 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (_) => const WarehouseExtraSpaceRequests()));
-                },
-              ),
-              ListTile(
-                title: Text(StringManager.increaseWarehouseSpace.tr()),
-                selected: _selectedIndex == 1,
-                onTap: () {
-                  // Update the state of the app
-                  _onItemTapped(1);
-                  // Then close the drawer
-                  Navigator.pop(context);
                 },
               ),
               BlocConsumer<AuthBloc, AuthState>(
@@ -202,7 +193,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
             ),
           ),
         ),
-        body:  TabBarView(
+        body: TabBarView(
           children: [
             //began
             WarehouseProductBody(),

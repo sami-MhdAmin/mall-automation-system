@@ -22,8 +22,8 @@ Map<String, dynamic> _$StoreModelToJson(StoreModel instance) =>
 StoreInfoModel _$StoreInfoModelFromJson(Map<String, dynamic> json) =>
     StoreInfoModel(
       id: json['id'] as int?,
-      openTime: json['openTime'] as String?,
-      closeTime: json['closeTime'] as String?,
+      openTime: json['openTime'] as int?,
+      closeTime: json['closeTime'] as int?,
       name: json['name'] as String?,
       store_space: json['store_space'] as int?,
       floor: json['floor'] as int?,

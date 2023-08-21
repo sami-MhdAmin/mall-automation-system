@@ -4,14 +4,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../core/widgets/custom_card_movement_widget.dart';
+import '../../../../core/widgets/empty_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/outcome_model.dart';
 import '../bloc/warehouse_income_outcome_bloc.dart';
 
-class OutcomeBody extends StatelessWidget {
+class OutcomeBody extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   OutcomeBody({super.key});
+
+  @override
+  State<OutcomeBody> createState() => _OutcomeBodyState();
+}
+
+class _OutcomeBodyState extends State<OutcomeBody> {
   List<OutcomeDataModel>? outcomeModelData;
+  @override
+  void dispose() {
+    GetIt.I.get<WarehouseIncomeOutcomeBloc>().close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +84,10 @@ class OutcomeBody extends StatelessWidget {
                   ],
                 ),
                 if (state is WarehouseOutcomeLoading)
-                  const LoadingWidget(fullScreen: true),
+                  const LoadingWidget(fullScreen: true)
+                else if (state is WarehouseOutcomeGetDataSuccess &&
+                    outcomeModelData!.isEmpty)
+                  EmptyWidget(height: 1.sh - 0.3.sh)
               ],
             );
           },
