@@ -1,14 +1,66 @@
-class CartModel{
+import 'package:json_annotation/json_annotation.dart';
 
-final CartOrderDataModel? data;
-final String? message;
+part 'cart_model.g.dart';
+
+@JsonSerializable()
+class CartModel {
+  final CartOrderDataModel? data;
+  final String? message;
 
   CartModel(this.data, this.message);
+
+  factory CartModel.fromJson(Map<String, dynamic> json) =>
+      _$CartModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CartModelToJson(this);
 }
 
-class CartOrderDataModel{
-
+@JsonSerializable()
+class CartOrderModel {
+  final List<CartOrderDataModel>? cart_orders;
+  CartOrderModel({
+    this.cart_orders,
+  });
+  factory CartOrderModel.fromJson(Map<String, dynamic> json) =>
+      _$CartOrderModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CartOrderModelToJson(this);
 }
 
-class CartSingleProductModel{
+@JsonSerializable()
+class CartOrderDataModel {
+  final int? id;
+  final StoreProductModel? storeProduct;
+  // final StandProductModel? standProduct;
+  CartOrderDataModel({
+    this.id,
+    this.storeProduct,
+    // this.standProduct,
+  });
+
+  factory CartOrderDataModel.fromJson(Map<String, dynamic> json) =>
+      _$CartOrderDataModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CartOrderDataModelToJson(this);
 }
+
+@JsonSerializable()
+class StoreProductModel {
+  int? quantity;
+  String? name;
+  String? store_name;
+  double? price;
+  String? image;
+  StoreProductModel({
+    this.quantity,
+    this.name,
+    this.store_name,
+    this.price,
+    this.image,
+  });
+
+  factory StoreProductModel.fromJson(Map<String, dynamic> json) =>
+      _$StoreProductModelFromJson(json);
+  Map<String, dynamic> toJson() => _$StoreProductModelToJson(this);
+}
+
+//
+// class StandProductModel {}
+//TODO: cancel StandProductModel
