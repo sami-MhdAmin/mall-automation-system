@@ -22,21 +22,23 @@ class EditStoreBloc extends Bloc<EditStoreEvent, EditStoreState> {
         emit(EditStoreSuccess(storeModel: storeModel));
       });
     });
-    on<UpdateEditStoreEvent>((event, emit) async {
-      emit(EditStoreloading());
-      final successOrFailuer = await _editStoreInfoRepository.updateStoreInfo(
-          id: event.id,
-          token: event.token,
-          name_ar: event.name_ar,
-          name_en: event.name_en,
-          openTime: event.openTime,
-          closeTime: event.closeTime);
+    on<UpdateEditStoreEvent>(
+      (event, emit) async {
+        emit(EditStoreloading());
+        final successOrFailuer = await _editStoreInfoRepository.updateStoreInfo(
+            id: event.id,
+            token: event.token,
+            name_ar: event.name_ar,
+            name_en: event.name_en,
+            openTime: event.openTime,
+            closeTime: event.closeTime);
 
-      successOrFailuer.fold((error) {
-        emit(EditStoreFailed(faliuer: error));
-      }, (updateStoreModel) async {
-        emit(UpdateStoreSuccess(storeModelUpdated: updateStoreModel));
-      });
-    });
+        successOrFailuer.fold((error) {
+          emit(EditStoreFailed(faliuer: error));
+        }, (updateStoreModel) async {
+          emit(UpdateStoreSuccess(storeModelUpdated: updateStoreModel));
+        });
+      },
+    );
   }
 }
