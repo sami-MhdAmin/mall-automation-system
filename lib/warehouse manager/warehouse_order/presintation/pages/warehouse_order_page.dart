@@ -97,18 +97,18 @@ class _WarehouseOrderPageState extends State<WarehouseOrderPage> {
             ),
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             //began
             OrderPendingBody(),
             //End
 
             //began
-            OrderRejectedBody(),
+            OrderApprovedBody(),
             //End
 
             //began
-            OrderApprovedBody()
+            OrderRejectedBody(),
             //End
           ],
         ),

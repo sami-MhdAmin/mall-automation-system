@@ -12,9 +12,21 @@ import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../bloc/warehouse_homepage_products_bloc.dart';
 
 // ignore: must_be_immutable
-class WarehouseProductBody extends StatelessWidget {
+class WarehouseProductBody extends StatefulWidget {
   WarehouseProductBody({super.key});
+
+  @override
+  State<WarehouseProductBody> createState() => _WarehouseProductBodyState();
+}
+
+class _WarehouseProductBodyState extends State<WarehouseProductBody> {
   List<ProductDataModel>? productsList;
+
+  @override
+  void dispose() {
+    GetIt.I.get<WarehouseHomepageProductsBloc>().close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
