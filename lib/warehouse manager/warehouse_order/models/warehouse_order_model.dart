@@ -22,9 +22,10 @@ class WarehouseOrdersDataModel {
   final String? requestDate;
   final String? status;
   final int? received;
+  final dynamic quantity;
 
-  WarehouseOrdersDataModel(
-      this.id, this.investor, this.requestDate, this.status, this.received);
+  WarehouseOrdersDataModel(this.id, this.investor, this.requestDate,
+      this.status, this.received, this.quantity);
 
   factory WarehouseOrdersDataModel.fromJson(Map<String, dynamic> json) =>
       _$WarehouseOrdersDataModelFromJson(json);

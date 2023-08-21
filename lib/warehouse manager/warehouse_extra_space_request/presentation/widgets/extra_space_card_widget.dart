@@ -37,6 +37,8 @@ class WarehouseExtraSpaceCardWidget extends StatelessWidget {
             context: context,
             message: state.confirmMessage,
           );
+        
+        
         }
 
         if (state is WarehouseExtraSpaceRejectRequest) {
@@ -44,6 +46,7 @@ class WarehouseExtraSpaceCardWidget extends StatelessWidget {
             context: context,
             message: state.rejectMessage,
           );
+
         }
       },
       builder: (context, state) {

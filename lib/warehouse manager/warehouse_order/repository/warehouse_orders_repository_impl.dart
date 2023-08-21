@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:jessy_mall/core/errors/base_error.dart';
+import 'package:jessy_mall/warehouse%20manager/warehouse_order/models/warehouse_order_details_model.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/models/warehouse_order_model.dart';
 import 'package:jessy_mall/warehouse%20manager/warehouse_order/repository/warehouse_orders_repository.dart';
 
@@ -65,6 +66,69 @@ class WarehouseOrdersRepositoryImpl extends WarehouseOrdersRepository {
           (failure) => Left(failure),
           (getRejectedData) {
             return right(getRejectedData);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, WarehouseOrderDetailsModel>> getPendingDetails(
+      String token, String id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _warehouseOrdersRemoteDataSource.getPendingDetails(token, id);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (details) {
+            return right(details);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> confirmTheOrder(
+      String token, String id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _warehouseOrdersRemoteDataSource.confirmTheOrder(token, id);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (confirmMessage) {
+            return right(confirmMessage);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> rejectTheOrder(
+      String token, String id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _warehouseOrdersRemoteDataSource.rejectTheOrder(token, id);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (rejectMessage) {
+            return right(rejectMessage);
           },
         );
       } on ServerException {

@@ -39,6 +39,7 @@ class WarehouseExtraSpaceRequestsBloc extends Bloc<
         },
         (confirmMessage) {
           emit(WarehouseExtraSpaceConfirmRequest(confirmMessage));
+          emit(WarehouseExtraSpaceRequestsInitial());
         },
       );
     });
@@ -51,8 +52,10 @@ class WarehouseExtraSpaceRequestsBloc extends Bloc<
         (error) {
           emit(WarehouseExtraSpaceRequestsFailed(failure: error));
         },
-        (confirmMessage) {
-          emit(WarehouseExtraSpaceRejectRequest(confirmMessage));
+        (rejectMessage) {
+          emit(WarehouseExtraSpaceRejectRequest(rejectMessage));
+          emit(WarehouseExtraSpaceRequestsInitial());
+
         },
       );
     });

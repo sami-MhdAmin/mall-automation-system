@@ -30,3 +30,21 @@ class WarehouseRejectedOrdersSuccess extends WarehouseOrdersState {
 
   WarehouseRejectedOrdersSuccess({required this.warehouseOrdersModel});
 }
+
+class WarehouseOrderDetailsSuccess extends WarehouseOrdersState {
+  final WarehouseOrderDetailsModel warehouseOrderDetailsModel;
+
+  WarehouseOrderDetailsSuccess({required this.warehouseOrderDetailsModel});
+}
+
+class WarehouseConfirmSuccess extends WarehouseOrdersState {
+  final String confirmMessage;
+
+  WarehouseConfirmSuccess({required this.confirmMessage});
+}
+
+class WarehouseRejectSuccess extends WarehouseOrdersState {
+  final String rejectMessage;
+
+  WarehouseRejectSuccess({required this.rejectMessage});
+}
