@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/asset_manager.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
+import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/featuers/home/models/home_model.dart';
 
 import '../../../../core/resource/const_manager.dart';
@@ -13,10 +14,13 @@ import 'package:easy_localization/easy_localization.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   ProductDetailsPage(
-      {super.key, required this.categoryName, this.productModel,required this.index});
+      {super.key,
+      required this.categoryName,
+      this.productModel,
+      required this.index});
   final String categoryName;
   ProductModel? productModel;
-final  int index;
+  final int index;
 
   @override
   State<ProductDetailsPage> createState() => _ProductDetailsPageState();
@@ -43,31 +47,37 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         height: 900.h,
                         width: 1.sw,
                         child: Image.network(
-                          widget.productModel!.productDataModel?[widget.index].image??'',
+                          widget.productModel!.productDataModel?[widget.index]
+                                  .image ??
+                              '',
                           fit: BoxFit.cover,
                         )),
-                    Positioned(
-                      top: 400.h,
-                      child: Container(
-                        width: 240.w,
-                        height: 90.h,
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 2,
-                                  spreadRadius: 2)
-                            ]),
-                        child: Center(
-                          child: Text(
-                            '33% ${StringManager.off.tr()}',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 40.sp),
+                    widget.productModel!.productDataModel?[widget.index]
+                                .discountPercent ==
+                            null
+                        ? const SizedBox.shrink()
+                        : Positioned(
+                            top: 400.h,
+                            child: Container(
+                              width: 240.w,
+                              height: 90.h,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey.withOpacity(0.2),
+                                        blurRadius: 2,
+                                        spreadRadius: 2)
+                                  ]),
+                              child: Center(
+                                child: Text(
+                                  '${widget.productModel!.productDataModel?[widget.index].discountPercent} ${StringManager.off.tr()}',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 40.sp),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -77,7 +87,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 70.w),
                 child: Text(
-                 widget.productModel!.productDataModel?[widget.index].name??'',
+                  widget.productModel!.productDataModel?[widget.index].name ??
+                      '',
                   style: TextStyle(
                       color: ColorManager.black,
                       fontWeight: FontWeight.w400,
@@ -93,8 +104,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 child: Padding(
                   padding: EdgeInsetsDirectional.only(start: 140.w),
                   child: widget.categoryName == ConstManager.clothesCategory
-                      ? DetailForClothesProductWidget()
-                      : DetailForFurnitureProduct(),
+                      ? DetailForClothesProductWidget(
+                          productModel: widget.productModel,
+                          indexProduct: widget.index,
+                        )
+                      : DetailForFurnitureProduct(
+                          productModel: widget.productModel,
+                          indexProduct: widget.index,
+                        ),
                 ),
               ),
               SizedBox(
@@ -107,7 +124,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   children: [
                     //discount
                     Text(
-                       '${widget.productModel!.productDataModel?[widget.index].price}',
+                      '${widget.productModel!.productDataModel?[widget.index].price}',
                       style: TextStyle(
                           color: ColorManager.grey,
                           fontSize: 45.sp,
@@ -115,14 +132,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           decoration: TextDecoration.lineThrough,
                           decorationColor: ColorManager.grey),
                     ),
-                    Text(
-                  '${widget.productModel!.productDataModel?[widget.index].price}',
-                      style: TextStyle(
-                        color: ColorManager.red,
-                        fontSize: 45.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    widget.productModel!.productDataModel?[widget.index]
+                                .discountPercent ==
+                            null
+                        ? const SizedBox.shrink()
+                        : Text(
+                            '${widget.productModel!.productDataModel?[widget.index].priceAfterDiscount}',
+                            style: TextStyle(
+                              color: ColorManager.red,
+                              fontSize: 45.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
                   ],
                 ),
               ),
@@ -143,33 +164,25 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             color: ColorManager.black,
                             fontWeight: FontWeight.w700,
                             fontSize: 50.sp)),
-                    Text('${widget.productModel!.productDataModel?[widget.index].description}',
-                        style: TextStyle(
-                            color: ColorManager.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 40.sp)),
-                    SizedBox(
-                      height: 50.h,
+                    SingleChildScrollView(
+                      child: SizedBox(
+                        height: 200.h,
+                        width: 1.sw,
+                        child: Text(
+                            '${widget.productModel!.productDataModel?[widget.index].description}',
+                            style: TextStyle(
+                                color: ColorManager.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 40.sp)),
+                      ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Center(
-                        child: Container(
-                          width: 700.w,
-                          height: 150.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100.r),
-                              color: ColorManager.black),
-                          child: Center(
-                            child: Text(
-                              StringManager.addToCard.tr(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 50.sp,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    Center(
+                      child: CustomButton(
+                        onPressed: () {},
+                        text: StringManager.addToCard.tr(),
                       ),
                     )
                   ],

@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 
 import 'package:jessy_mall/core/errors/base_error.dart';
+import 'package:jessy_mall/featuers/profile/models/investor_model.dart';
 
 import 'package:jessy_mall/featuers/profile/models/profile_model.dart';
+import 'package:jessy_mall/featuers/profile/models/wearhouse_investor_product.dart';
 
 import '../../../core/errors/execption.dart';
 import '../../../core/network/network_info.dart';
@@ -24,6 +26,88 @@ class ProfileRepositoryImpl extends ProfileRepository {
           (failure) => Left(failure),
           (getProfileInfo) {
             return right(getProfileInfo);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, WearhouseInvestorProductModel>>
+      getProductFromWearhouse(String token) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _profileRemoteDataSource.getProductFromWearhouse(token);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (product) {
+            return right(product);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteProductFromWearhouse(
+      {required String token, required String productId}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _profileRemoteDataSource
+            .deleteProductFromWearhouse(token: token, productId: productId);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (product) {
+            return right(product);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+  
+  @override
+  Future<Either<Failure, bool>> requestExtraSpace({required String token, required int space})async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _profileRemoteDataSource
+            .requestExtraSpace(token: token, space: space);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (t) {
+            return right(t);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _profileRemoteDataSource.getMyStoreProduct(token);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (product) {
+            return right(product);
           },
         );
       } on ServerException {

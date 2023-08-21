@@ -126,6 +126,11 @@ class StringManager {
   static String roomCount = 'roomCount';
   static String noData = 'noData';
   static String tryAgain = 'tryAgain';
+  static String addSuccess = 'addSuccess';
+  static String addSuccessWaitingForAccept = 'addSuccessWaitingForAccept';
+
+  static String deleteSuccess = 'deleteSuccess';
+
 
 
 }

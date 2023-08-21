@@ -106,5 +106,9 @@
     "floor": "Floor: ",
     "roomCount": "Room Count",
     "noData": "Ther Is No Data",
-    "tryAgain": "Try Agian"
+    "tryAgain": "Try Agian",
+    "deleteSuccess": "Delete Success",
+    "addSuccess": "Add Success",
+    "addSuccessWaitingForAccept":"add success waiting for admin accept"
+
 }

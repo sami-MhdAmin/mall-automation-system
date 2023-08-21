@@ -37,24 +37,21 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> gShowSuccessSnackBar(
     {required BuildContext context, required String message}) {
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      padding: EdgeInsets.only(bottom: 30.h),
       content: Row(
-        textDirection: TextDirection.rtl,
         children: [
           Icon(
             Icons.done,
             color: Colors.white,
-            size: 20.h,
+            size: 100.r,
           ),
-          SizedBox(width: 8.w),
+          SizedBox(width: 50.w),
           SizedBox(
-            width: 1.sw - 100.w,
+            width: 1.sw - 500.w,
             child: Text(
               message,
-              textDirection: TextDirection.rtl,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14.sp,
+                  fontSize: 34.sp,
                   fontWeight: FontWeight.w400),
             ),
           ),

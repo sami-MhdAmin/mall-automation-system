@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
 
 import '../../../../config/theme/color_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProductsInStoreWidget extends StatelessWidget {
   const ProductsInStoreWidget({
     required this.imageNetworkSource,
     required this.productName,
     required this.price,
+    required this.quanitity,
     super.key,
   });
 
   final String imageNetworkSource;
   final String productName;
   final String price;
+  final String quanitity;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -54,15 +59,54 @@ class ProductsInStoreWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10.h),
-                  Text(
-                    price,
-                    // textAlign: TextAlign.start,
-                    style: TextStyle(
-                      color: const Color(0xFF232323),
-                      fontSize: 46.sp,
-                      fontFamily: 'Nunito Sans',
-                      fontWeight: FontWeight.w600,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        '${StringManager.price.tr()} : ',
+                        // textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: const Color(0xFF232323),
+                          fontSize: 46.sp,
+                          fontFamily: 'Nunito Sans',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        price,
+                        // textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: ColorManager.black,
+                          fontSize: 46.sp,
+                          fontFamily: 'Nunito Sans',
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                   Row(
+                    children: [
+                      Text(
+                        '${StringManager.quantity.tr()} : ',
+                        // textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: const Color(0xFF232323),
+                          fontSize: 46.sp,
+                          fontFamily: 'Nunito Sans',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        quanitity,
+                        // textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: ColorManager.black,
+                          fontSize: 46.sp,
+                          fontFamily: 'Nunito Sans',
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

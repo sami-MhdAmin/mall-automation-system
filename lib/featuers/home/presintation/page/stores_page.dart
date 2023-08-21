@@ -51,10 +51,7 @@ class _StoresPageState extends State<StoresPage> {
           key: _formKey,
           child: BlocConsumer<StoreBloc, StoreState>(
             listener: (context, state) {
-              if (state is StoreGetInfoFailed) {
-                print('dasdascxcz');
-                print(state.faliuer.message);
-              }
+           
             },
             builder: (context, state) {
               if (state is StoreInitial) {
