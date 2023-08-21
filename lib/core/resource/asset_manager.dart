@@ -1,5 +1,5 @@
 class AssetImageManager {
-  static const String logo = "asset/images/logo.jpg";
+  static const String logo = "asset/images/logo.png";
   static const String homeSlider1 = "asset/images/homeSlider1.jpg";
   static const String homeSlider2 = "asset/images/homeSlider2.jpg";
   static const String homeSlider3 = "asset/images/homeSlider3.jpg";
