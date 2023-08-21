@@ -104,8 +104,11 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                 child: SizedBox(
                   height: 10.w,
                   width: 10.w,
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     backgroundColor: Colors.white,
+                    child:  ClipOval(
+                      child: Image.asset(AssetImageManager.logo),
+                    ),
                   ),
                 ),
               ),
@@ -120,16 +123,6 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (_) => const WarehouseExtraSpaceRequests()));
-                },
-              ),
-              ListTile(
-                title: Text(StringManager.increaseWarehouseSpace.tr()),
-                selected: _selectedIndex == 1,
-                onTap: () {
-                  // Update the state of the app
-                  _onItemTapped(1);
-                  // Then close the drawer
-                  Navigator.pop(context);
                 },
               ),
               BlocConsumer<AuthBloc, AuthState>(
@@ -200,7 +193,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
             ),
           ),
         ),
-        body:  TabBarView(
+        body: TabBarView(
           children: [
             //began
             WarehouseProductBody(),

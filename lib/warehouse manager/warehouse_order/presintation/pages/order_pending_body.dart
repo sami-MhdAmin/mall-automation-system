@@ -15,8 +15,14 @@ import 'order_details_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // ignore: must_be_immutable
-class OrderPendingBody extends StatelessWidget {
-  OrderPendingBody({super.key});
+class OrderPendingBody extends StatefulWidget {
+  const OrderPendingBody({super.key});
+
+  @override
+  State<OrderPendingBody> createState() => _OrderPendingBodyState();
+}
+
+class _OrderPendingBodyState extends State<OrderPendingBody> {
   List<WarehouseOrdersDataModel>? warehousePendingData;
 
   @override
@@ -39,77 +45,85 @@ class OrderPendingBody extends StatelessWidget {
             }
             return Stack(
               children: [
-                warehousePendingData == null || warehousePendingData!.isEmpty
-                    ? EmptyWidget(height: 1.sh)
-                    : Column(
-                        children: [
-                          SizedBox(
-                            height: 100.h,
-                          ),
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: warehousePendingData?.length ?? 0,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Column(
-                                    children: [
-                                      CustomCardMovementWidget(
-                                        height: 400.h,
-                                        firstTextField:
-                                            "${StringManager.orderFrom.tr()}: ${warehousePendingData?[index].investor?[0].name ?? "Investor"}",
-                                        secondTextField:
-                                            warehousePendingData?[index]
-                                                    .requestDate ??
-                                                "20/08/2023",
-                                        //TODO: wait for esraa
-                                        quantityTextField: "04",
-                                        customWidget: Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              start: 30.w, top: 20.h),
-                                          child: SizedBox(
-                                            height: 100.h,
-                                            width: 300.w,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const OrderDetailsPage(
-                                                            // deliveryOrderDetailId: 2,
-                                                            ),
-                                                  ),
-                                                );
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    ColorManager.foregroundL,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.r),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                StringManager.details.tr(),
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: warehousePendingData?.length ?? 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: [
+                                CustomCardMovementWidget(
+                                  height: 400.h,
+                                  firstTextField: warehousePendingData?[index]
+                                          .investor?[0]
+                                          .name ??
+                                      "Investor",
+                                  secondTextField: warehousePendingData?[index]
+                                          .requestDate ??
+                                      "20/08/2023",
+                                  quantityTextField:
+                                      warehousePendingData?[index]
+                                              .quantity
+                                              .toString() ??
+                                          "00",
+                                  customWidget: Padding(
+                                    padding: EdgeInsetsDirectional.only(
+                                        start: 30.w, top: 20.h),
+                                    child: SizedBox(
+                                      height: 100.h,
+                                      width: 300.w,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  OrderDetailsPage(
+                                                deliveryOrderDetailId:
+                                                    warehousePendingData?[index]
+                                                            .id
+                                                            .toString() ??
+                                                        "0",
                                               ),
                                             ),
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              ColorManager.foregroundL,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.r),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          StringManager.details.tr(),
+                                          style: const TextStyle(
+                                            color: Colors.white,
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 30.h,
-                                      )
-                                    ],
-                                  );
-                                }),
-                          ),
-                        ],
-                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 30.h,
+                                )
+                              ],
+                            );
+                          }),
+                    ),
+                  ],
+                ),
                 if (state is WarehouseOrdersLoading)
                   const LoadingWidget(fullScreen: true)
+                else if (state is WarehouseRejectSuccess &&
+                    warehousePendingData!.isEmpty)
+                  EmptyWidget(height: 1.sh)
               ],
             );
           },

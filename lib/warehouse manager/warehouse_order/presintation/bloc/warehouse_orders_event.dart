@@ -20,3 +20,21 @@ class GetRejectedEvent extends WarehouseOrdersEvent {
 
   GetRejectedEvent(this.token);
 }
+
+class GetPendingDetailsEvent extends WarehouseOrdersEvent {
+  final String token, id;
+
+  GetPendingDetailsEvent({required this.token, required this.id});
+}
+
+class ConfirmEvent extends WarehouseOrdersEvent {
+  final String token, id;
+
+  ConfirmEvent({required this.token, required this.id});
+}
+
+class RejectEvent extends WarehouseOrdersEvent {
+  final String token, id;
+
+  RejectEvent({required this.token, required this.id});
+}

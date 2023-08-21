@@ -6,6 +6,7 @@ import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../../../core/widgets/empty_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/warehouse_extra_space_requests_model.dart';
@@ -61,24 +62,34 @@ class _WarehouseExtraSpaceRequestsState
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.only(bottom: 30.h),
-                              child: WarehouseExtraSpaceCardWidget(
-                                id: warehouseModel?[index].id.toString() ?? "1",
-                                userNameText:
-                                    warehouseModel?[index].user[0].name ??
-                                        "JESSY",
-                                dateText: "20/03/2023",
-                                priceText: warehouseModel?[index]
-                                        .newSpace
-                                        .toString() ??
-                                    "50",
-                              ),
+                              child: warehouseModel?[index]
+                                          .warehouseManagerApproval ==
+                                      "pending"
+                                  ? WarehouseExtraSpaceCardWidget(
+                                      id: warehouseModel?[index]
+                                              .id
+                                              .toString() ??
+                                          "1",
+                                      userNameText:
+                                          warehouseModel?[index].user[0].name ??
+                                              "JESSY",
+                                      dateText: "20/03/2023",
+                                      priceText: warehouseModel?[index]
+                                              .newSpace
+                                              .toString() ??
+                                          "50",
+                                    )
+                                  : const SizedBox.shrink(),
                             );
                           }),
                     ),
                   ],
                 ),
                 if (state is WarehouseExtraSpaceRequestsLoading)
-                  const LoadingWidget(fullScreen: true),
+                  const LoadingWidget(fullScreen: true)
+                else if (state is WarehouseExtraSpaceRequestsSuccess &&
+                    warehouseModel!.isEmpty)
+                  EmptyWidget(height: 1.sh - 0.3)
               ],
             );
           },

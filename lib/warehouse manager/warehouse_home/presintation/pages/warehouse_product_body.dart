@@ -49,41 +49,41 @@ class _WarehouseProductBodyState extends State<WarehouseProductBody> {
             }
             return Stack(
               children: [
-                productsList == null || productsList!.isEmpty
-                    ? EmptyWidget(height: 1.sh)
-                    : Column(
-                        children: [
-                          Expanded(
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              padding: EdgeInsetsDirectional.symmetric(
-                                  horizontal: 50.w, vertical: 30.h),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisSpacing: 40.h,
-                                mainAxisSpacing: 50.h,
-                                // mainAxisExtent: 100.h,
-                                childAspectRatio: 1.3.h / 2.w,
-                                crossAxisCount: 2,
-                              ),
-                              itemCount: productsList!.length,
-                              itemBuilder: (context, index) {
-                                return ProductCardInWarehouse(
-                                  productId: productsList?[index].id ?? 0,
-                                  productName:
-                                      productsList?[index].name ?? "product X",
-                                  storeName: productsList?[index].store?.name ??
-                                      "Store Y",
-                                  imageUrl: productsList?[index].image ??
-                                      "https://i.ytimg.com/vi/ghb6eDopW8I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCoNyV-ShyxkGZ4gUEsjzvYeYcrKg",
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                Column(
+                  children: [
+                    Expanded(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsetsDirectional.symmetric(
+                            horizontal: 50.w, vertical: 30.h),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisSpacing: 40.h,
+                          mainAxisSpacing: 50.h,
+                          // mainAxisExtent: 100.h,
+                          childAspectRatio: 1.3.h / 2.w,
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: productsList?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return ProductCardInWarehouse(
+                            productId: productsList?[index].id ?? 0,
+                            productName:
+                                productsList?[index].name ?? "product X",
+                            storeName:
+                                productsList?[index].store?.name ?? "Store Y",
+                            imageUrl: productsList?[index].image ??
+                                "https://i.ytimg.com/vi/ghb6eDopW8I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCoNyV-ShyxkGZ4gUEsjzvYeYcrKg",
+                          );
+                        },
                       ),
+                    ),
+                  ],
+                ),
                 if (state is WarehouseHomepageProductsLoading)
-                  const LoadingWidget(fullScreen: true),
+                  const LoadingWidget(fullScreen: true)
+                else if (state is WarehouseHomepageProductsSuccess &&
+                    (productsList == null || productsList!.isEmpty))
+                  EmptyWidget(height: 1.sh - 0.3.sh)
               ],
             );
           },

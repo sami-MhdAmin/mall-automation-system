@@ -26,6 +26,7 @@ WarehouseOrdersDataModel _$WarehouseOrdersDataModelFromJson(
       json['request_date'] as String?,
       json['status'] as String?,
       json['received'] as int?,
+      json['quantity'],
     );
 
 Map<String, dynamic> _$WarehouseOrdersDataModelToJson(
@@ -36,6 +37,7 @@ Map<String, dynamic> _$WarehouseOrdersDataModelToJson(
       'request_date': instance.requestDate,
       'status': instance.status,
       'received': instance.received,
+      'quantity': instance.quantity,
     };
 
 WarehouseOrdersModel _$WarehouseOrdersModelFromJson(

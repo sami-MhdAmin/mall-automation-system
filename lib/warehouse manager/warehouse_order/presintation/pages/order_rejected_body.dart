@@ -35,43 +35,48 @@ class OrderRejectedBody extends StatelessWidget {
             }
             return Stack(
               children: [
-                warehouseRejectedData == null || warehouseRejectedData!.isEmpty
-                    ? EmptyWidget(height: 1.sh)
-                    : Column(
-                        children: [
-                          SizedBox(
-                            height: 100.h,
-                          ),
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: warehouseRejectedData?.length ?? 0,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Column(
-                                    children: [
-                                      CustomCardMovementWidget(
-                                          height: 250.h,
-                                          firstTextField:
-                                              "${StringManager.orderFrom.tr()}: ${warehouseRejectedData?[index].investor?[0].name ?? "Investor"}",
-                                          secondTextField:
-                                              warehouseRejectedData?[index]
-                                                      .requestDate ??
-                                                  "20/08/2023",
-
-                                          //TODO: wait for esraa
-                                          quantityTextField: "04",
-                                          customWidget:
-                                              const SizedBox.shrink()),
-                                      SizedBox(
-                                        height: 30.h,
-                                      )
-                                    ],
-                                  );
-                                }),
-                          ),
-                        ],
-                      ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 100.h,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: warehouseRejectedData?.length ?? 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: [
+                                CustomCardMovementWidget(
+                                    height: 250.h,
+                                    firstTextField:
+                                        warehouseRejectedData?[index]
+                                                .investor?[0]
+                                                .name ??
+                                            "Investor",
+                                    secondTextField:
+                                        warehouseRejectedData?[index]
+                                                .requestDate ??
+                                            "20/08/2023",
+                                    quantityTextField:
+                                        warehouseRejectedData?[index]
+                                                .quantity
+                                                .toString() ??
+                                            "00",
+                                    customWidget: const SizedBox.shrink()),
+                                SizedBox(
+                                  height: 30.h,
+                                )
+                              ],
+                            );
+                          }),
+                    ),
+                  ],
+                ),
                 if (state is WarehouseOrdersLoading)
                   const LoadingWidget(fullScreen: true)
+             else    if (state is WarehouseRejectSuccess &&
+                    warehouseRejectedData!.isEmpty)
+                  EmptyWidget(height: 1.sh - 0.3)
               ],
             );
           },
