@@ -7,6 +7,7 @@ import 'package:jessy_mall/delivery%20manager/features/home/presentation/bloc/de
 import '../../../../../config/theme/color_manager.dart';
 import '../../../../../core/resource/string_manager.dart';
 import '../../../../../core/widgets/custom_card_movement_widget.dart';
+import '../../../../../core/widgets/empty_widget.dart';
 import '../../../../../core/widgets/error_widget.dart';
 import '../../../../../core/widgets/loading_widget.dart';
 import '../../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
@@ -152,6 +153,9 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
                 const LoadingWidget(
                   fullScreen: true,
                 )
+              else if (state is DileveryManagerGetHistoryOrderSuccess &&
+                  deliveryRequestsList!.isEmpty)
+                EmptyWidget(height: 1.sh)
             ],
           );
         },

@@ -13,6 +13,7 @@ import '../../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../../../../featuers/Auth/presintation/page/login_page.dart';
 import '../bloc/delivery_manager_bloc/dilevery_manager_home_bloc.dart';
 import 'delivery_history_body_page.dart';
+import 'delivery_pending_body_page.dart';
 import 'delivery_requests_body_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -144,9 +145,7 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
             //End
 
             //began
-            Center(
-              child: Text("Must implement"),
-            ),
+            DeliveryPendingBodyPage(),
             //End
 
             //began

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:jessy_mall/core/widgets/empty_widget.dart';
 import 'package:jessy_mall/core/widgets/loading_widget.dart';
 import 'package:jessy_mall/delivery%20manager/features/home/models/delivery_order_model.dart';
 import 'package:jessy_mall/delivery%20manager/features/home/presentation/bloc/delivery_manager_bloc/dilevery_manager_home_bloc.dart';
@@ -11,19 +10,21 @@ import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../../../../config/theme/color_manager.dart';
 import '../../../../../core/resource/string_manager.dart';
 import '../../../../../core/widgets/custom_card_movement_widget.dart';
+import '../../../../../core/widgets/empty_widget.dart';
 import '../../../../../core/widgets/error_widget.dart';
+import 'delivery_pending_details_page.dart';
 import 'delivery_requests_details_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class DeliveryRequestBodyPage extends StatefulWidget {
-  const DeliveryRequestBodyPage({super.key});
+class DeliveryPendingBodyPage extends StatefulWidget {
+  const DeliveryPendingBodyPage({super.key});
 
   @override
-  State<DeliveryRequestBodyPage> createState() =>
-      _DeliveryRequestBodyPageState();
+  State<DeliveryPendingBodyPage> createState() =>
+      _DeliveryPendingBodyPageState();
 }
 
-class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
+class _DeliveryPendingBodyPageState extends State<DeliveryPendingBodyPage> {
   List<DeliveryDataOrderModel>? deliveryRequestsList;
   // @override
   // void dispose() {
@@ -39,31 +40,32 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
         listener: (context, state) {
           // TODO: implement listener
 
-          if (state is DileveryManagerGetOrderSuccess) {
+          if (state is DileveryManagerGetPendingOrderSuccess) {
             deliveryRequestsList = state.deliveryOrderModel.data!;
             // deliveryOrderList = state.deliveryOrderModel;
 
-            print("i am in state is DileveryManagerGetOrderSuccess");
+            print("i am in state is DileveryManagerGetPendingOrderSuccess");
             print("${deliveryRequestsList?.length ?? 0}");
             // print("${deliveryOrderList!.data![0].id}");
           }
         },
         builder: (context, state) {
           // context.read<AuthBloc>().token
-          if (state is DileveryManagerGetOrderFailed) {
+          if (state is DileveryManagerGetPendingOrderFailed) {
             return FailuerWidget(
               errorMessage: state.faliuer.message,
               onPressed: () {
                 //token: context.read<AuthBloc>().token
                 context.read<DileveryManagerHomeBloc>().add(
-                    DilevryGetOrderEvent(
+                    DilevryGetPendingOrderEvent(
                         token: context.read<AuthBloc>().token ?? ''));
               },
             );
           }
           if (state is DileveryManagerHomeInitial) {
             context.read<DileveryManagerHomeBloc>().add(
-                DilevryGetOrderEvent(token: context.read<AuthBloc>().token!));
+                DilevryGetPendingOrderEvent(
+                    token: context.read<AuthBloc>().token!));
           }
           return Stack(
             children: [
@@ -101,7 +103,8 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => DeliveryDetailsPage(
+                                    builder: (context) =>
+                                        DeliveryPendingDetailsPage(
                                       deliveryDataOrderModel:
                                           deliveryRequestsList?[index],
                                     ),
@@ -132,7 +135,7 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
                 const LoadingWidget(
                   fullScreen: true,
                 )
-              else if (state is DileveryManagerGetOrderSuccess &&
+              else if (state is DileveryManagerGetPendingOrderSuccess &&
                   deliveryRequestsList!.isEmpty)
                 EmptyWidget(height: 1.sh)
             ],
