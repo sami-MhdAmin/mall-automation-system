@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                                   )));
                     },
                     child: CategoryHomeCardWidget(
-                      imgUrl: AssetImageManager.market,
+                      imgUrl: AssetImageManager.clothes,
                       categryName: StringManager.clothes.tr(),
                     ),
                   ),
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                                   )));
                     },
                     child: CategoryHomeCardWidget(
-                      imgUrl: AssetImageManager.market,
+                      imgUrl: AssetImageManager.furniture,
                       categryName: StringManager.furniture.tr(),
                     ),
                   ),
@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                                   )));
                     },
                     child: CategoryHomeCardWidget(
-                      imgUrl: AssetImageManager.market,
+                      imgUrl: AssetImageManager.makeup,
                       categryName: StringManager.makeup.tr(),
                     ),
                   ),

@@ -18,25 +18,45 @@ class CategoryHomeCardWidget extends StatelessWidget {
       ),
       height: 650.h,
       width: 450.w,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Stack(
         children: [
           Container(
-            color: Colors.white,
-            height: 300.h,
+            height: 650.h,
             width: 450.w,
-            child: Image.asset(
-              imgUrl,
-              fit: BoxFit.cover,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(30.r)),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(30.r),
+              child: Image.asset(
+                imgUrl,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          Center(
-            child: Text(
-              categryName,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40.sp,
-                  fontWeight: FontWeight.w900),
+          Positioned(
+            top: 570.h,
+            // left: 200.w,
+            child: Container(
+              width: 450.w,
+              height: 80.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30.r),
+                  bottomRight: Radius.circular(30.r),
+                ),
+                color: Colors.black54,
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 150.w),
+                child: Text(
+                  categryName,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 40.sp,
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
             ),
           )
         ],
