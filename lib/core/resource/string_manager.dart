@@ -127,6 +127,13 @@ class StringManager {
   static String invest = 'invest';
   static String noData = 'noData';
   static String tryAgain = 'tryAgain';
+  static String addSuccess = 'addSuccess';
+  static String addSuccessWaitingForAccept = 'addSuccessWaitingForAccept';
+
+  static String deleteSuccess = 'deleteSuccess';
+
+
+
   static String storeDetailsUpdated = 'storeDetailsUpdated';
   static String openTime = 'openTime';
   static String closeTime = 'closeTime';

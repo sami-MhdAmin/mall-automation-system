@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:jessy_mall/featuers/profile/presentation/bloc/investor_bloc/bloc/investor_bloc.dart';
+import 'package:jessy_mall/featuers/profile/presentation/bloc/wearhouseInvestorbloc/bloc/wearhouse_investor_bloc.dart';
 
 import '../core/network/network_info.dart';
 import '../featuers/profile/data/datasource/remote/profile_remote_data_source.dart';
@@ -24,6 +26,16 @@ Future<void> profileInjection() async {
   //BLoC
   locator.registerFactory(
     () => ProfileBloc(
+      locator.get<ProfileRepository>(),
+    ),
+  );
+    locator.registerFactory(
+    () => WearhouseInvestorBloc(
+      locator.get<ProfileRepository>(),
+    ),
+  );
+     locator.registerFactory(
+    () => InvestorBloc(
       locator.get<ProfileRepository>(),
     ),
   );

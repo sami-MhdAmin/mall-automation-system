@@ -23,11 +23,12 @@ ProductDataModel _$ProductDataModelFromJson(Map<String, dynamic> json) =>
     ProductDataModel(
       id: json['id'] as int?,
       quantity: json['quantity'] as int?,
-      size: json['size'] as int?,
-      color: json['color'] as String?,
-      width: json['width'] as String?,
-      weight: json['weight'] as String?,
-      length: json['length'] as String?,
+      size: (json['size'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      color:
+          (json['color'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      width: (json['width'] as num?)?.toDouble(),
+      weight: (json['weight'] as num?)?.toDouble(),
+      length: json['length'],
       name: json['name'] as String?,
       description: json['description'] as String?,
       storeId: json['storeId'] as int?,
@@ -36,6 +37,9 @@ ProductDataModel _$ProductDataModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       price: json['price'] as int?,
       image: json['image'] as String?,
+      discountPercent: json['discount_percent'] as int?,
+      priceAfterDiscount: json['price_after_discount'] as int?,
+      height: (json['height'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ProductDataModelToJson(ProductDataModel instance) =>
@@ -47,12 +51,15 @@ Map<String, dynamic> _$ProductDataModelToJson(ProductDataModel instance) =>
       'width': instance.width,
       'weight': instance.weight,
       'length': instance.length,
+      'height': instance.height,
       'name': instance.name,
       'description': instance.description,
       'storeId': instance.storeId,
       'store': instance.store,
       'price': instance.price,
       'image': instance.image,
+      'discount_percent': instance.discountPercent,
+      'price_after_discount': instance.priceAfterDiscount,
     };
 
 StoreForProductModel _$StoreForProductModelFromJson(

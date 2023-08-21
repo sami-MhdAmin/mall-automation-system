@@ -3,11 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../../config/theme/color_manager.dart';
+import '../../models/home_model.dart';
 
 class DetailForClothesProductWidget extends StatelessWidget {
-  const DetailForClothesProductWidget({
-    super.key,
-  });
+  DetailForClothesProductWidget(
+      {super.key, this.productModel, required this.indexProduct});
+
+  ProductModel? productModel;
+  int indexProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,8 @@ class DetailForClothesProductWidget extends StatelessWidget {
           width: 1.sw,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 40,
+              itemCount:
+                  productModel!.productDataModel?[indexProduct].color?.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsetsDirectional.only(start: 20.w),
@@ -37,7 +41,8 @@ class DetailForClothesProductWidget extends StatelessWidget {
                     width: 80.w,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.black,
+                        color: HexColor.fromHex(
+                            '#${productModel!.productDataModel?[indexProduct].color![index]}'),
                         boxShadow: [
                           BoxShadow(
                               color: Colors.grey.withOpacity(0.3),
@@ -64,21 +69,12 @@ class DetailForClothesProductWidget extends StatelessWidget {
           width: 1.sw,
           child: Row(
             children: [
-              Text(
-                'US',
-                style: TextStyle(
-                    color: ColorManager.black,
-                    fontSize: 40.sp,
-                    fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                width: 20.w,
-              ),
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: 20,
+                    itemCount: productModel!
+                        .productDataModel?[indexProduct].size?.length,
                     itemBuilder: (context, index) {
                       return Padding(
                           padding: EdgeInsetsDirectional.only(start: 40.w),
@@ -95,7 +91,8 @@ class DetailForClothesProductWidget extends StatelessWidget {
                                 ]),
                             child: Center(
                               child: Text(
-                                '33',
+                                productModel!.productDataModel![indexProduct]
+                                    .size![index],
                                 style: TextStyle(
                                     color: ColorManager.black,
                                     fontSize: 40.sp,
@@ -110,5 +107,15 @@ class DetailForClothesProductWidget extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+extension HexColor on Color {
+  static Color fromHex(String hexColorString) {
+    hexColorString = hexColorString.replaceAll('#', '');
+    if (hexColorString.length == 6) {
+      hexColorString = "FF$hexColorString"; // 8 char with opacity 100%
+    }
+    return Color(int.parse(hexColorString, radix: 16));
   }
 }
