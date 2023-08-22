@@ -6,6 +6,58 @@ part of 'investor_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+investorBillsModel _$investorBillsModelFromJson(Map<String, dynamic> json) =>
+    investorBillsModel(
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) =>
+              investorStoreBillsDataModels.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$investorBillsModelToJson(investorBillsModel instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'message': instance.message,
+    };
+
+investorStoreBillsDataModels _$investorStoreBillsDataModelsFromJson(
+        Map<String, dynamic> json) =>
+    investorStoreBillsDataModels(
+      storeProducts: (json['store_products'] as List<dynamic>?)
+          ?.map((e) =>
+              investorBillsDataModels.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$investorStoreBillsDataModelsToJson(
+        investorStoreBillsDataModels instance) =>
+    <String, dynamic>{
+      'store_products': instance.storeProducts,
+    };
+
+investorBillsDataModels _$investorBillsDataModelsFromJson(
+        Map<String, dynamic> json) =>
+    investorBillsDataModels(
+      id: json['id'] as int?,
+      price: json['price'] as int?,
+      quantity: json['quantity'] as int?,
+      stoooore: json['stoooore'] as int?,
+      totalPrice: json['totalPrice'] as int?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$investorBillsDataModelsToJson(
+        investorBillsDataModels instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'quantity': instance.quantity,
+      'stoooore': instance.stoooore,
+      'totalPrice': instance.totalPrice,
+      'name': instance.name,
+    };
+
 InvestorProductModel _$InvestorProductModelFromJson(
         Map<String, dynamic> json) =>
     InvestorProductModel(
@@ -28,11 +80,6 @@ InvestorDataProductModel _$InvestorDataProductModelFromJson(
     InvestorDataProductModel(
       id: json['id'] as int?,
       quantity: json['quantity'] as int?,
-      size: json['size'] as int?,
-      color: json['color'] as String?,
-      width: json['width'] as String?,
-      weight: json['weight'] as String?,
-      height: json['height'] as int?,
       name: json['name'] as String?,
       description: json['description'] as String?,
       category: json['category'] as String?,
@@ -46,11 +93,6 @@ Map<String, dynamic> _$InvestorDataProductModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'quantity': instance.quantity,
-      'size': instance.size,
-      'color': instance.color,
-      'width': instance.width,
-      'weight': instance.weight,
-      'height': instance.height,
       'name': instance.name,
       'description': instance.description,
       'category': instance.category,

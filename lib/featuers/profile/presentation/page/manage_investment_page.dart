@@ -29,13 +29,6 @@ class ManageInvestmentPage extends StatelessWidget {
               ),
             ),
           ),
-          Tab(
-            icon: SizedBox(
-                width: 350.w,
-                child: Icon(
-                  Icons.table_rows_rounded,
-                )),
-          ),
         ],
       );
   @override
@@ -71,7 +64,7 @@ class ManageInvestmentPage extends StatelessWidget {
             //End investment store UI
 
             // began investment stand
-            ManageMyStandWidget(),
+            // ManageMyStandWidget(),
             //end investment stand
           ],
         ),

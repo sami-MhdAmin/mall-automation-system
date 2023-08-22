@@ -152,7 +152,7 @@ class ManageMyStoreWidget extends StatelessWidget {
                     ProfileCardWidget(
                       titleInListTile: StringManager.showProduct.tr(),
                       subtitleInListTile:
-                          "${StringManager.youHave.tr()} 4 ${StringManager.products.tr()}",
+                          "",
                       width: 550,
                       height: 400,
                       navigatorFunc: () {

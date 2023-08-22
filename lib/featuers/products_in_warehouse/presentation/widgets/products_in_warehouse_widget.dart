@@ -96,15 +96,7 @@ class ProductsInWarehouseWidget extends StatelessWidget {
               child:
                   BlocConsumer<WearhouseInvestorBloc, WearhouseInvestorState>(
                 listener: (context, state) {
-                  if (state is WearhouseInvestorDeleteProductFailure) {
-                    gShowErrorSnackBar(
-                        context: context, message: state.failure.message);
-                  }
-                  if (state is WearhouseInvestorDeleteProductSuccess) {
-                    gShowSuccessSnackBar(
-                        context: context,
-                        message: StringManager.deleteSuccess.tr());
-                  }
+                
                 },
                 builder: (context, state) {
                   return state is WearhouseInvestorDeleteProductLoading

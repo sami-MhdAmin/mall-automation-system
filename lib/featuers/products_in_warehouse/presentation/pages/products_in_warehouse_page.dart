@@ -36,6 +36,15 @@ class _ProductsInWarehousePageState extends State<ProductsInWarehousePage> {
               if (state is WearhouseInvestorGetDataSuccess) {
                 productsList = state.wearhouseInvestorProductModel.data;
               }
+                if (state is WearhouseInvestorDeleteProductFailure) {
+                    gShowErrorSnackBar(
+                        context: context, message: state.failure.message);
+                  }
+                  if (state is WearhouseInvestorDeleteProductSuccess) {
+                    gShowSuccessSnackBar(
+                        context: context,
+                        message: StringManager.deleteSuccess.tr());
+                  }
     
             },
             builder: (context, state) {

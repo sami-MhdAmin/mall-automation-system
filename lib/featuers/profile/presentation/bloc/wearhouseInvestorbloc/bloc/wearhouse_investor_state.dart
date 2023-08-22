@@ -30,7 +30,6 @@ final class WearhouseInvestorDeleteProductFailure
   WearhouseInvestorDeleteProductFailure({required this.failure});
 }
 
-
 final class WearhouseInvestorRequestExtraSpaceLoading
     extends WearhouseInvestorState {}
 
@@ -41,4 +40,28 @@ final class WearhouseInvestorRequestExtraSpaceFailure
     extends WearhouseInvestorState {
   final Failure failure;
   WearhouseInvestorRequestExtraSpaceFailure({required this.failure});
+}
+
+final class WearhouseInvestorGetIncomeLoading extends WearhouseInvestorState {}
+
+final class WearhouseInvestorGetIncomeSuccess extends WearhouseInvestorState {
+  final WearhouseInvestorIncomModel investorIncomModel;
+  WearhouseInvestorGetIncomeSuccess({required this.investorIncomModel});
+}
+
+final class WearhouseInvestorGetIncomeFailure extends WearhouseInvestorState {
+  final Failure failure;
+  WearhouseInvestorGetIncomeFailure({required this.failure});
+}
+
+final class WearhouseInvestorGetOutcomeLoading extends WearhouseInvestorState {}
+
+final class WearhouseInvestorGetOutcomeSuccess extends WearhouseInvestorState {
+  final WearhouseInvestorOutcomModel investorOutcomModel;
+  WearhouseInvestorGetOutcomeSuccess({required this.investorOutcomModel});
+}
+
+final class WearhouseInvestorGetOutcomeFailure extends WearhouseInvestorState {
+  final Failure failure;
+  WearhouseInvestorGetOutcomeFailure({required this.failure});
 }

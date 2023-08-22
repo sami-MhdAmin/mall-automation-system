@@ -6,6 +6,7 @@ import 'package:jessy_mall/featuers/profile/models/investor_model.dart';
 import 'package:jessy_mall/featuers/profile/presentation/bloc/investor_bloc/bloc/investor_bloc.dart';
 
 import '../../../../core/resource/string_manager.dart';
+import '../../../../core/utils/global_snackbar.dart';
 import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/header_page.dart';
 import '../../../../core/widgets/loading_widget.dart';
@@ -31,6 +32,14 @@ class _ProductsInStorePageState extends State<ProductsInStorePage> {
           listener: (context, state) {
             if (state is InvestorGetProductSuccess) {
               productsList = state.investorProductModel.data!;
+            }
+            if (state is InvestorDeleteProductFromStoreFailure) {
+              gShowErrorSnackBar(
+                  context: context, message: state.failure.message);
+            }
+            if (state is InvestorDeleteProductFromStoreSuccess) {
+              gShowSuccessSnackBar(
+                  context: context, message: StringManager.deleteSuccess.tr());
             }
           },
           builder: (context, state) {
@@ -72,12 +81,12 @@ class _ProductsInStorePageState extends State<ProductsInStorePage> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                           ProductsInStoreWidget(
-                            imageNetworkSource:
-                             productsList[index].image??'',
-                            productName: productsList[index].name??'',
+                          ProductsInStoreWidget(
+                            imageNetworkSource: productsList[index].image ?? '',
+                            productName: productsList[index].name ?? '',
                             price: productsList[index].price.toString(),
                             quanitity: productsList[index].quantity.toString(),
+                            productId: productsList[index].id.toString(),
                           ),
                           // index !=  productsList.length-1,
                           index < 7

@@ -50,9 +50,7 @@ class _StoresPageState extends State<StoresPage> {
         body: Form(
           key: _formKey,
           child: BlocConsumer<StoreBloc, StoreState>(
-            listener: (context, state) {
-           
-            },
+            listener: (context, state) {},
             builder: (context, state) {
               if (state is StoreInitial) {
                 context.read<StoreBloc>().add(StoreRequested(
@@ -67,7 +65,7 @@ class _StoresPageState extends State<StoresPage> {
                     children: [
                       HeaderPage(
                         left: true,
-                        title: widget.categoryName,
+                        title: widget.categoryName.tr(),
                       ),
                       SizedBox(height: 30.h),
                       Center(
