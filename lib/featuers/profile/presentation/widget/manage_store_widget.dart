@@ -102,12 +102,12 @@ class ManageMyStoreWidget extends StatelessWidget {
                             ),
                             if (state is UploadExcelFileLoading)
                               SizedBox(
-                                height: 300,
+                                height: 500,
                                 child: Column(
                                   children: [
                                     SizedBox(
                                       height: 300,
-                                      width: 500,
+                                      width: 200,
                                       child: Lottie.asset(
                                           AssetJsonManager.loading),
                                     ),
