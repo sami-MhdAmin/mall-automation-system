@@ -16,6 +16,7 @@ class investorBillsModel {
 
 @JsonSerializable()
 class investorStoreBillsDataModels {
+  @JsonKey(name: 'store_products')
   final List<investorBillsDataModels>? storeProducts;
 
   investorStoreBillsDataModels({this.storeProducts});

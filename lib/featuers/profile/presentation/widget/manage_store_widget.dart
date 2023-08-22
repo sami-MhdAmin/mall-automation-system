@@ -18,6 +18,8 @@ import '../bloc/upload_excel_file/upload_excel_file_bloc.dart';
 import '../page/manage_wearhouse_page.dart';
 import '../page/show_bills_page.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'dart:io' as used;
+
 
 class ManageMyStoreWidget extends StatelessWidget {
   const ManageMyStoreWidget({super.key});
@@ -83,12 +85,14 @@ class ManageMyStoreWidget extends StatelessWidget {
                                 );
 
                                 if (result != null) {
-                                  PlatformFile file = result.files.first;
+                                 used.File file =
+                                      used.File(result.files.single.path!);
+                                  print(used.File(result.files.single.path!));
+                                  print(await file.length());
 
                                   print(
                                       "SAAAAAAAAAAAAALIIIIIIIIIIIIIIIIIIIIIMMMMMMMMMMMMMMMMMMMMMPPPPPPOOOOOOOOOOOOOO");
-                                  print(file.size);
-                                  print(file.name);
+                               
                                   context.read<UploadExcelFileBloc>().add(
                                       UploadExcelEvent(
                                           context.read<AuthBloc>().token ?? '',

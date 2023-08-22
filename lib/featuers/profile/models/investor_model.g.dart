@@ -24,7 +24,7 @@ Map<String, dynamic> _$investorBillsModelToJson(investorBillsModel instance) =>
 investorStoreBillsDataModels _$investorStoreBillsDataModelsFromJson(
         Map<String, dynamic> json) =>
     investorStoreBillsDataModels(
-      storeProducts: (json['storeProducts'] as List<dynamic>?)
+      storeProducts: (json['store_products'] as List<dynamic>?)
           ?.map((e) =>
               investorBillsDataModels.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -33,7 +33,7 @@ investorStoreBillsDataModels _$investorStoreBillsDataModelsFromJson(
 Map<String, dynamic> _$investorStoreBillsDataModelsToJson(
         investorStoreBillsDataModels instance) =>
     <String, dynamic>{
-      'storeProducts': instance.storeProducts,
+      'store_products': instance.storeProducts,
     };
 
 investorBillsDataModels _$investorBillsDataModelsFromJson(

@@ -39,8 +39,13 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
           color: ColorManager.backgroundL,
           child: BlocConsumer<InvestorBloc, InvestorState>(
             listener: (context, state) {
-              if (state is InvestorGetBillsSuccess) {
+              if (state is InvestorGetBillsSuccess &&
+                  state.investorBilssModel.data!.isNotEmpty) {
                 bills = state.investorBilssModel.data?.first.storeProducts;
+              }
+              if (state is InvestorGetBillsSuccess &&
+                  state.investorBilssModel.data!.isEmpty) {
+                bills!.clear();
               }
             },
             builder: (context, state) {
@@ -132,11 +137,10 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.read<InvestorBloc>().add(
-                              InvestorRequestBills(
-                                  token: context.read<AuthBloc>().token ?? '',
-                                  toDate: dateTo.text,
-                                  fromDate: dateFrom.text));
+                          context.read<InvestorBloc>().add(InvestorRequestBills(
+                              token: context.read<AuthBloc>().token ?? '',
+                              toDate: dateTo.text,
+                              fromDate: dateFrom.text));
                         },
                         child: Container(
                           height: 100.h,
@@ -184,7 +188,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                               return TableRow(
                                 children: [
                                   TableCellWidget(
-                                    title: bill.name??'',
+                                    title: bill.name ?? '',
                                   ),
                                   TableCellWidget(
                                     title: bill.quantity.toString(),

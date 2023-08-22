@@ -1,3 +1,5 @@
+import 'dart:io' as used;
+
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/src/platform_file.dart';
 
@@ -194,6 +196,28 @@ class ProfileRepositoryImpl extends ProfileRepository {
           (failure) => Left(failure),
           (bills) {
             return right(bills);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  //SALIM
+  @override
+  Future<Either<Failure, String>> uploadExcelFile(
+      String token, used.File file) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _profileRemoteDataSource.uploadExcelFile(token, file);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (state) {
+            return right(state);
           },
         );
       } on ServerException {

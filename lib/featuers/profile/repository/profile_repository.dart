@@ -5,6 +5,8 @@ import '../../../core/errors/base_error.dart';
 import '../models/investor_model.dart';
 import '../models/profile_model.dart';
 import '../models/wearhouse_investor_product.dart';
+import 'dart:io' as used;
+
 
 abstract class ProfileRepository {
   Future<Either<Failure, ProfileModel>> getProfileInfo(String token);
@@ -26,5 +28,5 @@ abstract class ProfileRepository {
 
   //SALIM
   Future<Either<Failure, String>> uploadExcelFile(
-      String token, PlatformFile file);
+      String token,  used.File file);
 }
