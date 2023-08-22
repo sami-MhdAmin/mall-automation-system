@@ -132,9 +132,10 @@ class StringManager {
 
   static String deleteSuccess = 'deleteSuccess';
 
-
-
   static String storeDetailsUpdated = 'storeDetailsUpdated';
   static String openTime = 'openTime';
   static String closeTime = 'closeTime';
+  static String descriptionInvestmentOption = 'descriptionInvestmentOption';
+  static String whatIsInvestmentOption = 'whatIsInvestmentOption';
+  static String ok = 'ok';
 }

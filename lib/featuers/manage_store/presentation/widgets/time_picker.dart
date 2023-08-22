@@ -71,10 +71,26 @@ class _TimePickerOptionsState extends State<TimePickerOptions> {
         setState(() {
           selectedTime = time;
           if (widget.openOrCloseStoreTime == 1) {
-            openStoreTime = "${selectedTime!.hour}:${selectedTime!.minute}:00";
+            String tempHourForOpen = selectedTime!.hour.toString();
+            if (tempHourForOpen.length == 1) {
+              tempHourForOpen = "0$tempHourForOpen";
+            }
+            String tempMinForOpen = selectedTime!.minute.toString();
+            if (tempMinForOpen.length == 1) {
+              tempMinForOpen = "0$tempMinForOpen";
+            }
+            openStoreTime = "${tempHourForOpen}:${tempMinForOpen}:00";
             print(openStoreTime);
           } else if (widget.openOrCloseStoreTime == 0) {
-            closeStoreTime = "${selectedTime!.hour}:${selectedTime!.minute}:00";
+            String tempHourForColse = selectedTime!.hour.toString();
+            if (tempHourForColse.length == 1) {
+              tempHourForColse = "0$tempHourForColse";
+            }
+            String tempMinForClose = selectedTime!.minute.toString();
+            if (tempMinForClose.length == 1) {
+              tempMinForClose = "0$tempMinForClose";
+            }
+            closeStoreTime = "${tempHourForColse}:${tempMinForClose}:00";
             print(closeStoreTime);
           }
           print(selectedTime);

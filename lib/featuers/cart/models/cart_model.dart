@@ -29,11 +29,13 @@ class CartOrderModel {
 class CartOrderDataModel {
   final int? id;
   final StoreProductModel? storeProduct;
+  final double? quantity;
   // final StandProductModel? standProduct;
   CartOrderDataModel({
+    // this.standProduct,
     this.id,
     this.storeProduct,
-    // this.standProduct,
+    this.quantity,
   });
 
   factory CartOrderDataModel.fromJson(Map<String, dynamic> json) =>

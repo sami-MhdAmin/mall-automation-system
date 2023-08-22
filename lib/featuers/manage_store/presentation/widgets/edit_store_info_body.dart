@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
-import 'package:jessy_mall/core/resource/const_manager.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
 import 'package:jessy_mall/core/widgets/custom_button.dart';
 import 'package:jessy_mall/core/widgets/custom_text_field.dart';
@@ -34,37 +33,42 @@ class EditStoreInfoBody extends StatefulWidget {
 }
 
 class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
-  used.File? imageController;
+  // used.File? imageController;
 
-  final picker = ImagePicker();
-  File? storeImage;
+  // final picker = ImagePicker();
+  // File? storeImage;
 
-  Future takePhotoFromGallery() async {
-    final selectedImage = await picker.pickImage(
-      source: ImageSource.gallery,
-    );
+  // Future takePhotoFromGallery() async {
+  //   final selectedImage = await picker.pickImage(
+  //     source: ImageSource.gallery,
+  //   );
 
-    setState(() {
-      if (selectedImage != null) {
-        imageController = used.File(selectedImage.path);
-      }
-    });
-  }
+  //   setState(() {
+  //     if (selectedImage != null) {
+  //       imageController = used.File(selectedImage.path);
+  //     }
+  //   });
+  // }
 
-  final TextEditingController storeNameController =
+  final TextEditingController storeNameEnController =
       TextEditingController(text: StringManager.storeName.tr());
+
+  final TextEditingController storeNameArController =
+      TextEditingController(text: StringManager.storeName.tr());
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   StoreInfoModel? storeInfoModel;
   @override
   void dispose() {
-    storeNameController.dispose();
+    storeNameEnController.dispose();
+    storeNameArController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 2300.h,
+      height: 1.sh,
       child: BlocConsumer<EditStoreBloc, EditStoreState>(
         listener: (context, state) {
           if (state is EditStoreSuccess) {
@@ -73,7 +77,10 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
             print(state.storeModel.storeInfoDataModel);
             print(state.storeModel.storeInfoDataModel?.name);
             storeInfoModel = state.storeModel.storeInfoDataModel;
-            storeNameController.text = storeInfoModel?.name ?? "no initial";
+            storeNameEnController.text =
+                storeInfoModel?.name_en ?? "no initial";
+            storeNameArController.text =
+                storeInfoModel?.name_ar ?? "no initial";
             print(storeInfoModel?.image ?? "dgsfedwhw");
           }
         },
@@ -98,7 +105,7 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
               Column(
                 children: [
                   Container(
-                    height: 750.h,
+                    height: 640.h,
                     color: ColorManager.foregroundL,
                     child: Column(
                       children: [
@@ -111,19 +118,19 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                           width: 350.r,
                           height: 350.r,
                           child: Transform.translate(
-                            offset: Offset(0, 280.h),
+                            offset: Offset(0, 170.h),
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               child: InkWell(
                                 onTap: () async {
-                                  await takePhotoFromGallery();
-                                  Image.file(
-                                    used.File(imageController!.path),
-                                    width: double.infinity,
-                                    fit: BoxFit.fill,
-                                  );
+                                  // await takePhotoFromGallery();
+                                  // Image.file(
+                                  //   used.File(imageController!.path),
+                                  //   width: double.infinity,
+                                  //   fit: BoxFit.fill,
+                                  // );
 
-                                  storeImage = used.File(imageController!.path);
+                                  // storeImage = used.File(imageController!.path);
                                 },
                                 child: CircleAvatar(
                                   //TODO : add image CIRCULAR + loading
@@ -154,7 +161,7 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                     ),
                   ),
                   SizedBox(
-                    height: 250.h,
+                    height: 210.h,
                   ),
                   CustomTextField(
                     // initialValue:
@@ -162,7 +169,7 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                     width: 900.w,
                     // hintText: StringManager.storeName.tr(),
                     icon: Icons.store,
-                    textEditingController: storeNameController,
+                    textEditingController: storeNameEnController,
                     keybordType: TextInputType.name,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -172,7 +179,25 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                     },
                   ),
                   SizedBox(
-                    height: 32.h,
+                    height: 30.h,
+                  ),
+                  CustomTextField(
+                    // initialValue:
+                    //     storeInfoModel?.name ?? StringManager.storeName.tr(),
+                    width: 900.w,
+                    // hintText: StringManager.storeName.tr(),
+                    icon: Icons.store,
+                    textEditingController: storeNameArController,
+                    keybordType: TextInputType.name,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return StringManager.pleaseEnterStoreName.tr();
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 25.h,
                   ),
                   SizedBox(
                     width: 900.w,
@@ -203,7 +228,7 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                     ),
                   ),
                   SizedBox(
-                    height: 64.h,
+                    height: 50.h,
                   ),
 
                   //Card Other Details
@@ -238,7 +263,7 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                   ),
                   ////
 
-                  Expanded(
+                  const Expanded(
                     child: SizedBox(),
                   ),
                   Padding(
@@ -247,17 +272,51 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
                         width: 900.w,
                         child: CustomButton(
                             onPressed: () {
+                              //for open
+                              String FinalOpenTimeFromBack =
+                                  storeInfoModel!.openTime.toString();
+                              String openTimeFromBack =
+                                  storeInfoModel!.openTime.toString();
+                              if (openTimeFromBack.length < 3) {
+                                if (storeInfoModel!.openTime
+                                        .toString()
+                                        .length ==
+                                    1) {
+                                  FinalOpenTimeFromBack =
+                                      "0${storeInfoModel!.openTime.toString()}";
+                                }
+                                openTimeFromBack =
+                                    "$FinalOpenTimeFromBack:00:00";
+                              }
+                              //for close
+                              String FinalCloseTimeFromBack =
+                                  storeInfoModel!.closeTime.toString();
+                              String closeTimeFromBack =
+                                  storeInfoModel!.closeTime.toString();
+                              if (closeTimeFromBack.length < 3) {
+                                if (storeInfoModel!.closeTime
+                                        .toString()
+                                        .length ==
+                                    1) {
+                                  FinalCloseTimeFromBack =
+                                      "0${storeInfoModel!.closeTime.toString()}";
+                                }
+                                closeTimeFromBack =
+                                    "$FinalCloseTimeFromBack:00:00";
+                              }
+                              print("samiiiiiiiiiiiiiiiiiiiiiiiiii");
+                              print(openTimeFromBack);
+                              print(closeTimeFromBack);
                               context.read<EditStoreBloc>().add(
                                   UpdateEditStoreEvent(
                                       id: storeInfoModel!.id!,
                                       token: context.read<AuthBloc>().token!,
-                                      name_ar: "name_ar",
-                                      name_en: "name_en",
-                                      openTime: openStoreTime ??
-                                          storeInfoModel!.openTime.toString(),
-                                      closeTime: closeStoreTime ??
-                                          storeInfoModel!.closeTime
-                                              .toString()));
+                                      name_ar: storeNameArController.text,
+                                      name_en: storeNameEnController.text,
+                                      openTime:
+                                          openStoreTime ?? openTimeFromBack,
+                                      closeTime:
+                                          closeStoreTime ?? closeTimeFromBack));
 
                               //TODO get time and names, add snackbar and pop
                               gShowSuccessSnackBar(
