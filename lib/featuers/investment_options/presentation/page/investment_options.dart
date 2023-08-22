@@ -20,7 +20,7 @@ class InvestmentOptions extends StatelessWidget {
           Tab(
             icon: SizedBox(
               width: 350.w,
-              child: Icon(
+              child: const Icon(
                 Icons.store_mall_directory,
               ),
             ),
