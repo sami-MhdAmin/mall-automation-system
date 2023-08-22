@@ -77,13 +77,14 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return left(NoInternetFailure());
     }
   }
-  
+
   @override
-  Future<Either<Failure, bool>> requestExtraSpace({required String token, required int space})async {
+  Future<Either<Failure, bool>> requestExtraSpace(
+      {required String token, required int space}) async {
     if (await _networkInfo.isConnected) {
       try {
-        final addSuccess = await _profileRemoteDataSource
-            .requestExtraSpace(token: token, space: space);
+        final addSuccess = await _profileRemoteDataSource.requestExtraSpace(
+            token: token, space: space);
         return addSuccess.fold(
           (failure) => Left(failure),
           (t) {
@@ -99,11 +100,54 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token) async {
+  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(
+      String token) async {
     if (await _networkInfo.isConnected) {
       try {
         final addSuccess =
             await _profileRemoteDataSource.getMyStoreProduct(token);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (product) {
+            return right(product);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteProductFromStore(
+      {required String token, required String productId}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _profileRemoteDataSource
+            .deleteProductFromStore(token: token, productId: productId);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (product) {
+            return right(product);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, WearhouseInvestorIncomModel>> getIncoms(
+      {required String token, String? fromDate, String? toDate}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _profileRemoteDataSource.getIncoms(
+            token: token, fromDate: fromDate, toDate: toDate);
         return addSuccess.fold(
           (failure) => Left(failure),
           (product) {

@@ -35,10 +35,10 @@ ProductDataModel _$ProductDataModelFromJson(Map<String, dynamic> json) =>
       store: (json['store'] as List<dynamic>?)
           ?.map((e) => StoreForProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      price: json['price'] as int?,
+      price: (json['price'] as num?)?.toDouble(),
       image: json['image'] as String?,
-      discountPercent: json['discount_percent'] as int?,
-      priceAfterDiscount: json['price_after_discount'] as int?,
+      discountPercent: (json['discount_percent'] as num?)?.toDouble(),
+      priceAfterDiscount: (json['price_after_discount'] as num?)?.toDouble(),
       height: (json['height'] as num?)?.toDouble(),
     );
 

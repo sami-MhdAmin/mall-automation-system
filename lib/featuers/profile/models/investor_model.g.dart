@@ -28,11 +28,6 @@ InvestorDataProductModel _$InvestorDataProductModelFromJson(
     InvestorDataProductModel(
       id: json['id'] as int?,
       quantity: json['quantity'] as int?,
-      size: json['size'] as int?,
-      color: json['color'] as String?,
-      width: json['width'] as String?,
-      weight: json['weight'] as String?,
-      height: json['height'] as int?,
       name: json['name'] as String?,
       description: json['description'] as String?,
       category: json['category'] as String?,
@@ -46,11 +41,6 @@ Map<String, dynamic> _$InvestorDataProductModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'quantity': instance.quantity,
-      'size': instance.size,
-      'color': instance.color,
-      'width': instance.width,
-      'weight': instance.weight,
-      'height': instance.height,
       'name': instance.name,
       'description': instance.description,
       'category': instance.category,

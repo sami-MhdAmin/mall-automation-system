@@ -26,11 +26,11 @@ class InvestorProductModel {
 class InvestorDataProductModel {
   final int? id;
   final int ?quantity;
-  final int? size;
-  final String? color;
-  final String? width;
-  final String? weight;
-  final int ?height;
+  // final int? size;
+  // final String? color;
+  // final String? width;
+  // final String? weight;
+  // final int ?height;
   final String? name;
   final String? description;
   final String? category;
@@ -41,11 +41,7 @@ class InvestorDataProductModel {
   InvestorDataProductModel({
      this.id,
      this.quantity,
-     this.size,
-     this.color,
-     this.width,
-     this.weight,
-     this.height,
+  
      this.name,
      this.description,
      this.category,

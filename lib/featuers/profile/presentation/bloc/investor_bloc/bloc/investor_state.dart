@@ -16,3 +16,14 @@ final class InvestorGetProductFailuer extends InvestorState {
   final Failure failure;
   InvestorGetProductFailuer({required this.failure});
 }
+final class InvestorDeleteProductFromStoreLoading
+    extends InvestorState {}
+
+final class InvestorDeleteProductFromStoreSuccess
+    extends InvestorState {}
+
+final class InvestorDeleteProductFromStoreFailure
+    extends InvestorState {
+  final Failure failure;
+  InvestorDeleteProductFromStoreFailure({required this.failure});
+}

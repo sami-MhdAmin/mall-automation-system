@@ -24,5 +24,17 @@ class InvestorBloc extends Bloc<InvestorEvent, InvestorState> {
             investorProductModel: product));
       });
     });
+        on<InvestorDeleteProductFormMyStore>((event, emit) async {
+      emit(InvestorDeleteProductFromStoreLoading());
+      final successOrFailuer =
+          await _profileRepository.deleteProductFromStore(
+              token: event.token, productId: event.productId);
+      successOrFailuer.fold((error) {
+        emit(InvestorDeleteProductFromStoreFailure(failure: error));
+      }, (product) {
+        emit(InvestorDeleteProductFromStoreSuccess());
+        emit(InvestorInitial());
+      });
+    });
   }
 }

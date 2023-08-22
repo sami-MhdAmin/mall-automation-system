@@ -21,3 +21,11 @@ class WearhouseInvestorRequestExtraSpace extends WearhouseInvestorEvent {
   WearhouseInvestorRequestExtraSpace(
       {required this.token, required this.space});
 }
+
+class WearhouseInvestorRequestIncoms extends WearhouseInvestorEvent {
+  final String token;
+  String ?toDate;
+  String ?fromDate;
+  WearhouseInvestorRequestIncoms(
+      {required this.token, this.fromDate, this.toDate});
+}

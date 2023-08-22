@@ -29,13 +29,13 @@ class ProductDataModel {
   final String? description;
   final int? storeId;
   final List<StoreForProductModel>? store;
-  final int? price;
+  final double? price;
   final String? image;
   @JsonKey(name: 'discount_percent')
-  final int? discountPercent;
+  final double? discountPercent;
 
   @JsonKey(name: 'price_after_discount')
-  final int? priceAfterDiscount;
+  final double? priceAfterDiscount;
   ProductDataModel(
       {this.id,
       this.quantity,

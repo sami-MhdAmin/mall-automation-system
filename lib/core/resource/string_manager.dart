@@ -2,16 +2,16 @@ class StringManager {
   static String userNameHintText = "User Name";
   static String search = 'search';
   static String categories = 'categories';
-  static String market = 'market';
+  static String market = 'Market';
   static String sthWrong = 'sthWrong';
   static String orders = 'orders';
   static String delivered = 'delivered';
   static String failed = 'failed';
   static String orderDetails = 'order_details';
-  static String clothes = 'clothes';
-  static String makeup = 'makeup';
-  static String furniture = 'furniture';
-  static String products = 'products';
+  static String clothes = 'Clothes';
+  static String makeup = 'MakeUp';
+  static String furniture = 'Furniture';
+  static String products = 'Products';
   static String history = 'history';
 
   static String off = 'off';
@@ -131,8 +131,6 @@ class StringManager {
   static String addSuccessWaitingForAccept = 'addSuccessWaitingForAccept';
 
   static String deleteSuccess = 'deleteSuccess';
-
-
 
   static String storeDetailsUpdated = 'storeDetailsUpdated';
   static String openTime = 'openTime';

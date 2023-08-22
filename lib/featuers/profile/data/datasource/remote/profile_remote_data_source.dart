@@ -17,8 +17,11 @@ abstract class ProfileRemoteDataSource {
   Future<Either<Failure, bool>> requestExtraSpace(
       {required String token, required int space});
 
-        Future<Either<Failure, InvestorProductModel>>
-      getMyStoreProduct(String token);
+  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token);
+  Future<Either<Failure, bool>> deleteProductFromStore(
+      {required String token, required String productId});
+  Future<Either<Failure, WearhouseInvestorIncomModel>> getIncoms(
+      {required String token, String? fromDate, String? toDate});
 }
 
 class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
@@ -132,9 +135,10 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     }
     return Left(ServerFailure());
   }
-  
+
   @override
-  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token)async {
+  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(
+      String token) async {
     final Response response;
     try {
       dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
@@ -142,6 +146,59 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
       response = await dioClient.get('/storeProducts');
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(InvestorProductModel.fromJson(
+            response.data as Map<String, dynamic>));
+      }
+    } on DioError catch (e) {
+      if (e.response == null) {
+        return left(NoInternetFailure());
+      }
+      if (e.response!.data['message'] != null) {
+        return left(Failure(message: e.response!.data['message'].toString()));
+      } else {
+        return Left(
+          Failure(message: StringManager.sthWrong.tr()),
+        );
+      }
+    }
+    return Left(ServerFailure());
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteProductFromStore(
+      {required String token, required String productId}) async {
+    final Response response;
+    try {
+      dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
+
+      response = await dioClient.delete('/storeProducts/$productId');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return Right(true);
+      }
+    } on DioError catch (e) {
+      if (e.response == null) {
+        return left(NoInternetFailure());
+      }
+      if (e.response!.data['message'] != null) {
+        return left(Failure(message: e.response!.data['message'].toString()));
+      } else {
+        return Left(
+          Failure(message: StringManager.sthWrong.tr()),
+        );
+      }
+    }
+    return Left(ServerFailure());
+  }
+
+  @override
+  Future<Either<Failure, WearhouseInvestorIncomModel>> getIncoms(
+      {required String token, String? fromDate, String? toDate}) async {
+    final Response response;
+    try {
+      dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
+
+      response = await dioClient.get('/ins');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return Right(WearhouseInvestorIncomModel.fromJson(
             response.data as Map<String, dynamic>));
       }
     } on DioError catch (e) {
