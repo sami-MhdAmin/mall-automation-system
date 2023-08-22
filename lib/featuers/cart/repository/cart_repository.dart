@@ -5,4 +5,7 @@ import '../../../core/errors/base_error.dart';
 
 abstract class CartRepository {
   Future<Either<Failure, CartModel>> getAllCartOrder(String token);
+  Future<Either<Failure, String>> removeCartOrderById(String token, int id);
+  Future<Either<Failure, String>> postBuyCartOrder(
+      String token, String cartOrdersIds, String addressLocation);
 }

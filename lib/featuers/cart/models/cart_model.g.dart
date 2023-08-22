@@ -9,7 +9,7 @@ part of 'cart_model.dart';
 CartModel _$CartModelFromJson(Map<String, dynamic> json) => CartModel(
       json['data'] == null
           ? null
-          : CartOrderDataModel.fromJson(json['data'] as Map<String, dynamic>),
+          : CartOrderModel.fromJson(json['data'] as Map<String, dynamic>),
       json['message'] as String?,
     );
 

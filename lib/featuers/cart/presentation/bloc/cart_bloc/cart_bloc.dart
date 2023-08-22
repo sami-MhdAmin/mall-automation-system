@@ -21,5 +21,27 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(CartGetAllOrderSuccess(cartModel: cartModel));
       });
     });
+
+    on<CartRemoveOrderFromCartEvent>((event, emit) async {
+      emit(CartLoading());
+      final successOrFailuer =
+          await _cartRepository.removeCartOrderById(event.token, event.id);
+      successOrFailuer.fold((error) {
+        emit(CartRemoveOrderFailed(error));
+      }, (_) {
+        emit(CartRemoveOrderSuccess());
+      });
+    });
+
+    on<CartPostBuyAllOrderEvent>((event, emit) async {
+      emit(CartLoading());
+      final successOrFailuer = await _cartRepository.postBuyCartOrder(
+          event.token, event.cartOrderIds, event.addressLocation);
+      successOrFailuer.fold((error) {
+        emit(CartBuyAllOrderFailed(error));
+      }, (_) {
+        emit(CartBuyAllOrderSuccess());
+      });
+    });
   }
 }

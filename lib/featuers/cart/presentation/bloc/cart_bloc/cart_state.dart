@@ -18,4 +18,20 @@ final class CartGetAllOrderFailed extends CartState {
 
   CartGetAllOrderFailed({required this.faliuer});
 }
+
 // final class CartInitial extends CartState {}
+final class CartRemoveOrderSuccess extends CartState {}
+
+final class CartRemoveOrderFailed extends CartState {
+  final Failure faliuer;
+
+  CartRemoveOrderFailed(this.faliuer);
+}
+
+final class CartBuyAllOrderSuccess extends CartState {}
+
+final class CartBuyAllOrderFailed extends CartState {
+  final Failure faliuer;
+
+  CartBuyAllOrderFailed(this.faliuer);
+}

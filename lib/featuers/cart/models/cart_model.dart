@@ -4,7 +4,7 @@ part 'cart_model.g.dart';
 
 @JsonSerializable()
 class CartModel {
-  final CartOrderDataModel? data;
+  final CartOrderModel? data;
   final String? message;
 
   CartModel(this.data, this.message);

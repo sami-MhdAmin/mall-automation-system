@@ -34,4 +34,46 @@ class CartRepositoryImpl extends CartRepository {
       return left(NoInternetFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, String>> postBuyCartOrder(
+      String token, String cartOrdersIds, String addressLocation) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _cartRemoteDataSource.postBuyCartOrder(
+            token, cartOrdersIds, addressLocation);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (string) {
+            return right(string);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> removeCartOrderById(
+      String token, int id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _cartRemoteDataSource.removeCartOrderById(token, id);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (string) {
+            return right(string);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
 }
