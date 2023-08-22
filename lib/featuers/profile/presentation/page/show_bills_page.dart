@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +29,7 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
   final TextEditingController dateTo = TextEditingController(
       text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
   List<investorBillsDataModels>? bills;
-
+  int totalAllPrice = 0;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -42,6 +44,22 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
               if (state is InvestorGetBillsSuccess &&
                   state.investorBilssModel.data!.isNotEmpty) {
                 bills = state.investorBilssModel.data?.first.storeProducts;
+                //sami start
+                //for loop for total price
+                for (int i = 0;
+                    i < state.investorBilssModel.data![i].storeProducts!.length;
+                    i++) {
+                  var tempAllTotalPrice = state
+                      .investorBilssModel.data![i].storeProducts![i].totalPrice;
+                  totalAllPrice += tempAllTotalPrice!;
+                  // double singlePriceWithQuantity = cartResponseModel!
+                  //         .data!.cart_orders![i].storeProduct!.price! *
+                  //     cartResponseModel!.data!.cart_orders![i].quantity!
+                  //         .toDouble();
+                  // totalPrice += singlePriceWithQuantity;
+                  // print(totalPrice);
+                }
+                //sami end
               }
               if (state is InvestorGetBillsSuccess &&
                   state.investorBilssModel.data!.isEmpty) {
@@ -208,28 +226,28 @@ class _ShowBillsPageState extends State<ShowBillsPage> {
                     height: 100.h,
                   ),
                   //TODO sami
-                  // Padding(
-                  //   padding: EdgeInsetsDirectional.symmetric(horizontal: 60.w),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //         '${StringManager.total.tr()}: ',
-                  //         style: TextStyle(
-                  //             color: ColorManager.grey,
-                  //             fontSize: 50.sp,
-                  //             fontWeight: FontWeight.w700),
-                  //       ),
-                  //       Text(
-                  //         '10000sp',
-                  //         style: TextStyle(
-                  //             color: ColorManager.black,
-                  //             fontSize: 50.sp,
-                  //             fontWeight: FontWeight.w600),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // )
+                  Padding(
+                    padding: EdgeInsetsDirectional.symmetric(horizontal: 60.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${StringManager.total.tr()}: ',
+                          style: TextStyle(
+                              color: ColorManager.grey,
+                              fontSize: 50.sp,
+                              fontWeight: FontWeight.w700),
+                        ),
+                        Text(
+                          '$totalAllPrice',
+                          style: TextStyle(
+                              color: ColorManager.black,
+                              fontSize: 50.sp,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               );
             },
