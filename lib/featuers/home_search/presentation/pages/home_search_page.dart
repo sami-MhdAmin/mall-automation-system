@@ -8,6 +8,7 @@ import '../../../../core/resource/string_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/home_search_model.dart';
@@ -50,11 +51,21 @@ class _HomeSearchPageState extends State<HomeSearchPage> {
           }
         },
         builder: (context, state) {
-          if (state is HomeSearchInitial) {
-            // context.read<HomeSearchBloc>().add(GetHomeSearchedProductEvent(
-            //       context.read<AuthBloc>().token ?? '',
-            //       searchInputs.text,
-            //     ));
+          if (state is HomeSearchFailed) {
+            return Scaffold(
+              body: FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context
+                      .read<HomeSearchBloc>()
+                      .add(GetHomeSearchedProductEvent(
+                        context.read<AuthBloc>().token ?? '',
+                        "",
+                      ));
+                },
+              ),
+            );
           }
           return Scaffold(
             appBar: AppBar(

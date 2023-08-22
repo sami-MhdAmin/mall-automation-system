@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/resource/const_manager.dart';
-import '../widget/convex_bar_items_widget.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   BottomNavigationBarWidget({
     super.key,
   });

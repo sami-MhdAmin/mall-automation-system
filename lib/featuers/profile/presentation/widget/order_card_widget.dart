@@ -7,6 +7,7 @@ import '../../../../delivery manager/features/home/presentation/page/delivery_re
 
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../models/profile_model.dart';
 import '../page/my_order_details_page.dart';
 
 class OrderCardWidget extends StatelessWidget {
@@ -17,12 +18,14 @@ class OrderCardWidget extends StatelessWidget {
     required this.quantityText,
     required this.orderDetailsId,
     required this.isDelivered,
+    required this.profileOrderDetails,
     super.key,
   });
 
   final String userNameText, dateText, quantityText, amountText;
   final int orderDetailsId;
   final bool isDelivered;
+  final List<ProfileOrderDetails> profileOrderDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -139,11 +142,13 @@ class OrderCardWidget extends StatelessWidget {
                   width: 300.w,
                   child: ElevatedButton(
                     onPressed: () {
-                      //TODO:send something to MyOrderDetailsPage()
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const MyOrderDetailsPage(),
+                          builder: (context) => MyOrderDetailsPage(
+                            profileOrderDetails: profileOrderDetails,
+                            orderDate: dateText,
+                          ),
                         ),
                       );
                     },

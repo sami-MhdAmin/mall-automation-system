@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:file_picker/src/platform_file.dart';
 
 import 'package:jessy_mall/core/errors/base_error.dart';
 import 'package:jessy_mall/featuers/profile/models/investor_model.dart';

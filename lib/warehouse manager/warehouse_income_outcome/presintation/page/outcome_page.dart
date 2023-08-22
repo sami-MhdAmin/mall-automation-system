@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/outcome_model.dart';
@@ -43,6 +44,18 @@ class _OutcomeBodyState extends State<OutcomeBody> {
               context.read<WarehouseIncomeOutcomeBloc>().add(
                   OutcomeGetOutcomeDataEvent(
                       token: context.read<AuthBloc>().token ?? ''));
+            }
+
+            if (state is WarehouseOutcomeGetDataFailed) {
+              return FailuerWidget(
+                errorMessage: state.faliuer.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context.read<WarehouseIncomeOutcomeBloc>().add(
+                      OutcomeGetOutcomeDataEvent(
+                          token: context.read<AuthBloc>().token ?? ''));
+                },
+              );
             }
             return Stack(
               children: [

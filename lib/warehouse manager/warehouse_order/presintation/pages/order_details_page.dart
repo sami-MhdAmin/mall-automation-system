@@ -9,6 +9,7 @@ import '../../../../core/utils/global_snackbar.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/header_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -56,6 +57,21 @@ class OrderDetailsPage extends StatelessWidget {
                     token: context.read<AuthBloc>().token ?? '',
                     id: deliveryOrderDetailId,
                   ));
+            }
+
+            if (state is WarehouseOrdersFailed) {
+              return FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context
+                      .read<WarehouseOrdersBloc>()
+                      .add(GetPendingDetailsEvent(
+                        token: context.read<AuthBloc>().token ?? '',
+                        id: deliveryOrderDetailId,
+                      ));
+                },
+              );
             }
             return Stack(
               children: [

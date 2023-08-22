@@ -8,15 +8,14 @@ import '../widget/order_card_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class MyOrderPage extends StatefulWidget {
-  const MyOrderPage({super.key});
+  const MyOrderPage({required this.profileOrdersModel, super.key});
 
+  final List<ProfileOrdersModel> profileOrdersModel;
   @override
   State<MyOrderPage> createState() => _MyOrderPageState();
 }
 
 class _MyOrderPageState extends State<MyOrderPage> {
-  List<ProfileOrdersModel> profileOrdersList = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +27,7 @@ class _MyOrderPageState extends State<MyOrderPage> {
           ),
           Expanded(
               child: ListView.builder(
-            // itemCount: profileOrdersList.length,
-            itemCount: 8,
+            itemCount: widget.profileOrdersModel.length,
             padding: EdgeInsets.symmetric(
               vertical: 50.h,
               horizontal: 30.w,
@@ -37,13 +35,24 @@ class _MyOrderPageState extends State<MyOrderPage> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(bottom: 30.h),
-                child: const OrderCardWidget(
-                  userNameText: "salimo",
-                  dateText: "20/03/2023",
-                  quantityText: "03",
-                  amountText: "150",
+                child: OrderCardWidget(
+                  userNameText:
+                      widget.profileOrdersModel[index].fromWho ?? "ss",
+                  dateText:
+                      widget.profileOrdersModel[index].date ?? "22/08/2023",
+                  quantityText:
+                      widget.profileOrdersModel[index].totalQuantity ?? "00",
+                  amountText:
+                      widget.profileOrdersModel[index].totalPrice ?? "10000",
                   orderDetailsId: 5,
-                  isDelivered: false,
+                  isDelivered:
+                      widget.profileOrdersModel[index].deliveredStatus == 1
+                          ? true
+                          : false,
+                  profileOrderDetails:
+                      widget.profileOrdersModel[index].storeProducts!.isEmpty
+                          ? []
+                          : widget.profileOrdersModel[index].storeProducts!,
                 ),
               );
             },

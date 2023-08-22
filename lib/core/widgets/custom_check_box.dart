@@ -4,6 +4,7 @@ import 'package:jessy_mall/config/theme/color_manager.dart';
 
 import '../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 
+// ignore: must_be_immutable
 class CustomCheckbox extends StatefulWidget {
   CustomCheckbox({super.key, required this.isChecked, });
   bool isChecked;

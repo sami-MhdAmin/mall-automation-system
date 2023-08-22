@@ -17,3 +17,17 @@ class FavoriteGetFavoriteProductSuccess extends FavoriteState {
 
   FavoriteGetFavoriteProductSuccess({required this.favoriteModel});
 }
+
+class FavoriteRemoveFavoriteProductFailed extends FavoriteState {
+  final Failure faliuer;
+  FavoriteRemoveFavoriteProductFailed({
+    required this.faliuer,
+  });
+}
+
+class FavoriteRemoveFavoriteProductSuccess extends FavoriteState {
+  final String favoriteString;
+  FavoriteRemoveFavoriteProductSuccess({
+    required this.favoriteString,
+  });
+}

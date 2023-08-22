@@ -23,5 +23,20 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
         },
       );
     });
+    on<FavoriteRemoveFavoriteProductsEvent>((event, emit) async {
+      emit(FavoriteLoading());
+      final successOrFailuer = await _favoriteRepository.removefavoriteProduct(
+          event.token, event.id);
+      successOrFailuer.fold(
+        (error) {
+          emit(FavoriteRemoveFavoriteProductFailed(faliuer: error));
+        },
+        (favoriteString) {
+          emit(FavoriteRemoveFavoriteProductSuccess(
+              favoriteString: favoriteString));
+          emit(FavoriteInitial());
+        },
+      );
+    });
   }
 }

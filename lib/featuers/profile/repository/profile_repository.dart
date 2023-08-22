@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../../core/errors/base_error.dart';
 import '../models/investor_model.dart';
@@ -22,4 +23,8 @@ abstract class ProfileRepository {
       {required String token, String? fromDate, String ?toDate});
             Future<Either<Failure, investorBillsModel>> getBills(
       {required String token, String? fromDate, String ?toDate});
+
+  //SALIM
+  Future<Either<Failure, String>> uploadExcelFile(
+      String token, PlatformFile file);
 }

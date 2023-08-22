@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:jessy_mall/core/widgets/custom_text_field.dart';
-import 'package:jessy_mall/featuers/cart/presentation/widgets/my_cart_body.dart';
 
 import '../../../../config/theme/color_manager.dart';
-import '../../../../core/resource/string_manager.dart';
+import 'my_cart_body.dart';
 
 /// Determine the current position of the device.
 ///

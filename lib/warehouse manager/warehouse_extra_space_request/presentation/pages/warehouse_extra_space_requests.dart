@@ -7,6 +7,7 @@ import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/warehouse_extra_space_requests_model.dart';
@@ -42,6 +43,18 @@ class _WarehouseExtraSpaceRequestsState
               context.read<WarehouseExtraSpaceRequestsBloc>().add(
                   WarehouseGetSpaceRequestsEvent(
                       context.read<AuthBloc>().token ?? ''));
+            }
+
+            if (state is WarehouseExtraSpaceRequestsFailed) {
+              return FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context.read<WarehouseExtraSpaceRequestsBloc>().add(
+                      WarehouseGetSpaceRequestsEvent(
+                          context.read<AuthBloc>().token ?? ''));
+                },
+              );
             }
             return Stack(
               children: [

@@ -10,6 +10,7 @@ import '../../../../core/widgets/custom_card_movement_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/product_details_model.dart';
@@ -63,6 +64,19 @@ class WareHouseProductMovementPage extends StatelessWidget {
                     ),
                   );
             }
+            if (state is WarehouseHomepageProductsFailed) {
+              return FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context.read<WarehouseHomepageProductsBloc>().add(
+                        WarehouseHomePageGetProductDetailsEvent(
+                            productId: productId,
+                            token: context.read<AuthBloc>().token ?? ''),
+                      );
+                },
+              );
+            }
             return Stack(
               children: [
                 incomeFlex == 0
@@ -98,6 +112,7 @@ class WareHouseProductMovementPage extends StatelessWidget {
                           Expanded(
                             flex: incomeFlex,
                             child: ListView.builder(
+                                shrinkWrap: true,
                                 itemCount: warehouseInData?.length ?? 0,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Column(
@@ -168,6 +183,7 @@ class WareHouseProductMovementPage extends StatelessWidget {
                           Expanded(
                             flex: outcomeFlex,
                             child: ListView.builder(
+                                shrinkWrap: true,
                                 itemCount: warehouseOutData?.length ?? 0,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Column(

@@ -12,6 +12,7 @@ import 'favorite_injection.dart';
 import 'home_search_injection.dart';
 import 'income_outcome_injection.dart';
 import 'profile_injection.dart';
+import 'upload_excel_file_injection.dart';
 import 'warehouse_extra_space_requests_injection.dart';
 import 'warehouse_products_injection.dart';
 
@@ -31,4 +32,6 @@ Future<void> initInjection() async {
   await warehouseOrdersInjection();
   await cartInjection();
   await homeSearchInjection();
+
+  await uploadExcelFileInjection();
 }

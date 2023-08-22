@@ -168,12 +168,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         subtitleInListTile:
                             "${StringManager.alreadyHave.tr()} ${profileModel?.orders?.length ?? 0} ${StringManager.orders.tr()}",
                         navigatorFunc: () {
-                          //TODO:navigate to orders
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => const MyOrderPage(
-                                    //TODO: send list order
+                                builder: (_) => MyOrderPage(
+                                      profileOrdersModel:
+                                          profileModel!.orders!.isEmpty
+                                              ? []
+                                              : profileModel!.orders!,
                                     )),
                           );
                         },

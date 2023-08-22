@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../config/theme/color_manager.dart';
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> gShowErrorSnackBar(
     {required BuildContext context, required String message}) {

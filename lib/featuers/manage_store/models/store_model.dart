@@ -19,6 +19,8 @@ class StoreInfoModel {
   final int? openTime;
   final int? closeTime;
   final String? name;
+  final String? name_en;
+  final String? name_ar;
   final int? store_space;
   final int? floor;
   final String? type;
@@ -30,6 +32,8 @@ class StoreInfoModel {
     this.openTime,
     this.closeTime,
     this.name,
+    this.name_en,
+    this.name_ar,
     this.store_space,
     this.floor,
     this.type,

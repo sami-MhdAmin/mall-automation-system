@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:jessy_mall/featuers/profile/models/investor_model.dart';
 import 'package:jessy_mall/featuers/profile/models/wearhouse_investor_product.dart';
 
@@ -26,6 +27,10 @@ abstract class ProfileRemoteDataSource {
       {required String token, String? fromDate, String? toDate});
   Future<Either<Failure, investorBillsModel>> getBills(
       {required String token, String? fromDate, String? toDate});
+
+  //SALIM
+  Future<Either<Failure, String>> uploadExcelFile(
+      String token, PlatformFile file);
 }
 
 class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
