@@ -6,14 +6,12 @@ class OrderDetailsWidget extends StatelessWidget {
     required this.imageNetworkSource,
     required this.productName,
     required this.storeName,
-    required this.quantity,
     super.key,
   });
 
   final String imageNetworkSource;
   final String productName;
   final String storeName;
-  final String quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +39,7 @@ class OrderDetailsWidget extends StatelessWidget {
             SizedBox(
               height: 230.h,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     productName,
@@ -53,16 +52,6 @@ class OrderDetailsWidget extends StatelessWidget {
                   ),
                   Text(
                     storeName,
-                    // textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: const Color(0xFF808080),
-                      fontSize: 38.sp,
-                      fontFamily: 'Nunito Sans',
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    "Quantity: $quantity",
                     // textAlign: TextAlign.right,
                     style: TextStyle(
                       color: const Color(0xFF808080),

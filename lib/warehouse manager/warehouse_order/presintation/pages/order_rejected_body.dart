@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:easy_localization/easy_localization.dart';
-import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/warehouse_order_model.dart';
@@ -32,6 +31,16 @@ class OrderRejectedBody extends StatelessWidget {
               context
                   .read<WarehouseOrdersBloc>()
                   .add(GetRejectedEvent(context.read<AuthBloc>().token ?? ''));
+            }
+            if (state is WarehouseOrdersFailed) {
+              return FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context.read<WarehouseOrdersBloc>().add(
+                      GetRejectedEvent(context.read<AuthBloc>().token ?? ''));
+                },
+              );
             }
             return Stack(
               children: [
@@ -74,7 +83,7 @@ class OrderRejectedBody extends StatelessWidget {
                 ),
                 if (state is WarehouseOrdersLoading)
                   const LoadingWidget(fullScreen: true)
-             else    if (state is WarehouseRejectSuccess &&
+                else if (state is WarehouseRejectSuccess &&
                     warehouseRejectedData!.isEmpty)
                   EmptyWidget(height: 1.sh - 0.3)
               ],

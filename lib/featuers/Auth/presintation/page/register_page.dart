@@ -57,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     context: context, message: state.faliuer.message);
               }
               if (state is AuthSignUpSuccess) {
-                //TODO Roles
+      
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

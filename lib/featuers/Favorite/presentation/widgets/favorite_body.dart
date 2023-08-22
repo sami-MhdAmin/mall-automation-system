@@ -6,6 +6,8 @@ import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/widgets/favorite_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/favorite_model.dart';
@@ -39,6 +41,17 @@ class FavoriteBody extends StatelessWidget {
                   FavoriteGetFavoriteProductsEvent(
                       token: context.read<AuthBloc>().token ?? ''),
                 );
+          }
+          if (state is FavoriteGetFavoriteProductFailed) {
+            return FailuerWidget(
+              errorMessage: state.faliuer.message,
+              onPressed: () {
+                //token: context.read<AuthBloc>().token
+                context.read<FavoriteBloc>().add(
+                    FavoriteGetFavoriteProductsEvent(
+                        token: context.read<AuthBloc>().token ?? ''));
+              },
+            );
           }
           return Stack(
             children: [
@@ -77,6 +90,9 @@ class FavoriteBody extends StatelessWidget {
                 const LoadingWidget(
                   fullScreen: true,
                 )
+              else if (state is FavoriteGetFavoriteProductSuccess &&
+                  favoriteProductsData!.isEmpty)
+                EmptyWidget(height: 1.sh - 0.1.sh),
             ],
           );
         },

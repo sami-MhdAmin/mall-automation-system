@@ -7,6 +7,7 @@ import 'package:jessy_mall/config/theme/color_manager.dart';
 import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/warehouse_order_model.dart';
@@ -42,6 +43,16 @@ class _OrderPendingBodyState extends State<OrderPendingBody> {
               context
                   .read<WarehouseOrdersBloc>()
                   .add(GetPendingEvent(context.read<AuthBloc>().token ?? ''));
+            }
+            if (state is WarehouseOrdersFailed) {
+              return FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context.read<WarehouseOrdersBloc>().add(
+                      GetPendingEvent(context.read<AuthBloc>().token ?? ''));
+                },
+              );
             }
             return Stack(
               children: [

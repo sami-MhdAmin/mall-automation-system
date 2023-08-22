@@ -7,6 +7,7 @@ import 'package:jessy_mall/warehouse%20manager/warehouse_home/presintation/pages
 
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/widgets/empty_widget.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../bloc/warehouse_homepage_products_bloc.dart';
@@ -46,6 +47,17 @@ class _WarehouseProductBodyState extends State<WarehouseProductBody> {
               context.read<WarehouseHomepageProductsBloc>().add(
                   WarehouseHomePageGetProductsEvent(
                       token: context.read<AuthBloc>().token ?? ''));
+            }
+            if (state is WarehouseHomepageProductsFailed) {
+              return FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  //token: context.read<AuthBloc>().token
+                  context.read<WarehouseHomepageProductsBloc>().add(
+                      WarehouseHomePageGetProductsEvent(
+                          token: context.read<AuthBloc>().token ?? ''));
+                },
+              );
             }
             return Stack(
               children: [

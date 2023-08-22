@@ -12,6 +12,7 @@ import '../../models/delivery_order_model.dart';
 import '../bloc/delivery_manager_bloc/dilevery_manager_home_bloc.dart';
 import '../widgets/confirm_reject_Button.dart';
 import '../widgets/delivery_manager_order_details_widget.dart';
+import 'delivery_home_page.dart';
 
 class DeliveryDetailsPage extends StatefulWidget {
   const DeliveryDetailsPage({
@@ -122,7 +123,7 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                                     "Product X",
                                 storeName: widget.deliveryDataOrderModel
                                         ?.store_products?[index].store_name ??
-                                    "Store name", //TODO store name from back
+                                    "Store name",
                                 quantity: widget.deliveryDataOrderModel
                                         ?.store_products?[index].quantity
                                         .toString() ??
@@ -214,8 +215,12 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                                   id: widget.deliveryDataOrderModel!.id!,
                                   statues: "approved"));
 
-                          Navigator.pop(context);
-                          //TODO re request request_body when you pop and add snackbar
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const DeliveryHomePage()),
+                            (Route<dynamic> route) => false,
+                          );
                         },
                       ),
                       ConfirmRejectButtonWidget(
@@ -231,7 +236,12 @@ class _DeliveryDetailsPageState extends State<DeliveryDetailsPage> {
                                     statues: "rejected"),
                               );
 
-                          Navigator.pop(context);
+                         Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const DeliveryHomePage()),
+                            (Route<dynamic> route) => false,
+                          );
                           gShowSuccessSnackBar(
                               context: context,
                               message: "rejected done successfully");
