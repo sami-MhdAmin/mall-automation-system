@@ -5,7 +5,6 @@ import 'package:get_it/get_it.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/featuers/investment_options/presentation/widgets/investment_store.dart';
 import 'package:easy_localization/easy_localization.dart';
-
 import '../../../../core/resource/string_manager.dart';
 import '../bloc/invest_option_bloc/invest_option_bloc.dart';
 

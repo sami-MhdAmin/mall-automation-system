@@ -36,4 +36,26 @@ class FavoriteRepositoryImpl extends FavoriteRepository {
       return left(NoInternetFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, String>> removefavoriteProduct(
+      String token, int id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addsuccess =
+            await _favoriteRemoteDataSource.removefavoriteProduct(token, id);
+
+        return addsuccess.fold(
+          (failure) => Left(failure),
+          (deletefavoriteProducts) {
+            return right(deletefavoriteProducts);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
 }

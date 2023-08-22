@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
+import 'package:jessy_mall/featuers/Favorite/presentation/BLoC/favorite/favorite_bloc.dart';
+import 'package:jessy_mall/featuers/Favorite/presentation/widgets/favorite_body.dart';
 
 import '../../models/favorite_model.dart';
 
@@ -66,7 +70,15 @@ class FavoriteCard extends StatelessWidget {
           const Spacer(),
           Column(
             children: [
-              const Icon(Icons.highlight_remove_outlined),
+              IconButton(
+                icon: Icon(Icons.highlight_remove_outlined),
+                onPressed: () {
+                  context.read<FavoriteBloc>().add(
+                      FavoriteRemoveFavoriteProductsEvent(
+                          token: context.read<AuthBloc>().token ?? "",
+                          id: favoriteDataResponse?.id ?? 0));
+                },
+              ),
               // Expanded(child: SizedBox()),
               // Icon(Icons.shopping_bag),
               SizedBox(

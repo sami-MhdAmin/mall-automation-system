@@ -8,3 +8,12 @@ class FavoriteGetFavoriteProductsEvent extends FavoriteEvent {
 
   FavoriteGetFavoriteProductsEvent({required this.token});
 }
+
+class FavoriteRemoveFavoriteProductsEvent extends FavoriteEvent {
+  final String token;
+  final int id;
+  FavoriteRemoveFavoriteProductsEvent({
+    required this.token,
+    required this.id,
+  });
+}
