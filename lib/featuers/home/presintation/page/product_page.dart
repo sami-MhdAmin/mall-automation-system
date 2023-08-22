@@ -35,6 +35,7 @@ class _ProductPageState extends State<ProductPage> {
   CategoryModel? categoryModel;
   bool hasCategort = true;
   int selectdCategory = 0;
+  ProductModel? productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -148,6 +149,8 @@ class _ProductPageState extends State<ProductPage> {
                                               setState(() {
                                                 selectdCategory = index;
                                               });
+                                              productModel?.productDataModel
+                                                  ?.clear();
                                               context.read<ProductBloc>().add(
                                                   ProductRequested(
                                                       search:
@@ -185,63 +188,62 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                           Expanded(
                             child: BlocConsumer<ProductBloc, ProductState>(
-                              listener: (context, state) {},
+                              listener: (context, state) {
+                                if (state is ProductGetSuccess) {
+                                  productModel = state.productModel;
+                                }
+                              },
                               builder: (context, state) {
                                 if (state is ProductLoading) {
                                   return const LoadingWidget();
                                 }
-                                if (state is ProductGetSuccess) {
-                                  return state.productModel.productDataModel!
-                                          .isEmpty
-                                      ? EmptyWidget(
-                                          height: 1.sh,
-                                        )
-                                      : GridView.builder(
-                                          shrinkWrap: true,
-                                          padding:
-                                              EdgeInsetsDirectional.symmetric(
-                                                  horizontal: 50.w,
-                                                  vertical: 30.h),
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                  crossAxisSpacing: 40.h,
-                                                  mainAxisSpacing: 50.h,
-                                                  childAspectRatio: 1.3.h / 2.w,
-                                                  crossAxisCount: 2),
-                                          itemCount: state.productModel
-                                              .productDataModel?.length,
-                                          itemBuilder: (context, index) {
-                                            return GestureDetector(
-                                                onTap: () {
-                                                  if (widget.categoryName ==
-                                                          ConstManager
-                                                              .clothesCategory ||
-                                                      widget.categoryName ==
-                                                          ConstManager
-                                                              .furnitureCategory) {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (_) =>
-                                                                ProductDetailsPage(
-                                                                  categoryName:
-                                                                      widget
-                                                                          .categoryName,
-                                                                  productModel:
-                                                                      state
-                                                                          .productModel,
-                                                                  index: index,
-                                                                )));
-                                                  }
-                                                },
-                                                child: productCardWidget(
-                                                  index: index,
-                                                  productModel:
-                                                      state.productModel,
-                                                ));
-                                          });
+                                if (state is ProductGetSuccess &&
+                                    state.productModel.productDataModel!
+                                        .isEmpty) {
+                                  EmptyWidget(
+                                    height: 1.sh,
+                                  );
                                 }
-                                return const SizedBox();
+                                return GridView.builder(
+                                    shrinkWrap: true,
+                                    padding: EdgeInsetsDirectional.symmetric(
+                                        horizontal: 50.w, vertical: 30.h),
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisSpacing: 40.h,
+                                            mainAxisSpacing: 50.h,
+                                            childAspectRatio: 1.3.h / 2.w,
+                                            crossAxisCount: 2),
+                                    itemCount: productModel
+                                            ?.productDataModel?.length ??
+                                        0,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                          onTap: () {
+                                            if (widget.categoryName ==
+                                                    ConstManager
+                                                        .clothesCategory ||
+                                                widget.categoryName ==
+                                                    ConstManager
+                                                        .furnitureCategory) {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          ProductDetailsPage(
+                                                            categoryName: widget
+                                                                .categoryName,
+                                                            productModel:
+                                                                productModel,
+                                                            index: index,
+                                                          )));
+                                            }
+                                          },
+                                          child: productCardWidget(
+                                            index: index,
+                                            productModel: productModel,
+                                          ));
+                                    });
                               },
                             ),
                           )

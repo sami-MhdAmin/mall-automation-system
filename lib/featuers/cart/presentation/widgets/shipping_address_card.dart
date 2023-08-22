@@ -172,6 +172,7 @@ class _ShippingAddressCardState extends State<ShippingAddressCard> {
 
                           geocodindAddress = await getAddressFromCoordinates(
                               sami.latitude, sami.longitude);
+                          addressLocation = geocodindAddress ?? "call my phone";
                           setState(() {});
                         },
                         icon: const Icon(Icons.add_location_alt_rounded),
@@ -203,6 +204,8 @@ class _ShippingAddressCardState extends State<ShippingAddressCard> {
                                       setState(() {
                                         stringAddress = value;
                                         geocodindAddress = null;
+                                        addressLocation =
+                                            stringAddress ?? "call my phone";
                                       });
                                     },
                                     decoration: InputDecoration(
@@ -252,7 +255,7 @@ class _ShippingAddressCardState extends State<ShippingAddressCard> {
               ),
               Text(
                 //geocoding // textfield // empty
-                geocodindAddress ?? stringAddress ?? "sami",
+                geocodindAddress ?? stringAddress ?? "call me phone",
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   color: ColorManager.grey,

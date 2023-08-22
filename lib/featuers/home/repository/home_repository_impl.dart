@@ -20,7 +20,6 @@ class HomeRepositoryImpl extends HomeRepository {
       {required String token, required String type, String? search}) async {
     if (await _networkInfo.isConnected) {
       try {
-
         final addSuccess = await _homeRemoteDataSource.getStoresInType(
             token: token, type: type, search: search);
 
@@ -45,7 +44,7 @@ class HomeRepositoryImpl extends HomeRepository {
       try {
         final addSuccess = await _homeRemoteDataSource.getStoresCategory(
             token: token, storeId: storeId);
-     
+
         return addSuccess.fold(
           (failure) => Left(failure),
           (categoryModel) {
@@ -78,6 +77,34 @@ class HomeRepositoryImpl extends HomeRepository {
           (failure) => Left(failure),
           (prodcutModel) {
             return right(prodcutModel);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> addProductToCart(
+      {required String token,
+      required int productId,
+      required int quantity,
+      bool? isMarket}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _homeRemoteDataSource.addProductToCart(
+            token: token,
+            quantity: quantity,
+            productId: productId,
+            isMarket: isMarket);
+
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (t) {
+            return right(t);
           },
         );
       } on ServerException {

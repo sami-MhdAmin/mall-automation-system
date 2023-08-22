@@ -32,5 +32,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(ProductGetSuccess(productModel: productModel));
       });
     });
+
+        on<ProductAddToCartRequested>((event, emit) async {
+      emit(ProductAddToCartLoading());
+      final successOrFailuer = await _homeRepository.addProductToCart(
+          token: event.token, productId: event.productId,quantity: event.quantity,isMarket: event.isMarket);
+      successOrFailuer.fold((error) {
+        emit(ProductAddToCartFailed(faliuer: error));
+      }, (t) {
+        emit(ProductAddToCartSuccess());
+      });
+    });
   }
 }

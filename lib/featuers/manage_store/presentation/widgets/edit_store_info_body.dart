@@ -19,6 +19,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jessy_mall/featuers/profile/presentation/bloc/profile_bloc.dart';
 
 import '../../../../core/utils/global_snackbar.dart';
+import '../../../../core/widgets/error_widget.dart';
+import '../../../../core/widgets/loading_widget.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
 
 String? openStoreTime;
@@ -65,9 +67,6 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
       height: 2300.h,
       child: BlocConsumer<EditStoreBloc, EditStoreState>(
         listener: (context, state) {
-          if (state is EditStoreFailed) {
-            //TODO: dialog with alert YAMANAAAAAAAA
-          }
           if (state is EditStoreSuccess) {
             // print(state.profileModel.profileDataModel?.email);
             print(state.storeModel);
@@ -80,177 +79,201 @@ class _EditStoreInfoBodyState extends State<EditStoreInfoBody> {
         },
         builder: (context, state) {
           TimeOfDay time = TimeOfDay.now();
+          if (state is EditStoreFailed) {
+            return FailuerWidget(
+              errorMessage: state.faliuer.message,
+              onPressed: () {
+                //token: context.read<AuthBloc>().token
+                context.read<EditStoreBloc>().add(GetEditStoreEvent(
+                    token: context.read<AuthBloc>().token ?? ''));
+              },
+            );
+          }
           if (state is EditStoreInitial) {
             context.read<EditStoreBloc>().add(
                 GetEditStoreEvent(token: context.read<AuthBloc>().token ?? ''));
           }
-          return Column(
+          return Stack(
             children: [
-              Container(
-                height: 750.h,
-                color: ColorManager.foregroundL,
-                child: Column(
-                  children: [
-                    //TODO translete
-                    HeaderPage(
-                      title: StringManager.editStroeInfo.tr(),
-                      left: true,
-                      color: ColorManager.backgroundL,
-                    ),
-                    SizedBox(
-                      width: 350.r,
-                      height: 350.r,
-                      child: Transform.translate(
-                        offset: Offset(0, 280.h),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: InkWell(
-                            onTap: () async {
-                              await takePhotoFromGallery();
-                              Image.file(
-                                used.File(imageController!.path),
-                                width: double.infinity,
-                                fit: BoxFit.fill,
-                              );
-
-                              storeImage = used.File(imageController!.path);
-                            },
+              Column(
+                children: [
+                  Container(
+                    height: 750.h,
+                    color: ColorManager.foregroundL,
+                    child: Column(
+                      children: [
+                        HeaderPage(
+                          title: StringManager.editStroeInfo.tr(),
+                          left: true,
+                          color: ColorManager.backgroundL,
+                        ),
+                        SizedBox(
+                          width: 350.r,
+                          height: 350.r,
+                          child: Transform.translate(
+                            offset: Offset(0, 280.h),
                             child: CircleAvatar(
-                              //TODO : add image CIRCULAR + loading
+                              backgroundColor: Colors.white,
+                              child: InkWell(
+                                onTap: () async {
+                                  await takePhotoFromGallery();
+                                  Image.file(
+                                    used.File(imageController!.path),
+                                    width: double.infinity,
+                                    fit: BoxFit.fill,
+                                  );
 
-                              radius: 160.r,
-                              backgroundColor: Colors.yellow,
-                              child: SizedBox.fromSize(
-                                size: Size.fromRadius(160.r),
-                                child: CachedNetworkImage(
-                                  imageUrl: "${storeInfoModel?.image}" ?? "",
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                  storeImage = used.File(imageController!.path);
+                                },
+                                child: CircleAvatar(
+                                  //TODO : add image CIRCULAR + loading
+
+                                  radius: 160.r,
+                                  backgroundColor: Colors.yellow,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(90.0),
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.fill,
+                                      height: 150,
+                                      imageUrl:
+                                          "https://i.ytimg.com/vi/5gO0xpY_Y3E/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhCIFQoZTAP&rs=AOn4CLBdtxYbLyxjQVkn_V7q9JEJDnP0Bg",
+                                      // imageUrl: "${storeInfoModel?.image}" ??
+                                      //     "https://i.ytimg.com/vi/5gO0xpY_Y3E/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhCIFQoZTAP&rs=AOn4CLBdtxYbLyxjQVkn_V7q9JEJDnP0Bg",
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 250.h,
-              ),
-              CustomTextField(
-                // initialValue:
-                //     storeInfoModel?.name ?? StringManager.storeName.tr(),
-                width: 900.w,
-                // hintText: StringManager.storeName.tr(),
-                icon: Icons.store,
-                textEditingController: storeNameController,
-                keybordType: TextInputType.name,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return StringManager.pleaseEnterStoreName.tr();
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(
-                height: 32.h,
-              ),
-              SizedBox(
-                width: 900.w,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 400.w,
-                      child: TimePickerOptions(
-                        themeMode: ThemeMode.dark,
-                        useMaterial3: true,
-                        textOpenOrClose: StringManager.openTime.tr(),
-                        // openOrCloseTime: ,
-                        color: ColorManager.green, openOrCloseStoreTime: 1,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 400.w,
-                      child: TimePickerOptions(
-                        themeMode: ThemeMode.dark,
-                        useMaterial3: true,
-                        textOpenOrClose: StringManager.closeTime.tr(),
-                        color: ColorManager.red,
-                        openOrCloseStoreTime: 0,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 64.h,
-              ),
-
-              //Card Other Details
-              SizedBox(
-                width: 900.w,
-                height: 600.h,
-                child: Card(
-                  color: ColorManager.backgroundL,
-                  surfaceTintColor: ColorManager.backgroundL,
-                  elevation: 12,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(StringManager.otherDetails.tr()),
-                        const Divider(),
-                        Text(StringManager.type.tr() +
-                            "${storeInfoModel?.type}"),
-                        Text(StringManager.storeSpace.tr() +
-                            "${storeInfoModel?.store_space} m"),
-                        // Text(StringManager.availableStorageSpace.tr() + '25 m'),
-                        Text("${StringManager.openTime.tr()}: " +
-                            '${storeInfoModel?.openTime}'),
-                        Text("${StringManager.closeTime.tr()}: " +
-                            '${storeInfoModel?.closeTime}'),
                       ],
                     ),
                   ),
-                ),
-              ),
-              ////
-
-              Expanded(
-                child: SizedBox(),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 32),
-                child: SizedBox(
+                  SizedBox(
+                    height: 250.h,
+                  ),
+                  CustomTextField(
+                    // initialValue:
+                    //     storeInfoModel?.name ?? StringManager.storeName.tr(),
                     width: 900.w,
-                    child: CustomButton(
-                        onPressed: () {
-                          context.read<EditStoreBloc>().add(
-                              UpdateEditStoreEvent(
-                                  id: storeInfoModel!.id!,
-                                  token: context.read<AuthBloc>().token!,
-                                  name_ar: "name_ar",
-                                  name_en: "name_en",
-                                  openTime: openStoreTime ??
-                                      storeInfoModel!.openTime.toString(),
-                                  closeTime: closeStoreTime ??
-                                      storeInfoModel!.closeTime.toString()));
+                    // hintText: StringManager.storeName.tr(),
+                    icon: Icons.store,
+                    textEditingController: storeNameController,
+                    keybordType: TextInputType.name,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return StringManager.pleaseEnterStoreName.tr();
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 32.h,
+                  ),
+                  SizedBox(
+                    width: 900.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 400.w,
+                          child: TimePickerOptions(
+                            themeMode: ThemeMode.dark,
+                            useMaterial3: true,
+                            textOpenOrClose: StringManager.openTime.tr(),
+                            // openOrCloseTime: ,
+                            color: ColorManager.green, openOrCloseStoreTime: 1,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 400.w,
+                          child: TimePickerOptions(
+                            themeMode: ThemeMode.dark,
+                            useMaterial3: true,
+                            textOpenOrClose: StringManager.closeTime.tr(),
+                            color: ColorManager.red,
+                            openOrCloseStoreTime: 0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 64.h,
+                  ),
 
-                          //TODO get time and names, add snackbar and pop
-                          gShowSuccessSnackBar(
-                              context: context,
-                              message: StringManager.storeDetailsUpdated.tr());
-                          Navigator.pop(context);
-                        },
-                        text: StringManager.update.tr())),
+                  //Card Other Details
+                  SizedBox(
+                    width: 900.w,
+                    height: 600.h,
+                    child: Card(
+                      color: ColorManager.backgroundL,
+                      surfaceTintColor: ColorManager.backgroundL,
+                      elevation: 12,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(StringManager.otherDetails.tr()),
+                            const Divider(),
+                            Text(StringManager.type.tr() +
+                                "${storeInfoModel?.type}"),
+                            Text(StringManager.storeSpace.tr() +
+                                "${storeInfoModel?.store_space} m"),
+                            // Text(StringManager.availableStorageSpace.tr() + '25 m'),
+                            Text("${StringManager.openTime.tr()}: " +
+                                '${storeInfoModel?.openTime}'),
+                            Text("${StringManager.closeTime.tr()}: " +
+                                '${storeInfoModel?.closeTime}'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  ////
+
+                  Expanded(
+                    child: SizedBox(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 32),
+                    child: SizedBox(
+                        width: 900.w,
+                        child: CustomButton(
+                            onPressed: () {
+                              context.read<EditStoreBloc>().add(
+                                  UpdateEditStoreEvent(
+                                      id: storeInfoModel!.id!,
+                                      token: context.read<AuthBloc>().token!,
+                                      name_ar: "name_ar",
+                                      name_en: "name_en",
+                                      openTime: openStoreTime ??
+                                          storeInfoModel!.openTime.toString(),
+                                      closeTime: closeStoreTime ??
+                                          storeInfoModel!.closeTime
+                                              .toString()));
+
+                              //TODO get time and names, add snackbar and pop
+                              gShowSuccessSnackBar(
+                                  context: context,
+                                  message:
+                                      StringManager.storeDetailsUpdated.tr());
+                              Navigator.pop(context);
+                            },
+                            text: StringManager.update.tr())),
+                  ),
+                ],
               ),
+              if (state is EditStoreloading)
+                const LoadingWidget(
+                  fullScreen: true,
+                )
             ],
           );
         },

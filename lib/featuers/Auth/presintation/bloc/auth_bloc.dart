@@ -22,7 +22,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             investmentOption: event.investmentOption);
         successOrFailuer.fold((error) {
           emit(AuthSignUpFailed(faliuer: error));
-        }, (registerModel) {
+        }, (registerModel) async {
+          token = await _authRepostitory.getToken();
+          role = await _authRepostitory.getUserRole();
+          userName = await _authRepostitory.getUserName();
+          investmentOption = _authRepostitory.getInvestmentOption();
           emit(AuthSignUpSuccess(user: registerModel));
         });
       } catch (e) {

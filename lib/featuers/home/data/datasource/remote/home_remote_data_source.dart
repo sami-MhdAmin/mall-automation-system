@@ -18,8 +18,12 @@ abstract class HomeRemoteDataSource {
       required int storeId,
       String? search,
       required String categoryName});
+  Future<Either<Failure, bool>> addProductToCart(
+      {required String token,
+      required int productId,
+      required int quantity,
+      bool? isMarket});
 }
-
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   HomeRemoteDataSourceImpl(this.dioClient);
@@ -96,20 +100,62 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     final Response response;
     Map data;
     if (search != '') {
-      data = {
-        "category": categoryName,
-        "store_id": storeId,"name": search
-      };
+      data = {"category": categoryName, "store_id": storeId, "name": search};
     } else {
       data = {"category": categoryName, "store_id": storeId};
     }
     try {
       dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
 
-      response = await dioClient.post('/searchStoreProductInCategory', data: data);
+      response =
+          await dioClient.post('/searchStoreProductInCategory', data: data);
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(
             ProductModel.fromJson(response.data as Map<String, dynamic>));
+      }
+    } on DioError catch (e) {
+      if (e.response == null) {
+        return left(NoInternetFailure());
+      }
+      if (e.response!.data['message'] != null) {
+        return left(Failure(message: e.response!.data['message'].toString()));
+      } else {
+        return Left(
+          Failure(message: StringManager.sthWrong.tr()),
+        );
+      }
+    }
+    return Left(ServerFailure());
+  }
+
+  @override
+  Future<Either<Failure, bool>> addProductToCart(
+      {required String token,
+      required int productId,
+      required int quantity,
+      bool? isMarket}) async {
+    print(isMarket);
+    Map data;
+    if (isMarket == false) {
+      data = {
+        'stand_product_id': productId,
+        "quantity": quantity,
+      };
+    } else {
+         data = {
+        'store_product_id': productId,
+        "quantity": quantity,
+      };
+   
+    }
+
+    final Response response;
+    try {
+      dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
+
+      response = await dioClient.post('/cartOrders', data: data);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return Right(true);
       }
     } on DioError catch (e) {
       if (e.response == null) {

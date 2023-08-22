@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jessy_mall/core/resource/string_manager.dart';
+import 'package:jessy_mall/core/utils/global_snackbar.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import 'package:jessy_mall/featuers/home/models/home_model.dart';
-
+import 'package:easy_localization/easy_localization.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/asset_manager.dart';
 import '../../../../core/widgets/custom_counter.dart';
+import '../manager/product_bloc/product_bloc.dart';
 
 class productCardWidget extends StatelessWidget {
-  productCardWidget({super.key, this.productModel,required this.index});
+  productCardWidget({super.key, this.productModel, required this.index});
   ProductModel? productModel;
   int index;
 
@@ -33,7 +39,7 @@ class productCardWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(50.r),
                 child: Image.network(
-                  productModel!.productDataModel?[index].image??'',
+                  productModel!.productDataModel?[index].image ?? '',
                   // scale: 1,
                   fit: BoxFit.fill, height: 600.h,
                   width: 1.sw,
@@ -41,31 +47,64 @@ class productCardWidget extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.only(end: 20.w, bottom: 40.h),
-                child: Container(
-                    width: 100.w,
-                    height: 100.h,
-                    decoration: BoxDecoration(
-                        color: const Color(0x60606066),
-                        borderRadius: BorderRadius.circular(30.r),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 1,
-                              blurRadius: 1)
-                        ]),
-                    child: Center(
-                        child: Icon(
-                      Icons.shopping_cart,
-                      color: Colors.white,
-                      size: 50.h,
-                    ))),
+                child: BlocConsumer<ProductBloc, ProductState>(
+                  listener: (context, state) {
+                    if (state is ProductAddToCartFailed) {
+                      gShowErrorSnackBar(
+                          context: context, message: state.faliuer.message);
+                    }
+                    if (state is ProductAddToCartSuccess) {
+                      gShowSuccessSnackBar(
+                          context: context,
+                          message: StringManager.addSuccess.tr());
+                    }
+                  },
+                  builder: (context, state) {
+                    return GestureDetector(
+                      onTap: () {
+                        print(productAmount);
+                        context.read<ProductBloc>().add(
+                            ProductAddToCartRequested(
+                                token: context.read<AuthBloc>().token ?? '',
+                                productId:
+                                    productModel!.productDataModel?[index].id ??
+                                        0,
+                                quantity: productAmount,
+                                ));
+                      },
+                      child: Container(
+                          width: 100.w,
+                          height: 100.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0x60606066),
+                              borderRadius: BorderRadius.circular(30.r),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    spreadRadius: 1,
+                                    blurRadius: 1)
+                              ]),
+                          child: state is ProductAddToCartLoading
+                              ? Lottie.asset(
+                                  AssetJsonManager.loading,
+                                  height: 60.h,
+                                )
+                              : Center(
+                                  child: Icon(
+                                  Icons.shopping_cart,
+                                  color: Colors.white,
+                                  size: 50.h,
+                                ))),
+                    );
+                  },
+                ),
               ),
             ],
           ),
           Padding(
             padding: EdgeInsetsDirectional.only(start: 25.w),
             child: Text(
-              productModel!.productDataModel?[index].name??'',
+              productModel!.productDataModel?[index].name ?? '',
               style: TextStyle(
                   color: ColorManager.black,
                   fontSize: 40.sp,
@@ -82,9 +121,7 @@ class productCardWidget extends StatelessWidget {
                     fontSize: 40.sp,
                     fontWeight: FontWeight.w700),
               ),
-              Counter(
-                x: 1,
-              ),
+              Counter(),
             ],
           ),
           const SizedBox()
