@@ -138,10 +138,7 @@ class MyCartBody extends StatelessWidget {
                                 id: cartResponseModel
                                     ?.data!.cart_orders?[index].id,
                                 quantity: cartResponseModel
-                                        ?.data
-                                        ?.cart_orders?[index]
-                                        .storeProduct
-                                        ?.quantity
+                                        ?.data?.cart_orders?[index].quantity
                                         .toString() ??
                                     "0",
                               );
