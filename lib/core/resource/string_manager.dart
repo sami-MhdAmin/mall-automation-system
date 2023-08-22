@@ -11,7 +11,7 @@ class StringManager {
   static String clothes = 'Clothes';
   static String makeup = 'MakeUp';
   static String furniture = 'Furniture';
-  static String products = 'Products';
+  static String products = 'products';
   static String history = 'history';
 
   static String off = 'off';

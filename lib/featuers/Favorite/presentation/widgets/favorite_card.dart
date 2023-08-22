@@ -81,10 +81,10 @@ class FavoriteCard extends StatelessWidget {
               ),
               // Expanded(child: SizedBox()),
               // Icon(Icons.shopping_bag),
-              SizedBox(
-                height: 100.h,
-              ),
-              const Icon(Icons.shopify),
+              // SizedBox(
+              //   height: 100.h,
+              // ),
+              // const Icon(Icons.shopify),
             ],
           )
         ],

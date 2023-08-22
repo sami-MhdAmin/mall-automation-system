@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                       CustomTextField(
                         width: 850.w,
                         keybordType: TextInputType.emailAddress,
-                        hintText: StringManager.userNameHintText,
+                        hintText: StringManager.userNameHintText.tr(),
                         icon: Icons.person,
                         textEditingController: userNameController,
                         suffixIconWidget: null,

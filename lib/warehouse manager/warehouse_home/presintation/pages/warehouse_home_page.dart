@@ -106,7 +106,7 @@ class _WarehouseHomePageState extends State<WarehouseHomePage> {
                   width: 10.w,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    child:  ClipOval(
+                    child: ClipOval(
                       child: Image.asset(AssetImageManager.logo),
                     ),
                   ),
