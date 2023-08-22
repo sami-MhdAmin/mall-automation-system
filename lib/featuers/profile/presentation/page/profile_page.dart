@@ -186,6 +186,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               titleInListTile:
                                   StringManager.investStore.tr(),
                               subtitleInListTile:
+                              
                                   "${StringManager.youHave.tr()}$standsAndStores ${StringManager.storeOrStandInvested.tr()}",
                               navigatorFunc: () {
                                 Navigator.push(
