@@ -25,11 +25,11 @@ class DeliveryRequestBodyPage extends StatefulWidget {
 
 class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
   List<DeliveryDataOrderModel>? deliveryRequestsList;
-  // @override
-  // void dispose() {
-  //   GetIt.I.get<DileveryManagerHomeBloc>().close();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    GetIt.I.get<DileveryManagerHomeBloc>().close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,6 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
       create: (context) => GetIt.I.get<DileveryManagerHomeBloc>(),
       child: BlocConsumer<DileveryManagerHomeBloc, DileveryManagerHomeState>(
         listener: (context, state) {
-          // TODO: implement listener
-
           if (state is DileveryManagerGetOrderSuccess) {
             deliveryRequestsList = state.deliveryOrderModel.data!;
             // deliveryOrderList = state.deliveryOrderModel;
@@ -68,19 +66,19 @@ class _DeliveryRequestBodyPageState extends State<DeliveryRequestBodyPage> {
           return Stack(
             children: [
               SizedBox(
-                height: 1500.h,
+                height: 2000.h,
                 child: ListView.builder(
                   // itemCount: deliveryRequestsList.length,
                   itemCount: deliveryRequestsList?.length ?? 0,
                   padding: EdgeInsets.symmetric(
                     vertical: 50.h,
                     horizontal: 30.w,
+                    
                   ),
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 30.h),
                       child: CustomCardMovementWidget(
-                        //TODO: take all of info from model like that: deliveryRequestsList[index].x
                         height: 400.h,
                         firstTextField:
                             deliveryRequestsList?[index].from_who ?? "",

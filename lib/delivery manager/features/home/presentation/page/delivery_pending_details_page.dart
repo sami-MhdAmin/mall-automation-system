@@ -12,6 +12,7 @@ import '../../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/delivery_order_model.dart';
 import '../bloc/delivery_manager_bloc/dilevery_manager_home_bloc.dart';
 import '../widgets/delivery_manager_order_details_widget.dart';
+import 'delivery_home_page.dart';
 
 class DeliveryPendingDetailsPage extends StatefulWidget {
   const DeliveryPendingDetailsPage({
@@ -124,7 +125,7 @@ class _DeliveryPendingDetailsPageState
                                     "Product X",
                                 storeName: widget.deliveryDataOrderModel
                                         ?.store_products?[index].store_name ??
-                                    "Store name", 
+                                    "Store name",
                                 quantity: widget.deliveryDataOrderModel
                                         ?.store_products?[index].quantity
                                         .toString() ??
@@ -211,7 +212,11 @@ class _DeliveryPendingDetailsPageState
                                     statues: 1),
                               );
 
-                          Navigator.pop(context);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const DeliveryHomePage()),
+                              (Route<dynamic> route) => false);
                           gShowSuccessSnackBar(
                               context: context, message: "Ordered is deliverd");
                         },

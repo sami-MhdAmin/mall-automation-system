@@ -5,11 +5,14 @@ import '../../../../core/resource/string_manager.dart';
 import '../../../../core/widgets/header_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../models/profile_model.dart';
 import '../widget/order_details_widget.dart';
 
 class MyOrderDetailsPage extends StatefulWidget {
-  const MyOrderDetailsPage({super.key});
-
+  const MyOrderDetailsPage(
+      {required this.profileOrderDetails, required this.orderDate, super.key});
+  final List<ProfileOrderDetails> profileOrderDetails;
+  final String orderDate;
   @override
   State<MyOrderDetailsPage> createState() => _MyOrderDetailsPageState();
 }
@@ -40,8 +43,8 @@ class _MyOrderDetailsPageState extends State<MyOrderDetailsPage> {
                       horizontal: 20.w,
                       vertical: 30.h,
                     ),
-                    child: const Text(
-                      '20/03/2020',
+                    child: Text(
+                      widget.orderDate,
                       style: TextStyle(
                         color: Color(0xFF999999),
                         fontSize: 16,
@@ -60,19 +63,21 @@ class _MyOrderDetailsPageState extends State<MyOrderDetailsPage> {
                     height: 1750.h,
                     width: 900.w,
                     child: ListView.builder(
-                      // itemCount: OrderDetailsList.length,
-                      itemCount: 8,
+                      itemCount: widget.profileOrderDetails.length,
                       padding: EdgeInsets.symmetric(
                         vertical: 10.h,
                         horizontal: 10.w,
                       ),
                       itemBuilder: (context, index) {
-                        return const OrderDetailsWidget(
-                          imageNetworkSource:
-                              "https://media.istockphoto.com/id/912819604/vector/storefront-flat-design-e-commerce-icon.jpg?s=612x612&w=0&k=20&c=_x_QQJKHw_B9Z2HcbA2d1FH1U1JVaErOAp2ywgmmoTI=",
-                          productName: "Product X",
-                          storeName: "Store name",
-                          quantity: "5",
+                        return OrderDetailsWidget(
+                          imageNetworkSource: widget
+                                  .profileOrderDetails[index].image ??
+                              "https://i.pinimg.com/236x/4a/de/37/4ade3729109e48e14e0e3126f49df099.jpg",
+                          productName: widget.profileOrderDetails[index].name ??
+                              "Product X",
+                          storeName:
+                              widget.profileOrderDetails[index].storeName ??
+                                  "Store Y",
                         );
                       },
                     ),
