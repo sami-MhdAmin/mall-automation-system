@@ -12,7 +12,6 @@ import '../../../../../core/widgets/error_widget.dart';
 import '../../../../../core/widgets/loading_widget.dart';
 import '../../../../../featuers/Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/delivery_order_model.dart';
-import 'delivery_requests_details_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'delivery_history_details_page.dart';
@@ -35,7 +34,7 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
       create: (context) => GetIt.I.get<DileveryManagerHomeBloc>(),
       child: BlocConsumer<DileveryManagerHomeBloc, DileveryManagerHomeState>(
         listener: (context, state) {
-          // TODO: implement listener
+          
 
           if (state is DileveryManagerGetHistoryOrderSuccess) {
             deliveryRequestsList = state.deliveryOrderModel.data!;
@@ -75,7 +74,6 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 30.h),
                       child: CustomCardMovementWidget(
-                        //TODO: take all of info from model like that: deliveryRequestsList[index].x
                         height: 400.h,
                         firstTextField:
                             deliveryRequestsList?[index].from_who ?? "Salimo",
@@ -126,7 +124,6 @@ class _DeliveryHistoryBodyPageState extends State<DeliveryHistoryBodyPage> {
                               padding: EdgeInsetsDirectional.only(
                                   end: 30.w, top: 20.h),
                               child: Text(
-                                //TODO: take it from backend
                                 deliveryRequestsList?[index].delivered_status ==
                                         1
                                     ? StringManager.delivered.tr()

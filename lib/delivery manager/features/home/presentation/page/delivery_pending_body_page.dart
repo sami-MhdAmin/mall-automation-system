@@ -13,7 +13,6 @@ import '../../../../../core/widgets/custom_card_movement_widget.dart';
 import '../../../../../core/widgets/empty_widget.dart';
 import '../../../../../core/widgets/error_widget.dart';
 import 'delivery_pending_details_page.dart';
-import 'delivery_requests_details_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class DeliveryPendingBodyPage extends StatefulWidget {
@@ -38,8 +37,6 @@ class _DeliveryPendingBodyPageState extends State<DeliveryPendingBodyPage> {
       create: (context) => GetIt.I.get<DileveryManagerHomeBloc>(),
       child: BlocConsumer<DileveryManagerHomeBloc, DileveryManagerHomeState>(
         listener: (context, state) {
-          // TODO: implement listener
-
           if (state is DileveryManagerGetPendingOrderSuccess) {
             deliveryRequestsList = state.deliveryOrderModel.data!;
             // deliveryOrderList = state.deliveryOrderModel;
@@ -82,7 +79,6 @@ class _DeliveryPendingBodyPageState extends State<DeliveryPendingBodyPage> {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 30.h),
                       child: CustomCardMovementWidget(
-                        //TODO: take all of info from model like that: deliveryRequestsList[index].x
                         height: 400.h,
                         firstTextField:
                             deliveryRequestsList?[index].from_who ?? "",

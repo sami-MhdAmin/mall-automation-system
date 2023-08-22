@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../resource/string_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+// ignore: must_be_immutable
 class CustomCardMovementWidget extends StatelessWidget {
   double height;
   final String firstTextField;

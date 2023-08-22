@@ -18,7 +18,7 @@ class _CounterState extends State<Counter> {
           width: 24,
           height: 24,
           decoration: ShapeDecoration(
-            color: Color.fromARGB(255, 226, 226, 226),
+            color:const Color.fromARGB(255, 226, 226, 226),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           ),
@@ -44,7 +44,7 @@ class _CounterState extends State<Counter> {
           width: 24,
           height: 24,
           decoration: ShapeDecoration(
-            color: Color.fromARGB(255, 226, 226, 226),
+            color:const Color.fromARGB(255, 226, 226, 226),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           ),

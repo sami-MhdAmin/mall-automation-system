@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:jessy_mall/core/widgets/custom_counter.dart';
 
+// ignore: must_be_immutable
 class CartCard extends StatelessWidget {
   String? price;
   bool delete;
