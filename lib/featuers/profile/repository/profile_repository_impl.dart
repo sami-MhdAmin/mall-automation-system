@@ -161,4 +161,46 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return left(NoInternetFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, WearhouseInvestorOutcomModel>> getOutcomes(
+      {required String token, String? fromDate, String? toDate}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _profileRemoteDataSource.getOutcoms(
+            token: token, fromDate: fromDate, toDate: toDate);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (outComes) {
+            return right(outComes);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+  
+  @override
+  Future<Either<Failure, investorBillsModel>> getBills({required String token, String? fromDate, String? toDate})async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess = await _profileRemoteDataSource.getBills(
+            token: token, fromDate: fromDate, toDate: toDate);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (bills) {
+            return right(bills);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+  
 }

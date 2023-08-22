@@ -53,3 +53,15 @@ final class WearhouseInvestorGetIncomeFailure extends WearhouseInvestorState {
   final Failure failure;
   WearhouseInvestorGetIncomeFailure({required this.failure});
 }
+
+final class WearhouseInvestorGetOutcomeLoading extends WearhouseInvestorState {}
+
+final class WearhouseInvestorGetOutcomeSuccess extends WearhouseInvestorState {
+  final WearhouseInvestorOutcomModel investorOutcomModel;
+  WearhouseInvestorGetOutcomeSuccess({required this.investorOutcomModel});
+}
+
+final class WearhouseInvestorGetOutcomeFailure extends WearhouseInvestorState {
+  final Failure failure;
+  WearhouseInvestorGetOutcomeFailure({required this.failure});
+}

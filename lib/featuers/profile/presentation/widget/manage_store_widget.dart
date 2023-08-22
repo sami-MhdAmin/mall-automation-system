@@ -18,95 +18,88 @@ class ManageMyStoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
-        return Scaffold(
-          body: Container(
-            height: 1.sh,
-            width: 1.sw,
-            color: ColorManager.backgroundL,
-            child: SingleChildScrollView(
-              child: Column(
+    return Scaffold(
+      body: Container(
+        height: 1.sh,
+        width: 1.sw,
+        color: ColorManager.backgroundL,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 200.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SizedBox(
-                    height: 200.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ProfileCardWidget(
-                        titleInListTile: StringManager.editStroeInfo.tr(),
-                        subtitleInListTile:
-                            StringManager.editStroeInfoDesc.tr(),
-                        width: 500,
-                        height: 400,
-                        navigatorFunc: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => EditStoreInfo()));
-                        },
-                      ),
-                      ProfileCardWidget(
-                        titleInListTile: StringManager.uploadExcel.tr(),
-                        subtitleInListTile: StringManager.uploadExcelDesc.tr(),
-                        width: 500,
-                        height: 400,
-                        navigatorFunc: () {},
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 100.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ProfileCardWidget(
-                        titleInListTile: StringManager.showProduct.tr(),
-                        subtitleInListTile:
-                            "${StringManager.youHave.tr()} 4 ${StringManager.products.tr()}",
-                        width: 550,
-                        height: 400,
-                        navigatorFunc: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => ProductsInStorePage()));
-                        },
-                      ),
-                      ProfileCardWidget(
-                        titleInListTile: StringManager.wearhouse.tr(),
-                        subtitleInListTile: "",
-                        width: 500,
-                        height: 400,
-                        navigatorFunc: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const ManageWearHousePage()));
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 200.h,
-                  ),
                   ProfileCardWidget(
-                    titleInListTile: StringManager.showBills.tr(),
-                    subtitleInListTile: "",
+                    titleInListTile: StringManager.editStroeInfo.tr(),
+                    subtitleInListTile: StringManager.editStroeInfoDesc.tr(),
+                    width: 500,
+                    height: 400,
                     navigatorFunc: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => ShowBillsPage()));
+                          MaterialPageRoute(builder: (_) => EditStoreInfo()));
                     },
-                    cardColor: const Color(0xdd333333),
-                    textColor: Colors.white,
+                  ),
+                  ProfileCardWidget(
+                    titleInListTile: StringManager.uploadExcel.tr(),
+                    subtitleInListTile: StringManager.uploadExcelDesc.tr(),
+                    width: 500,
+                    height: 400,
+                    navigatorFunc: () {},
                   ),
                 ],
               ),
-            ),
+              SizedBox(
+                height: 100.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ProfileCardWidget(
+                    titleInListTile: StringManager.showProduct.tr(),
+                    subtitleInListTile: "",
+                    width: 550,
+                    height: 400,
+                    navigatorFunc: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ProductsInStorePage()));
+                    },
+                  ),
+                  ProfileCardWidget(
+                    titleInListTile: StringManager.wearhouse.tr(),
+                    subtitleInListTile: "",
+                    width: 500,
+                    height: 400,
+                    navigatorFunc: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const ManageWearHousePage()));
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 200.h,
+              ),
+              ProfileCardWidget(
+                titleInListTile: StringManager.showBills.tr(),
+                subtitleInListTile: "",
+                navigatorFunc: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ShowBillsPage()));
+                },
+                cardColor: const Color(0xdd333333),
+                textColor: Colors.white,
+              ),
+            ],
           ),
-        );
-     
+        ),
+      ),
+    );
   }
 }

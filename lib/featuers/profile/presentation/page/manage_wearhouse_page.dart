@@ -100,8 +100,7 @@ class ManageWearHousePage extends StatelessWidget {
                 ),
                 ProfileCardWidget(
                   titleInListTile: StringManager.showProduct.tr(),
-                  subtitleInListTile:
-                      "${StringManager.youHave.tr()} 2 ${StringManager.products.tr()}",
+                  subtitleInListTile: "",
                   navigatorFunc: () {
                     Navigator.push(
                         context,
@@ -111,8 +110,7 @@ class ManageWearHousePage extends StatelessWidget {
                 ),
                 ProfileCardWidget(
                   titleInListTile: StringManager.showIncome.tr(),
-                  subtitleInListTile:
-                      "${StringManager.youHave.tr()} 2 ${StringManager.products.tr()}",
+                  subtitleInListTile: "",
                   navigatorFunc: () {
                     Navigator.push(
                         context,
@@ -123,8 +121,7 @@ class ManageWearHousePage extends StatelessWidget {
                 ),
                 ProfileCardWidget(
                   titleInListTile: StringManager.showOutcome.tr(),
-                  subtitleInListTile:
-                      "${StringManager.youHave.tr()} 2 ${StringManager.products.tr()}",
+                  subtitleInListTile: "",
                   navigatorFunc: () {
                     Navigator.push(
                         context,
@@ -137,7 +134,9 @@ class ManageWearHousePage extends StatelessWidget {
                   listener: (context, state) {
                     if (state is WearhouseInvestorRequestExtraSpaceSuccess) {
                       gShowSuccessSnackBar(
-                          context: context, message: StringManager.addSuccessWaitingForAccept.tr());
+                          context: context,
+                          message:
+                              StringManager.addSuccessWaitingForAccept.tr());
                     }
                     if (state is WearhouseInvestorDeleteProductFailure) {
                       gShowErrorSnackBar(

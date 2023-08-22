@@ -38,16 +38,39 @@ class WearhouseInvestorBloc
         emit(WearhouseInvestorInitial());
       });
     });
-     on<WearhouseInvestorRequestExtraSpace>((event, emit) async {
+    on<WearhouseInvestorRequestExtraSpace>((event, emit) async {
       emit(WearhouseInvestorRequestExtraSpaceLoading());
-      final successOrFailuer =
-          await _profileRepository.requestExtraSpace(
-              token: event.token, space: event.space);
+      final successOrFailuer = await _profileRepository.requestExtraSpace(
+          token: event.token, space: event.space);
       successOrFailuer.fold((error) {
         emit(WearhouseInvestorDeleteProductFailure(failure: error));
       }, (product) {
         emit(WearhouseInvestorRequestExtraSpaceSuccess());
         emit(WearhouseInvestorInitial());
+      });
+    });
+
+    on<WearhouseInvestorRequestIncoms>((event, emit) async {
+      emit(WearhouseInvestorGetIncomeLoading());
+      final successOrFailuer = await _profileRepository.getIncoms(
+          token: event.token, fromDate: event.fromDate, toDate: event.toDate);
+      successOrFailuer.fold((error) {
+        emit(WearhouseInvestorGetIncomeFailure(failure: error));
+      }, (income) {
+        emit(WearhouseInvestorGetIncomeSuccess(investorIncomModel: income));
+        // emit(WearhouseInvestorInitial());
+      });
+    });
+
+      on<WearhouseInvestorRequestOutcoms>((event, emit) async {
+      emit(WearhouseInvestorGetOutcomeLoading());
+      final successOrFailuer = await _profileRepository.getOutcomes(
+          token: event.token, fromDate: event.fromDate, toDate: event.toDate);
+      successOrFailuer.fold((error) {
+        emit(WearhouseInvestorGetOutcomeFailure(failure: error));
+      }, (outcome) {
+        emit(WearhouseInvestorGetOutcomeSuccess(investorOutcomModel: outcome));
+        // emit(WearhouseInvestorInitial());
       });
     });
   }

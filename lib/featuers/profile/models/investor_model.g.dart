@@ -6,6 +6,58 @@ part of 'investor_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+investorBillsModel _$investorBillsModelFromJson(Map<String, dynamic> json) =>
+    investorBillsModel(
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) =>
+              investorStoreBillsDataModels.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$investorBillsModelToJson(investorBillsModel instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'message': instance.message,
+    };
+
+investorStoreBillsDataModels _$investorStoreBillsDataModelsFromJson(
+        Map<String, dynamic> json) =>
+    investorStoreBillsDataModels(
+      storeProducts: (json['storeProducts'] as List<dynamic>?)
+          ?.map((e) =>
+              investorBillsDataModels.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$investorStoreBillsDataModelsToJson(
+        investorStoreBillsDataModels instance) =>
+    <String, dynamic>{
+      'storeProducts': instance.storeProducts,
+    };
+
+investorBillsDataModels _$investorBillsDataModelsFromJson(
+        Map<String, dynamic> json) =>
+    investorBillsDataModels(
+      id: json['id'] as int?,
+      price: json['price'] as int?,
+      quantity: json['quantity'] as int?,
+      stoooore: json['stoooore'] as int?,
+      totalPrice: json['totalPrice'] as int?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$investorBillsDataModelsToJson(
+        investorBillsDataModels instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'quantity': instance.quantity,
+      'stoooore': instance.stoooore,
+      'totalPrice': instance.totalPrice,
+      'name': instance.name,
+    };
+
 InvestorProductModel _$InvestorProductModelFromJson(
         Map<String, dynamic> json) =>
     InvestorProductModel(

@@ -36,5 +36,18 @@ class InvestorBloc extends Bloc<InvestorEvent, InvestorState> {
         emit(InvestorInitial());
       });
     });
+
+          on<InvestorRequestBills>((event, emit) async {
+      emit(InvestorGetBillsLoading());
+      final successOrFailuer =
+          await _profileRepository.getBills(
+              token: event.token, toDate: event.toDate,fromDate: event.fromDate);
+      successOrFailuer.fold((error) {
+        emit(InvestorGetBillsFailure(failure: error));
+      }, (bills) {
+        emit(InvestorGetBillsSuccess(investorBilssModel: bills));
+        // emit(InvestorInitial());
+      });
+    });
   }
 }

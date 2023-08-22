@@ -29,3 +29,12 @@ class WearhouseInvestorRequestIncoms extends WearhouseInvestorEvent {
   WearhouseInvestorRequestIncoms(
       {required this.token, this.fromDate, this.toDate});
 }
+
+
+class WearhouseInvestorRequestOutcoms extends WearhouseInvestorEvent {
+  final String token;
+  String ?toDate;
+  String ?fromDate;
+  WearhouseInvestorRequestOutcoms(
+      {required this.token, this.fromDate, this.toDate});
+}

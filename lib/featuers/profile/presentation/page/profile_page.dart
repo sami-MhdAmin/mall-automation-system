@@ -249,28 +249,28 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(
                         height: 50.h,
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.symmetric(horizontal: 60.w),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              StringManager.doYouWantToSeeInvestmentOption.tr(),
-                              style: TextStyle(
-                                fontSize: 40.sp,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            CustomCheckbox(
-                              isChecked:
-                                  context.read<AuthBloc>().investmentOption == 1
-                                      ? true
-                                      : false,
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding:
+                      //       EdgeInsetsDirectional.symmetric(horizontal: 60.w),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       Text(
+                      //         StringManager.doYouWantToSeeInvestmentOption.tr(),
+                      //         style: TextStyle(
+                      //           fontSize: 40.sp,
+                      //           fontWeight: FontWeight.w700,
+                      //         ),
+                      //       ),
+                      //       CustomCheckbox(
+                      //         isChecked:
+                      //             context.read<AuthBloc>().investmentOption == 1
+                      //                 ? true
+                      //                 : false,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                   if (state is ProfileLoading)

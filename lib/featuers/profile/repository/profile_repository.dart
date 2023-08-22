@@ -17,5 +17,9 @@ abstract class ProfileRepository {
   Future<Either<Failure, bool>> deleteProductFromStore(
       {required String token, required String productId});
   Future<Either<Failure, WearhouseInvestorIncomModel>> getIncoms(
-      {required String token, String fromDate, String toDate});
+      {required String token, String? fromDate, String ?toDate});
+        Future<Either<Failure, WearhouseInvestorOutcomModel>> getOutcomes(
+      {required String token, String? fromDate, String ?toDate});
+            Future<Either<Failure, investorBillsModel>> getBills(
+      {required String token, String? fromDate, String ?toDate});
 }

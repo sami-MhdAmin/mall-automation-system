@@ -13,3 +13,12 @@ class InvestorDeleteProductFormMyStore extends InvestorEvent {
   InvestorDeleteProductFormMyStore(
       {required this.token, required this.productId});
 }
+
+
+class InvestorRequestBills extends InvestorEvent {
+  final String token;
+  String ?toDate;
+  String ?fromDate;
+  InvestorRequestBills(
+      {required this.token, this.fromDate, this.toDate});
+}

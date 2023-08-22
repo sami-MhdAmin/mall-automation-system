@@ -27,3 +27,15 @@ final class InvestorDeleteProductFromStoreFailure
   final Failure failure;
   InvestorDeleteProductFromStoreFailure({required this.failure});
 }
+
+final class InvestorGetBillsLoading extends InvestorState {}
+
+final class InvestorGetBillsSuccess extends InvestorState {
+  final investorBillsModel investorBilssModel;
+  InvestorGetBillsSuccess({required this.investorBilssModel});
+}
+
+final class InvestorGetBillsFailure extends InvestorState {
+  final Failure failure;
+  InvestorGetBillsFailure({required this.failure});
+}

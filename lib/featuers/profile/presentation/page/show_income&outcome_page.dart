@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:jessy_mall/config/theme/color_manager.dart';
 import 'package:jessy_mall/core/resource/string_manager.dart';
+import 'package:jessy_mall/core/widgets/error_widget.dart';
 import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jessy_mall/core/widgets/loading_widget.dart';
+import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
+import 'package:jessy_mall/featuers/profile/models/wearhouse_investor_product.dart';
+import 'package:jessy_mall/featuers/profile/presentation/bloc/wearhouseInvestorbloc/bloc/wearhouse_investor_bloc.dart';
 
 class ShowIncomeOutcomePage extends StatefulWidget {
   const ShowIncomeOutcomePage({super.key, required this.isIncome});
@@ -19,231 +26,254 @@ class _ShowIncomeOutcomePageState extends State<ShowIncomeOutcomePage> {
       text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
   final TextEditingController dateTo = TextEditingController(
       text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
+  List? inOutcomes;
 
   @override
   Widget build(BuildContext context) {
-    List<Income> incomes = [
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-      Income(
-          name: 'salim Slave', price: '0', quantity: '1', date: '22-10-2001'),
-    ];
-    return Scaffold(
-      body: Container(
-        height: 1.sh,
-        width: 1.sw,
-        color: ColorManager.backgroundL,
-        child: Column(
-          children: [
-           
-            HeaderPage(
-                title: widget.isIncome ? StringManager.income.tr() : StringManager.outcome.tr(), left: true),
-            SizedBox(
-              height: 150.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: () async {
-                    final DateTime? picked = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2019),
-                      lastDate: DateTime.now(),
-                    );
-                    if (picked != null) {
-                      setState(() {
-                        dateFrom.text = DateFormat('yyyy-MM-dd').format(picked);
-                      });
-                    }
-                  },
-                  child: Container(
-                    height: 160.h,
-                    width: 400.w,
-                    decoration: BoxDecoration(
-                        color: const Color(0xaa333333),
-                        borderRadius: BorderRadius.circular(30.r)),
-                    child: Center(
-                      child: Text(
-                        '${StringManager.from.tr()}: ${dateFrom.text}',
-                        style: TextStyle(color: Colors.white, fontSize: 30.sp),
-                      ),
-                    ),
+    return BlocProvider(
+      create: (context) => GetIt.I.get<WearhouseInvestorBloc>(),
+      child: Scaffold(
+        body: Container(
+          height: 1.sh,
+          width: 1.sw,
+          color: ColorManager.backgroundL,
+          child: BlocConsumer<WearhouseInvestorBloc, WearhouseInvestorState>(
+            listener: (context, state) {
+              if (state is WearhouseInvestorGetIncomeSuccess) {
+                inOutcomes = state.investorIncomModel.data!;
+              }
+              if (state is WearhouseInvestorGetOutcomeSuccess) {
+                inOutcomes = state.investorOutcomModel.data!;
+              }
+            },
+            builder: (context, state) {
+              if (state is WearhouseInvestorGetIncomeFailure) {
+                return FailuerWidget(
+                    errorMessage: state.failure.message,
+                    onPressed: () {
+                      context
+                          .read<WearhouseInvestorBloc>()
+                          .add(WearhouseInvestorRequestIncoms(
+                            token: context.read<AuthBloc>().token ?? '',
+                          ));
+                    });
+              }
+              if (state is WearhouseInvestorGetOutcomeFailure) {
+                return FailuerWidget(
+                    errorMessage: state.failure.message,
+                    onPressed: () {
+                      context
+                          .read<WearhouseInvestorBloc>()
+                          .add(WearhouseInvestorRequestOutcoms(
+                            token: context.read<AuthBloc>().token ?? '',
+                          ));
+                    });
+              }
+              if (state is WearhouseInvestorInitial) {
+                widget.isIncome
+                    ? context
+                        .read<WearhouseInvestorBloc>()
+                        .add(WearhouseInvestorRequestIncoms(
+                          token: context.read<AuthBloc>().token ?? '',
+                        ))
+                    : context
+                        .read<WearhouseInvestorBloc>()
+                        .add(WearhouseInvestorRequestOutcoms(
+                          token: context.read<AuthBloc>().token ?? '',
+                        ));
+              }
+              if (state is WearhouseInvestorGetIncomeLoading ||
+                  state is WearhouseInvestorGetOutcomeLoading) {
+                return LoadingWidget();
+              }
+              return Column(
+                children: [
+                  HeaderPage(
+                      title: widget.isIncome
+                          ? StringManager.income.tr()
+                          : StringManager.outcome.tr(),
+                      left: true),
+                  SizedBox(
+                    height: 150.h,
                   ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    final DateTime? picked = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.parse(dateFrom.text),
-                      lastDate: DateTime.now(),
-                    );
-                    if (picked != null) {
-                      setState(() {
-                        dateTo.text = DateFormat('yyyy-MM-dd').format(picked);
-                      });
-                    }
-                  },
-                  child: Container(
-                    height: 160.h,
-                    width: 400.w,
-                    decoration: BoxDecoration(
-                        color: const Color(0xaaeeeeee),
-                        borderRadius: BorderRadius.circular(30.r)),
-                    child: Center(
-                      child: Text(
-                        '${StringManager.to.tr()}: ${dateTo.text}',
-                        style: TextStyle(
-                            color: ColorManager.black, fontSize: 30.sp),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 100.h,
-                  width: 100.h,
-                  decoration: BoxDecoration(
-                      color: const Color(0xaa3CDDE8),
-                      borderRadius: BorderRadius.circular(20.r)),
-                  child: const Icon(
-                    Icons.check,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 100.h,
-            ),
-            SizedBox(
-              height: 1200.h,
-              width: 1.sw,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.symmetric(horizontal: 40.w),
-                  child: Table(
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    border: TableBorder.all(color: ColorManager.grey),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                       TableRow(
-                        children: [
-                          TableCellWidget(
-                            title: StringManager.productName.tr(),
+                      GestureDetector(
+                        onTap: () async {
+                          final DateTime? picked = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2019),
+                            lastDate: DateTime.now(),
+                          );
+                          if (picked != null) {
+                            setState(() {
+                              dateFrom.text =
+                                  DateFormat('yyyy-MM-dd').format(picked);
+                            });
+                          }
+                        },
+                        child: Container(
+                          height: 160.h,
+                          width: 400.w,
+                          decoration: BoxDecoration(
+                              color: const Color(0xaa333333),
+                              borderRadius: BorderRadius.circular(30.r)),
+                          child: Center(
+                            child: Text(
+                              '${StringManager.from.tr()}: ${dateFrom.text}',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 30.sp),
+                            ),
                           ),
-                          TableCellWidget(
-                            title: StringManager.quantity.tr(),
-                          ),
-                          TableCellWidget(
-                            title: StringManager.price.tr(),
-                          ),
-                           TableCellWidget(
-                            title: StringManager.date.tr(),
-                          ),
-                        ],
+                        ),
                       ),
-                      ...incomes.map((income) {
-                        return TableRow(
-                          children: [
-                            TableCellWidget(
-                              title: income.name,
+                      GestureDetector(
+                        onTap: () async {
+                          final DateTime? picked = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.parse(dateFrom.text),
+                            lastDate: DateTime.now(),
+                          );
+                          if (picked != null) {
+                            setState(() {
+                              dateTo.text =
+                                  DateFormat('yyyy-MM-dd').format(picked);
+                            });
+                          }
+                        },
+                        child: Container(
+                          height: 160.h,
+                          width: 400.w,
+                          decoration: BoxDecoration(
+                              color: const Color(0xaaeeeeee),
+                              borderRadius: BorderRadius.circular(30.r)),
+                          child: Center(
+                            child: Text(
+                              '${StringManager.to.tr()}: ${dateTo.text}',
+                              style: TextStyle(
+                                  color: ColorManager.black, fontSize: 30.sp),
                             ),
-                            TableCellWidget(
-                              title: income.quantity,
-                            ),
-                            TableCellWidget(
-                              title: income.price,
-                            ),
-                              TableCellWidget(
-                              title: income.date,
-                            ),
-                          ],
-                        );
-                      })
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          widget.isIncome
+                              ? context.read<WearhouseInvestorBloc>().add(
+                                  WearhouseInvestorRequestIncoms(
+                                      token:
+                                          context.read<AuthBloc>().token ?? '',
+                                      toDate: dateTo.text,
+                                      fromDate: dateFrom.text))
+                              : context.read<WearhouseInvestorBloc>().add(
+                                  WearhouseInvestorRequestOutcoms(
+                                      token:
+                                          context.read<AuthBloc>().token ?? '',
+                                      toDate: dateTo.text,
+                                      fromDate: dateFrom.text));
+                        },
+                        child: Container(
+                          height: 100.h,
+                          width: 100.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0xaa3CDDE8),
+                              borderRadius: BorderRadius.circular(20.r)),
+                          child: const Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 100.h,
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.symmetric(horizontal: 60.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${StringManager.total.tr()}: ',
-                    style: TextStyle(
-                        color: ColorManager.grey,
-                        fontSize: 50.sp,
-                        fontWeight: FontWeight.w700),
+                  SizedBox(
+                    height: 100.h,
                   ),
-                  Text(
-                    '10000sp',
-                    style: TextStyle(
-                        color: ColorManager.black,
-                        fontSize: 50.sp,
-                        fontWeight: FontWeight.w600),
+                  SizedBox(
+                    height: 1200.h,
+                    width: 1.sw,
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.symmetric(horizontal: 40.w),
+                        child: Table(
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          border: TableBorder.all(color: ColorManager.grey),
+                          children: [
+                            TableRow(
+                              children: [
+                                TableCellWidget(
+                                  title: StringManager.productName.tr(),
+                                ),
+                                TableCellWidget(
+                                  title: StringManager.quantity.tr(),
+                                ),
+                                TableCellWidget(
+                                  title: StringManager.date.tr(),
+                                ),
+                              ],
+                            ),
+                            ...?inOutcomes?.map((income) {
+                              return TableRow(
+                                children: [
+                                  TableCellWidget(
+                                    title: income.name ?? '',
+                                  ),
+                                  TableCellWidget(
+                                    title: income.quantityAfter.toString(),
+                                  ),
+                                  widget.isIncome
+                                      ? TableCellWidget(
+                                          title: income.inDate ?? '',
+                                        )
+                                      : TableCellWidget(
+                                          title: income.outDate ?? '',
+                                        ),
+                                ],
+                              );
+                            })
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
+                  SizedBox(
+                    height: 100.h,
+                  ),
+                  // Padding(
+                  //   padding: EdgeInsetsDirectional.symmetric(horizontal: 60.w),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Text(
+                  //         '${StringManager.total.tr()}: ',
+                  //         style: TextStyle(
+                  //             color: ColorManager.grey,
+                  //             fontSize: 50.sp,
+                  //             fontWeight: FontWeight.w700),
+                  //       ),
+                  //       // Text(
+                  //       //   '10000sp',
+                  //       //   style: TextStyle(
+                  //       //       color: ColorManager.black,
+                  //       //       fontSize: 50.sp,
+                  //       //       fontWeight: FontWeight.w600),
+                  //       // ),
+                  //     ],
+                  //   ),
+                  // )
                 ],
-              ),
-            )
-          ],
+              );
+            },
+          ),
         ),
       ),
     );
   }
-}
-
-class Income {
-  String name;
-  String quantity;
-  String price;
-  String date;
-  Income(
-      {required this.name,
-      required this.price,
-      required this.quantity,
-      required this.date});
 }
 
 class TableCellWidget extends StatelessWidget {
