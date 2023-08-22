@@ -1,3 +1,5 @@
+import 'dart:io' as used;
+
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -17,6 +19,5 @@ abstract class ProfileRepository {
   Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token);
 
   //SALIM
-  Future<Either<Failure, String>> uploadExcelFile(
-      String token, PlatformFile file);
+  Future<Either<Failure, String>> uploadExcelFile(String token, used.File file);
 }

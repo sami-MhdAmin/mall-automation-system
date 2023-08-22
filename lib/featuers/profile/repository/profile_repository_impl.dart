@@ -11,6 +11,7 @@ import '../../../core/errors/execption.dart';
 import '../../../core/network/network_info.dart';
 import '../data/datasource/remote/profile_remote_data_source.dart';
 import 'profile_repository.dart';
+import 'dart:io' as used;
 
 class ProfileRepositoryImpl extends ProfileRepository {
   final ProfileRemoteDataSource _profileRemoteDataSource;
@@ -124,7 +125,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
 //SALIM
   @override
   Future<Either<Failure, String>> uploadExcelFile(
-      String token, PlatformFile file) async {
+      String token, used.File file) async {
     if (await _networkInfo.isConnected) {
       try {
         final addSuccess =

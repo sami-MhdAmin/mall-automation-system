@@ -1,3 +1,5 @@
+import 'dart:io' as used;
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -21,8 +23,7 @@ abstract class ProfileRemoteDataSource {
   Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token);
 
   //SALIM
-  Future<Either<Failure, String>> uploadExcelFile(
-      String token, PlatformFile file);
+  Future<Either<Failure, String>> uploadExcelFile(String token, used.File file);
 }
 
 class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
@@ -145,6 +146,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
       dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
 
       response = await dioClient.get('/storeProducts');
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(InvestorProductModel.fromJson(
             response.data as Map<String, dynamic>));
@@ -167,13 +169,17 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   //SALIM
   @override
   Future<Either<Failure, String>> uploadExcelFile(
-      String token, PlatformFile file) async {
+      String token, used.File file) async {
     final Response response;
     try {
       dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
 
-      response =
-          await dioClient.post('/storeAllStoreProduct', data: {"spreadsheet": file});
+      FormData formData = FormData.fromMap({
+        'spreadsheet': await MultipartFile.fromFile(
+          file.path,
+        ),
+      });
+      response = await dioClient.post('/storeAllStoreProduct', data: formData);
       if (response.statusCode == 200 || response.statusCode == 201) {
         return const Right("Uploaded Successfully");
       }

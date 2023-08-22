@@ -18,6 +18,7 @@ import '../bloc/upload_excel_file/upload_excel_file_bloc.dart';
 import '../page/manage_wearhouse_page.dart';
 import '../page/show_bills_page.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'dart:io' as used;
 
 class ManageMyStoreWidget extends StatelessWidget {
   const ManageMyStoreWidget({super.key});
@@ -62,8 +63,9 @@ class ManageMyStoreWidget extends StatelessWidget {
                         }
                         if (state is UploadExcelFileFailed) {
                           gShowErrorSnackBar(
-                              context: context,
-                              message: StringManager.sthWrong.tr());
+                            context: context,
+                            message: StringManager.sthWrong.tr(),
+                          );
                         }
                       },
                       builder: (context, state) {
@@ -83,12 +85,13 @@ class ManageMyStoreWidget extends StatelessWidget {
                                 );
 
                                 if (result != null) {
-                                  PlatformFile file = result.files.first;
-
+                                  used.File file =
+                                      used.File(result.files.single.path!);
+                                  print(used.File(result.files.single.path!));
+                                  print(await file.length());
                                   print(
                                       "SAAAAAAAAAAAAALIIIIIIIIIIIIIIIIIIIIIMMMMMMMMMMMMMMMMMMMMMPPPPPPOOOOOOOOOOOOOO");
-                                  print(file.size);
-                                  print(file.name);
+
                                   context.read<UploadExcelFileBloc>().add(
                                       UploadExcelEvent(
                                           context.read<AuthBloc>().token ?? '',
@@ -101,13 +104,14 @@ class ManageMyStoreWidget extends StatelessWidget {
                               },
                             ),
                             if (state is UploadExcelFileLoading)
-                              SizedBox(
-                                height: 500,
+                              Container(
+                                height: 400.h,
+                                color: Colors.white54,
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height: 300,
-                                      width: 200,
+                                      height: 300.h,
+                                      width: 500.w,
                                       child: Lottie.asset(
                                           AssetJsonManager.loading),
                                     ),
