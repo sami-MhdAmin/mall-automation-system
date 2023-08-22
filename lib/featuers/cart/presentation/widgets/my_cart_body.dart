@@ -20,10 +20,18 @@ import '../bloc/cart_bloc/cart_bloc.dart';
 
 String addressLocation = "call my phone";
 
-class MyCartBody extends StatelessWidget {
+class MyCartBody extends StatefulWidget {
   MyCartBody({super.key});
+
+  @override
+  State<MyCartBody> createState() => _MyCartBodyState();
+}
+
+class _MyCartBodyState extends State<MyCartBody> {
   CartModel? cartResponseModel;
+
   num totalPrice = 0;
+
   String cartOrderIds = "";
 
   @override
@@ -62,6 +70,7 @@ class MyCartBody extends StatelessWidget {
             }
             // cartOrderIds = cartOrderIds.substring(cartOrderIds.length - 1);
             print("FINAL cartOrderIds" + cartOrderIds);
+            setState(() {});
           }
         },
         builder: (context, state) {
