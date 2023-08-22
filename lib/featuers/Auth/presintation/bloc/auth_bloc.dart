@@ -23,11 +23,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         successOrFailuer.fold((error) {
           emit(AuthSignUpFailed(faliuer: error));
         }, (registerModel) async {
-          token = await _authRepostitory.getToken();
+
+          emit(AuthSignUpSuccess(user: registerModel));
+                    token = await _authRepostitory.getToken();
           role = await _authRepostitory.getUserRole();
           userName = await _authRepostitory.getUserName();
           investmentOption = _authRepostitory.getInvestmentOption();
-          emit(AuthSignUpSuccess(user: registerModel));
         });
       } catch (e) {
         rethrow;
