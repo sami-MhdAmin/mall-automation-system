@@ -13,7 +13,6 @@ import 'package:lottie/lottie.dart';
 import '../../../../config/theme/color_manager.dart';
 import '../../../../core/resource/asset_manager.dart';
 import '../../../../core/utils/global_snackbar.dart';
-import '../bloc/investor_bloc/bloc/investor_bloc.dart';
 import '../bloc/upload_excel_file/upload_excel_file_bloc.dart';
 import '../page/manage_wearhouse_page.dart';
 import '../page/show_bills_page.dart';
@@ -151,9 +150,8 @@ class ManageMyStoreWidget extends StatelessWidget {
                   children: [
                     ProfileCardWidget(
                       titleInListTile: StringManager.showProduct.tr(),
-                      subtitleInListTile:
-                          "",
-                      width: 550,
+                      subtitleInListTile: "",
+                      width: 500,
                       height: 400,
                       navigatorFunc: () {
                         Navigator.push(

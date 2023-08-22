@@ -36,16 +36,15 @@ class _ProductsInWarehousePageState extends State<ProductsInWarehousePage> {
               if (state is WearhouseInvestorGetDataSuccess) {
                 productsList = state.wearhouseInvestorProductModel.data;
               }
-                if (state is WearhouseInvestorDeleteProductFailure) {
-                    gShowErrorSnackBar(
-                        context: context, message: state.failure.message);
-                  }
-                  if (state is WearhouseInvestorDeleteProductSuccess) {
-                    gShowSuccessSnackBar(
-                        context: context,
-                        message: StringManager.deleteSuccess.tr());
-                  }
-    
+              if (state is WearhouseInvestorDeleteProductFailure) {
+                gShowErrorSnackBar(
+                    context: context, message: state.failure.message);
+              }
+              if (state is WearhouseInvestorDeleteProductSuccess) {
+                gShowSuccessSnackBar(
+                    context: context,
+                    message: StringManager.deleteSuccess.tr());
+              }
             },
             builder: (context, state) {
               if (state is WearhouseInvestorGetDataFailure) {
@@ -96,10 +95,11 @@ class _ProductsInWarehousePageState extends State<ProductsInWarehousePage> {
                                         productsList?[index].name ?? '',
                                     quantity:
                                         productsList?[index].quantity ?? 0,
-                                        productId: productsList?[index].id.toString() ?? '',
+                                    productId:
+                                        productsList?[index].id.toString() ??
+                                            '',
                                   ),
-                                  // index !=  productsList.length-1,
-                                  index < 7
+                                  index < productsList!.length - 1
                                       ? SizedBox(
                                           width: 900.w, child: const Divider())
                                       : const SizedBox.shrink()
