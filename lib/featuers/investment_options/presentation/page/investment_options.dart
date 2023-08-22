@@ -25,13 +25,13 @@ class InvestmentOptions extends StatelessWidget {
               ),
             ),
           ),
-          Tab(
-            icon: SizedBox(
-                width: 350.w,
-                child: Icon(
-                  Icons.table_rows_rounded,
-                )),
-          ),
+          // Tab(
+          //   icon: SizedBox(
+          //       width: 350.w,
+          //       child: Icon(
+          //         Icons.table_rows_rounded,
+          //       )),
+          // ),
         ],
       );
   @override
@@ -68,7 +68,7 @@ class InvestmentOptions extends StatelessWidget {
               //End investment store UI
 
               // began investment stand
-              InvestmentStandUI(),
+              // InvestmentStandUI(),
               //end investment stand
             ],
           ),

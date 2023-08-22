@@ -40,8 +40,10 @@ class MyCartBody extends StatelessWidget {
             for (int i = 0;
                 i < cartResponseModel!.data!.cart_orders!.length;
                 i++) {
-              totalPrice +=
-                  cartResponseModel!.data!.cart_orders![i].storeProduct!.price!;
+              double singlePriceWithQuantity = cartResponseModel!
+                      .data!.cart_orders![i].storeProduct!.price! *
+                  cartResponseModel!.data!.cart_orders![i].quantity!.toDouble();
+              totalPrice += singlePriceWithQuantity;
               print(totalPrice);
             }
             //for loop for cartOrderIds
@@ -135,6 +137,13 @@ class MyCartBody extends StatelessWidget {
                                     "Product Name",
                                 id: cartResponseModel
                                     ?.data!.cart_orders?[index].id,
+                                quantity: cartResponseModel
+                                        ?.data
+                                        ?.cart_orders?[index]
+                                        .storeProduct
+                                        ?.quantity
+                                        .toString() ??
+                                    "0",
                               );
                             },
                           ),

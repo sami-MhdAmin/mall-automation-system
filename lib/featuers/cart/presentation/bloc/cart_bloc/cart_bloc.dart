@@ -30,6 +30,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(CartRemoveOrderFailed(error));
       }, (_) {
         emit(CartRemoveOrderSuccess());
+        emit(CartInitial());
       });
     });
 
@@ -41,6 +42,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(CartBuyAllOrderFailed(error));
       }, (_) {
         emit(CartBuyAllOrderSuccess());
+        emit(CartInitial());
       });
     });
   }

@@ -37,12 +37,14 @@ CartOrderDataModel _$CartOrderDataModelFromJson(Map<String, dynamic> json) =>
           ? null
           : StoreProductModel.fromJson(
               json['storeProduct'] as Map<String, dynamic>),
+      quantity: (json['quantity'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$CartOrderDataModelToJson(CartOrderDataModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'storeProduct': instance.storeProduct,
+      'quantity': instance.quantity,
     };
 
 StoreProductModel _$StoreProductModelFromJson(Map<String, dynamic> json) =>

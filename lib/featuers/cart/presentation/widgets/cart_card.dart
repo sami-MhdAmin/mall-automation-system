@@ -15,6 +15,7 @@ class CartCard extends StatelessWidget {
   String? name;
   String? image;
   int? id;
+  String? quantity;
   CartCard({
     Key? key,
     this.price,
@@ -22,6 +23,7 @@ class CartCard extends StatelessWidget {
     this.name,
     this.image,
     this.id,
+    this.quantity,
   }) : super(key: key);
 
   @override
@@ -70,6 +72,14 @@ class CartCard extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 55.h,
+                ),
+                Text(
+                  "quantity: $quantity",
+                  style: TextStyle(
+                    color: Color(0xFF999999),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 // Counter(
                 //   x: 1,

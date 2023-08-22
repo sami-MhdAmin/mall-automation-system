@@ -10,7 +10,6 @@ import 'package:jessy_mall/core/widgets/custom_text_field.dart';
 import 'package:jessy_mall/core/widgets/loading_widget.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
-
 import '../../../../core/widgets/custom_button.dart';
 import '../widgets/string_to_sign_in.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -32,6 +31,37 @@ class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool visibility = false;
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 1000.h,
+          width: 900.w,
+          child: AlertDialog(
+            title: Text(StringManager.whatIsInvestmentOption.tr()),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text(StringManager.descriptionInvestmentOption.tr()),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text(StringManager.ok.tr()),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   void dispose() {
@@ -205,8 +235,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           ],
                         ),
                         TextButton(
-                          onPressed: () {
+                          onPressed: () async {
                             //TODO: take me to description of investment
+                            await _showMyDialog();
                           },
                           child: Text(
                             StringManager.readMore.tr(),
