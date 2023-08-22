@@ -36,7 +36,7 @@ class InvestmentOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 1,
       child: BlocProvider(
         create: (context) => GetIt.I.get<InvestOptionBloc>(),
         child: Scaffold(

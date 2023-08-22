@@ -56,7 +56,7 @@ class StringManager {
   static String profile = 'profile';
   static String myOrders = 'myOrders';
   static String alreadyHave = 'alreadyHave';
-  static String investStoreOrStand = 'investStoreOrStand';
+  static String investStore = 'investStore';
   static String storeOrStandInvested = 'storeOrStandInvested';
   static String manageMyInvestment = 'manageMyInvestment';
   static String totalAmount = 'totalAmount';
@@ -138,4 +138,7 @@ class StringManager {
   static String descriptionInvestmentOption = 'descriptionInvestmentOption';
   static String whatIsInvestmentOption = 'whatIsInvestmentOption';
   static String ok = 'ok';
+
+  static String orderedSuccessfully = "orderedSuccessfully";
+  static String removedSuccessfully = "removedSuccessfully";
 }

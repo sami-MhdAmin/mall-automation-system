@@ -6,6 +6,7 @@ import 'package:jessy_mall/core/widgets/header_page.dart';
 import 'package:jessy_mall/featuers/Favorite/presentation/widgets/favorite_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../../../core/utils/global_snackbar.dart';
 import '../../../../core/widgets/empty_widget.dart';
 import '../../../../core/widgets/error_widget.dart';
 import '../../../../core/widgets/loading_widget.dart';
@@ -26,12 +27,19 @@ class FavoriteBody extends StatelessWidget {
       child: BlocConsumer<FavoriteBloc, FavoriteState>(
         listener: (context, state) {
           if (state is FavoriteGetFavoriteProductFailed) {
-            //TODO: dialog with alert YAMANAAAAAAAA
+            gShowErrorSnackBar(
+                context: context, message: StringManager.failed.tr());
           }
 
           if (state is FavoriteGetFavoriteProductSuccess) {
             favoriteProductsData = state.favoriteModel.data;
             print(favoriteProductsData?.length ?? "errooooooooor");
+          }
+
+          if (state is FavoriteRemoveFavoriteProductSuccess) {
+            gShowSuccessSnackBar(
+                context: context,
+                message: StringManager.removedSuccessfully.tr());
           }
         },
         builder: (context, state) {

@@ -184,7 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       context.read<AuthBloc>().investmentOption == 1
                           ? ProfileCardWidget(
                               titleInListTile:
-                                  StringManager.investStoreOrStand.tr(),
+                                  StringManager.investStore.tr(),
                               subtitleInListTile:
                                   "${StringManager.youHave.tr()}$standsAndStores ${StringManager.storeOrStandInvested.tr()}",
                               navigatorFunc: () {

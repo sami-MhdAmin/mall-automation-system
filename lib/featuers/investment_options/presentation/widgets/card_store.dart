@@ -26,7 +26,7 @@ class CardStore extends StatelessWidget {
               topRight: Radius.circular(30.0.r),
             ),
             child: Image.network(
-              'https://image.cnbcfm.com/api/v1/image/103448059-GettyImages-492843021.jpg?v=1675861201&w=740&h=416&ffmt=webp&vtcrop=y',
+              "https://i.pinimg.com/736x/99/98/8e/99988e6d35540898c3c2fc1b74151faa.jpg",
               height: 600.0.h,
               fit: BoxFit.cover,
             ),

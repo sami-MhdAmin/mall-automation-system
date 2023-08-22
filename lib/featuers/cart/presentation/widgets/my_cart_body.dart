@@ -13,6 +13,7 @@ import 'package:jessy_mall/featuers/cart/presentation/widgets/shipping_address_c
 import 'package:easy_localization/easy_localization.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../core/utils/global_snackbar.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../Auth/presintation/bloc/auth_bloc.dart';
 import '../../models/cart_model.dart';
@@ -42,6 +43,10 @@ class _MyCartBodyState extends State<MyCartBody> {
         listener: (context, state) {
           // TODO: implement listener
           if (state is CartGetAllOrderSuccess) {
+            totalPrice = 0;
+
+            cartOrderIds = "";
+
             cartResponseModel = state.cartModel;
             print("CartGetAllOrderSuccess");
             //for loop for total price
@@ -70,7 +75,12 @@ class _MyCartBodyState extends State<MyCartBody> {
             }
             // cartOrderIds = cartOrderIds.substring(cartOrderIds.length - 1);
             print("FINAL cartOrderIds" + cartOrderIds);
-            setState(() {});
+          }
+
+          if (state is CartRemoveOrderSuccess) {
+            gShowSuccessSnackBar(
+                context: context,
+                message: StringManager.removedSuccessfully.tr());
           }
         },
         builder: (context, state) {
@@ -190,14 +200,15 @@ class _MyCartBodyState extends State<MyCartBody> {
                               else
                                 CustomButton(
                                   onPressed: () {
-                                    context.read<CartBloc>().add(
-                                        CartPostBuyAllOrderEvent(
-                                            token: context
-                                                    .read<AuthBloc>()
-                                                    .token ??
-                                                " ",
-                                            cartOrderIds: cartOrderIds,
-                                            addressLocation: addressLocation));
+                                    context
+                                        .read<CartBloc>()
+                                        .add(CartPostBuyAllOrderEvent(
+                                          token:
+                                              context.read<AuthBloc>().token ??
+                                                  " ",
+                                          cartOrderIds: cartOrderIds,
+                                          addressLocation: addressLocation,
+                                        ));
                                   },
                                   text: StringManager.confirm.tr(),
                                 ),

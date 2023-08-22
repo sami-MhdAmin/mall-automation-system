@@ -30,88 +30,82 @@ class _ProductsInWarehousePageState extends State<ProductsInWarehousePage> {
     return BlocProvider(
       create: (context) => GetIt.I.get<WearhouseInvestorBloc>(),
       child: Scaffold(
-        body: SafeArea(
-          child: BlocConsumer<WearhouseInvestorBloc, WearhouseInvestorState>(
-            listener: (context, state) {
-              if (state is WearhouseInvestorGetDataSuccess) {
-                productsList = state.wearhouseInvestorProductModel.data;
-              }
-              if (state is WearhouseInvestorDeleteProductFailure) {
-                gShowErrorSnackBar(
-                    context: context, message: state.failure.message);
-              }
-              if (state is WearhouseInvestorDeleteProductSuccess) {
-                gShowSuccessSnackBar(
-                    context: context,
-                    message: StringManager.deleteSuccess.tr());
-              }
-            },
-            builder: (context, state) {
-              if (state is WearhouseInvestorGetDataFailure) {
-                return FailuerWidget(
-                  errorMessage: state.failure.message,
-                  onPressed: () {
-                    context.read<WearhouseInvestorBloc>().add(
-                        WearhouseInvestorRequestData(
-                            token: context.read<AuthBloc>().token ?? ''));
-                  },
-                );
-              }
-              if (state is WearhouseInvestorInitial) {
-                context.read<WearhouseInvestorBloc>().add(
-                    WearhouseInvestorRequestData(
-                        token: context.read<AuthBloc>().token ?? ''));
-              }
-              if (state is WearhouseInvestorGetDataLoading) {
-                return const LoadingWidget(
-                  fullScreen: true,
-                );
-              }
-              return Column(
-                children: [
-                  HeaderPage(
-                    left: true,
-                    title: StringManager.productsInWarehouse.tr(),
-                  ),
-                  productsList == null
-                      ? EmptyWidget(
-                          height: 0.5.sh,
-                        )
-                      : Expanded(
-                          child: ListView.builder(
-                            // itemCount: productsList.length,
-                            itemCount: productsList?.length,
-                            padding: EdgeInsets.symmetric(
-                              vertical: 50.h,
-                              horizontal: 30.w,
-                            ),
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  ProductsInWarehouseWidget(
-                                    imageNetworkSource:
-                                        productsList?[index].image ?? '',
-                                    productName:
-                                        productsList?[index].name ?? '',
-                                    quantity:
-                                        productsList?[index].quantity ?? 0,
-                                    productId:
-                                        productsList?[index].id.toString() ??
-                                            '',
-                                  ),
-                                  index < productsList!.length - 1
-                                      ? SizedBox(
-                                          width: 900.w, child: const Divider())
-                                      : const SizedBox.shrink()
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                ],
+        body: BlocConsumer<WearhouseInvestorBloc, WearhouseInvestorState>(
+          listener: (context, state) {
+            if (state is WearhouseInvestorGetDataSuccess) {
+              productsList = state.wearhouseInvestorProductModel.data;
+            }
+            if (state is WearhouseInvestorDeleteProductFailure) {
+              gShowErrorSnackBar(
+                  context: context, message: state.failure.message);
+            }
+            if (state is WearhouseInvestorDeleteProductSuccess) {
+              gShowSuccessSnackBar(
+                  context: context, message: StringManager.deleteSuccess.tr());
+            }
+          },
+          builder: (context, state) {
+            if (state is WearhouseInvestorGetDataFailure) {
+              return FailuerWidget(
+                errorMessage: state.failure.message,
+                onPressed: () {
+                  context.read<WearhouseInvestorBloc>().add(
+                      WearhouseInvestorRequestData(
+                          token: context.read<AuthBloc>().token ?? ''));
+                },
               );
-            },
-          ),
+            }
+            if (state is WearhouseInvestorInitial) {
+              context.read<WearhouseInvestorBloc>().add(
+                  WearhouseInvestorRequestData(
+                      token: context.read<AuthBloc>().token ?? ''));
+            }
+            if (state is WearhouseInvestorGetDataLoading) {
+              return const LoadingWidget(
+                fullScreen: true,
+              );
+            }
+            return Column(
+              children: [
+                HeaderPage(
+                  left: true,
+                  title: StringManager.productsInWarehouse.tr(),
+                ),
+                productsList == null
+                    ? EmptyWidget(
+                        height: 0.5.sh,
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                          // itemCount: productsList.length,
+                          itemCount: productsList?.length,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 50.h,
+                            horizontal: 30.w,
+                          ),
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                ProductsInWarehouseWidget(
+                                  imageNetworkSource:
+                                      productsList?[index].image ?? '',
+                                  productName: productsList?[index].name ?? '',
+                                  quantity: productsList?[index].quantity ?? 0,
+                                  productId:
+                                      productsList?[index].id.toString() ?? '',
+                                ),
+                                index < productsList!.length - 1
+                                    ? SizedBox(
+                                        width: 900.w, child: const Divider())
+                                    : const SizedBox.shrink()
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+              ],
+            );
+          },
         ),
       ),
     );

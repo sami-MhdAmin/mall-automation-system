@@ -64,7 +64,7 @@
     "profile": "Profile",
     "myOrders": "My Orders",
     "alreadyHave": "Already Have",
-    "investStoreOrStand": "Invest Store or Stand",
+    "investStore": "Invest Store",
     "storeOrStandInvested": "Store or Stand Invested",
     "manageMyInvestment": "Manage My Investment",
     "totalAmount": "Total Amount",
@@ -116,5 +116,7 @@
     "closeTime": "Close time",
     "descriptionInvestmentOption": "Step into the future with our Mall Automation System your all access pass to investment and store management! Option for the Investor role upon app entry.  Invest in stores by paying a down payment, then finalize contracts with the mall manager. Once invested, take the reins. Manage inventory effortlessly  add, delete, update, and view products with ease. This is more than an investment  Join us in shaping the future of mall experiences. Welcome to the Mall Automation System.",
     "whatIsInvestmentOption": "what is Investment option?",
-    "ok":"Ok"
+    "ok":"Ok",
+    "orderedSuccessfully": "Ordered Successfully",
+    "removedSuccessfully": "Removed Successfully"
 }
