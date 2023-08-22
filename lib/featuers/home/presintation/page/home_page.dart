@@ -13,6 +13,7 @@ import 'package:jessy_mall/featuers/home/presintation/page/product_page.dart';
 import 'package:jessy_mall/featuers/home/presintation/page/stores_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../../home_search/presentation/pages/home_search_page.dart';
 import '../widget/category_home_card_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,16 +81,25 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 100.h,
               ),
-              CustomTextField(
-                keybordType: TextInputType.name,
-                width: 800.w,
-                hintText: StringManager.search.tr(),
-                icon: Icons.search,
-                textEditingController: searchController,
-                validator: (v) {
-                  return null;
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const HomeSearchPage()));
                 },
-                textFieldColor: ColorManager.grey.withOpacity(0.5),
+                child: CustomTextField(
+                  enabled: false,
+                  keybordType: TextInputType.name,
+                  width: 800.w,
+                  hintText: StringManager.search.tr(),
+                  icon: Icons.search,
+                  textEditingController: searchController,
+                  validator: (v) {
+                    return null;
+                  },
+                  textFieldColor: ColorManager.grey.withOpacity(0.5),
+                ),
               ),
               SizedBox(
                 height: 80.h,
@@ -141,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (_) => ProductPage(
-                                storeId: 0,
+                                    storeId: 0,
                                     categoryName: ConstManager.marketCategory,
                                   )));
                     },

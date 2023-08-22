@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? onFieldSubmittedFunc;
   final Color? textFieldColor;
   final String? initialValue;
+  final bool? enabled;
 
   const CustomTextField(
       {required this.keybordType,
@@ -28,7 +29,8 @@ class CustomTextField extends StatelessWidget {
       this.onFieldSubmittedFunc,
       super.key,
       this.textFieldColor,
-      this.initialValue});
+      this.initialValue,
+      this.enabled});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class CustomTextField extends StatelessWidget {
               ColorManager.textFieldFill, // Adjust the color to your preference
         ),
         child: TextFormField(
+          enabled: enabled,
           initialValue: initialValue,
           controller: textEditingController,
           keyboardType: keybordType,
