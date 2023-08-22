@@ -15,13 +15,34 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../core/widgets/custom_button.dart';
 import '../../../products_in_store/presentation/pages/products_in_store_page.dart';
+import '../bloc/upload_excel_file/upload_excel_file_bloc.dart';
 import '../widget/profile_card_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../widget/space_request_number_widget.dart';
 
+import 'package:file_picker/file_picker.dart';
+
 class ManageWearHousePage extends StatelessWidget {
   const ManageWearHousePage({super.key});
+
+  void pickAndUploadExcel() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['xls', 'xlsx'],
+    );
+
+    if (result != null) {
+      PlatformFile file = result.files.first;
+
+      print(
+          "SAAAAAAAAAAAAALIIIIIIIIIIIIIIIIIIIIIMMMMMMMMMMMMMMMMMMMMMPPPPPPOOOOOOOOOOOOOO");
+      print(file.size);
+      print(file.name);
+    } else {
+      // User canceled the picker
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +105,15 @@ class ManageWearHousePage extends StatelessWidget {
       );
     }
 
-    return BlocProvider(
-      create: (context) => GetIt.I.get<WearhouseInvestorBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => GetIt.I.get<WearhouseInvestorBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => GetIt.I.get<UploadExcelFileBloc>(),
+        ),
+      ],
       child: Scaffold(
         body: Container(
           height: 1.sh,
@@ -101,7 +129,7 @@ class ManageWearHousePage extends StatelessWidget {
                 ProfileCardWidget(
                   titleInListTile: StringManager.showProduct.tr(),
                   subtitleInListTile:
-                      "${StringManager.youHave.tr()} 2 ${StringManager.products.tr()}",
+                      "//${StringManager.youHave.tr()} 2 ${StringManager.products.tr()}",
                   navigatorFunc: () {
                     Navigator.push(
                         context,
@@ -137,7 +165,9 @@ class ManageWearHousePage extends StatelessWidget {
                   listener: (context, state) {
                     if (state is WearhouseInvestorRequestExtraSpaceSuccess) {
                       gShowSuccessSnackBar(
-                          context: context, message: StringManager.addSuccessWaitingForAccept.tr());
+                          context: context,
+                          message:
+                              StringManager.addSuccessWaitingForAccept.tr());
                     }
                     if (state is WearhouseInvestorDeleteProductFailure) {
                       gShowErrorSnackBar(
@@ -173,11 +203,80 @@ class ManageWearHousePage extends StatelessWidget {
                     );
                   },
                 ),
-                ProfileCardWidget(
-                  titleInListTile: StringManager.uploadExcel.tr(),
-                  subtitleInListTile: StringManager.uploadExcelDesc.tr(),
-                  navigatorFunc: () {},
-                ),
+                // BlocConsumer<UploadExcelFileBloc, UploadExcelFileState>(
+                //   listener: (context, state) {
+                //     if (state is UploadExcelFileSuccess) {
+                //       gShowSuccessSnackBar(
+                //         context: context,
+                //         message: state.successMessage,
+                //       );
+                //     }
+                //     if (state is UploadExcelFileFailed) {
+                //       gShowErrorSnackBar(
+                //           context: context,
+                //           message: StringManager.sthWrong.tr());
+                //     }
+                //   },
+                //   builder: (context, state) {
+                //     return Stack(
+                //       children: [
+                //         ProfileCardWidget(
+                //           titleInListTile: StringManager.uploadExcel.tr(),
+                //           subtitleInListTile:
+                //               StringManager.uploadExcelDesc.tr(),
+                //           navigatorFunc: () async {
+                //             FilePickerResult? result =
+                //                 await FilePicker.platform.pickFiles(
+                //               type: FileType.custom,
+                //               allowedExtensions: ['xls', 'xlsx'],
+                //             );
+
+                //             if (result != null) {
+                  //TODO: try with out 
+                //               PlatformFile file = result.files.first;
+
+                //               print(
+                //                   "SAAAAAAAAAAAAALIIIIIIIIIIIIIIIIIIIIIMMMMMMMMMMMMMMMMMMMMMPPPPPPOOOOOOOOOOOOOO");
+                //               print(file.size);
+                //               print(file.name);
+                //               context.read<UploadExcelFileBloc>().add(
+                //                   UploadExcelEvent(
+                //                       context.read<AuthBloc>().token ?? '',
+                //                       file));
+                //             } else {
+                //               gShowErrorSnackBar(
+                //                   context: context,
+                //                   message: "You Didn't choose any file");
+                //             }
+                //           },
+                //         ),
+                //         if (state is UploadExcelFileLoading)
+                //           SizedBox(
+                //             height: 300.h,
+                //             child: Column(
+                //               children: [
+                //                 SizedBox(
+                //                   height: 200.h,
+                //                   width: 300.w,
+                //                   child: Lottie.asset(AssetJsonManager.loading),
+                //                 ),
+                //                 SizedBox(
+                //                   height: 50.h,
+                //                 ),
+                //                 Text(
+                //                   StringManager.loading.tr(),
+                //                   style: TextStyle(
+                //                       color: ColorManager.black,
+                //                       fontSize: 30.sp,
+                //                       fontWeight: FontWeight.w800),
+                //                 ),
+                //               ],
+                //             ),
+                //           )
+                //       ],
+                //     );
+                //   },
+                // ),
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:jessy_mall/featuers/profile/models/investor_model.dart';
 import 'package:jessy_mall/featuers/profile/models/wearhouse_investor_product.dart';
 
@@ -17,8 +18,11 @@ abstract class ProfileRemoteDataSource {
   Future<Either<Failure, bool>> requestExtraSpace(
       {required String token, required int space});
 
-        Future<Either<Failure, InvestorProductModel>>
-      getMyStoreProduct(String token);
+  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token);
+
+  //SALIM
+  Future<Either<Failure, String>> uploadExcelFile(
+      String token, PlatformFile file);
 }
 
 class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
@@ -132,9 +136,10 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     }
     return Left(ServerFailure());
   }
-  
+
   @override
-  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token)async {
+  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(
+      String token) async {
     final Response response;
     try {
       dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
@@ -143,6 +148,34 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Right(InvestorProductModel.fromJson(
             response.data as Map<String, dynamic>));
+      }
+    } on DioError catch (e) {
+      if (e.response == null) {
+        return left(NoInternetFailure());
+      }
+      if (e.response!.data['message'] != null) {
+        return left(Failure(message: e.response!.data['message'].toString()));
+      } else {
+        return Left(
+          Failure(message: StringManager.sthWrong.tr()),
+        );
+      }
+    }
+    return Left(ServerFailure());
+  }
+
+  //SALIM
+  @override
+  Future<Either<Failure, String>> uploadExcelFile(
+      String token, PlatformFile file) async {
+    final Response response;
+    try {
+      dioClient.options.headers.addAll({'authorization': 'Bearer $token'});
+
+      response =
+          await dioClient.post('/storeAllStoreProduct', data: {"spreadsheet": file});
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return const Right("Uploaded Successfully");
       }
     } on DioError catch (e) {
       if (e.response == null) {

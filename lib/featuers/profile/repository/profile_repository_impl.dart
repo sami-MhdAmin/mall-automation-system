@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:file_picker/src/platform_file.dart';
 
 import 'package:jessy_mall/core/errors/base_error.dart';
 import 'package:jessy_mall/featuers/profile/models/investor_model.dart';
@@ -77,13 +78,14 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return left(NoInternetFailure());
     }
   }
-  
+
   @override
-  Future<Either<Failure, bool>> requestExtraSpace({required String token, required int space})async {
+  Future<Either<Failure, bool>> requestExtraSpace(
+      {required String token, required int space}) async {
     if (await _networkInfo.isConnected) {
       try {
-        final addSuccess = await _profileRemoteDataSource
-            .requestExtraSpace(token: token, space: space);
+        final addSuccess = await _profileRemoteDataSource.requestExtraSpace(
+            token: token, space: space);
         return addSuccess.fold(
           (failure) => Left(failure),
           (t) {
@@ -99,7 +101,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(String token) async {
+  Future<Either<Failure, InvestorProductModel>> getMyStoreProduct(
+      String token) async {
     if (await _networkInfo.isConnected) {
       try {
         final addSuccess =
@@ -108,6 +111,28 @@ class ProfileRepositoryImpl extends ProfileRepository {
           (failure) => Left(failure),
           (product) {
             return right(product);
+          },
+        );
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return left(NoInternetFailure());
+    }
+  }
+
+//SALIM
+  @override
+  Future<Either<Failure, String>> uploadExcelFile(
+      String token, PlatformFile file) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final addSuccess =
+            await _profileRemoteDataSource.uploadExcelFile(token, file);
+        return addSuccess.fold(
+          (failure) => Left(failure),
+          (state) {
+            return right(state);
           },
         );
       } on ServerException {
