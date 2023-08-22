@@ -1,3 +1,4 @@
+import 'package:jessy_mall/injection_container/cart_injection.dart';
 import 'package:jessy_mall/injection_container/delivery_injection.dart';
 import 'package:jessy_mall/injection_container/global_injection.dart';
 import 'package:jessy_mall/injection_container/invest_store_option_injection.dart';
@@ -8,6 +9,7 @@ import 'dio_init_client.dart';
 import 'home_injection.dart';
 import 'edit_store_injection.dart';
 import 'favorite_injection.dart';
+import 'home_search_injection.dart';
 import 'income_outcome_injection.dart';
 import 'profile_injection.dart';
 import 'warehouse_extra_space_requests_injection.dart';
@@ -27,4 +29,6 @@ Future<void> initInjection() async {
   await dileveryInjection();
   await warehouseExtraSpaceRequestsInjection();
   await warehouseOrdersInjection();
+  await cartInjection();
+  await homeSearchInjection();
 }

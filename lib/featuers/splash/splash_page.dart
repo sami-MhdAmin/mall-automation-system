@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jessy_mall/core/resource/const_manager.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/bloc/auth_bloc.dart';
 import 'package:jessy_mall/featuers/Auth/presintation/page/login_page.dart';
 import 'package:jessy_mall/featuers/bottom_navigation_bar/presintation/page/bottom_navigation_bar.dart';
 
+import '../../core/resource/asset_manager.dart';
 import '../../delivery manager/features/home/presentation/page/delivery_home_page.dart';
 import '../../warehouse manager/warehouse_home/presintation/pages/warehouse_home_page.dart';
 
@@ -48,9 +50,14 @@ class _SplashPageState extends State<SplashPage> {
         }
       }
     });
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text('splash page'),
+        child: SizedBox(
+          height: 1200.h,
+          width: 1200.h,
+          child: Image.asset(AssetImageManager.logo),
+        ),
       ),
     );
   }
