@@ -82,7 +82,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
               ),
               SizedBox(
-                height: 40.h,
+                height: 80.h,
               ),
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 70.w),
@@ -159,6 +159,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 40.h,
+                    ),
                     Text(StringManager.productDescription.tr(),
                         style: TextStyle(
                             color: ColorManager.black,
@@ -166,7 +169,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             fontSize: 50.sp)),
                     SingleChildScrollView(
                       child: SizedBox(
-                        height: 200.h,
+                        height: 300.h,
                         width: 1.sw,
                         child: Text(
                             '${widget.productModel!.productDataModel?[widget.index].description}',
@@ -176,15 +179,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                 fontSize: 40.sp)),
                       ),
                     ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    Center(
-                      child: CustomButton(
-                        onPressed: () {},
-                        text: StringManager.addToCard.tr(),
-                      ),
-                    )
+
+                    // Center(
+                    //   child: CustomButton(
+                    //     onPressed: () {},
+                    //     text: StringManager.addToCard.tr(),
+                    //   ),
+                    // )
                   ],
                 ),
               )

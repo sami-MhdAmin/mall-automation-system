@@ -21,3 +21,15 @@ class ProductRequested extends ProductEvent {
       required this.categoryName,
       this.search});
 }
+
+class ProductAddToCartRequested extends ProductEvent {
+  final String token;
+  final int productId;
+  final int quantity;
+  bool? isMarket = true;
+  ProductAddToCartRequested(
+      {required this.token,
+      required this.productId,
+      required this.quantity,
+      this.isMarket});
+}

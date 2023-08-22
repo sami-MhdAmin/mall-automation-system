@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 
+late int productAmount;
+
 class Counter extends StatefulWidget {
-  Counter({super.key, required this.x});
-  int x;
+  Counter({
+    super.key,
+  });
 
   @override
   State<Counter> createState() => _CounterState();
 }
 
 class _CounterState extends State<Counter> {
+  @override
+  void initState() {
+    productAmount = 1;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,7 +34,7 @@ class _CounterState extends State<Counter> {
           child: GestureDetector(
             onTap: () {
               setState(() {
-                widget.x--;
+                productAmount--;
               });
             },
             child: const Center(
@@ -38,7 +47,7 @@ class _CounterState extends State<Counter> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(widget.x.toString()),
+          child: Text(productAmount.toString()),
         ),
         Container(
           width: 24,
@@ -51,7 +60,7 @@ class _CounterState extends State<Counter> {
           child: GestureDetector(
             onTap: () {
               setState(() {
-                widget.x++;
+                productAmount++;
               });
             },
             child: const Center(

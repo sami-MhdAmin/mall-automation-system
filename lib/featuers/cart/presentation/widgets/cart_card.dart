@@ -66,9 +66,9 @@ class CartCard extends StatelessWidget {
                 SizedBox(
                   height: 55.h,
                 ),
-                Counter(
-                  x: 1,
-                )
+                // Counter(
+                //   x: 1,
+                // )
               ],
             ),
             const Spacer(),

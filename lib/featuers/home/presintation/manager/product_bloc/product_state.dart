@@ -28,3 +28,12 @@ class ProductGetInfoFailed extends ProductState {
   final Failure faliuer;
   ProductGetInfoFailed({required this.faliuer});
 }
+
+class ProductAddToCartSuccess extends ProductState {}
+
+class ProductAddToCartLoading extends ProductState {}
+
+class ProductAddToCartFailed extends ProductState {
+  final Failure faliuer;
+  ProductAddToCartFailed({required this.faliuer});
+}

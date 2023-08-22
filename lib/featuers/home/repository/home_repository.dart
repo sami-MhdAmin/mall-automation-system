@@ -15,5 +15,10 @@ abstract class HomeRepository {
       required int storeId,
       String? search,
       required String categoryName});
+        Future<Either<Failure, bool>> addProductToCart(
+      {required String token,
+      required int productId,
+      required int quantity,
+      bool? isMarket });
 
 }
