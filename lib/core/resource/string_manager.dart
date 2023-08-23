@@ -141,4 +141,6 @@ class StringManager {
 
   static String orderedSuccessfully = "orderedSuccessfully";
   static String removedSuccessfully = "removedSuccessfully";
+  static String store = 'store';
+  static String reservationIsDone = 'reservationIsDone';
 }

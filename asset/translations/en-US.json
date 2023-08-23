@@ -118,5 +118,7 @@
     "whatIsInvestmentOption": "what is Investment option?",
     "ok":"Ok",
     "orderedSuccessfully": "Ordered Successfully",
-    "removedSuccessfully": "Removed Successfully"
+    "removedSuccessfully": "Removed Successfully",
+    "store":"store",
+    "reservationIsDone":"Reservation is done"
 }

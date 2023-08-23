@@ -32,8 +32,10 @@ class InvestOptionBloc extends Bloc<InvestOptionEvent, InvestOptionState> {
 
       successOrFailuer.fold((error) {
         emit(InvestStoreOptionFailed(failure: error));
+        emit(InvestOptionInitial());
       }, (data) {
         emit(InvestStoreByIdSuccess());
+        emit(InvestOptionInitial());
       });
     });
   }

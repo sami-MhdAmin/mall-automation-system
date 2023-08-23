@@ -85,14 +85,26 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 height: 80.h,
               ),
               Padding(
-                padding: EdgeInsetsDirectional.only(start: 70.w),
-                child: Text(
-                  widget.productModel!.productDataModel?[widget.index].name ??
-                      '',
-                  style: TextStyle(
-                      color: ColorManager.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 50.sp),
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 70.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.productModel!.productDataModel?[widget.index]
+                              .name ??
+                          '',
+                      style: TextStyle(
+                          color: ColorManager.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 50.sp),
+                    ),
+                    SizedBox(
+                      height: 100.w,
+                      width: 100.w,
+                      child: IconButton(
+                          onPressed: () {}, icon: Icon(Icons.favorite_border)),
+                    )
+                  ],
                 ),
               ),
               SizedBox(

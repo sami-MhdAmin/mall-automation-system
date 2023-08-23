@@ -89,54 +89,54 @@ class InvestmentOptions extends StatelessWidget {
 //   });
 // }
 
-class InvestmentStandUI extends StatelessWidget {
-  // final List<Listing> listings = [
-  //   Listing(
-  //     space: '120 sq. ft.',
-  //     type: 'Snack',
-  //     price: '\$500/year',
-  //   ),
-  //   Listing(
-  //     space: '80 sq. ft.',
-  //     type: 'Caffe',
-  //     price: '\$400/year',
-  //   ),
-  //   // Add more listings as needed
-  // ];
+// class InvestmentStandUI extends StatelessWidget {
+//   // final List<Listing> listings = [
+//   //   Listing(
+//   //     space: '120 sq. ft.',
+//   //     type: 'Snack',
+//   //     price: '\$500/year',
+//   //   ),
+//   //   Listing(
+//   //     space: '80 sq. ft.',
+//   //     type: 'Caffe',
+//   //     price: '\$400/year',
+//   //   ),
+//   //   // Add more listings as needed
+//   // ];
 
-  InvestmentStandUI({super.key});
+//   InvestmentStandUI({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          // SizedBox(height: 200, child: WebViewWidget(controller: _controller)),
-          Card(
-            elevation: 4.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
-            ),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                      "In this option you can immediately invest until 5 stands,\n every stand have one metter space, and you can have a type in each stand."),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                      "Available types\n price per month \n types: kitchen stuff, Detergent, canned food."),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Padding(
+//       padding: const EdgeInsets.all(16.0),
+//       child: Column(
+//         children: [
+//           // SizedBox(height: 200, child: WebViewWidget(controller: _controller)),
+//           Card(
+//             elevation: 4.0,
+//             shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(16.0),
+//             ),
+//             child: const Column(
+//               crossAxisAlignment: CrossAxisAlignment.stretch,
+//               children: [
+//                 Padding(
+//                   padding: EdgeInsets.all(16.0),
+//                   child: Text(
+//                       "In this option you can immediately invest until 5 stands,\n every stand have one metter space, and you can have a type in each stand."),
+//                 ),
+//                 Padding(
+//                   padding: EdgeInsets.all(16.0),
+//                   child: Text(
+//                       "Available types\n price per month \n types: kitchen stuff, Detergent, canned food."),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     ));
+//   }
+// }

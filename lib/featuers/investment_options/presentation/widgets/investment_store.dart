@@ -40,54 +40,60 @@ class InvestmentStoreUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocConsumer<InvestOptionBloc, InvestOptionState>(
-        listener: (context, state) {
-          // TODO: implement listener
-          if (state is InvestStoreOptionFailed) {
-            gShowErrorSnackBar(
-                context: context, message: StringManager.sthWrong.tr());
-          }
-          if (state is InvestStoreOptionSuccessd) {
-            // print(state.profileModel.profileDataModel?.email);
-            investStoreModel = state.investStoreModel.allStores;
-          }
-        },
-        builder: (context, state) {
-          if (state is InvestOptionInitial) {
-            context.read<InvestOptionBloc>().add(GetInvestStoreOption(
-                token: context.read<AuthBloc>().token ?? ''));
-          }
-          return Stack(
-            children: [
-              ListView.builder(
-                itemCount: investStoreModel?.length ?? 0,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.all(30.w),
-                    child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => InvestStorePage(
-                                        investStoreDataModel:
-                                            investStoreModel![index],
-                                      )));
-                        },
-                        child: CardStore(
-                            listings: investStoreModel!, index: index)),
-                  );
-                },
+    return BlocConsumer<InvestOptionBloc, InvestOptionState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is InvestStoreOptionFailed) {
+          gShowErrorSnackBar(
+              context: context, message: StringManager.sthWrong.tr());
+        }
+        if (state is InvestStoreOptionSuccessd) {
+          // print(state.profileModel.profileDataModel?.email);
+          investStoreModel = state.investStoreModel.allStores;
+        }
+        if (state is InvestStoreOptionFailed) {
+          context.read<InvestOptionBloc>().add(GetInvestStoreOption(
+              token: context.read<AuthBloc>().token ?? ''));
+        }
+      },
+      builder: (context, state) {
+        if (state is InvestOptionInitial) {
+          print("saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          context.read<InvestOptionBloc>().add(GetInvestStoreOption(
+              token: context.read<AuthBloc>().token ?? ''));
+        }
+        if (state is InvestStoreOptionFailed) {
+          print("faileeeeeed");
+        }
+        return Stack(
+          children: [
+            ListView.builder(
+              itemCount: investStoreModel?.length ?? 0,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.all(30.w),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => InvestStorePage(
+                                      investStoreDataModel:
+                                          investStoreModel![index],
+                                    )));
+                      },
+                      child:
+                          CardStore(listings: investStoreModel!, index: index)),
+                );
+              },
+            ),
+            if (state is InvestOptionLoading)
+              const LoadingWidget(
+                fullScreen: true,
               ),
-              if (state is InvestOptionLoading)
-                const LoadingWidget(
-                  fullScreen: true,
-                ),
-            ],
-          );
-        },
-      ),
+          ],
+        );
+      },
     );
   }
 }

@@ -117,5 +117,7 @@
     "whatIsInvestmentOption": "ما هي خيارات الإستثمار؟",
     "ok": "حسنا",
     "orderedSuccessfully": "تم الطلب بنجاح",
-    "removedSuccessfully": "تم الحذف بنجاح"
+    "removedSuccessfully": "تم الحذف بنجاح",
+    "store": "متجر",
+    "reservationIsDone": "تم حجز المتجر"
 }
