@@ -155,9 +155,9 @@ class _DeliveryPendingDetailsPageState
                         ),
                       ),
                       Text(
-                        "Damas,rkn Alden,street,7ara".length > 15
-                            ? "Damas,rkn Alden,stre..."
-                            : "Damas,rkn Alden,street",
+                        widget.deliveryDataOrderModel!.location!.length > 20
+                            ? "${widget.deliveryDataOrderModel!.location!.substring(0, 20)}..."
+                            : "${widget.deliveryDataOrderModel!.location!}",
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: const Color(0xFF232323),

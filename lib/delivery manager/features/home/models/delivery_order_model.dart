@@ -25,6 +25,7 @@ class DeliveryDataOrderModel {
   final String? total_price;
   final String? approved_status;
   final int? delivered_status;
+  final String? location;
   final String? from_who;
   final List<DeliveryProductsDataModel>? store_products;
   DeliveryDataOrderModel({
@@ -34,6 +35,7 @@ class DeliveryDataOrderModel {
     this.total_price,
     this.approved_status,
     this.delivered_status,
+    this.location,
     this.from_who,
     this.store_products,
   });

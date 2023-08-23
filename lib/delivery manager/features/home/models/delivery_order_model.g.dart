@@ -30,6 +30,7 @@ DeliveryDataOrderModel _$DeliveryDataOrderModelFromJson(
       total_price: json['total_price'] as String?,
       approved_status: json['approved_status'] as String?,
       delivered_status: json['delivered_status'] as int?,
+      location: json['location'] as String?,
       from_who: json['from_who'] as String?,
       store_products: (json['store_products'] as List<dynamic>?)
           ?.map((e) =>
@@ -46,6 +47,7 @@ Map<String, dynamic> _$DeliveryDataOrderModelToJson(
       'total_price': instance.total_price,
       'approved_status': instance.approved_status,
       'delivered_status': instance.delivered_status,
+      'location': instance.location,
       'from_who': instance.from_who,
       'store_products': instance.store_products,
     };
