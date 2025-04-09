@@ -1,16 +1,26 @@
-# jessy_mall
+# 🏬 Mall Automation System
+A feature-rich Flutter application that simulates the full automation of a shopping mall. The system allows users to invest in stores, shop for products, manage carts and orders, and switch roles between customer and investor.
 
-A new Flutter project.
+# 🔧 Features
+* Browse products by category and manage a shopping cart
 
-## Getting Started
+* Place orders, view billing history, and manage wish lists
 
-This project is a starting point for a Flutter application.
+* Invest in mall stores and switch between investor and customer modes
 
-A few resources to get you started if this is your first Flutter project:
+* Store owners can manage inventory and track store performance
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* Stripe integration for secure payments
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Clean architecture with BLoC for state management
+
+# 🛠️ Tech Stack
+* Mobile Application: Flutter
+
+* State Management: BLoC
+
+* Payment Integration: Stripe
+
+* Architecture: Clean Architecture & Modular Design
+#
+🛍️ A complete mall simulation platform that demonstrates multi-role functionality and real-world commerce logic.
